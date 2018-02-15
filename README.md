@@ -1,2 +1,2 @@
-# BA_thesis
+# BA Thesis
 Thesis Bachelor in Linguistics
