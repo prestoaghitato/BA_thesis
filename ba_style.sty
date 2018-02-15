@@ -1,0 +1,50 @@
+% @author Marcel Ruland (2018)
+
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{ba_style}
+
+\usepackage{lmodern} % use Latin Font for rm and sf with original Latin Modern ß
+\usepackage[utf8]{inputenc} % makes sure the umlauts etc. in the source are read correctly
+\usepackage[T1]{fontenc} % changes the font encoding in the PDF
+\usepackage[defaultlines=2,all]{nowidow} % prevent widow and orphan lines
+\usepackage{graphicx} % required to insert images
+\usepackage[usenames,dvipsnames]{xcolor} % Required for custom colors
+\usepackage{amsmath,amssymb} % Better maths support & more symbols
+\usepackage{microtype} % improved typography
+\usepackage[singlespacing]{setspace} % improved linespacing
+\usepackage{lipsum} % blind text
+\usepackage{booktabs} % improved tables
+\usepackage{enumitem} % enumerate environment, custom list labels
+\usepackage{harvard} % use Harvard citation style
+	\bibliographystyle{newharvard}
+	\citationstyle{dcu}
+\usepackage{tikz}
+%\usepackage{scrlayer-scrpage} % uncomment for custom header (chapter 5 of manual)
+%	\lohead{loh}
+%	\cohead{coh}
+%	\rohead{roh}
+%	\lofoot*{lof}
+%	\rofoot*{rof}
+%	\cofoot*{cof}
+%	\pagestyle{scrheadings}
+%**************************************************
+
+%*******************KOMA-Options*******************
+% \KOMAoptions{parskip=half,headsepline,footsepline} % uncomment this one
+% [parskip=half] separates paragraphs by 0.5 lines
+% [headsepline,headtopline,footsepline] put lines after header & before footer <-- does NOT work with \pagestyle{plain.scrheadings}
+%**************************************************
+
+%**************Customise Font Formats**************
+% \addtokomafont{pageheadfoot}{\sffamily\upshape} % example use
+% \setkomafont{author}{\sffamily\footnotesize} % example use
+% Elements on page 60 of (German) KOMA manual
+%**************************************************
+
+%****************** New Commands ******************
+\newcommand{\code}[1]{\texttt{#1}}
+%**************************************************
+
+%****************** New Colours *******************
+%\definecolor{white}{HTML}{FFFFFF}
+%**************************************************

@@ -3,28 +3,22 @@
 %Random pieces of information I picked up along the way (might turn out useful):
 %[chapterprefix=true] changes ``1 LaTeX'' to ``Chapter 1\\ LaTeX''
 
+%% tell TeXshop to compile using LuaLaTeX and encode with UTF-8
+%!TEX TS-program = lualatex
+%!TEX encoding = UTF-8 Unicode
+
 \documentclass[toc=bib]{scrreprt}
-\usepackage{../ba_style}
+\usepackage{../ba_style}  % loading packages, typesetting, etc.
 
 
 % using all commands now to have an exhaustive list and see what they're all doing, will probably remove some of them at some stage
 \titlehead{Titlehead, whatever\ldots}
 \subject{So Subject}
-\title{Computers for Linguists}
-\subtitle{This is the Subtitle}
+\title{Witty Thesis Title}
+\subtitle{Not So Witty Thesis Subtitle}
 \author{Marcel Ruland\thanks{Oh deer how thankful am I\ldots}}
 \publishers{Publishing Publishers}
-\uppertitleback{%
-    This book is distributed in the hope that it will be useful,
-    but \emph{without any warranty;} without even the implied warranty of
-    \emph{merchantability} or \emph{fitness for a particular purpose.}  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this book. If not, see http://www.gnu.org/licenses/.
-}
-\lowertitleback{Lower. Title. Back.}
-\dedication{Totally dedicating this to me, myself, and I, because no one even knows this thing exists (yet).}
+\dedication{Totally dedicating this to me, myself, and I, because no one even knows this thing exists.}
 
 \begin{document}
 
