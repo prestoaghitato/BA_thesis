@@ -3,19 +3,20 @@
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 \ProvidesPackage{ba_style}
 
-\usepackage{lmodern} % use Latin Font for rm and sf with original Latin Modern ß
-\usepackage[utf8]{inputenc} % makes sure the umlauts etc. in the source are read correctly
-\usepackage[T1]{fontenc} % changes the font encoding in the PDF
-\usepackage[defaultlines=2,all]{nowidow} % prevent widow and orphan lines
-\usepackage{graphicx} % required to insert images
-\usepackage[usenames,dvipsnames]{xcolor} % Required for custom colors
-\usepackage{amsmath,amssymb} % Better maths support & more symbols
-\usepackage{microtype} % improved typography
-\usepackage[singlespacing]{setspace} % improved linespacing
-\usepackage{lipsum} % blind text
-\usepackage{booktabs} % improved tables
-\usepackage{enumitem} % enumerate environment, custom list labels
-\usepackage{harvard} % use Harvard citation style
+\usepackage{ttcommons}  % use TT commons for sf
+\usepackage{ttjenevers}  % use TT Jenevers for rm
+\renewcommand{\ttdefault}{lmtt}  % use Latin Modern for tt
+\usepackage[defaultlines=2,all]{nowidow}  % prevent widow and orphan lines
+\usepackage{graphicx}  % required to insert images
+\usepackage[usenames,dvipsnames]{xcolor}  % Required for custom colors
+\usepackage{amsmath,amssymb}  % Better maths support & more symbols
+\usepackage{microtype}  % improved typography
+\usepackage[singlespacing]{setspace}  % improved linespacing
+\usepackage{lipsum}  % blind text
+\usepackage{booktabs}  % improved tables
+\usepackage{enumitem}  % enumerate environment, custom list labels
+\usepackage{localextra}  % provides colour definitions and hyphenation for linguistic terms, names, etc.
+\usepackage{harvard}  % use Harvard citation style
 	\bibliographystyle{newharvard}
 	\citationstyle{dcu}
 \usepackage{tikz}
@@ -38,6 +39,7 @@
 %**************Customise Font Formats**************
 % \addtokomafont{pageheadfoot}{\sffamily\upshape} % example use
 % \setkomafont{author}{\sffamily\footnotesize} % example use
+\addtokomafont{author}{\sffamily\addfontfeature{Style=Alternate}}  % amend author
 % Elements on page 60 of (German) KOMA manual
 %**************************************************
 
