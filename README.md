@@ -1,6 +1,12 @@
 # BA Thesis
 Thesis Bachelor in Linguistics
 
+# Outline
+
+- Introduction
+  - How does Pattern Mining Work?
+- What needs to be achieved
+- How we achieve it
 ## Basic Pattern Mining Stuff
 
 ### Apriori Algorithm
