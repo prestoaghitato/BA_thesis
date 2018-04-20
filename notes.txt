@@ -1,0 +1,2 @@
+field-specific operationalisation:
+  distinguish between interpersonal and intrapersonal rules
