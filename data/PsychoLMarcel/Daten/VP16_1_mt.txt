@@ -1,0 +1,288 @@
+M-voc		0.0	2.859	 Dann guckt er dich nämlich an. Hallo, mein Süßer.
+M-voc		2.859	3.292	(breath)
+M-voc		3.292	6.049	Na:, bist du heute besser drauf?
+M-voc		6.049	6.376	p
+M-voc		6.376	6.822	Hm?
+M-voc		6.822	6.999	p
+M-voc		6.999	7.276	(breath)
+M-voc		7.276	8.832	Gib mir mal deinen Fuß her.
+M-voc		8.832	9.458	p
+M-voc		9.458	9.883	(breath)
+M-voc		9.883	11.965	Gib mir mal deinen Fuß her.
+M-voc		11.965	13.198	p
+M-voc		13.198	13.99	Schwup.
+M-voc		13.99	14.983	p
+M-voc		14.983	15.907	Schwup.
+M-voc		15.907	17.05	p
+M-voc		17.05	17.932	Was los?
+M-voc		17.932	18.992	p
+M-voc		18.992	19.466	Hä?
+M-voc		19.466	19.718	p
+M-voc		19.718	20.86	Was ist denn los?
+M-voc		20.86	21.757	p
+M-voc		21.757	22.351	Sag mal.
+M-voc		22.351	22.893	p
+M-voc		22.893	23.833	Bist du brav?
+M-voc		23.833	25.282	p
+M-voc		25.282	27.019	Hm, bist du ein Braver?
+M-voc		27.019	27.806	p
+M-voc		27.806	28.586	Tommilein.
+M-voc		28.586	29.565	p
+M-voc		29.565	30.318	Hase.
+M-voc		30.318	31.298	p
+M-voc		31.298	31.857	Komm mal her.
+M-voc		31.857	33.23	p
+M-voc		33.23	33.655	(breath)
+M-voc		33.655	34.734	Sauber machen.
+M-voc		34.734	36.576	p
+M-voc		36.576	37.38	Sauber machen.
+M-voc		37.38	38.945	p
+M-voc		38.945	39.591	Schwup.
+M-voc		39.591	40.59	(laugh)
+M-voc		40.59	40.855	p
+M-voc		40.855	41.35	(breath)
+M-voc		41.35	42.08	Du Süßer.
+M-voc		42.08	42.291	p
+M-voc		42.291	42.689	Komm mal her.
+M-voc		42.689	43.802	p
+M-voc		43.802	44.147	Zack.
+M-voc		44.147	45.17	p
+M-voc		45.17	45.638	(breath)
+M-voc		45.638	47.657	p
+M-voc		47.657	48.636	Keine Gegenwehr.
+M-voc		48.636	50.313	p
+M-voc		50.313	51.0	(imitation)
+M-voc		51.0	52.204	p
+M-voc		52.204	52.947	(imitation)
+M-voc		52.947	54.391	p
+M-voc		54.391	55.461	Äre" mein Hase.
+M-voc		55.461	55.922	p
+M-voc		55.922	56.157	Hm.
+M-voc		56.157	57.639	p
+M-voc		57.639	58.434	Mein Hase.
+M-voc		58.434	59.376	p
+M-voc		59.376	59.955	Schwup.
+M-voc		59.955	60.729	p
+M-voc		60.729	61.439	Trocken machen.
+M-voc		61.439	64.352	p
+M-voc		64.352	65.062	Schnuffi.
+M-voc		65.062	66.636	p
+M-voc		66.636	66.948	Hm?
+M-voc		66.948	68.311	p
+M-voc		68.311	69.171	Füße.
+M-voc		69.171	69.614	p
+M-voc		69.614	70.75	Das sind deine Füße.
+M-voc		70.75	70.957	p
+M-voc		70.957	71.437	Guck mal.
+M-voc		71.437	75.339	p
+M-voc		75.339	76.437	Neue Windel.
+M-voc		76.437	78.823	p
+M-voc		78.823	79.234	Popo hoch.
+M-voc		79.234	81.474	p
+M-voc		81.474	82.367	Po:po: hoch.
+M-voc		82.367	82.731	p
+M-voc		82.731	83.058	Zack.
+M-voc		83.058	84.961	p
+M-voc		84.961	85.718	Schwuppi.
+M-voc		85.718	87.709	p
+M-voc		87.709	88.421	Hallo.
+M-voc		88.421	88.566	p
+M-voc		88.566	89.236	Tommi.
+M-voc		89.236	89.352	p
+M-voc		89.352	90.102	Na:.
+M-voc		90.102	91.42	p
+M-voc		91.42	92.622	Beobachtest du mich?
+M-voc		92.622	93.548	p
+M-voc		93.548	94.967	Nein, du kannst jetzt nicht aufstehen.
+M-voc		94.967	95.269	p
+M-voc		95.269	96.574	Hh, bin noch nicht fertig.
+M-voc		96.574	98.44	p
+M-voc		98.44	98.776	Hm?
+M-voc		98.776	100.051	p
+M-voc		100.051	100.528	Zeig mal.
+M-voc		100.528	101.084	p
+M-voc		101.084	102.148	Habe ich das richtig gemacht?
+M-voc		102.148	102.547	p
+M-voc		102.547	102.869	(breath)
+M-voc		102.869	105.584	p
+M-voc		105.584	105.97	Schwup.
+M-voc		105.97	107.429	p
+M-voc		107.429	107.899	Schwup.
+M-voc		107.899	112.178	p
+M-voc		112.178	113.115	Wieder anziehen.
+M-voc		113.115	113.598	p
+M-voc		113.598	115.789	Und wieder anziehen. Füße her.
+M-voc		115.789	116.04	p
+M-voc		116.04	117.035	Nein, halt.
+M-voc		117.035	117.742	p
+M-voc		117.742	118.6	Da muss der Fuß rein.
+M-voc		118.6	118.773	p
+M-voc		118.773	119.577	Genau, super.
+M-voc		119.577	121.029	p
+M-voc		121.029	121.487	Zack.
+M-voc		121.487	122.617	p
+M-voc		122.617	123.696	Schwup.
+M-voc		123.696	124.099	p
+M-voc		124.099	125.006	Wieder anziehen.
+M-voc		125.006	125.376	p
+M-voc		125.376	125.978	Hase.
+M-voc		125.978	129.38	p
+M-voc		129.38	129.79	Warte.
+M-voc		129.79	130.493	p
+M-voc		130.493	131.442	Ich bin noch nicht fertig.
+M-voc		131.442	132.848	p
+M-voc		132.848	133.422	Warte mal.
+M-voc		133.422	133.931	p
+M-voc		133.931	134.192	Tom.
+M-voc		134.192	135.427	p
+M-voc		135.427	136.927	Ja, "äre" Tommi.
+M-voc		136.927	137.683	p
+M-voc		137.683	138.748	Mama muss dich anziehen.
+M-voc		138.748	140.455	p
+M-voc		140.455	140.99	Warte.
+M-voc		140.99	142.998	p
+M-voc		142.998	143.451	Öre.
+M-voc		143.451	144.995	p
+M-voc		144.995	145.738	Mein Süßer.
+M-voc		145.738	147.28	p
+M-voc		147.28	147.573	Warte.
+M-voc		147.573	148.075	p
+M-voc		148.075	150.545	Bitte mal, nein, nein, nein, nein, nein. Die Füße bleiben unten.
+M-voc		150.545	151.748	p
+M-voc		151.748	153.496	Hase, lass die Füße mal unten.
+M-voc		153.496	155.278	p
+M-voc		155.278	156.766	Lass die Füße mal unten, hm?
+M-voc		156.766	157.924	p
+M-voc		157.924	160.855	Ja:, ich weiß aber ich habe noch zwei Knöpfe.
+M-voc		160.855	161.265	p
+M-voc		161.265	163.636	Ich habe noch zwei Knöpfe mein Süßer, warte.
+M-voc		163.636	164.188	p
+M-voc		164.188	165.707	Dann nehm ich die auch hoch, ok?
+M-voc		165.707	166.346	p
+M-voc		166.346	166.992	(breath)
+M-voc		166.992	167.408	Fertig.
+M-voc		167.408	167.796	p
+M-voc		167.796	168.43	(breath)
+M-voc		168.43	168.85	Fertig.
+M-voc		168.85	169.656	p
+M-voc		169.656	170.187	Na, komm.
+M-voc		170.187	170.366	p
+M-voc		170.366	171.514	Ja, komm. Na, komm.
+M-voc		171.514	171.649	p
+M-voc		171.649	173.033	Na, komm. Das wolltest du doch, ne?
+M-voc		173.033	173.269	p
+M-voc		173.269	174.856	Guck mal, tada:.
+M-voc		174.856	175.206	p
+M-voc		175.206	175.523	(breath)
+M-voc		175.523	176.719	Da bist du:.
+M-voc		176.719	177.397	p
+M-voc		177.397	178.561	Da ist du ja.
+M-voc		178.561	178.832	p
+M-voc		178.832	179.72	Fertig, hm.
+infant		49.671	50.161	closant
+infant		134.925	135.696	closant
+infant		157.435	157.995	closant
+infant		158.78	159.469	closant
+infant		159.79	160.786	closant 
+infant		161.954	162.318	vowel
+infant		170.432	171.483	closant
+M-gaze at		0.0	4.12	gaze at
+M-gaze at		5.04	6.6	gaze at
+M-gaze at		11.12	11.44	gaze at
+M-gaze at		14.36	15.6	gaze at
+M-gaze at		17.08	18.72	gaze at
+M-gaze at		19.6	21.12	gaze at
+M-gaze at		22.68	22.96	gaze at
+M-gaze at		25.24	27.76	gaze at
+M-gaze at		28.88	29.76	gaze at
+M-gaze at		39.0	39.52	gaze at
+M-gaze at		49.44	50.52	gaze at
+M-gaze at		62.8	63.12	gaze at
+M-gaze at		66.44	67.2	gaze at
+M-gaze at		68.12	68.36	gaze at
+M-gaze at		69.4	69.56	gaze at
+M-gaze at		70.88	71.08	gaze at
+M-gaze at		73.72	74.76	gaze at
+M-gaze at		76.04	76.68	gaze at
+M-gaze at		86.8	87.32	gaze at
+M-gaze at		88.08	88.52	gaze at
+M-gaze at		89.6	90.4	gaze at
+M-gaze at		91.28	91.56	gaze at
+M-gaze at		92.84	93.04	gaze at
+M-gaze at		114.56	114.92	gaze at
+M-gaze at		121.36	129.6	gaze at
+M-gaze at		132.28	132.6	gaze at
+M-gaze at		134.4	134.88	gaze at
+M-gaze at		142.64	143.44	gaze at
+M-gaze at		165.4	166.24	gaze at
+M-gaze at		167.08	171.88	gaze at
+M-gaze at		172.4	178.08	gaze at
+M-gaze at		178.96	179.68	gaze at
+I-gaze at		0.0	74.0	infant_gaze_at
+I-gaze at		75.0	91.32	infant_gaze_at
+I-gaze at		92.24	126.4	infant_gaze_at
+I-gaze at		129.4	172.64	infant_gaze_at
+I-gaze at		174.16	175.08	infant_gaze_at
+M-gaze at object		4.16	5.0	gaze at object
+M-gaze at object		6.64	11.08	gaze at object
+M-gaze at object		11.48	14.32	gaze at object
+M-gaze at object		15.64	17.04	gaze at object
+M-gaze at object		18.76	19.56	gaze at object
+M-gaze at object		21.16	22.64	gaze at object
+M-gaze at object		23.0	25.2	gaze at object
+M-gaze at object		27.8	28.72	gaze at object
+M-gaze at object		29.8	38.96	gaze at object
+M-gaze at object		39.56	49.4	gaze at object
+M-gaze at object		50.72	62.76	gaze at object
+M-gaze at object		63.16	66.4	gaze at object
+M-gaze at object		67.24	68.08	gaze at object
+M-gaze at object		68.4	69.36	gaze at object
+M-gaze at object		69.6	70.84	gaze at object
+M-gaze at object		71.12	73.68	gaze at object
+M-gaze at object		74.8	76.0	gaze at object
+M-gaze at object		76.72	86.76	gaze at object
+M-gaze at object		87.36	88.04	gaze at object
+M-gaze at object		88.56	89.56	gaze at object
+M-gaze at object		90.44	91.24	gaze at object
+M-gaze at object		91.6	92.8	gaze at object
+M-gaze at object		93.08	114.52	gaze at object
+M-gaze at object		114.96	121.32	gaze at object
+M-gaze at object		130.44	132.24	gaze at object
+M-gaze at object		132.64	134.36	gaze at object
+M-gaze at object		134.92	142.6	gaze at object
+M-gaze at object		143.48	165.36	gaze at object
+M-gaze at object		166.28	167.04	gaze at object
+M-gaze at object		171.92	172.36	gaze at object
+I-gaze at object		74.04	74.96	infant_gaze_object
+I-gaze at object		126.44	126.96	infant_gaze_object
+I-gaze at object		172.68	174.12	infant_gaze_object
+I-gaze at object		175.12	178.96	infant_gaze_object
+I-gaze away		91.36	92.2	infant_gaze_away
+I-gaze away		127.0	129.36	infant_gaze_away
+M-gaze away		178.12	178.92	gaze away
+inf_smile		1.323	1.52	hidden
+inf_smile		2.763	4.12	hidden
+inf_smile		51.247	51.407	hidden
+inf_smile		51.77	51.81	hidden
+inf_smile		57.573	57.773	smile
+inf_smile		108.488	110.48	hidden
+inf_smile		122.0	122.24	hidden
+inf_smile		122.363	123.08	hidden
+inf_smile		157.641	158.172	hidden
+inf_smile		159.091	159.291	hidden
+inf_smile		179.044	179.76	hidden
+mo_smile		0.0	7.32	smile
+mo_smile		14.84	17.04	smile
+mo_smile		26.846	27.76	smile
+mo_smile		39.482	41.36	smile
+mo_smile		49.801	54.606	smile
+mo_smile		66.532	68.32	smile
+mo_smile		68.8	70.08	smile
+mo_smile		86.84	91.561	smile
+mo_smile		124.134	129.28	smile
+mo_smile		142.521	142.894	smile
+mo_smile		143.294	145.04	smile
+mo_smile		168.649	169.69	smile
+mo_smile		173.48	177.974	hidden
+mo_smile		177.974	178.61	smile
+mo_smile		179.2	179.76	hidden

@@ -1,0 +1,543 @@
+Mother-speech		0.0	3.97	p
+Mother-speech		3.97	6.234	Ja, wollen wir mal hm
+Mother-speech		6.234	6.961	p
+Mother-speech		6.961	8.512	Bist du schon ganz durch.
+Mother-speech		8.512	13.093	p
+Mother-speech		13.093	15.246	Kleiner Langschläfer du.
+Mother-speech		15.246	18.796	p
+Mother-speech		18.796	21.586	Genau, wollen wir dich mal ganz ausziehen, he
+Mother-speech		21.586	27.222	p
+Mother-speech		27.222	31.317	Und warte mal vielleicht geht das noch, aber den Schlafanzug den müssen wir ausziehen.
+Mother-speech		31.317	39.606	p
+Mother-speech		39.606	40.76	Und plumps.
+Mother-speech		40.76	53.734	p
+Mother-speech		53.734	55.634	Na, kleiner Speckbauch.
+Mother-speech		55.634	55.864	p
+Mother-speech		55.864	56.689	Wie geht es dir
+Mother-speech		56.689	57.641	p
+Mother-speech		57.641	58.634	Wie geht es dir
+Mother-speech		58.634	58.941	p
+Mother-speech		58.941	60.409	Wie geht es dir Gut
+Mother-speech		60.409	60.563	p
+Mother-speech		60.563	61.618	Jaa.
+Mother-speech		61.618	62.051	p
+Mother-speech		62.051	62.848	Jaa
+Mother-speech		62.848	63.888	p
+Mother-speech		63.888	66.244	Das ist schön. Hast du gut geschlafen
+Mother-speech		66.244	66.572	p
+Mother-speech		66.572	67.159	Jaa
+Mother-speech		67.159	68.41	p
+Mother-speech		68.41	70.199	Jaa, hast du gut geschlafen
+Mother-speech		70.199	70.671	p
+Mother-speech		70.671	73.522	Hoh, ha.
+Mother-speech		73.522	74.433	p
+Mother-speech		74.433	75.096	Hm
+Mother-speech		75.096	80.1	p
+Mother-speech		80.1	82.315	Uih, na wenn sich das nicht lohnt du.
+Mother-speech		82.315	83.81	p 
+Mother-speech		83.81	85.697	Hmm.
+Mother-speech		85.697	103.136	p
+Mother-speech		103.136	104.151	Jaa.
+Mother-speech		104.151	106.168	p 
+Mother-speech		106.168	107.831	Kleiner Schmunzel, hm
+Mother-speech		107.831	132.213	p 
+Mother-speech		132.213	133.415	(breath)
+Mother-speech		133.415	135.945	p
+Mother-speech		135.945	137.768	Jaa, feste, hm
+Mother-speech		137.768	138.662	p
+Mother-speech		138.662	140.277	Feste strampeln.
+Mother-speech		140.277	147.667	p
+Mother-speech		147.667	150.127	Hah Schmunzel.
+Mother-speech		150.127	150.323	p
+Mother-speech		150.323	151.629	Hallo Schmunzel.
+Mother-speech		151.629	151.776	p
+Mother-speech		151.776	152.538	Naa.
+Mother-speech		152.538	152.836	p
+Mother-speech		152.836	153.824	(breath)
+Mother-speech		153.824	154.019	p
+Mother-speech		154.019	155.675	Ist da erstmal die Windel drum, ne
+Mother-speech		155.675	163.974	p
+Mother-speech		163.974	164.897	Jups.
+Mother-speech		164.897	178.678	p
+Mother-speech		178.678	179.44	Soo.
+Mother-speech		179.44	208.606	p
+Mother-speech		208.606	210.053	Hm, Träumerle.
+Mother-speech		210.053	211.283	p
+Mother-speech		211.283	212.526	Hallo Träumerle.
+Mother-speech		212.526	218.011	p
+Mother-speech		218.011	220.035	Ha, komm so.
+Mother-speech		220.035	242.566	p
+Mother-speech		242.566	243.642	Na, Ninchen.
+Mother-speech		243.642	243.765	p
+Mother-speech		243.765	245.317	Musst du noch ein bisschen aufwachen
+Mother-speech		245.317	246.33	p
+Mother-speech		246.33	247.022	Hm
+Mother-speech		247.022	256.73	p
+Mother-speech		256.73	258.316	Hmm.
+Mother-speech		258.316	259.14	p
+Mother-speech		259.14	260.81	Guck mal. Ich mach einmal.
+Mother-speech		260.81	261.411	p
+Mother-speech		261.411	263.941	Pitsche, pitsche, patsche.
+Mother-speech		263.941	264.534	(breath)
+Mother-speech		264.534	267.169	Pitsche, pitsche, patsche.
+Mother-speech		267.169	267.511	p
+Mother-speech		267.511	270.146	Pitsche, pitsche, patsche.
+Mother-speech		270.146	270.707	p
+Mother-speech		270.707	271.249	(breath)
+Mother-speech		271.249	271.382	p
+Mother-speech		271.382	272.719	Pitsche, pitsche, patsche.
+Mother-speech		272.719	274.184	p
+Mother-speech		274.184	274.532	(breath)
+Mother-speech		274.532	277.185	Pitsche, pitsche, patsche.
+Mother-speech		277.185	279.707	p
+Mother-speech		279.707	280.254	Hm
+Mother-speech		280.254	280.387	p
+Mother-speech		280.387	281.929	Dicken Stinkefüße die.
+Mother-speech		281.929	283.325	p
+Mother-speech		283.325	284.834	Die kalten Stinkefüße.
+Mother-speech		284.834	285.099	p
+Mother-speech		285.099	285.693	Hm
+Mother-speech		285.693	286.944	p
+Mother-speech		286.944	287.845	Ja
+Mother-speech		287.845	293.195	p
+Mother-speech		293.195	296.27	Hm Ist kalt, ne Wollen wir schön die Strumpfhose anziehen.
+Mother-speech		296.27	312.847	p
+Mother-speech		312.847	314.664	So Nummer eins.
+Mother-speech		314.664	316.105	p
+Mother-speech		316.105	316.888	Und.
+Mother-speech		316.888	321.183	p
+Mother-speech		321.183	322.287	Nummer zwei.
+Mother-speech		322.287	324.062	p
+Mother-speech		324.062	327.423	Hmh. Magst du meinen Pulli heute nicht Guckst so kritisch.
+Mother-speech		327.423	340.839	p
+Mother-speech		340.839	342.167	Ahh.
+Mother-speech		342.167	342.397	p
+Mother-speech		342.397	343.313	Jaa.
+Mother-speech		343.313	345.146	p
+Mother-speech		345.146	348.395	He, streck dich mal ordentlich. Wer so lange gelegen hat.
+Mother-speech		348.395	349.828	  p
+Mother-speech		349.828	351.097	Jahahaha.
+Mother-speech		351.097	352.55	p
+Mother-speech		352.55	353.78	Und immer schön Gasgeben.
+Mother-speech		353.78	356.387	p
+Mother-speech		356.387	357.015	Hm
+Mother-speech		357.015	366.637	p
+Mother-speech		366.637	367.685	Ah.
+Mother-speech		367.685	371.521	p
+Mother-speech		371.521	374.352	Hm, war die Nacht spannend Möchtest du das erzählen
+Mother-speech		374.352	376.728	p
+Mother-speech		376.728	377.58	Ja
+Mother-speech		377.58	377.775	p
+Mother-speech		377.775	378.516	Sag an.
+Mother-speech		378.516	381.724	p
+Mother-speech		381.724	385.737	Einmal noch das Köpfchen hoch, sowoll.
+Mother-speech		385.737	388.394	p
+Mother-speech		388.394	389.561	Und schwups.
+Mother-speech		389.561	390.886	p
+Mother-speech		390.886	391.858	Da ist sie wieder.
+Mother-speech		391.858	394.234	p
+Mother-speech		394.234	396.12	Und jetzt der erste Ärmel.
+Mother-speech		396.12	402.458	p
+Mother-speech		402.458	404.142	Nummer eins.
+Mother-speech		404.142	405.896	p
+Mother-speech		405.896	408.083	Und auf die Seite.
+Mother-speech		408.083	413.864	p
+Mother-speech		413.864	415.893	Hah, das willst du nicht.
+Mother-speech		415.893	416.927	p
+Mother-speech		416.927	417.695	(imitation)
+Mother-speech		417.695	418.157	p
+Mother-speech		418.157	418.974	(imitation)
+Mother-speech		418.974	420.744	p
+Mother-speech		420.744	422.561	Ja, Schmunzel, hm
+Mother-speech		422.561	424.466	p
+Mother-speech		424.466	425.179	Un.
+Mother-speech		425.179	425.57	p
+Mother-speech		425.57	426.395	Nummer zwei.
+Mother-speech		426.395	439.034	p
+Mother-speech		439.034	439.805	(breath)
+Mother-speech		439.805	439.967	p
+Mother-speech		439.967	440.556	Geschafft.
+Mother-speech		440.556	441.786	p
+Mother-speech		441.786	443.24	Geschafft kleine Maus.
+Mother-speech		443.24	444.171	p
+Mother-speech		444.171	445.003	(breath)
+Mother-speech		445.003	445.435	p
+Mother-speech		445.435	446.141	(kiss)
+Mother-speech		446.141	446.642	p
+Mother-speech		446.642	446.949	(kiss)
+Mother-speech		446.949	447.322	p
+Mother-speech		447.322	447.696	(kiss)
+Mother-speech		447.696	447.983	p
+Mother-speech		447.983	448.336	(kiss)
+Mother-speech		448.336	448.735	p
+Mother-speech		448.735	449.073	(kiss)
+Mother-speech		449.073	449.58	p
+Mother-speech		449.58	450.651	(breath)
+Mother-speech		450.651	451.399	Das super
+Mother-speech		451.399	451.65	p
+Mother-speech		451.65	452.363	Das super
+Mother-speech		452.363	453.125	p
+Mother-speech		453.125	453.698	Hm
+Mother-speech		453.698	453.852	p
+Mother-speech		453.852	454.491	(breath)
+Mother-speech		454.491	454.589	p
+Mother-speech		454.589	454.916	(kiss)
+Mother-speech		454.916	455.228	p
+Mother-speech		455.228	455.536	(kiss)
+Mother-speech		455.536	455.812	p
+Mother-speech		455.812	456.107	(kiss)
+Mother-speech		456.107	464.661	p
+Mother-speech		464.661	469.206	Kommt eine Maus die Trepp herauf.
+Mother-speech		469.206	469.655	p
+Mother-speech		469.655	470.187	(breath)
+Mother-speech		470.187	470.382	p
+Mother-speech		470.382	472.043	Klopfet an.
+Mother-speech		472.043	472.706	p
+Mother-speech		472.706	473.971	Bimmelbamm.
+Mother-speech		473.971	474.702	(breath)
+Mother-speech		474.702	475.812	Guten Tag.
+Mother-speech		475.812	475.904	p
+Mother-speech		475.904	477.365	Frau Nasenmann.
+Mother-speech		477.365	478.566	p
+Mother-speech		478.566	479.216	Nochmal
+Mother-speech		479.216	479.535	p
+Mother-speech		479.535	480.031	(breath)
+Mother-speech		480.031	480.282	p
+Mother-speech		480.282	484.479	Kommt ne Maus die Trepp herauf.
+Mother-speech		484.479	484.662	p
+Mother-speech		484.662	485.133	(breath)
+Mother-speech		485.133	485.287	p
+Mother-speech		485.287	486.891	Klopfet an.
+Mother-speech		486.891	487.492	p
+Mother-speech		487.492	488.778	Bimmelbamm.
+Mother-speech		488.778	489.274	(breath)
+Mother-speech		489.274	489.497	p
+Mother-speech		489.497	490.658	Guten Tag.
+Mother-speech		490.658	490.776	p
+Mother-speech		490.776	492.482	Frau Nasenmann.
+Mother-speech		492.482	493.317	p
+Mother-speech		493.317	494.002	Jaa.
+Mother-speech		494.002	495.488	p
+Mother-speech		495.488	496.455	Super, ne
+Mother-speech		496.455	499.208	p
+Mother-speech		499.208	500.71	Dann wollen wir mal wieder.
+Mother-speech		500.71	500.836	p
+Mother-speech		500.836	501.759	(breath)
+Mother-speech		501.759	504.36	p
+infant		60.956	61.587	VOC
+infant		85.09	85.487	VOC
+infant		86.776	86.984	VOC
+infant		88.248	88.577	VOC
+infant		90.104	90.666	VOC
+infant		91.18	91.456	VOC
+infant		92.122	93.091	VOC
+infant		104.197	104.829	VOC
+infant		109.199	109.527	VOC
+infant		111.012	111.747	VOC
+infant		112.344	112.967	VOC
+infant		113.296	113.91	VOC
+infant		114.446	115.138	VOC
+infant		119.926	120.203	VOC
+infant		123.64	123.995	VOC
+infant		124.366	124.556	VOC
+infant		125.161	125.905	VOC
+infant		128.033	128.535	VOC
+infant		152.782	153.093	VOC
+infant		178.105	178.477	VOC
+infant		207.83	208.185	VOC
+infant		255.904	256.164	VOC
+infant		334.093	334.448	VOC
+infant		338.479	339.24	VOC
+infant		341.263	341.626	VOC
+infant		342.231	342.75	VOC
+infant		343.062	343.373	VOC
+infant		343.615	344.013	VOC
+infant		344.6	344.9	VOC
+infant		363.713	363.955	VOC
+infant		366.135	366.412	VOC
+infant		367.276	367.64	VOC
+infant		368.423	368.764	VOC
+infant		392.814	393.005	VOC
+infant		393.912	394.167	VOC
+infant		403.195	403.425	VOC
+infant		406.412	407.203	VOC
+infant		420.744	420.957	VOC
+infant		422.175	422.753	VOC
+infant		423.971	424.231	VOC
+infant		425.311	425.623	VOC
+infant		426.799	427.603	VOC
+infant		430.654	431.064	VOC
+infant		436.01	437.15	VOC
+infant		440.536	441.245	VOC
+infant		478.026	478.262	VOC
+infant		488.53	488.786	VOC
+infant		494.503	495.171	VOC
+infant		495.423	495.7	VOC
+infant		499.966	500.304	VOC
+I_gaze at		0.0	12.04	infant_gaze_at
+I_gaze at		30.24	30.44	infant_gaze_at
+I_gaze at		31.16	31.52	infant_gaze_at
+I_gaze at		47.76	62.8	infant_gaze_at
+I_gaze at		64.0	75.64	infant_gaze_at
+I_gaze at		128.92	138.44	infant_gaze_at
+I_gaze at		144.16	154.6	infant_gaze_at
+I_gaze at		171.4	173.32	infant_gaze_at
+I_gaze at		204.48	205.32	infant_gaze_at
+I_gaze at		212.4	213.16	infant_gaze_at
+I_gaze at		225.8	229.28	infant_gaze_at
+I_gaze at		264.84	278.04	infant_gaze_at
+I_gaze at		280.4	281.28	infant_gaze_at
+I_gaze at		283.68	286.0	infant_gaze_at
+I_gaze at		339.32	342.84	infant_gaze_at
+I_gaze at		362.8	363.4	infant_gaze_at
+I_gaze at		388.88	393.96	infant_gaze_at
+I_gaze at		396.08	401.96	infant_gaze_at
+I_gaze at		410.56	412.84	infant_gaze_at
+I_gaze at		414.12	427.72	infant_gaze_at
+I_gaze at		435.24	435.6	infant_gaze_at
+I_gaze at		441.36	457.48	infant_gaze_at
+I_gaze at		469.0	493.88	infant_gaze_at
+M_gaze at		3.08	4.76	gaze at
+M_gaze at		7.2	9.24	gaze at
+M_gaze at		19.96	20.88	gaze at
+M_gaze at		21.64	23.72	gaze at
+M_gaze at		39.2	40.04	gaze at
+M_gaze at		42.96	43.56	gaze at
+M_gaze at		54.84	61.96	gaze at
+M_gaze at		64.88	74.08	gaze at
+M_gaze at		99.32	99.84	gaze at
+M_gaze at		102.2	104.4	gaze at
+M_gaze at		104.8	105.52	gaze at
+M_gaze at		131.84	132.72	gaze at
+M_gaze at		144.08	152.88	gaze at
+M_gaze at		156.16	156.64	gaze at
+M_gaze at		159.84	160.8	gaze at
+M_gaze at		193.4	194.16	gaze at
+M_gaze at		195.0	195.28	gaze at
+M_gaze at		207.56	208.76	gaze at
+M_gaze at		209.56	213.68	gaze at
+M_gaze at		221.88	222.6	gaze at
+M_gaze at		236.64	237.08	gaze at
+M_gaze at		238.28	242.6	gaze at
+M_gaze at		244.24	249.44	gaze at
+M_gaze at		250.2	252.24	gaze at
+M_gaze at		257.16	259.2	gaze at
+M_gaze at		260.64	277.72	gaze at
+M_gaze at		282.36	288.68	gaze at
+M_gaze at		289.84	293.24	gaze at
+M_gaze at		300.48	302.04	gaze at
+M_gaze at		314.8	315.68	gaze at
+M_gaze at		320.88	322.28	gaze at
+M_gaze at		323.52	324.08	gaze at
+M_gaze at		326.24	326.72	gaze at
+M_gaze at		333.12	334.08	gaze at
+M_gaze at		337.12	337.72	gaze at
+M_gaze at		338.72	345.0	gaze at
+M_gaze at		348.04	348.56	gaze at
+M_gaze at		349.84	350.88	gaze at
+M_gaze at		351.72	353.08	gaze at
+M_gaze at		354.4	354.64	gaze at
+M_gaze at		355.68	356.44	gaze at
+M_gaze at		357.92	358.28	gaze at
+M_gaze at		362.2	368.68	gaze at
+M_gaze at		369.08	371.88	gaze at
+M_gaze at		374.0	375.08	gaze at
+M_gaze at		376.32	377.72	gaze at
+M_gaze at		379.24	384.64	gaze at
+M_gaze at		388.36	392.72	gaze at
+M_gaze at		405.44	407.08	gaze at
+M_gaze at		411.08	420.84	gaze at
+M_gaze at		422.48	424.4	gaze at
+M_gaze at		436.84	438.8	gaze at
+M_gaze at		440.24	444.76	gaze at
+M_gaze at		448.92	453.92	gaze at
+M_gaze at		456.08	457.2	gaze at
+M_gaze at		459.96	463.6	gaze at
+M_gaze at		465.56	500.04	gaze at
+M_gaze at object		0.2	3.04	gaze at object
+M_gaze at object		4.8	7.16	gaze at object
+M_gaze at object		9.28	19.92	gaze at object
+M_gaze at object		20.92	21.6	gaze at object
+M_gaze at object		23.76	39.16	gaze at object
+M_gaze at object		40.08	42.92	gaze at object
+M_gaze at object		43.6	54.8	gaze at object
+M_gaze at object		62.0	62.64	gaze at object
+M_gaze at object		63.8	64.84	gaze at object
+M_gaze at object		74.12	92.92	gaze at object
+M_gaze at object		98.12	99.28	gaze at object
+M_gaze at object		99.88	102.16	gaze at object
+M_gaze at object		104.44	104.76	gaze at object
+M_gaze at object		105.56	131.8	gaze at object
+M_gaze at object		132.76	139.88	gaze at object
+M_gaze at object		143.2	144.04	gaze at object
+M_gaze at object		152.92	156.12	gaze at object
+M_gaze at object		156.68	159.8	gaze at object
+M_gaze at object		160.84	193.36	gaze at object
+M_gaze at object		194.2	194.96	gaze at object
+M_gaze at object		195.32	207.52	gaze at object
+M_gaze at object		208.8	209.52	gaze at object
+M_gaze at object		213.72	221.84	gaze at object
+M_gaze at object		222.64	236.6	gaze at object
+M_gaze at object		237.12	238.24	gaze at object
+M_gaze at object		242.64	244.2	gaze at object
+M_gaze at object		249.48	250.16	gaze at object
+M_gaze at object		252.28	257.12	gaze at object
+M_gaze at object		259.24	260.6	gaze at object
+M_gaze at object		277.76	282.32	gaze at object
+M_gaze at object		288.72	289.8	gaze at object
+M_gaze at object		293.28	300.44	gaze at object
+M_gaze at object		302.08	314.76	gaze at object
+M_gaze at object		315.72	320.84	gaze at object
+M_gaze at object		322.32	323.48	gaze at object
+M_gaze at object		324.12	326.2	gaze at object
+M_gaze at object		326.76	333.08	gaze at object
+M_gaze at object		334.12	337.08	gaze at object
+M_gaze at object		337.76	338.68	gaze at object
+M_gaze at object		345.04	348.0	gaze at object
+M_gaze at object		348.6	349.8	gaze at object
+M_gaze at object		350.92	351.68	gaze at object
+M_gaze at object		353.12	354.36	gaze at object
+M_gaze at object		354.68	355.64	gaze at object
+M_gaze at object		358.32	360.28	gaze at object
+M_gaze at object		368.72	369.04	gaze at object
+M_gaze at object		371.92	373.96	gaze at object
+M_gaze at object		375.12	376.28	gaze at object
+M_gaze at object		377.76	379.2	gaze at object
+M_gaze at object		384.68	388.32	gaze at object
+M_gaze at object		392.76	405.4	gaze at object
+M_gaze at object		407.12	411.08	gaze at object
+M_gaze at object		420.88	422.44	gaze at object
+M_gaze at object		424.44	436.8	gaze at object
+M_gaze at object		438.84	440.2	gaze at object
+M_gaze at object		457.24	459.92	gaze at object
+M_gaze at object		463.64	465.52	gaze at object
+M_gaze at object		502.96	504.4	gaze at object
+I_gaze at object		19.24	29.92	infant_gaze_object
+I_gaze at object		30.44	30.88	infant_gaze_object
+I_gaze at object		33.04	33.84	infant_gaze_object
+I_gaze at object		34.92	35.6	infant_gaze_object
+I_gaze at object		43.24	44.24	infant_gaze_object
+I_gaze at object		62.8	64.0	infant_gaze_object
+I_gaze at object		75.64	118.56	infant_gaze_object
+I_gaze at object		121.48	128.92	infant_gaze_object
+I_gaze at object		138.44	144.16	infant_gaze_object
+I_gaze at object		154.6	171.4	infant_gaze_object
+I_gaze at object		173.32	204.48	infant_gaze_object
+I_gaze at object		205.32	212.4	infant_gaze_object
+I_gaze at object		213.16	225.8	infant_gaze_object
+I_gaze at object		229.28	264.84	infant_gaze_object
+I_gaze at object		278.04	280.4	infant_gaze_object
+I_gaze at object		281.28	283.68	infant_gaze_object
+I_gaze at object		295.8	339.32	infant_gaze_object
+I_gaze at object		343.0	362.8	infant_gaze_object
+I_gaze at object		363.72	382.0	infant_gaze_object
+I_gaze at object		383.96	387.88	infant_gaze_object
+I_gaze at object		401.96	405.92	infant_gaze_object
+I_gaze at object		427.72	432.96	infant_gaze_object
+I_gaze at object		439.0	441.36	infant_gaze_object
+I_gaze at object		457.68	469.0	infant_gaze_object
+I_gaze at object		493.88	496.92	infant_gaze_object
+I_gaze away		12.32	18.64	infant_gaze_away
+I_gaze away		31.8	33.04	infant_gaze_away
+I_gaze away		33.84	34.92	infant_gaze_away
+I_gaze away		35.6	43.24	infant_gaze_away
+I_gaze away		44.24	47.56	infant_gaze_away
+I_gaze away		118.56	121.48	infant_gaze_away
+I_gaze away		286.0	295.8	infant_gaze_away
+I_gaze away		406.2	410.36	infant_gaze_away
+I_gaze away		412.88	414.12	infant_gaze_away
+M_gaze away		0.0	0.16	gaze away
+M_gaze away		62.6	63.76	gaze away
+M_gaze away		92.96	98.08	gaze away
+M_gaze away		139.92	143.16	gaze away
+M_gaze away		356.48	357.88	gaze away
+M_gaze away		360.32	362.16	gaze away
+M_gaze away		501.52	502.92	gaze away
+inf_smile		4.24	6.36	smile
+inf_smile		28.767	29.0	hidden
+inf_smile		45.45	45.61	hidden
+inf_smile		47.728	50.96	hidden
+inf_smile		58.522	59.609	smile
+inf_smile		80.641	81.16	hidden
+inf_smile		82.372	85.212	hidden
+inf_smile		85.6	88.122	hidden
+inf_smile		89.688	90.85	hidden
+inf_smile		90.88	91.08	hidden
+inf_smile		91.24	92.162	hidden
+inf_smile		93.08	93.481	hidden
+inf_smile		105.0	107.72	smile
+inf_smile		112.31	112.43	hidden
+inf_smile		112.75	114.48	hidden
+inf_smile		120.96	126.68	hidden
+inf_smile		126.72	127.32	hidden
+inf_smile		145.046	145.33	hidden
+inf_smile		145.761	147.32	hidden
+inf_smile		149.29	149.881	smile
+inf_smile		151.174	152.36	smile
+inf_smile		152.36	152.52	hidden
+inf_smile		160.452	160.84	hidden
+inf_smile		167.0	167.891	smile
+inf_smile		265.886	266.006	smile
+inf_smile		266.006	285.52	hidden
+inf_smile		382.36	383.96	hidden
+inf_smile		386.173	390.08	hidden
+inf_smile		391.612	391.72	hidden
+inf_smile		391.72	392.568	smile
+inf_smile		392.568	397.252	hidden
+inf_smile		397.692	398.06	hidden
+inf_smile		398.766	402.122	hidden
+inf_smile		402.324	403.12	hidden
+inf_smile		408.08	410.807	hidden
+inf_smile		413.6	414.241	hidden
+inf_smile		418.12	421.447	smile
+inf_smile		421.447	421.47	hidden
+inf_smile		421.47	422.284	smile
+inf_smile		429.0	429.32	hidden
+inf_smile		429.64	439.292	hidden
+inf_smile		444.051	444.6	smile
+inf_smile		444.92	445.92	hidden
+inf_smile		445.92	446.96	smile
+inf_smile		446.96	447.44	hidden
+inf_smile		447.44	448.36	smile
+inf_smile		448.36	448.8	hidden
+inf_smile		448.8	450.64	smile
+inf_smile		454.84	455.36	hidden
+inf_smile		455.36	456.847	smile
+inf_smile		470.8	475.52	smile
+inf_smile		497.44	497.46	hidden
+inf_smile		497.46	504.4	hidden
+mo_smile		2.64	13.934	smile
+mo_smile		55.653	58.813	smile
+mo_smile		58.813	59.651	hidden
+mo_smile		59.651	68.401	smile
+mo_smile		70.08	70.72	smile
+mo_smile		71.601	80.04	smile
+mo_smile		93.88	98.04	hidden
+mo_smile		103.12	110.84	smile
+mo_smile		134.4	135.892	smile
+mo_smile		136.24	140.36	smile
+mo_smile		140.36	143.04	hidden
+mo_smile		143.641	154.841	smile
+mo_smile		212.162	218.6	smile
+mo_smile		239.572	244.129	smile
+mo_smile		244.92	254.01	smile
+mo_smile		263.163	280.135	smile
+mo_smile		283.4	291.812	smile
+mo_smile		295.413	296.325	hidden
+mo_smile		298.4	300.04	hidden
+mo_smile		301.24	304.442	smile
+mo_smile		338.4	346.16	smile
+mo_smile		361.051	361.652	hidden
+mo_smile		362.961	366.092	smile
+mo_smile		389.52	394.04	smile
+mo_smile		412.081	413.84	smile
+mo_smile		415.924	416.085	smile
+mo_smile		418.763	424.84	smile
+mo_smile		441.6	444.76	smile
+mo_smile		444.76	448.96	hidden
+mo_smile		448.96	454.0	smile
+mo_smile		454.0	456.084	hidden
+mo_smile		456.084	457.68	smile
+mo_smile		467.04	480.0	smile
+mo_smile		482.16	497.68	smile
+mo_smile		499.771	503.12	hidden
