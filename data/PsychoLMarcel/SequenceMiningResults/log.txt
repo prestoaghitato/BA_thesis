@@ -1,8 +1,0 @@
-=============  CM-SPAM v0.97 - STATISTICS =============
- Total time ~ 603 ms
- Frequent sequences count : 16116
- Max memory (mb) : 64.016116
-minsup 10
-Intersection count 16992 
-===================================================
-
