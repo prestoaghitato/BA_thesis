@@ -3,6 +3,7 @@
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 \ProvidesPackage{ba_style}
 
+\usepackage{fontenc}  % Open Type fonts
 \usepackage{ttcommons}  % use TT commons for sf
 \usepackage{ttjenevers}  % use TT Jenevers for rm
 \setmonofont[Scale=MatchLowercase]{Envy Code R}  % use Envy Code R for tt
@@ -11,9 +12,14 @@
 \usepackage[usenames,dvipsnames]{xcolor}  % Required for custom colors
 \usepackage{amsmath,amssymb}  % Better maths support & more symbols
 \usepackage{microtype}  % improved typography
-\usepackage[onehalfspacing]{setspace}  % improved linespacing
+
+% change to onehalfspacing later!
+%\usepackage[onehalfspacing]{setspace}  % improved linespacing
+\usepackage[singlespacing]{setspace}  % improved linespacing
+
 \usepackage{lipsum}  % blind text
 \usepackage{booktabs}  % improved tables
+\usepackage{array}  % >{} syntax to format table columns
 \usepackage{enumitem}  % enumerate environment, custom list labels
 \usepackage{localextra}  % provides colour definitions and hyphenation for linguistic terms, names, etc.
 \usepackage{harvard}  % use Harvard citation style
@@ -32,22 +38,33 @@
 
 %*******************KOMA-Options*******************
 % \KOMAoptions{parskip=half,headsepline,footsepline} % uncomment this one
-% [parskip=half] separates paragraphs by 0.5 lines
-% [headsepline,headtopline,footsepline] put lines after header & before footer <-- does NOT work with \pagestyle{plain.scrheadings}
 %**************************************************
 
 %**************Customise Font Formats**************
-% \addtokomafont{pageheadfoot}{\sffamily\upshape} % example use
-% \setkomafont{author}{\sffamily\footnotesize} % example use
 \addtokomafont{author}{\sffamily\addfontfeature{Style=Alternate}}  % amend author
 % Elements on page 60 of (German) KOMA manual
 %**************************************************
 
 %****************** New Commands ******************
-\newcommand{\code}[1]{\texttt{#1}}  % code
+% shortcuts
 \newcommand{\fpm}{Frequent Pattern Mining}  % shortcut
+
+% semantic commands
+\newcommand{\code}[1]{\texttt{#1}}  % code
+\newcommand{\fpmset}[1]{\(\{\mathcal{#1}\}\)}  % typeset label sets
+\newcommand{\fpmrule}[2]{\fpmset{#1} \(\rightarrow\) \fpmset{#2}}  % typeset rules
+
+% chmethods
+\newcommand{\imprecisiondelay}{XXXms}  % maximum delay accounting for coders' imprecision
+\newcommand{\reactiontime}{XXXms}  % minimum delay for interpersonal sequences.
 %**************************************************
 
 %****************** New Colours *******************
 %\definecolor{white}{HTML}{FFFFFF}
 %**************************************************
+
+
+
+
+
+
