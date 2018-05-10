@@ -1,19 +1,21 @@
 % @author Marcel Ruland (2018)
 
-\chapter{Method}
+\chapter{Applying Frequent Pattern Mining}
+\section{Method}
+\subsection{The Nature of the Data}
 
-\section{Annotation of the Videos}
-11 kinds of event of different modalities were hand-coded for both mother and child using the \textsc{elan} software \cite{wittenburg06}. Categories were chosen HOW??  % ELABORATE here
+\subsection{Annotation of the Videos}
+11 kinds of events were hand-coded for both mother and child using the \textsc{elan} software \cite{wittenburg06}. These categories were of linguistic, vocal, and visual modality. Categories were chosen HOW??  % ELABORATE here
 Table \ref{tab:categories} lists all categories. Every annotation contains a start and end time point and therefore also the duration of the respective event. This way, sequences as shown in Figure \ref{fig:idealseq} are obtained (note that this is a fictional sequence). \(\mathcal{A}\), \(\mathcal{B}\), and \(\mathcal{C}\) are three different kinds of events; the x-axis represents time. We see two occurrences of type \(\mathcal{A}\) and \(\mathcal{B}\) each, as well as a longer occurrence of type \(\mathcal{C}\). Those time points that are indicated on the x-axis mark the beginning and/or end time point of a specific occurrence. All occurrences of a dyad together are referred to as a sequence, i.e.~there are 11 sequences in the corpus.
 
 
 \input{tables/categories.tex}
 \input{tikzpictures/idealseq.tex}
 
-\section{Mining Approach}
+\subsection{Mining Approach}
 The fundamental aim of \fpm~techniques are to find patterns in a data set that occur \emph{frequently}. The specific kind of pattern and the definition of \emph{frequent} cannot be generalised and depend heavily on the individual application. In contrast to descriptive and inferential statistics, which disprove or affirm hypotheses generated beforehand, \fpm~is of an exploratory, hypothesis-generating nature. Depending on the patterns found, one may then formulate hypotheses afterwards, which may then in turn be tested empirically using descriptive and inferential statistics \cite[PAGEREFS]{rohlfing18,han12}.%% ISSUE: How do you give page references for each individual source when citing multiple sources?
 
-\subsection{Association Rules}
+\subsubsection{Association Rules}
 The patterns \citeasnoun{rohlfing18} looked for were association rules of the form \fpmrule{A}{B}, where the probability of the succedent \fpmset{A} was high given the antecedent \fpmset{A}. Note that antecedent and succedent are not single events but sets of events. One may equally well form a hypothetical rule of the form \fpmrule{B,D}{A,C,D}. Occurrences of a rule were taken into account if they fulfilled one of two conditions:
 
 \begin{enumerate}
@@ -22,6 +24,9 @@ The patterns \citeasnoun{rohlfing18} looked for were association rules of the fo
 \end{enumerate}
 
 Referring again to Figure \ref{fig:idealseq}, one can observe the rules \fpmrule{A}{A,B} (because the start time point of the antecedent \fpmset{A} lies before that of the succedent \fpmset{A,B}) but not 
+
+
+\section{Results}
 
 %\subsection{Association Rules}
 %In the following, I will first lay out the type of association rule used by \citeasnoun{rohlfing18} and then explain how I modified this scheme to better fit the interactional, multimodal nature of the data. The basic sequence is structured as follows:

@@ -7,7 +7,7 @@
 %!TEX TS-program = lualatex
 %!TEX encoding = UTF-8 Unicode
 
-\documentclass[DIV=calc,BCOR=0mm,pagesize,toc=bib,abstract=true]{scrreprt}
+\documentclass[DIV=calc,BCOR=0mm,pagesize,toc=bib,abstract=true,twoside]{scrreprt}
 % [toc=bib] includes bib in toc
 % [abstract=true] displays abstract title
 \usepackage{../sty/ba_style}  % loading packages, typesetting, etc.
@@ -23,15 +23,14 @@
 \dedication{Totally dedicating this to me, myself, and I, because no one even knows this thing exists.}
 
 \begin{document}
-%\maketitle
+\maketitle
 %\input{chapters/abstract}
 \tableofcontents
 
-%\input{chapters/template}
 \input{chapters/introduction}
-\input{chapters/method}
-%\input{chapters/conclusion}
-
+\input{chapters/fpm}
+\input{chapters/significance}
+\input{chapters/visualisation}
 %\appendix
 %\input{chapters/appendix}
 %
