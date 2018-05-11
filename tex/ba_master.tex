@@ -1,13 +1,13 @@
-%@author Marcel Ruland (2018)
+% @author Marcel Ruland (2018)
 %
-%Random pieces of information I picked up along the way (might turn out useful):
-%[chapterprefix=true] changes ``1 LaTeX'' to ``Chapter 1\\ LaTeX''
+% Random pieces of information I picked up along the way (might turn out useful):
+% [chapterprefix=true] changes ``1 LaTeX'' to ``Chapter 1\\ LaTeX''
 
 %% tell TeXshop to compile using LuaLaTeX and encode with UTF-8
 %!TEX TS-program = lualatex
 %!TEX encoding = UTF-8 Unicode
 
-\documentclass[DIV=calc,BCOR=0mm,pagesize,toc=bib,abstract=true,twoside]{scrreprt}
+\documentclass[DIV=calc,BCOR=0mm,pagesize,toc=bib,abstract=true]{scrreprt}
 % [toc=bib] includes bib in toc
 % [abstract=true] displays abstract title
 \usepackage{../sty/ba_style}  % loading packages, typesetting, etc.
@@ -24,7 +24,7 @@
 
 \begin{document}
 \maketitle
-%\input{chapters/abstract}
+\input{chapters/abstract}
 \tableofcontents
 
 \input{chapters/introduction}
@@ -33,9 +33,9 @@
 \input{chapters/visualisation}
 %\appendix
 %\input{chapters/appendix}
-%
-%\listoftables
-%\listoffigures
+
+\listoftables
+\listoffigures
 \bibliography{../bib/ba_bib}
 
 \end{document}
