@@ -2,19 +2,20 @@
 
 \chapter{Applying Frequent Pattern Mining}
 \section{Method}
-Starting at the most concrete level, every subsection gets more abstract, leading the reader from the visual/auditory video to the abstract \fpm~rule.
+The following subsections begin by introducing the raw data \emph{as-is} and then proceed by describing the process of annotating and evaluation the data, thus going steadily from concrete to more and more abstract representations. I begin by describing the content of the video corpus and end with abstract rules\footnote{For the definition of \emph{rule} here, see section \ref{sec:mining} on page~\pageref{sec:mining}.}.
 
 \subsection{The Nature of the Data}
 Explain what happens in the videos basically, not yet talking about coding the data.
 
 \subsection{Annotation of the Videos}
 11 kinds of events were hand-coded for both mother and child using the \textsc{elan} software \cite{wittenburg06}. These categories were of linguistic, vocal, and visual modality. Categories were chosen HOW??  % ELABORATE here
-Table \ref{tab:categories} lists all categories. Every annotation contains a start and end time point and therefore also the duration of the respective event. This way, sequences as shown in Figure \ref{fig:idealseq} are obtained (note that this is a fictional sequence). \(\mathcal{A}\), \(\mathcal{B}\), and \(\mathcal{C}\) are three different kinds of events; the x-axis represents time. We see two occurrences of type \(\mathcal{A}\) and \(\mathcal{B}\) each, as well as a longer occurrence of type \(\mathcal{C}\). Those time points that are indicated on the x-axis mark the beginning and/or end time point of a specific occurrence. All occurrences of a dyad together are referred to as a sequence, i.e.~there are 11 sequences in the corpus.
+Table \ref{tab:categories} lists all categories. Every annotation contains a start and end time point and therefore also the duration of the respective event. This way, sequences as shown in Figure \ref{fig:idealseq} are obtained (note that this is a fictional sequence). \fpmlabel{A}, \fpmlabel{B}, and \fpmlabel{C} are three different kinds of events; the x-axis represents time. We see two occurrences of type \fpmlabel{A} and \fpmlabel{B} each, as well as a longer occurrence of type \fpmlabel{C}. Those time points that are indicated on the x-axis mark the beginning and/or end time point of a specific occurrence. All occurrences of a dyad together are referred to as a sequence, i.e.~there are 11 sequences in the corpus.
 
 \input{tables/categories.tex}
 \input{tikzpictures/idealseq.tex}
 
 \subsection{Mining Approach}
+\label{sec:mining}
 The fundamental aim of \fpm~techniques is to find patterns in a data set that occur \emph{frequently}. The specific kind of pattern and the definition of \emph{frequent} cannot be generalised and depend heavily on the individual application. In contrast to descriptive and inferential statistics, which disprove or affirm hypotheses generated beforehand, \fpm~is of an exploratory, hypothesis-generating nature. Depending on the patterns found, one may then formulate hypotheses afterwards, which may then in turn be tested empirically using descriptive and inferential statistics \cite[6~ff.,~tba]{rohlfing18,han12}.%% ISSUE: How do you give page references for each individual source when citing multiple sources?
 
 \subsubsection{Association Rules}

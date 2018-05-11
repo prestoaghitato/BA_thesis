@@ -47,14 +47,16 @@
 %**************************************************
 
 %****************** New Commands ******************
-% shortcuts
+%% shortcuts
 \newcommand{\fpm}{Frequent Pattern Mining}  % shortcut
 
-% semantic commands
+%% semantic commands
 \newcommand{\code}[1]{\texttt{#1}}  % code
-\newcommand{\fpmset}[1]{\(\{\mathcal{#1}\}\)}  % typeset label sets
+\newcommand{\fpmlabel}[1]{\(\mathcal{#1}\)}  % typeset label
+\newcommand{\fpmset}[1]{\(\{\)\fpmlabel{#1}\(\}\)}  % typeset label sets
 \newcommand{\fpmrule}[2]{\fpmset{#1} \(\rightarrow\) \fpmset{#2}}  % typeset rules
 
+%% section commands
 % chmethods
 \newcommand{\imprecisiondelay}{XXXms}  % maximum delay accounting for coders' imprecision
 \newcommand{\reactiontime}{XXXms}  % minimum delay for interpersonal sequences.
