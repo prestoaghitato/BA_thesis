@@ -10,7 +10,7 @@ The following subsections begin by introducing the raw data \emph{as-is} and the
 Explain what happens in the videos basically, not yet talking about coding the data.
 
 \subsection{Annotation of the Videos}
-11 kinds of events were hand-coded for both mother and child using the \textsc{elan} software \cite{wittenburg06}. These categories were of linguistic, vocal, and visual modality. Categories were chosen HOW??  % ELABORATE here
+11 kinds of events were hand-coded for both mother and child using the \textsc{elan} software \citep{wittenburg06}. These categories were of linguistic, vocal, and visual modality. Categories were chosen HOW??  % ELABORATE here
 Table \ref{tab:categories} lists all categories. Every annotation contains a start and end time point and therefore also the duration of the respective event. This way, sequences as shown in Figure \ref{fig:idealseq} are obtained (note that this is a fictional sequence). \fpmlabel{A}, \fpmlabel{B}, and \fpmlabel{C} are three different kinds of events; the x-axis represents time. We see two occurrences of type \fpmlabel{A} and \fpmlabel{B} each, as well as a longer occurrence of type \fpmlabel{C}. Those time points that are indicated on the x-axis mark the beginning and/or end time point of a specific occurrence. All occurrences of a dyad together are referred to as a sequence, i.e.\ there are 11 sequences in the corpus.
 
 \input{tables/categories.tex}
@@ -21,7 +21,7 @@ Table \ref{tab:categories} lists all categories. Every annotation contains a sta
 The fundamental aim of \fpm\ techniques is to find patterns in a data set that occur \emph{frequently}. The specific kind of pattern and the definition of \emph{frequent} cannot be generalised and depend heavily on the individual application. In contrast to descriptive and inferential statistics, which disprove or affirm hypotheses generated beforehand, \fpm\ is of an exploratory, hypothesis-generating nature. Depending on the patterns found, one may then formulate hypotheses afterwards, which may then in turn be tested empirically using descriptive and inferential statistics \cite[\pnum{6~ff.,~tba}]{rohlfing18,han12}.%% ISSUE: How do you give page references for each individual source when citing multiple sources?
 
 \subsubsection{Association Rules}
-The patterns \citeasnoun{rohlfing18} looked for were association rules of the form \fpmrule{A}{B}, where the probability of the succedent \fpmset{B} was high given the antecedent \fpmset{A}. Note that antecedent and succedent are not single events but sets of events. One may equally well form a hypothetical rule of the form \fpmrule{B,D}{A,C,D}. Occurrences of a rule were taken into account if they fulfilled one of two conditions:
+The patterns \citet{rohlfing18} looked for were association rules of the form \fpmrule{A}{B}, where the probability of the succedent \fpmset{B} was high given the antecedent \fpmset{A}. Note that antecedent and succedent are not single events but sets of events. One may equally well form a hypothetical rule of the form \fpmrule{B,D}{A,C,D}. Occurrences of a rule were taken into account if they fulfilled one of two conditions:
 
 \begin{enumerate}
 	\item The antecedent's start time point lies before that of the succedent.
@@ -34,12 +34,12 @@ Referring again to Figure \ref{fig:idealseq}, one can for example observe the ru
 \section{Results}
 
 %\subsection{Association Rules}
-%In the following, I will first lay out the type of association rule used by \citeasnoun{rohlfing18} and then explain how I modified this scheme to better fit the interactional, multimodal nature of the data. The basic sequence is structured as follows:
+%In the following, I will first lay out the type of association rule used by \citet{rohlfing18} and then explain how I modified this scheme to better fit the interactional, multimodal nature of the data. The basic sequence is structured as follows:
 %\begin{quote}
 %	\code{<(A [1,3]),(A,B [3,4]),(A,B,C [4,7]),(C [7,8]),(A,C [8,9]),(A,B,C [9,13])>}
 %\end{quote}
 %
-%In traditional sequential pattern mining, the basic data type---called a sequence---is an ordered set of (unordered) item sets \cite[\pnum{588~ff.}]{han12}. Here, every item set in the sequence has an additional annotation marking the start and end time points between which the item set (that is, one specific occurrence of it) is contained in the data. Figure \ref{fig:idealseq} gives a graphical representation of this example sequence. Rules of the sort \fpmrule{A}{B} must fulfil one of two conditions:
+%In traditional sequential pattern mining, the basic data type---called a sequence---is an ordered set of (unordered) item sets \citep[\pnum{588~ff.}]{han12}. Here, every item set in the sequence has an additional annotation marking the start and end time points between which the item set (that is, one specific occurrence of it) is contained in the data. Figure \ref{fig:idealseq} gives a graphical representation of this example sequence. Rules of the sort \fpmrule{A}{B} must fulfil one of two conditions:
 %\begin{enumerate}
 %	\item The antecedent's start time point lies before that of the succedent.
 %	\item The antecedent's and succedent's start time points are identical, i.e.\ they begin simultaneously.
