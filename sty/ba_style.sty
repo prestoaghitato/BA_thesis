@@ -3,33 +3,25 @@
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 \ProvidesPackage{ba_style}
 
-\usepackage{fontenc}  % Open Type fonts
-\usepackage{ttcommons}  % use TT commons for sf
-\usepackage{ttjenevers}  % use TT Jenevers for rm
-\setmonofont[Scale=MatchLowercase]{Envy Code R}  % use Envy Code R for tt
-\usepackage[english]{babel}  % English hyphenation patterns
-\usepackage{natbib}  % bibliography
-	\bibliographystyle{newharvard}  % custom Harvard bibliography style
-\usepackage[defaultlines=2,all]{nowidow}  % prevent widow and orphan lines
-\usepackage{graphicx}  % required to insert images
-\usepackage[usenames,dvipsnames]{xcolor}  % Required for custom colors
-\usepackage{amsmath,amssymb}  % Better maths support & more symbols
-\usepackage{microtype}  % improved typography
-\usepackage[onehalfspacing]{setspace}  % improved linespacing
-\usepackage{lipsum}  % blind text
-\usepackage{booktabs}  % improved tables
-\usepackage{array}  % >{} syntax to format table columns
-\usepackage{enumitem}  % enumerate environment, custom list labels
-\usepackage{localextra}  % provides colour definitions and hyphenation for linguistic terms, names, etc.
-\usepackage{tikz}
-%\usepackage{scrlayer-scrpage} % uncomment for custom header (chapter 5 of manual)
-%	\lohead{loh}
-%	\cohead{coh}
-%	\rohead{roh}
-%	\lofoot*{lof}
-%	\rofoot*{rof}
-%	\cofoot*{cof}
-%	\pagestyle{scrheadings}
+\usepackage{fontenc}							% Open Type fonts
+\usepackage{ttcommons}							% use TT commons for sf
+\usepackage{ttjenevers}							% use TT Jenevers for rm
+\setmonofont[Scale=MatchLowercase]{Envy Code R}	% use Envy Code R for tt
+\usepackage[english]{babel}						% English hyphenation patterns
+\usepackage{natbib}								% bibliography
+	\bibliographystyle{newharvard}				% custom Harvard bibliography style
+\usepackage[defaultlines=2,all]{nowidow}		% prevent widow and orphan lines
+\usepackage{graphicx}							% required to insert images
+\usepackage[usenames,dvipsnames]{xcolor}		% Required for custom colors
+\usepackage{amsmath,amssymb}					% Better maths support & more symbols
+\usepackage{microtype}							% improved typography
+\usepackage[onehalfspacing]{setspace}			% improved linespacing
+\usepackage{lipsum}								% blind text
+\usepackage{booktabs}							% improved tables
+\usepackage{array}								% >{} syntax to format table columns
+\usepackage{enumitem}							% enumerate environment, custom list labels
+\usepackage{localextra}							% provides colour definitions and hyphenation for linguistic terms, names, etc.
+\usepackage{tikz}								% TikZ ist kein Zeichenprogramm
 %**************************************************
 
 
@@ -41,12 +33,23 @@
 
 
 %**************Customise Font Formats**************
-\addtokomafont{author}{\sffamily\addfontfeature{Style=Alternate}}  % amend author
 % Elements on page 60 of (German) KOMA manual
+\setkomafont{subject}{\large\sffamily}
+\setkomafont{title}{\sffamily\ttcmedium}
+\addtokomafont{subtitle}{\LARGE}
+\addtokomafont{author}{\Large\sffamily}
+\addtokomafont{date}{\sffamily}
+\addtokomafont{publishers}{\sffamily}
 
-%% Typographic and General Issues:
-%en dash or em dash? See \dash command below.
-%Describe figures in caption even though main text contains a description?
+\addtokomafont{chapter}{\addfontfeature{Numbers=Lining}}
+\addtokomafont{pageheadfoot}{\sffamily\addfontfeature{Numbers=Lining}}
+\addtokomafont{pagenumber}{\sffamily}
+
+\pagestyle{headings}  % running headlines etc
+
+%% Typographic and General Issues/Solutions:
+% en dash or em dash? See \dash command below.
+% Describe figures in caption even though main text contains a description?
 % Bibliography: Capitalise only very first word, words after colons, and proper nouns.
 %**************************************************
 
@@ -59,11 +62,20 @@
 %% semantic commands
 \newcommand{\dash}{---}  % typeset dashes
 \newcommand{\pnum}[1]{p.~#1}  % page numbers in citations
-
 \newcommand{\code}[1]{\texttt{#1}}  % code
 \newcommand{\fpmlabel}[1]{\(\mathcal{#1}\)}  % typeset label
 \newcommand{\fpmset}[1]{\(\{\)\fpmlabel{#1}\(\}\)}  % typeset label sets
 \newcommand{\fpmrule}[2]{\fpmset{#1} \(\rightarrow\) \fpmset{#2}}  % typeset rules
+% tex.stackexchange.com/questions/125690
+\makeatletter
+	\DeclareRobustCommand\citepos  % define \citepos just like \citet
+		{\begingroup
+			\let\NAT@nmfmt\NAT@posfmt  % except with a different name format
+			\NAT@swafalse\let\NAT@ctype\z@\NAT@partrue
+			\@ifstar{\NAT@fulltrue\NAT@citetp}{\NAT@fullfalse\NAT@citetp}}
+		\let\NAT@orig@nmfmt\NAT@nmfmt
+		\def\NAT@posfmt#1{\NAT@orig@nmfmt{#1's}}
+	\makeatother
 
 %% section commands
 % chmethods

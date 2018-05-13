@@ -7,25 +7,56 @@
 %!TEX TS-program = lualatex
 %!TEX encoding = UTF-8 Unicode
 
-\documentclass[DIV=calc,BCOR=0mm,pagesize,toc=bib,abstract=true]{scrreprt}
-% [toc=bib] includes bib in toc
-% [abstract=true] displays abstract title
+\documentclass[
+	DIV=calc,				% KOMA calculates Satzspiegel
+	BCOR=0mm,				% length that will get swallowed up by binding
+	pagesize,				% ensures compatibility with PDF and DVI
+	toc=bib,				% include bib in toc
+	toc=listof,				% include list of tables and list of figures in toc
+	abstract=true,			% display abstract heading
+	twoside,				% two-sided printing
+	titlepage=firstiscover,	% set title page as cover page
+	footnotes=multiple		% separate footnotes set directly one after another by a comma
+]{scrreprt}
+
 \usepackage{../sty/ba_style}  % loading packages, typesetting, etc.
 
 
 % using all commands now to have an exhaustive list and see what they're all doing, will probably remove some of them at some stage
-\titlehead{Titlehead, whatever\ldots}
-\subject{Universität Paderborn}
-\title{Applying Frequent Pattern Mining to Multimodal Behaviour in Interaction: Visualising Significant Patterns}
-\subtitle{Le Subtitle}
-\author{Marcel Ruland\thanks{Oh deer how thankful am I\ldots}}
-\publishers{Publishing Publishers}
-%\dedication{Totally dedicating this to me, myself, and I, because no one even knows this thing exists.}
+%\titlehead{Titlehead}
+\subject{%
+{\huge Universität Paderborn} \\[0.5em]
+Fakultät für Kulturwissenschaften \\
+Fakultät für Elektrotechnik, Informatik und Mathematik
+}
+\title{%
+	{Applying Frequent Pattern Mining to Multimodal Behaviour in Interaction}
+}
+\subtitle{Visualising Significant Patterns}
+\author{~\\[1em]
+	{Bachelor's Thesis in Linguistics} \\
+	submitted by \\[0.2em]
+	{\LARGE\addfontfeature{Style=Alternate} Marcel Ruland} \\[0.2em]
+	Emilienstr.~11 \\
+	32756 Detmold \\
+	Matrikelnr.~7048667
+}
+\date{Hand-in date: \today}
+\publishers{%
+	supervised by \\
+	Prof.~Dr.~Katharina Rohlfing \\
+	Prof.~Dr.~Eyke Hüllermeier
+}
+%\dedication{Markus Freudinger, Eyke Hüllermeyer, Monique Koke, Anke Lenzing, Ilka Mindt, Katharina Rohlfing}
+%\extratitle{Schmutztitel.}
+%\uppertitleback{Upper Title Back}
+%\lowertitleback{Lower Title Back}
 
 \begin{document}
+{\singlespacing
 \maketitle
 %\input{chapters/abstract}
-\tableofcontents
+\tableofcontents}
 
 \input{chapters/introduction}
 \input{chapters/fpm}
@@ -34,8 +65,9 @@
 %\appendix
 %\input{chapters/appendix}
 %
-%\listoftables
-%\listoffigures
+\listoftables
+\listoffigures
+\singlespacing
 \bibliography{../bib/ba_bib}
 
 \end{document}
