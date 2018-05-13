@@ -50,7 +50,7 @@
 % Elements on page 60 of (German) KOMA manual
 
 %% Typographic and General Issues:
-%en dash or em dash?
+%en dash or em dash? See \dash command below.
 %Describe figures in caption even though main text contains a description?
 % Bibliography: Capitalise only very first word, words after colons, and proper nouns.
 %**************************************************
@@ -63,6 +63,8 @@
 
 %% semantic commands
 \newcommand{\dash}{---}  % typeset dashes
+\newcommand{\pnum}[1]{p.~#1}  % page numbers in citations
+
 \newcommand{\code}[1]{\texttt{#1}}  % code
 \newcommand{\fpmlabel}[1]{\(\mathcal{#1}\)}  % typeset label
 \newcommand{\fpmset}[1]{\(\{\)\fpmlabel{#1}\(\}\)}  % typeset label sets
