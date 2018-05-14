@@ -1,7 +1,8 @@
 % !TEX root = ../ba_master.tex
 % @author Marcel Ruland (2018)
 
-\chapter{Applying Frequent Pattern Mining}
+\chapter{Applying \fpmupper}
+\label{ch:mining}
 \emph{chapter description goes here}
 
 \section{Method}
@@ -19,7 +20,7 @@ Table \ref{tab:categories} lists all categories. Every annotation contains a sta
 
 \subsection{Mining Approach}
 \label{sec:mining}
-The fundamental aim of \fpm\ techniques is to find patterns in a data set that occur \emph{frequently}. The specific kind of pattern and the definition of \emph{frequent} cannot be generalised and depend heavily on the individual application. In contrast to descriptive and inferential statistics, which disprove or affirm hypotheses generated beforehand, \fpm\ is of an exploratory, hypothesis-generating nature. Depending on the patterns found, one may then formulate hypotheses afterwards, which may then in turn be tested empirically using descriptive and inferential statistics \cite[\pnum{6~ff.,~tba}]{rohlfing18,han12}.%% ISSUE: How do you give page references for each individual source when citing multiple sources?
+The fundamental aim of \fpmlower\ techniques is to find patterns in a data set that occur \emph{frequently}. The specific kind of pattern and the definition of \emph{frequent} cannot be generalised and depend heavily on the individual application. In contrast to descriptive and inferential statistics, which disprove or affirm hypotheses generated beforehand, \fpmlower\ is of an exploratory, hypothesis-generating nature. Depending on the patterns found, one may then formulate hypotheses afterwards, which may then in turn be tested empirically using descriptive and inferential statistics \cite[\pnum{6~ff.,~tba}]{rohlfing18,han12}.%% ISSUE: How do you give page references for each individual source when citing multiple sources?
 
 \subsubsection{Association Rules}
 The patterns \citet{rohlfing18} looked for were association rules of the form \fpmrule{A}{B}, where the probability of the succedent \fpmset{B} was high given the antecedent \fpmset{A}. Note that antecedent and succedent are not single events but sets of events. One may equally well form a hypothetical rule of the form \fpmrule{B,D}{A,C,D}. Occurrences of a rule were taken into account if they fulfilled one of two conditions:

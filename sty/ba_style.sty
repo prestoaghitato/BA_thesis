@@ -1,3 +1,4 @@
+% !TEX root = ../ba_master.tex
 % @author Marcel Ruland (2018)
 
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
@@ -51,6 +52,7 @@
 \pagestyle{headings}  % running headlines etc
 
 %% Typographic and General Issues/Solutions:
+% replace frequent pattern mining by \textsc{fpm}?
 % en dash or em dash? See \dash command below.
 % Describe figures in caption even though main text contains a description?
 % Bibliography: Capitalise only very first word, words after colons, and proper nouns.
@@ -60,7 +62,8 @@
 
 %****************** New Commands ******************
 %% shortcuts
-\newcommand{\fpm}{Frequent Pattern Mining}  % shortcut
+\newcommand{\fpmlower}{frequent pattern mining}  % shortcut
+\newcommand{\fpmupper}{Frequent Pattern Mining}  % shortcut
 
 %% semantic commands
 \newcommand{\dash}{---}  % typeset dashes
@@ -79,6 +82,12 @@
 		\let\NAT@orig@nmfmt\NAT@nmfmt
 		\def\NAT@posfmt#1{\NAT@orig@nmfmt{#1's}}
 	\makeatother
+
+%% chapter names
+\newcommand{\introduction}{Introduction}
+\newcommand{\frequentpatternmining}{Applying Frequent Pattern Mining}
+\newcommand{\significance}{Establishing a Notion of Significance}
+\newcommand{\visualisation}{Visualising Significant Patterns}
 
 %% section commands
 % chfpm
