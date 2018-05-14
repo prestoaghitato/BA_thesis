@@ -34,6 +34,8 @@
 
 %**************Customise Font Formats**************
 % Elements on page 60 of (German) KOMA manual
+
+% title page
 \setkomafont{subject}{\large\sffamily}
 \setkomafont{title}{\sffamily\ttcmedium}
 \addtokomafont{subtitle}{\LARGE}
@@ -41,6 +43,7 @@
 \addtokomafont{date}{\sffamily}
 \addtokomafont{publishers}{\sffamily}
 
+% non title page
 \addtokomafont{chapter}{\addfontfeature{Numbers=Lining}}
 \addtokomafont{pageheadfoot}{\sffamily\addfontfeature{Numbers=Lining}}
 \addtokomafont{pagenumber}{\sffamily}
@@ -66,7 +69,7 @@
 \newcommand{\fpmlabel}[1]{\(\mathcal{#1}\)}  % typeset label
 \newcommand{\fpmset}[1]{\(\{\)\fpmlabel{#1}\(\}\)}  % typeset label sets
 \newcommand{\fpmrule}[2]{\fpmset{#1} \(\rightarrow\) \fpmset{#2}}  % typeset rules
-% tex.stackexchange.com/questions/125690
+% from tex.stackexchange.com/questions/125690
 \makeatletter
 	\DeclareRobustCommand\citepos  % define \citepos just like \citet
 		{\begingroup
@@ -78,7 +81,7 @@
 	\makeatother
 
 %% section commands
-% chmethods
+% chfpm
 \newcommand{\imprecisiondelay}{XXXms}  % maximum delay accounting for coders' imprecision
 \newcommand{\reactiontime}{XXXms}  % minimum delay for interpersonal sequences.
 %**************************************************
