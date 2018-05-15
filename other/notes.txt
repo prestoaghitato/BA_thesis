@@ -1,2 +1,4 @@
 field-specific operationalisation:
   distinguish between interpersonal and intrapersonal rules
+
+Graphic that encodes the four dimensions on Rohlfing et al (2018: 3), maybe x, y, size, greyscale. Where is our ideal method? Where are the established ones and where is frequent pattern mining?

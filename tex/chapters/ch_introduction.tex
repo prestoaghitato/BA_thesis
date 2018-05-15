@@ -8,30 +8,46 @@ A \emph{turn} is a basic unit of speech in conversation. When a speaker begins t
 
 If turn-taking is not dependant on linguistic means but may make use of such, then it logically follows that turn-taking must be a multimodal phenomenon. Despite this fact, turn-taking has mostly been considered as unimodal in the literature \citep[\pnum{1}]{rohlfing18}. The downside of investigating only one modality of a multimodal phenomenon is\dash quite obviously\dash that it ``omits other behaviors relevant to the exchange'' \citep[\pnum{3}]{rohlfing18}.
 
-\citet{rohlfing18} have identified and approached turn-taking as a multimodal phenomenon; taking into consideration linguistic utterances, non-linguistic vocalisations, gaze, and smile. They did so by applying \fpmlower\dash an explorative methodology at the intersection of computer science and statistics\dash to a corpus of 11 mother-infant dyads.
+\citet{rohlfing18} have identified and approached turn-taking as a multimodal phenomenon; taking into consideration linguistic utterances, non-linguistic vocalisations, gaze, and smile. They did so by applying \fpmlower to a corpus of 11 mother-infant dyads. \fpmsentence is a specific kind of data mining that is concerned with ways of finding frequent patterns in a dataset. The basic concepts are very well explained by \citet{han07}:
 
-The present thesis aims to strengthen the statistical objectiveness of applying \fpmlower\ to human interaction. More specifically, it does so by introducing a notion of significance. The thesis is organised in four main chapters.
+\begin{quote}
+``Frequent patterns are itemsets, subsequences, or substructures that appear in a data set with frequency no less than a user-specified threshold. For example, a set of items, such as milk and bread, that appear frequently together in a transaction data set, is a \emph{frequent itemset}. A subsequence, such as buying first a PC, then a digital camera, and then a memory card, if it occurs frequently in a shopping history database, is a \emph{(frequent) sequential pattern.}'' \hfill \citep[\pnum{57}]{han07}
+\end{quote}
+
+The present thesis aims to strengthen the statistical objectiveness of applying \fpmlower\ to human interaction. More specifically, it does so by introducing a notion of significance. The thesis is organised into four main chapters.
 Chapter \ref{ch:introduction} (i.e.\ the current chapter) will proceed by giving an overview of past research and then further clarifying the aim of this thesis.
 The second chapter ``\frequentpatternmining'' explains the entire process of preparing the data, applying \fpmlower, and then evaluating the data\dash beginning with a description of the raw video material and ending with abstract rules\footnote{The notion of a \emph{rule} will be explained in subsection \ref{sec:mining}.}.
 Chapter \ref{ch:significance} ``\significance'' introduces a method for establishing statistical significance in the data. Both chapters \ref{ch:mining} and \ref{ch:significance} present results in their last sections.
 Chapter \ref{ch:visualisation} ``\visualisation'' is of a different nature. In contrast to the two previous chapters, it is not concerned with methods of evaluating the data but with methods of making the found results easily comprehensible for humans by means of visualising them in an adequate way.
+Finally, chapter \ref{ch:conclusion} concludes the thesis.
 
 \section{Previous Research}
 The overview of previous research given here is twofold, coming both from a turn-taking and from a \fpmlower\ perspective. \citet{rohlfing18} is as of now the only study combining the two. I have therefore not included a section of previous research on this specific application.
 
 
 \subsection{Turn-Taking}
-\citep{levinson16} transition between speakers is three times faster than language encoding, psycholinguistics has studied language production and comprehension separately
-%turn taking has so far been considered unimodal, until \citet{rohlfing18} came along
+\label{ssec:turntaking}
+The literature considering turn-taking to be a unimodal phenomenon is large (\citep{casillas16,freud16,heldner10} to name but a few recent examples). Nevertheless, one can find examples of multimodal turn-taking, although those studies are much fewer in number.
+\citet{levinson16} establishes turn-taking as a universal feature of language that ``[a]ppear[s] earlier in ontogeny than linguistic competence'' \citep[\pnum{6}]{levinson16}. Turns are of an average length of 2 seconds, but with high variation in length. He further states that ``turn-taking thus involves multi-tasking comprehension and production, but \emph{multi-tasking in the same modality is notoriously difficult}'' \citep[\pnum{9}, emphasis mine]{levinson16}, which may be interpreted as an argument in favour of multimodal turn-taking, although it is admittedly not clear that this is what \citeauthor{levinson16} is hinting at.%and criticises the separate study of language processing and production in psycholinguistics and the cognitive sciences.
 
-\subsection{\fpmupper}
-%brief explanation \fpmlower, there is only one single study so far
+\citepos{gratier15} study suggests that infants as young as 2 months actively engage in turn-taking. This is long before first words are acquired, which usually happens around age AGEOFFIRSTWORD \citep{nosource}.  They compared interactions between mothers and infants of 8--13~weeks and 17--21 weeks of age respectively. Infants' turns were considered to be latched when the time between the end of the mother's turn and the onset of the infant's turn was less than 50~ms. The percentage of latched turns between mother and infant was 44.5~\%, with insignificant variation between the two age groups. This suggests not only active participation in turn-taking by the infant (44.5~\% being far above chance), but also a \emph{constant} (i.e.\ not improving with age) turn-taking ability, at least between the second and fifth month of life.
+Yet, they also state that ``there remains some controversy over the extent to which young infants actively contribute to turn-taking exchanges and the extent to which adults construct conversational frameworks for infant vocalization'' \citep[\pnum{2}]{gratier15}, but without going further into what these controversies are.
+
+Finally, \citepos{stivers09} study is not specifically concerned with multimodality, but does consider both speech and gesture to be valid beginnings of a turn.
+
+\subsection{Quantitative Methods in Behavioural Studies}
+GSEQ (Bakeman and Quera, 1995)
+Null-Distribution \citep{abuzhaya17}
+
+
+\fpmsentence\ was first proposed by \citet{agrawal93}, originally intended for marketing purposes answering questions of the sort: If a customer purchases item \emph{a}, which item are they likely to purchase next? How likely are they to also purchase a given item \emph{b}? Today, marketing is but one of many applications of \fpmlower\ \citep[\pnum{56}]{han07}.
 
 
 \section{The Aim of this Thesis}
-The present study builds on work by \citet{rohlfing18}, who applied \fpmlower\ techniques to a corpus of mother-child dyads, thereby identifying turn-taking as a multimodal phenomenon. It aims to further improve and operationalise this methodology for behavioural studies of similar sort.
-introduce notion of significance, visualise significant patterns
+The literature review in subsection \ref{ssec:turntaking} has already given many arguments for the fact that turn-taking is multimodal (turn-taking is acquired at an earlier age than language, difficulties of unimodal multi-tasking, etc). % Find more studies, give more arguments!
+More abstractly, turn-taking studies with infants before the onset of language acquisition on the one hand, together with turn-taking studies considering only language on the other hand, are also an implicit argument in favour of the multimodality of turn-taking.
 
+%The present study builds on work by \citet{rohlfing18}, who applied \fpmlower\ techniques to a corpus of mother-child dyads, thereby identifying turn-taking as a multimodal phenomenon. It aims to further improve and operationalise this methodology for behavioural studies of similar sort.
 
 
 
