@@ -77,14 +77,14 @@
 \newcommand{\fpmrule}[2]{\fpmset{#1} \(\rightarrow\) \fpmset{#2}}  % typeset rules
 % from tex.stackexchange.com/questions/125690
 \makeatletter
-	\DeclareRobustCommand\citepos  % define \citepos just like \citet
-		{\begingroup
-			\let\NAT@nmfmt\NAT@posfmt  % except with a different name format
-			\NAT@swafalse\let\NAT@ctype\z@\NAT@partrue
-			\@ifstar{\NAT@fulltrue\NAT@citetp}{\NAT@fullfalse\NAT@citetp}}
-		\let\NAT@orig@nmfmt\NAT@nmfmt
-		\def\NAT@posfmt#1{\NAT@orig@nmfmt{#1's}}
-	\makeatother
+\DeclareRobustCommand\citepos  % define \citepos just like \citet
+	{\begingroup
+		\let\NAT@nmfmt\NAT@posfmt  % except with a different name format
+		\NAT@swafalse\let\NAT@ctype\z@\NAT@partrue
+		\@ifstar{\NAT@fulltrue\NAT@citetp}{\NAT@fullfalse\NAT@citetp}}
+	\let\NAT@orig@nmfmt\NAT@nmfmt
+	\def\NAT@posfmt#1{\NAT@orig@nmfmt{#1's}}
+\makeatother
 
 %% chapter names
 \newcommand{\introduction}{Introduction}

@@ -2,3 +2,12 @@ field-specific operationalisation:
   distinguish between interpersonal and intrapersonal rules
 
 Graphic that encodes the four dimensions on Rohlfing et al (2018: 3), maybe x, y, size, greyscale. Where is our ideal method? Where are the established ones and where is frequent pattern mining?
+
+timeline:
+May 21st: new coding scheme done, contact Sascha and ask if he can do the algorithmic bit
+May 28th: create null distribution and get significance stuff done
+Jun 04th: analyse significant rules, question, discuss, etc them
+Jun 11th: find a suitable visualisation, get all graphics done
+Jun 18th: everything done content-wise, presentation for ECDA done
+Jun 25th: buffer, finish written thesis, typographic stuff
+Jul 02nd: buffer
