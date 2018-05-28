@@ -32,6 +32,20 @@ The patterns \citet{rohlfing18} looked for were association rules of the form \f
 
 Referring again to Figure \ref{fig:idealseq}, one can for example observe the rules \fpmrule{A}{B} and \fpmrule{A}{B, C} (because the start time point of the antecedent lies before that of the succedent), but not \fpmrule{B}{A}.
 
+This scheme can be further adapted to the specific nature of the data. Given that the data are hand-coded and that time points are stored with a precision of ±1~ms%IS THAT TRUE??
+, the second condition will in all probability never be true. Regarding the first cnodition, the natural imprecision of coding by hand can lead to one annotation beginning before or after another essentially by pure chance, when in fact the two events begin \emph{at the same time.} The notion of \emph{at the same time} itself is problematic as well. Humans exhibit a certain reaction time to stimuli, which varies depending on the nature of the stimuli (SOURCE) but is always greater than 0~ms. It logically follows that if both mother and infant begin exhibiting a certain event \emph{at the same time,} then one event cannot be a reaction to the other because such a reaction would demand an appropriate reaction time. Therefore, an interpersonal rule, where both events begin at the same time, is the result of pure chance. Not only will it be a meaningless rule, but also an incorrect rule and, accordingly, should not be captured as a rule at all.
+
+\paragraph{Choosing appropriate delays}
+Human reaction time (henceforth \rt) varies depending on the nature of the stimulus. For acoustic stimuli, mean \rt\ lies  between 848--1052~ms for infants of age 6--9 months (N~=~24) and between 289--381~ms for adults of age 19--26 years (N~=~11).%
+\footnote{Pure tone of 4000~Hz. No numerical values given. Converted from line chart using the Engauge Digitizer software \citep{mitchell02}.} 
+
+%\citet{leibold02} measure reaction time (henceforth \rt) for infants of age 6--9 months (N~=~24) and adults of age 19--26 years (N~=~11). The stimulus was (among others, irrelevant for the present thesis) a pure tone with a frequency of 1000~Hz and a loudness of XX~dB. Due to the way audio was recorded in the dyadic corpus used for the present thesis, it is not possible to reliably assess the loudness of stimuli. However, both frequency and loudness in \citet{leibold02} roughly correspond to human speech in natural conversation (SOURCE).
+%Unfortunately, \citeauthor{leibold02} only give an unlabelled line plot for the individual loudness values, not the numerical data itself. I have transformed the visual plot into numerical values using the CONVERSIONTOOL, which gave a mean \rt\ of %tilde
+%300~ms for 60~dB, with a standard error of XX (standard deviation not given). % convert standard error to standard deviation?
+%Subtracting two standard deviations from the mean \rt\ gives a value of 1050~ms. Demanding this delay for interpersonal rules includes the reaction time of 99.6~\% % correct value?
+%of all adults (SOURCE). A similar procedure for infants gives a value of XX~ms. Subtracting another XX~ms to compensate for coders' imprecision, the minimum delays are XX~ms for rules of the sort \fpmtextrule{mother}{infant} and XX~ms for rules of the sort \fpmtextrule{infant}{mother}.
+
+A further adjustment must be made related to coders' imprecision. For intrapersonal rules only, simultaneous start time points of two events are meaningful. In order to capture them accordingly, intrapersonal events with a maximum delay of XX~ms are considered to begin simultaneously. 
 
 \section{Results}
 

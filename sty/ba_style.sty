@@ -15,13 +15,14 @@
 \usepackage{graphicx}							% required to insert images
 \usepackage[usenames,dvipsnames]{xcolor}		% Required for custom colors
 \usepackage{amsmath,amssymb}					% Better maths support & more symbols
+\usepackage{url}								% typeset urls
 \usepackage{microtype}							% improved typography
 \usepackage[onehalfspacing]{setspace}			% improved linespacing
 \usepackage{lipsum}								% blind text
 \usepackage{booktabs}							% improved tables
 \usepackage{array}								% >{} syntax to format table columns
 \usepackage{enumitem}							% enumerate environment, custom list labels
-\usepackage{localextra}							% provides colour definitions and hyphenation for linguistic terms, names, etc.
+\usepackage{localextra}							% colour definitions, hyphenation for linguistic terms, names, etc.
 \usepackage{tikz}								% TikZ ist kein Zeichenprogramm
 %**************************************************
 
@@ -67,6 +68,7 @@
 \newcommand{\fpmlower}{frequent pattern mining}  % shortcut
 \newcommand{\fpmupper}{Frequent Pattern Mining}  % shortcut
 \newcommand{\fpmsentence}{Frequent pattern mining}  % shortcut
+\newcommand{\rt}{\textsc{rt}}  % shortcut
 
 %% semantic commands
 \newcommand{\dash}{---}  % typeset dashes
@@ -75,6 +77,8 @@
 \newcommand{\fpmlabel}[1]{\(\mathcal{#1}\)}  % typeset label
 \newcommand{\fpmset}[1]{\(\{\)\fpmlabel{#1}\(\}\)}  % typeset label sets
 \newcommand{\fpmrule}[2]{\fpmset{#1} \(\rightarrow\) \fpmset{#2}}  % typeset rules
+\newcommand{\fpmtextrule}[2]{\texttt{#1 \(\rightarrow\) #2}}  % typeset less mathsy rules
+
 % from tex.stackexchange.com/questions/125690
 \makeatletter
 \DeclareRobustCommand\citepos  % define \citepos just like \citet
