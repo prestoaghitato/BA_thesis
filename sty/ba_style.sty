@@ -54,6 +54,7 @@
 \pagestyle{headings}  % running headlines etc
 
 %% Typographic and General Issues/Solutions:
+% lowercase for figure, table, section, etc.
 % merge table and figure counter!
 % keep counting tables and figures at chapter level (2.1, 2.2, 3.1, etc.)?
 % set headings in medium instead of bold?
@@ -82,8 +83,8 @@
 \newcommand{\imgwidth}{0.618\textwidth}  % set image width to golden ratio
 \newcommand{\fpmlabel}[1]{\(\mathcal{#1}\)}  % typeset label
 \newcommand{\fpmset}[1]{\(\{\)\fpmlabel{#1}\(\}\)}  % typeset label sets
-\newcommand{\fpmrule}[2]{\fpmset{#1} \(\rightarrow\) \fpmset{#2}}  % typeset rules
-\newcommand{\fpmtextrule}[2]{\texttt{#1 \(\rightarrow\) #2}}  % typeset less mathsy rules
+\newcommand{\fpmrule}[2]{\fpmset{#1}~\(\rightarrow\)~\fpmset{#2}}  % typeset rules
+\newcommand{\fpmtextrule}[2]{\texttt{#1~\(\rightarrow\)~#2}}  % typeset less mathsy rules
 
 % from tex.stackexchange.com/questions/125690
 \makeatletter
