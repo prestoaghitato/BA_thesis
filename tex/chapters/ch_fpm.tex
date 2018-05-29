@@ -9,6 +9,14 @@
 The following subsections begin by introducing the raw data \emph{as-is} and then proceed by describing the process of annotating and evaluating the data, thus going steadily from the most concrete to more and more abstract representations. I begin by describing the contents of the video corpus and eventually end with abstract rules\footnote{For the definition of \emph{rule} here, see section \ref{sec:mining} on page~\pageref{sec:mining}.}.
 
 \subsection{The Nature of the Data}
+The corpus is a collection of 10 mother--infant dyads. Mother and infant were recorded at their own homes during a diaper routine. This routine was chosen because it a)~is an activity known to both mother and infant, b)~is an activity where mother and infant are in direct communication with each other for a relatively long period of time, c)~both mother and infant are free in their expressions. The infant especially is free to make use of body movements and gestures and not reliant on support from the mother, as might be the case if the infant were sitting. The diaper routine was recorded by two video cameras from two different perspectives, such that all relevant events were easily visible. Figure \ref{fig:rawvid} gives an impression of this raw data. For a more detailed description of the setup see \citet[\snum{2.1}]{nomikou17} and \citet[\pnum{115~f.}]{nomikou11}.\footnote{But note that while the same setup was used, the inclusion or exclusion of groups or individual subjects in the corpus was different due to the different aims of the studies.} The videos had a mean length of 395~s (\emph{\textsc{sd}}~=~186~s).
+
+\begin{figure}[h]
+	\centering 
+	\includegraphics[width=\imgwidth]{../img/raw_video_vp_08.png}
+	\label{fig:rawvid}
+	\caption{Screen capture of the raw video data}
+\end{figure}
 
 \subsection{Annotation of the Videos}
 11 kinds of events were hand-coded for both mother and child using the \textsc{elan} software \citep{wittenburg06}. These categories were of linguistic, vocal, and visual modality. Categories were chosen HOW??  % ELABORATE here
@@ -38,7 +46,7 @@ Human reaction time (henceforth \rt) correlates with a vast variety of factors, 
 \footnote{Stimulus was a pure (i.e.~sine wave) tone of 1000~Hz with loudness ranging from 40--60~dB. No numerical values given. Converted from line chart using the Engauge Digitizer software \citep{mitchell02}. The loudness corresponds to average conversation loudness \citep[\pnum{32}]{goerne06}} 
 Mean infant age in the corpus used for the present thesis is 3~months, mean age of the mothers is XX years. While the infants looked at here are younger than those looked at by \citet{leibold02}, the important point made is that there \emph{is} a difference in reaction time between infants and mothers that must be taken into account. In my analysis, I therefore capture rules of the sort \fpmtextrule{infant}{mother} (i.e.~mother has to react) iff the delay between the start time point of the antecedent is \(\geq\)~288~ms before that of the succedent. Similarly, rules of the sort \fpmtextrule{mother}{infant} (i.e.~infant has to react) are captured iff the delay between the start time point of the antecedent is \(\geq\)~925~ms before that of the succedent. The values are higher than those given by \citet{leibold02} to account for variation between subjects. The extent of the variation also follows the results of \citet{leibold02}.
 
-A further adjustment must be made related to coders' imprecision. For intrapersonal rules only, simultaneous start time points of two events are meaningful. In order to capture them accordingly, intrapersonal events with a maximum delay of XX~ms are considered to begin simultaneously. 
+For intrapersonal rules only, simultaneous start time points of two events are meaningful. In order to capture them, a further adjustment must be made related to coders' imprecision. The data were annotated frame by frame. Given a rate of 25~fpm, the duration of a single frame is 40~ms. Intrapersonal events with a maximum delay of 40~ms are therefore considered to begin simultaneously. 
 
 \section{Results}
 
