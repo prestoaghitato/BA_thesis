@@ -20,6 +20,7 @@
 \usepackage{microtype}							% improved typography
 \usepackage[onehalfspacing]{setspace}			% improved linespacing
 \usepackage{lipsum}								% blind text
+\usepackage{tabularx}							% more spacing options for tables
 \usepackage{booktabs}							% improved tables
 \usepackage{array}								% >{} syntax to format table columns
 \usepackage{enumitem}							% enumerate environment, custom list labels
@@ -98,6 +99,11 @@
 	\let\NAT@orig@nmfmt\NAT@nmfmt
 	\def\NAT@posfmt#1{\NAT@orig@nmfmt{#1's}}
 \makeatother
+\newcommand{\chapterintro}[1]{  % typeset chapter intros
+\begin{quote}
+	{\sffamily#1}
+\end{quote}
+}
 
 %% chapter names
 \newcommand{\introduction}{Introduction}
@@ -105,11 +111,6 @@
 \newcommand{\significance}{Establishing a Notion of Significance}
 \newcommand{\visualisation}{Visualising Significant Patterns}
 \newcommand{\conclusion}{Conclusion}
-
-%% section commands
-% chfpm
-\newcommand{\imprecisiondelay}{XXXms}  % maximum delay accounting for coders' imprecision
-\newcommand{\reactiontime}{XXXms}  % minimum delay for interpersonal sequences.
 %**************************************************
 
 
@@ -117,9 +118,3 @@
 %****************** New Colours *******************
 %\definecolor{white}{HTML}{FFFFFF}
 %**************************************************
-
-
-
-
-
-

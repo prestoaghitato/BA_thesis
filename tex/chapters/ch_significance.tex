@@ -1,11 +1,41 @@
 % !TEX root = ../ba_master.tex
 % @author Marcel Ruland (2018)
 
+\newcommand{\hnaught}{\textit{H}\textsubscript{\addfontfeature{Numbers=Lining}0}}
+\newcommand{\hone}{\textit{H}\textsubscript{\addfontfeature{Numbers=Lining}1}}
+
+
 \chapter{\significance}
 \label{ch:significance}
-\emph{chapter description goes here}
+\chapterintro{Significance tests are one of the most widely used statistical tools in academic work of virtually all disciplines dealing with some sort of numerical data. As is the case with most widely used tools, the temptation to merely learn its application and neglect conceptual understanding is present. I will try and bypass this fallacy by devoting section \ref{sec:signat} to the concept of statistical significance. The following section \ref{sec:sigmet} describes the creation of a null hypothesis to establish a baseline against which to test for significance. Finally, section \ref{sec:sigres} discusses the results.}
+
+\section{The Nature of Significance}
+\label{sec:signat}
+
+\subsection{Neyman \& Pearson}
+
+%\paragraph{Performing a statistical test}
+%\begin{itemize}
+%	\item formulate the null hypothesis \hnaught\ and the alternative hypothesis \hone\
+%	\item choose a significance level \(\alpha\)
+%	\item use the distribution of the sample to define the test's \textbf{Ablehnungsbereich} \(B\)
+%\end{itemize}
+
+\begin{quote}\small\singlespacing
+``We are inclined to think that as far as a particular hypothesis is concerned, no test based upon the theory of probability can by itself provide any valuable evidence of the truth or falsehood of that hypothesis. But we may look at the purpose of test from another view-point. Without hoping to know whether each separate hypothesis is true or false, we may search for rules to govern our behavior with regard to them, in following which we insure that, in the long run of experience, we shall not be too often wrong.''
+
+~ \hfill \citep[\pnum{TBA}]{neyman33}
+\end{quote}
+
+
+\paragraph{Numerical vs applied significance} A certain kind of lens might have a positive effect on sight that is statistically significant. At the same time, this positive effect can be so small that humans are unable to perceive a difference. While this effect is undoubtedly significant numerically, no one would pay money for a lens whose effect they do not perceive. In that sense, significance alone must not be accepted blindly, because significance in turn is blind to effect size or scale.
+
+\subsection{Fisher's tests of significance}
+
+
 
 \section{Method}
+\label{sec:sigmet}
 The method used here is similar to the one used by \citet[\pnum{10~f.}]{abuzhaya17}. A null distribution is created, which then serves as a basis the real distribution can be tested against for statistical significance.
 
 create null distribution by shuffling relative positions of events, then test for significance using tests suited for skewed distribution
@@ -15,5 +45,7 @@ Tests to be used:
 - support(X->Y) = P(XUY) and confidence(X->Y) = P(Y|X), both associated with an \emph{arbitrary} cutoff threshold \citep[\pnum{21~ff.}]{han12}
 
 ``[M]any patterns that are interesting by objective standards may represent common sense and, therefore, are actually uninteresting.'' \citep[\pnum{22}]{han12}
+
 \section{Results}
+\label{sec:sigres}
 show and discuss significant rules
