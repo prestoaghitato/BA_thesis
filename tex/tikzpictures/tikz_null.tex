@@ -1,0 +1,123 @@
+% !TEX root = ../ba_master.tex
+% @author Marcel Ruland (2018)
+\begin{tikzpicture}[
+	node distance=0 and 0,  % y, x for fuck knows what reason
+	every node/.append style={font=\footnotesize\sffamily\addfontfeature{Numbers=Lining,Letters=Uppercase}}]
+%	\draw [help lines, dashed] (0,0) grid (13,7);
+	
+	% time line
+	\node at (3,-0.25) {20};
+	\node at (4,-0.25) {21};
+	\node at (5,-0.25) {22};
+	\node at (6,-0.25) {23};
+	\node at (7,-0.25) {24};
+	\node at (8,-0.25) {25};
+	\node at (9,-0.25) {26};
+	\node at (10,-0.25) {27};
+	\node at (11,-0.25) {28};
+	\node at (12,-0.25) {29};
+%	\node at (13,-0.25) {30};  % overfull hbox
+	\draw [help lines, dashed] (3,3) -- (3,4);
+	\draw [help lines, dashed] (4,0) -- (4,7);
+	\draw [help lines, dashed] (5,0) -- (5,7);
+	\draw [help lines, dashed] (6,0) -- (6,7);
+	\draw [help lines, dashed] (7,0) -- (7,7);
+	\draw [help lines, dashed] (8,0) -- (8,7);
+	\draw [help lines, dashed] (9,0) -- (9,7);
+	\draw [help lines, dashed] (10,0) -- (10,7);
+	\draw [help lines, dashed] (11,0) -- (11,7);
+	\draw [help lines, dashed] (12,0) -- (12,7);
+	\draw [help lines, dashed] (13,3) -- (13,4);
+	
+	% top grid
+	\draw (3,4) -- (3,7);
+	\draw (13,4) -- (13,7);
+	\draw (3,4) -- (13,4);
+	\draw (3,4.5) -- (13,4.5);
+	\draw (3,5) -- (13,5);
+	\draw (3,5.5) -- (13,5.5);
+	\draw (3,6) -- (13,6);
+	\draw (3,6.5) -- (13,6.5);
+	\draw (3,7) -- (13,7);
+	
+	% bottom grid
+	\draw (3,0) -- (3,3);
+	\draw (13,0) -- (13,3);
+	\draw (3,0) -- (13,0);
+	\draw (3,0.5) -- (13,0.5);
+	\draw (3,1) -- (13,1);
+	\draw (3,1.5) -- (13,1.5);
+	\draw (3,2) -- (13,2);
+	\draw (3,2.5) -- (13,2.5);
+	\draw (3,3) -- (13,3);
+	
+	% top labels
+	\node (mothervoctop) at (3,6.75) {};
+	\node (mothergazeinfanttop) at (3,6.25) {};
+	\node (mothergazeobjtop) at (3,5.75) {};
+	\node (infantvoctop) at (3,5.25) {};
+	\node (infantgazemothertop) at (3,4.75) {};
+	\node (infantgazeobjtop) at (3,4.25) {};
+	\node [left=of mothervoctop] {\code{mother\_voc}};
+	\node [left=of mothergazeinfanttop] {\code{mother\_gaze\_infant}};
+	\node [left=of mothergazeobjtop] {\code{mother\_gaze\_obj}};
+	\node [left=of infantvoctop] {\code{infant\_voc}};
+	\node [left=of infantgazemothertop] {\code{infant\_gaze\_mother}};
+	\node [left=of infantgazeobjtop] {\code{infant\_gaze\_obj}};
+	
+	% bottom labels
+	\node (mothervocbottom) at (3,2.75) {};
+	\node (mothergazeinfantbottom) at (3,2.25) {};
+	\node (mothergazeobjbottom) at (3,1.75) {};
+	\node (infantvocbottom) at (3,1.25) {};
+	\node (infantgazemotherbottom) at (3,0.75) {};
+	\node (infantgazeobjbottom) at (3,0.25) {};
+	\node [left=of mothervocbottom] {\code{mother\_voc}};
+	\node [left=of mothergazeinfantbottom] {\code{mother\_gaze\_infant}};
+	\node [left=of mothergazeobjbottom] {\code{mother\_gaze\_obj}};
+	\node [left=of infantvocbottom] {\code{infant\_voc}};
+	\node [left=of infantgazemotherbottom] {\code{infant\_gaze\_mother}};
+	\node [left=of infantgazeobjbottom] {\code{infant\_gaze\_obj}};
+	
+	% top annotations
+	\draw [fill=lightgray] (3,6.5) rectangle (8.279,7);
+	\draw [fill=lightgray] (8.279,6.5) rectangle (10.206,7);
+	\draw [fill=lightgray] (10.206,6.5) rectangle (11.76,7);
+
+	\draw [fill=lightgray] (6.96,6) rectangle (7.32,6.5);
+	\draw [fill=lightgray] (10.28,6) rectangle (10.52,6.5);
+	\draw [fill=lightgray] (12.68,6) rectangle (13,6.5);
+	
+	\draw [fill=lightgray] (3.84,5.5) rectangle (6.92,6);
+	\draw [fill=lightgray] (7.36,5.5) rectangle (10.24,6);
+	\draw [fill=lightgray] (10.56,5.5) rectangle (12.64,6);
+	
+	\draw [fill=lightgray] (3.887,5) rectangle (4.624,5.5);
+	\draw [fill=lightgray] (6.74,5) rectangle (7.53,5.5);
+	\draw [fill=lightgray] (8.279,5) rectangle (9.909,5.5);
+	
+	\draw [fill=lightgray] (3,4.5) rectangle (10.52,5);
+
+	\draw [fill=lightgray] (10.56,4) rectangle (13,4.5);
+
+	% bottom annotations
+	\draw [fill=lightgray] (7.592,2.5) rectangle (12.871,3);
+	\draw [fill=lightgray] (5.264,2.5) rectangle (7.191,3);
+	\draw [fill=lightgray] (3.221,2.5) rectangle (4.775,3);
+
+	\draw [fill=lightgray] (12.069,2) rectangle (12.429,2.5);
+	\draw [fill=lightgray] (4.039,2) rectangle (4.279,2.5);
+	\draw [fill=lightgray] (9.115,2) rectangle (9.435,2.5);
+	
+	\draw [fill=lightgray] (4.04,1.5) rectangle (7.12,2);
+	\draw [fill=lightgray] (9.76,1.5) rectangle (12.64,2);
+	\draw [fill=lightgray] (7.59,1.5) rectangle (9.64,2);
+	
+	\draw [fill=lightgray] (7.287,1) rectangle (8.024,1.5);
+	\draw [fill=lightgray] (10.84,1) rectangle (11.63,1.5);
+	\draw [fill=lightgray] (3.55,1) rectangle (5.18,1.5);
+	
+	\draw [fill=lightgray] (3.27,0.5) rectangle (10.79,1);
+
+	\draw [fill=lightgray] (7.42,0) rectangle (9.86,0.5);
+\end{tikzpicture}
