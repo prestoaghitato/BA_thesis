@@ -12,39 +12,29 @@
 \section{The Nature of Significance}
 \label{sec:significancenature}
 
-\subsection{Neyman \& Pearson}
-
-%\paragraph{Performing a statistical test}
-%\begin{itemize}
-%	\item formulate the null hypothesis \hnaught\ and the alternative hypothesis \hone\
-%	\item choose a significance level \(\alpha\)
-%	\item use the distribution of the sample to define the test's \textbf{Ablehnungsbereich} \(B\)
-%\end{itemize}
-
 \begin{quote}\small\singlespacing
 ``We are inclined to think that as far as a particular hypothesis is concerned, no test based upon the theory of probability can by itself provide any valuable evidence of the truth or falsehood of that hypothesis. But we may look at the purpose of test from another view-point. Without hoping to know whether each separate hypothesis is true or false, we may search for rules to govern our behavior with regard to them, in following which we insure that, in the long run of experience, we shall not be too often wrong.''
 
 ~ \hfill \citep[\pnum{TBA}]{neyman33}
 \end{quote}
 
-
 \paragraph{Numerical vs applied significance} A certain kind of lens might have a positive effect on sight that is statistically significant. At the same time, this positive effect can be so small that humans are unable to perceive a difference. While this effect is undoubtedly significant numerically, no one would pay money for a lens whose effect they do not perceive. In that sense, significance alone must not be accepted blindly, because significance in turn is blind to effect size or scale.
-
-\subsection{Fisher's tests of significance}
-
-
 
 \section{Method}
 \label{sec:significancemethod}
-The method used here is similar to the one used by \citet[\pnum{10~f.}]{abuzhaya17}. A null distribution is created, which then serves as a basis the real distribution can be tested against for statistical significance.
+The crucial missing bit for establishing the significance of a rule is a base case against which to compare the rule's probability. In other words, we only have the real, actual distribution, but no null distribution to compare against. The methodological approach is therefore to create a null distribution, which then serves as a basis against which the rules' probabilities can be tested for significance. This is in some respects similar to\dash and certainly inspired by\dash \citet[\pnum{10~f.}]{abuzhaya17}.
 
-create null distribution by shuffling relative positions of events, then test for significance using tests suited for skewed distribution
+We take one of the ten sequences, which is comprised of 11 dimensions\footnote{here, \emph{dimension} refers to what might intuitively be called layer. 11 kinds of events have been annotated (cf.~table \ref{tab:events}), yielding 11 time lines with start and end points for every occurrence of one kind of event each.} % this is complicated af, please rephrase
+For every dimension we randomise the time start points of the annotations, but we leave their duration untouched, i.e.~we leave the position of their time end points untouched \emph{with respect to their time start points.} We do this for all 11 dimensions.
 
-Tests to be used:
-- some sort of significance test
-- support(X->Y) = P(XUY) and confidence(X->Y) = P(Y|X), both associated with an \emph{arbitrary} cutoff threshold \citep[\pnum{21~ff.}]{han12}
-
-``[M]any patterns that are interesting by objective standards may represent common sense and, therefore, are actually uninteresting.'' \citep[\pnum{22}]{han12}
+We now have a distribution of events which contains not only the same number of events as the real distribution, but also the exact same annotations as the real distribution. In other words, the only thing that has changed is the temporal arrangement of the annotations \emph{with respect to one another.} We will call this a null distribution and create 100 of its kind. % Why 100? Why not more/less?
+We create 100 null distributions for every dyadic pair. % don't call it video, define the term
+We now have 1000 null distributions, with 100 each corresponding to a given dyadic pair.
+%Tests to be used:
+%- some sort of significance test
+%- support(X->Y) = P(XUY) and confidence(X->Y) = P(Y|X), both associated with an \emph{arbitrary} cutoff threshold \citep[\pnum{21~ff.}]{han12}
+%
+%``[M]any patterns that are interesting by objective standards may represent common sense and, therefore, are actually uninteresting.'' \citep[\pnum{22}]{han12}
 
 \section{Results}
 \label{sec:significanceresults}
