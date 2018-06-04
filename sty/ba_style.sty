@@ -26,6 +26,8 @@
 \usepackage{enumitem}							% enumerate environment, custom list labels
 \usepackage{localextra}							% colour definitions, hyphenation for linguistic terms, names, etc.
 \usepackage{tikz}								% TikZ ist kein Zeichenprogramm
+\usetikzlibrary{positioning}					% relative positioning of nodes
+\usetikzlibrary{arrows}							% more arrows
 %**************************************************
 
 
@@ -48,6 +50,7 @@
 \addtokomafont{publishers}{\sffamily}
 
 % non title page
+\addtokomafont{dedication}{\raggedright}
 \addtokomafont{chapter}{\addfontfeature{Numbers=Lining}}
 \addtokomafont{pageheadfoot}{\sffamily\addfontfeature{Numbers=Lining}}
 \addtokomafont{pagenumber}{\sffamily}
@@ -73,7 +76,8 @@
 \newcommand{\fpmlower}{frequent pattern mining}  % shortcut
 \newcommand{\fpmupper}{Frequent Pattern Mining}  % shortcut
 \newcommand{\fpmsentence}{Frequent pattern mining}  % shortcut
-\newcommand{\rt}{\textsc{rt}}  % shortcut
+\newcommand{\rt}{\textsc{rt}}  % reaction time
+\newcommand{\sd}{\textsc{sd}}  % standard deviation
 
 %% semantic commands
 \newcommand{\code}[1]{\texttt{#1}}  % code
@@ -99,11 +103,15 @@
 	\let\NAT@orig@nmfmt\NAT@nmfmt
 	\def\NAT@posfmt#1{\NAT@orig@nmfmt{#1's}}
 \makeatother
+
 \newcommand{\chapterintro}[1]{  % typeset chapter intros
 \begin{quote}
 	{\sffamily#1}
 \end{quote}
 }
+
+%% hyphenation
+\hyphenation{Henz-gen}
 
 %% chapter names
 \newcommand{\introduction}{Introduction}

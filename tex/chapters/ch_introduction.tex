@@ -11,22 +11,25 @@ If turn-taking is not dependant on linguistic modalities but may make use of suc
 \citet{rohlfing18} have identified and approached turn-taking as a multimodal phenomenon; taking into consideration linguistic utterances, non-linguistic vocalisations, gaze, and smile. They did so by applying \fpmlower to a corpus of 10 mother-infant dyads. \fpmsentence is a specific kind of data mining that is concerned with ways of finding frequent patterns in a dataset. The basic concepts are very well explained by \citet{han07}:
 
 \begin{quote}
-``Frequent patterns are itemsets, subsequences, or substructures that appear in a data set with frequency no less than a user-specified threshold. For example, a set of items, such as milk and bread, that appear frequently together in a transaction data set, is a \emph{frequent itemset}. A subsequence, such as buying first a PC, then a digital camera, and then a memory card, if it occurs frequently in a shopping history database, is a \emph{(frequent) sequential pattern.}'' \hfill \citep[\pnum{57}]{han07}
+``Frequent patterns are itemsets, subsequences, or substructures that appear in a data set with frequency no less than a user-specified threshold. For example, a set of items, such as milk and bread, that appear frequently together in a transaction data set, is a \emph{frequent itemset}. A subsequence, such as buying first a PC, then a digital camera, and then a memory card, if it occurs frequently in a shopping history database, is a \emph{(frequent) sequential pattern.}''
+
+~ \hfill \citep[\pnum{57}, emphasis in original]{han07}
 \end{quote}
 
 The present thesis aims to strengthen the statistical objectiveness of applying \fpmlower\ to human interaction. More specifically, it does so by introducing a notion of significance. The thesis is organised into four main chapters.
 Chapter \ref{ch:introduction} (i.e.\ the current chapter) will proceed by giving an overview of past research and then further clarifying the aim of this thesis.
-The second chapter ``\frequentpatternmining'' explains the entire process of preparing the data, applying \fpmlower, and then evaluating the data\dash beginning with a description of the raw video material and ending with abstract rules\footnote{The notion of a \emph{rule} will be explained in subsection \ref{sec:mining}.}.
+The second chapter ``\frequentpatternmining'' explains the entire process of preparing the data, applying \fpmlower, and then evaluating the data\dash beginning with a description of the raw video material and ending with abstract rules\footnote{The notion of a \emph{rule} will be explained in subsection \ref{ssec:miningmethodapproach}.}.
 Chapter \ref{ch:significance} ``\significance'' introduces a method for establishing statistical significance in the data. Both chapters \ref{ch:mining} and \ref{ch:significance} present results in their last sections.
 Chapter \ref{ch:visualisation} ``\visualisation'' is of a different nature. In contrast to the two previous chapters, it is not concerned with methods of evaluating the data but with methods of making the found results easily comprehensible for humans by means of visualising them in an adequate way.
 Finally, chapter \ref{ch:conclusion} concludes the thesis.
 
 \section{Previous Research}
+\label{sec:introductionresearch}
 The overview of previous research given here is twofold, coming both from a turn-taking and from a \fpmlower\ perspective. \citet{rohlfing18} is as of now the only study combining the two. I have therefore not included a section of previous research on this specific application.
 
 
 \subsection{Turn-Taking}
-\label{ssec:turntaking}
+\label{sec:introductionresearchturntaking}
 The literature considering turn-taking to be a unimodal phenomenon is large (\citep{casillas16,freud16,heldner10} to name but a few recent examples). Nevertheless, one can find examples of multimodal turn-taking, although those studies are much fewer in number.
 \citet{levinson16} establishes turn-taking as a universal feature of language that ``[a]ppear[s] earlier in ontogeny than linguistic competence'' \citep[\pnum{6}]{levinson16}. Turns are of an average length of 2 seconds, but with high variation in length. He further states that ``turn-taking thus involves multi-tasking comprehension and production, but \emph{multi-tasking in the same modality is notoriously difficult}'' \citep[\pnum{9}, emphasis mine]{levinson16}, which may be interpreted as an argument in favour of multimodal turn-taking, although it is admittedly not clear that this is what \citeauthor{levinson16} is hinting at.%and criticises the separate study of language processing and production in psycholinguistics and the cognitive sciences.
 
@@ -36,6 +39,7 @@ Yet, they also state that ``there remains some controversy over the extent to wh
 Finally, \citepos{stivers09} study is not specifically concerned with multimodality, but does consider both speech and gesture to be valid beginnings of a turn.
 
 \subsection{Quantitative Methods in Behavioural Studies}
+\label{ssec:introductionresearchquantitative}
 GSEQ (Bakeman and Quera, 1995)
 Null-Distribution \citep{abuzhaya17}
 
@@ -44,10 +48,16 @@ Null-Distribution \citep{abuzhaya17}
 
 
 \section{The Aim of this Thesis}
+\label{sec:introductionaim}
 The literature review in subsection \ref{ssec:turntaking} has already given many arguments for the fact that turn-taking is multimodal (turn-taking is acquired at an earlier age than language, difficulties of unimodal multi-tasking, etc). % Find more studies, give more arguments!
 More abstractly, turn-taking studies with infants before the onset of language acquisition on the one hand, together with turn-taking studies considering only language on the other hand, are also an implicit argument in favour of the multimodality of turn-taking.
 
-%The present study builds on work by \citet{rohlfing18}, who applied \fpmlower\ techniques to a corpus of mother-child dyads, thereby identifying turn-taking as a multimodal phenomenon. It aims to further improve and operationalise this methodology for behavioural studies of similar sort.
+\begin{figure}
+	\centering
+	\input{tikzpictures/tikz_organisation.tex}
+	\caption[How this thesis extends previous work]{How this thesis extends previous work by \citet{rohlfing18}}
+	\label{fig:organisation}
+\end{figure}
 
 
 
@@ -70,8 +80,3 @@ More abstractly, turn-taking studies with infants before the onset of language a
 
 
 
-
-
-
-%\section{Pattern Mining Compared to Traditional Statistics}
-%Statistical methods can broadly be divided into two subgroups. \emph{Inferential statistics} is concerned with methods suited to affirm or reject a given hypothesis in a data set, where the hypothesis is formulated in advance. A canonical example are significance tests, where we formulate a null-hypothesis and then perform tests to determine whether it can be affirmed\footnote{``affirmed'' in the sense of ``not proven, but no evidence against it either''} or rejected. \emph{Exploratory statistics} on the other hand do create new hypotheses. With no hypothesis formulated in advance, the tests are performed on a data set and the results may be used to formulate new hypotheses afterwards. A canonical example hereof is the relatively young field of \fpmlower.

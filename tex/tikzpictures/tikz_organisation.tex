@@ -1,0 +1,88 @@
+% !TEX root = ../ba_master.tex
+% @author Marcel Ruland (2018)
+%\begin{tikzpicture}
+%%	[scale=0.68,
+%	[every node/.append style={font=\sffamily\addfontfeature{Numbers=Lining,Letters=Uppercase}},
+%	node distance=1cm and 4.5cm,
+%	rounded corners,
+%%	text width=5cm,
+%%	text height=1.5cm,
+%	align=center,
+%	>=stealth']
+%	
+%	% nodes
+%	\node [draw] (sig) {Chapter \ref{ch:significance}};
+%	\node [draw, right=of sig] (reacsig) {Chapter \ref{ch:significance}};
+%	\node [draw, below=of sig] (origin) {\citeauthor{rohlfing18}};
+%	\node [draw, below=of reacsig] (reac) {Subsection \ref{subsec:mining}};
+%	
+%	% arrows
+%	\draw [->] (origin) -- node[above] {\footnotesize consider reaction times} (reac);
+%	\draw [->] (origin) -- node[left] {\footnotesize establish significance} (sig);
+%	\draw [->] (reac) -- node[right] {\footnotesize establish significance} (reacsig);
+%\end{tikzpicture}
+
+
+
+\begin{tikzpicture}
+	[every node/.append style={font=\sffamily\addfontfeature{Numbers=Lining,Letters=Uppercase}},
+	rounded corners,
+	align=center,
+	>=stealth']
+	
+	% nodes
+	\node [draw]						(chsig)	{Chapter \ref{ch:significance}};
+	\node [draw, above left=of chsig]	(origin)	{\citeauthor{rohlfing18}};
+	\node [draw, above right=of chsig]	(chmining)	{Chapter \ref{ch:mining}};
+		
+	% arrows
+	\draw [->] (origin)			-- node[above]	{\footnotesize consider reaction times}		(chmining);
+	\draw [->] (origin.south)	-- node[left]	{\footnotesize establish significance~~}	(chsig.west);
+	\draw [->] (chmining.south)	-- node[right]	{\footnotesize ~~establish significance}	(chsig.east);
+\end{tikzpicture}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
