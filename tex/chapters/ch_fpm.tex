@@ -7,11 +7,11 @@
 
 \section{Method}
 \label{sec:miningmethod}
-The following subsections begin by introducing the raw data \emph{as-is} and then proceed by describing the process of annotating and evaluating the data, thus going steadily from the most concrete to more and more abstract representations. I begin by describing the contents of the video corpus and eventually end with abstract rules\footnote{For the definition of \emph{rule} here, see section \ref{sec:mining} on page~\pageref{sec:mining}.}.
+The following subsections begin by introducing the raw data \emph{as-is} and then proceed by describing the process of annotating and evaluating the data, thus going steadily from the most concrete to more and more abstract representations. I begin by describing the contents of the video corpus and eventually end with abstract rules\footnote{For the definition of \emph{rule} here, see subsection \ref{ssec:miningmethodapproach}.}.
 
 \subsection{The Nature of the Data}
 \label{ssec:miningmethodnature}
-The corpus is a collection of 10 mother--infant dyads. Mother and infant were recorded at their own homes during a diaper routine. This routine was chosen because it a)~is an activity known to both mother and infant, b)~is an activity where mother and infant are in direct communication with each other for a relatively long period of time, c)~both mother and infant are free in their expressions. The infant especially is free to make use of body movements and gestures and not reliant on support from the mother, as might be the case if the infant were sitting. The diaper routine was recorded by two video cameras from two different perspectives, such that all relevant events were easily visible. Figure \ref{fig:rawvid} gives an impression of this raw data. For a more detailed description of the setup see \citet[\snum{2.1}]{nomikou17} and \citet[\pnum{115~f.}]{nomikou11}.\footnote{But note that while the same setup was used, the inclusion or exclusion of groups or individual subjects in the corpus was different due to the different aims of the studies.} The videos had a mean length of 395~s (\emph{\textsc{sd}}~=~186~s).
+The corpus is a collection of 10 mother--infant dyads. Mother and infant were recorded at their own homes during a diaper routine. This routine was chosen because it a)~is an activity known to both mother and infant, b)~is an activity where mother and infant are in direct communication with each other for a relatively long period of time, c)~both mother and infant are free in their expressions. The infant especially is free to make use of body movements and gestures and is not reliant on support from the mother, as might be the case if the infant were sitting. The diaper routine was recorded by two video cameras from two different perspectives, such that all relevant events were clearly visible. Figure \ref{fig:rawvid} gives an impression of this raw data. For a more detailed description of the setup see \citet[\snum{2.1}]{nomikou17} and \citet[\pnum{115~f.}]{nomikou11}.\footnote{But note that while the same setup was used, the inclusion or exclusion of groups or individual subjects in the corpus was different due to the different aims of the studies.} The videos had a mean length of 395~s (\emph{\textsc{sd}}~=~186~s).
 
 \begin{figure}[h]
 	\centering
@@ -22,27 +22,34 @@ The corpus is a collection of 10 mother--infant dyads. Mother and infant were re
 
 \subsection{Annotation of the Videos}
 \label{ssec:miningmethodannotation}
-11 kinds of events were hand-coded for both mother and child using the \textsc{elan} software \citep{wittenburg06}. These categories were of linguistic, vocal, and visual modality. %Categories were chosen HOW??  % ELABORATE here
-Table \ref{tab:events} lists all categories. Every annotation contains a start and end time point and therefore also the duration of the respective event. This way, sequences as shown in Figure \ref{fig:idealseq} are obtained (note that this is a fictional sequence). \fpmlabel{A}, \fpmlabel{B}, and \fpmlabel{C} are three different kinds of events; the x-axis represents time. We see two occurrences of type \fpmlabel{A} and \fpmlabel{B} each, as well as a longer occurrence of type \fpmlabel{C}. Those time points that are indicated on the x-axis mark the beginning and/or end time point of a specific occurrence. All occurrences of a dyad together are referred to as a sequence, i.e.\ there are 10 sequences in the corpus.
+11 kinds of events were hand-coded for both mother and child using the \textsc{elan} software \citep{wittenburg06}. These events were of linguistic, vocal, and visual modality. %Categories were chosen HOW??  % ELABORATE here
+Table \ref{tab:events} lists all categories. Every annotation contains a start and end time point and therefore also the duration of the respective event. This way, sequences as shown in Figure \ref{fig:idealseq} are obtained (note that this is a fictional sequence). \fpmlabel{A}, \fpmlabel{B}, and \fpmlabel{C} are three different kinds of events; the x-axis represents time. We see two occurrences of type \fpmlabel{A} and \fpmlabel{B} each, as well as a longer occurrence of type \fpmlabel{C}. Those time points that are indicated on the x-axis mark the beginning and/or end time point of a specific occurrence.
+\paragraph{A note on terminology}
+%A mother--infant pair is referred to as a \emph{dyad.}
+One individual occurrence of an event is simply referred to as an \emph{event.}
+A specific kind of event is referred to as a \emph{dimension} (i.e.~the data are 11-dimensional, as there are 11 kinds of events).
+All events obtained from annotating the recording of a single mother--infant dyad are referred to as a \emph{sequence.}
+Finally, all 10 sequences together are referred to as the \emph{corpus.}
+
 
 \begin{table}[h]
 	\centering
 	\begin{tabularx}{\textwidth}{>{\ttfamily}lX} 
 		\toprule
-		{\rmfamily Event}			& Explanation \\
+		{\rmfamily Event}		& Explanation \\
 		\cmidrule(lr){1-1} \cmidrule(lr){2-2}
-		mother-speech					& mother speaks \\
-		m-voc							& mother vocalises, but does not use language \\
-		m\_gaze\_at						& mother gazes at infant \\
-		m\_gaze\_at\_object				& mother gazing at object, usually diaper but may be any object \\
-		m\_gaze\_away					& mother gazes neither at infant nor at object \\
-		mo\_smile						& mother smiles \\
+		mother\_speech			& mother speaks \\
+		mother\_vocal			& mother vocalises, but does not use language \\
+		mother\_gaze\_infant	& mother gazes at infant \\
+		mother\_gaze\_object	& mother gazing at object, usually diaper but may be any object \\
+		mother\_gaze\_away		& mother gazes neither at infant nor at object \\
+		mother\_smile			& mother smiles \\
 		\cmidrule(lr){1-1} \cmidrule(lr){2-2}
-		infant\_vocalizations\_infant	& explanation goes here \\
-		i\_gaze\_at						& explanation goes here \\
-		i\_gaze\_at\_object				& explanation goes here \\
-		i\_gaze\_away					& explanation goes here \\
-		inf\_smile						& explanation goes here \\
+		infant\_vocal \\
+		infant\_gaze\_mother \\
+		i\_gaze\_object			& ~ \hfill \textit{analogous to mother's events} \hfill ~ \\
+		i\_gaze\_away \\
+		infant\_smile \\
 		\bottomrule
 	\end{tabularx}
 	\caption{Events coded in the data}
@@ -65,7 +72,7 @@ The patterns \citet{rohlfing18} looked for were association rules of the form \f
 
 \begin{enumerate}
 	\item The antecedent's start time point lies before that of the succedent.
-	\item The antecedent's and succedent's start time points are identical, i.e.\ they begin simultaneously.
+	\item The antecedent's and succedent's start time points are identical, i.e.\ they begin at the same time.
 \end{enumerate}
 
 Referring again to Figure \ref{fig:idealseq}, one can for example observe the rules \fpmrule{A}{B} and \fpmrule{A}{B, C} (because the start time point of the antecedent lies before that of the succedent), but not \fpmrule{B}{A}.
@@ -74,10 +81,10 @@ This scheme can be further adapted to the specific nature of the data. Given tha
 
 \paragraph{Choosing appropriate delays}
 Human reaction time (henceforth \rt) correlates with a vast variety of factors, among which are intensity, modality, and complexity of the stimulus \citep{brebner80}, age and gender \citep{der06}, state of alertness \citep{appelle74}, handedness \citep{dane03}, and even personality traits \citep{stelmack93}. Quite obviously, many of those traits cannot be determined for the subjects in the corpus used in the present thesis. However, those factors which are most relevant (namely age of the subject and modality of the stimulus) are both captured in the data and relatively easy to account for. Regarding modality, variation is so small that it may safely be neglected. \citet[\pnum{9}]{brebner80} ascribe the variation to ``differences in the peripheral mechanisms rather than in the central processes'' and give average\footnote{I use the term \emph{average} wherever sources do not state whether the value in question is a mean, median, mode, or other measure of centrality.} \rt s of 8--10~ms for acoustic stimuli and 20--40~ms for visual stimuli to reach the central processes. The resulting difference of 10--32~ms is on a scale so small that considering it would unnecessarily complicate the analysis without providing adequate advantages. Regarding age, mean \rt\ lies  between 1002--1124~ms for infants of age 6--9 months (N~=~24) and between 311--326~ms for adults of age 19--26 years (N=11) \citep[\pnum{95}]{leibold02}.%
-\footnote{Stimulus was a pure (i.e.~sine wave) tone of 1000~Hz with loudness ranging from 40--60~dB. No numerical values given. Converted from line chart using the Engauge Digitizer software \citep{mitchell02}. The loudness corresponds to average conversation loudness \citep[\pnum{32}]{goerne06}} 
+\footnote{Stimulus was a pure (i.e.~sine wave) tone of 1000~Hz with loudness ranging from 40--60~dB. No numerical values given. Converted from line chart using the Engauge Digitizer software \citep{mitchell02}. The loudness corresponds to average loudness perceived in conversation \citep[\pnum{32}]{goerne06}} 
 Mean infant age in the corpus used for the present thesis is 3~months, mean age of the mothers is XX years. While the infants looked at here are younger than those looked at by \citet{leibold02}, the important point made is that there \emph{is} a difference in reaction time between infants and mothers that must be taken into account. In my analysis, I therefore capture rules of the sort \fpmtextrule{infant}{mother} (i.e.~mother has to react) iff the delay between the start time point of the antecedent is greater than 289~ms before that of the succedent. Similarly, rules of the sort \fpmtextrule{mother}{infant} (i.e.~infant has to react) are captured iff the delay between the start time point of the antecedent is greater than 850~ms before that of the succedent. The values are higher than those given by \citet{leibold02} to account for variation between subjects. The extent of the variation also follows the results of \citet{leibold02}.
 
-I am well aware, that the literature cited with regards to the delays chosen is concerned with \rt\ to generic stimuli and does not consider communication or interaction. Unfortunately, literature specifically concerned with \rt\ in interaction is virtually inexistent. There are some indications that it may be faster than general \rt\ \citep{levinson16}, but none that it may be slower. Therefore, by choosing delays 2 \sd\ below the mean, 95~\% of the actual \rt s will be slow enough to be captured.\footnote{Assuming the distribution to be normally distributed \citep[\pnum{PAGENUMBER}]{moore16}} 
+I am well aware, that the literature cited with regards to the delays chosen is concerned with \rt\ to generic stimuli and does not consider communication or interaction. Unfortunately, literature specifically concerned with \rt\ in interaction is virtually inexistent. There are some indications that it may be faster than general \rt\ \citep{levinson16}, but none that it may be slower. Therefore, by choosing delays 2 \sd\ below the mean, 95~\% of the actual \rt s will be slow enough to be captured.\footnote{Assuming the distribution to be normally distributed \citep[\pnum{57}]{moore16}} 
 
 For intrapersonal rules only, simultaneous start time points of two events are meaningful. In order to capture them, a further adjustment must be made related to coders' imprecision. The data were annotated frame by frame. Given a rate of 25~fpm, the duration of a single frame is 40~ms. Intrapersonal events with a maximum delay of 40~ms are therefore considered to begin simultaneously. The analysis is formalised in appendix \ref{ch:formalisation}.
 
