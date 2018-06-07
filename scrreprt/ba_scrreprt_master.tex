@@ -1,0 +1,84 @@
+% @author Marcel Ruland (2018)
+%
+% Random pieces of information I picked up along the way (might turn out useful):
+% [chapterprefix=true] changes ``1 LaTeX'' to ``Chapter 1\\ LaTeX''
+
+%% tell TeXshop to compile using LuaLaTeX and encode with UTF-8
+%!TEX TS-program = lualatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[
+	fontsize=11,			% font size 11pt (KOMA default)
+	DIV=calc,				% KOMA calculates Satzspiegel
+	BCOR=0mm,				% length that will get swallowed up by binding
+	pagesize,				% ensures compatibility with PDF and DVI
+	toc=bib,				% include bib in toc
+	toc=listof,				% include list of tables and list of figures in toc
+	abstract=true,			% display abstract heading
+	twoside,				% two-sided printing
+	titlepage=firstiscover,	% set title page as cover page
+	footnotes=multiple		% separate footnotes set directly one after another by a comma
+]{scrreprt}
+
+\usepackage{ba_style}  % loading packages, typesetting, etc.
+
+
+% using all commands now to have an exhaustive list and see what they're all doing, will probably remove some of them at some stage
+%\titlehead{Titlehead}
+\subject{%
+{\huge Universität Paderborn} \\[0.5em]
+Fakultät für Kulturwissenschaften \\
+Fakultät für Elektrotechnik, Informatik und Mathematik
+}
+\title{Applying Frequent Pattern Mining to Multimodal Behaviour in Interaction}
+\subtitle{Visualising Significant Patterns}
+\author{~\\[1em]
+	{Bachelor's Thesis in Linguistics} \\
+	submitted by \\[0.2em]
+	{\LARGE\addfontfeature{Style=Alternate} Marcel Ruland} \\[0.2em]
+	Emilienstr.~11 \\
+	32756 Detmold \\
+	Matrikelnr.~7048667
+}
+\date{Hand-in date: \today}
+\publishers{%
+	supervised by \\
+	Prof.~Dr.~Katharina Rohlfing \\
+	Prof.~Dr.~Eyke Hüllermeier
+}
+\dedication{I would like to thank my supervisors Katharina Rohlfing and Eyke Hüllermeyer, who joined forces in making this thesis possible, for suggesting and trusting me with this subject.
+
+I struggle to see the point of putting many other people who supported me in many different ways in any particular order. Therefore, let\\[1em]
+\begin{center}
+\begin{tabularx}{\textwidth}{r@{ }r@{ }X}
+	supporters & \raisebox{0.0725em}{:\,:}= & \{ {\rmfamily\textit x}~|~{\rmfamily\textit x} has supported me in writing this thesis\} \\ \\
+	supporters &= &\{\textit{Boris Bolles, Markus Freudinger, Sascha Henzgen, Monique Koke, Anke Lenzing, Ilka Mindt, Ingrid Scharlau, Leonhard Stefan}\}
+\end{tabularx}
+\end{center}
+}
+%\extratitle{Schmutztitel.}
+\uppertitleback{Upper Title Back}
+\lowertitleback{Lower Title Back}
+
+\begin{document}
+{\singlespacing
+\maketitle
+%\input{chapters/ch_abstract}
+\tableofcontents}
+
+\input{chapters/ch_introduction}
+\input{chapters/ch_fpm}
+\input{chapters/ch_significance}
+\input{chapters/ch_visualisation}
+\input{chapters/ch_conclusion}
+\appendix
+\input{chapters/ch_appendix}
+
+\listoftables
+\listoffigures
+\singlespacing
+\KOMAoptions{fontsize=10pt,twocolumn}
+%\recalctypearea  % seems to be done automatically when changing to twocolumn layout
+\bibliography{../aux/bib/ba_bib}
+
+\end{document}
