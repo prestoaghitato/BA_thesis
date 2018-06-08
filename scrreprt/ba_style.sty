@@ -1,9 +1,12 @@
-% !TEX root = /ba_scrreprt_master.tex
+% !TEX root = ba_scrreprt_master.tex
 % @author Marcel Ruland (2018)
 
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 \ProvidesPackage{ba_style}
 
+
+
+%******************Packages in Use*****************
 \usepackage{mathpazo}							% Palatino for math mode
 \usepackage{fontenc}							% Open Type fonts
 \usepackage{ttcommons}							% use TT commons for sf
@@ -28,6 +31,7 @@
 \usepackage{tikz}								% TikZ ist kein Zeichenprogramm
 \usetikzlibrary{positioning}					% relative positioning of nodes
 \usetikzlibrary{arrows}							% more arrows
+\usetikzlibrary{decorations.markings}			% for vecArrows
 %**************************************************
 
 
@@ -39,9 +43,7 @@
 
 
 %**************Customise Font Formats**************
-% Elements on page 60 of (German) KOMA manual
-
-% title page
+%% title page
 \setkomafont{subject}{\large\sffamily}
 \setkomafont{title}{\sffamily\ttcmedium}
 \addtokomafont{subtitle}{\LARGE}
@@ -49,15 +51,18 @@
 \addtokomafont{date}{\sffamily}
 \addtokomafont{publishers}{\sffamily}
 
-% non title page
+
+%% non title page
 \addtokomafont{dedication}{\raggedright}
 \addtokomafont{chapter}{\addfontfeature{Numbers=Lining}}
 \addtokomafont{pageheadfoot}{\sffamily\addfontfeature{Numbers=Lining}}
 \addtokomafont{pagenumber}{\sffamily}
-
 \pagestyle{headings}  % running headlines etc
+%**************************************************
 
-%% Typographic and General Issues/Solutions:
+
+
+%*****Typographic and General Issues/Solutions*****
 % colon after paragraph heading?
 % lowercase for figure, table, section, etc.
 % Full stop at the end of every caption?
@@ -81,23 +86,24 @@
 \newcommand{\rt}{\textsc{rt}}  % reaction time
 \newcommand{\sd}{\textsc{sd}}  % standard deviation
 
+
 %% semantic commands
-\newcommand{\code}[1]{\texttt{#1}}  % code
-\newcommand{\dash}{---}  % typeset dashes
+\newcommand{\code}[1]{\texttt{#1}}										% code
+\newcommand{\dash}{---}													% typeset dashes
+\newcommand{\citenums}[1]{#1}											% numbers in citations
+\newcommand{\pnum}[1]{p.~#1}											% page numbers in citations
+\newcommand{\snum}[1]{sec.~#1}											% section numbers in citations
+\newcommand{\cnum}[1]{ch.~#1}											% chapter numbers in citations
+\newcommand{\chapterintro}[1]{\begin{quote}{\sffamily#1}\end{quote}}	% typeset chapter intros
+\newcommand{\fpmlabel}[1]{\(\mathcal{#1}\)}								% typeset label
+\newcommand{\fpmset}[1]{\(\{\)\fpmlabel{#1}\(\}\)}						% typeset label sets
+\newcommand{\fpmrule}[2]{\fpmset{#1}~\(\rightarrow\)~\fpmset{#2}}		% typeset rules
+\newcommand{\fpmtextrule}[2]{\texttt{#1~\(\rightarrow\)~#2}}			% typeset less mathsy rules
 
-\newcommand{\citenums}[1]{#1}  % numbers in citations
-\newcommand{\pnum}[1]{p.~#1}  % page numbers in citations
-\newcommand{\snum}[1]{sec.~#1}  % section numbers in citations
-\newcommand{\cnum}[1]{ch.~#1}  % chapter numbers in citations
 
-\newcommand{\imgwidth}{0.618\textwidth}  % set image width to golden ratio
-
-\newcommand{\fpmlabel}[1]{\(\mathcal{#1}\)}  % typeset label
-\newcommand{\fpmset}[1]{\(\{\)\fpmlabel{#1}\(\}\)}  % typeset label sets
-\newcommand{\fpmrule}[2]{\fpmset{#1}~\(\rightarrow\)~\fpmset{#2}}  % typeset rules
-\newcommand{\fpmtextrule}[2]{\texttt{#1~\(\rightarrow\)~#2}}  % typeset less mathsy rules
-% from tex.stackexchange.com/questions/125690
-\makeatletter
+%% other
+\newcommand{\imgwidth}{0.618\textwidth}									% set image width to golden ratio
+\makeatletter															% possessive citations, from tex.stackexchange.com/questions/125690
 \DeclareRobustCommand\citepos  % define \citepos just like \citet
 	{\begingroup
 		\let\NAT@nmfmt\NAT@posfmt  % except with a different name format
@@ -107,14 +113,10 @@
 	\def\NAT@posfmt#1{\NAT@orig@nmfmt{#1's}}
 \makeatother
 
-\newcommand{\chapterintro}[1]{  % typeset chapter intros
-\begin{quote}
-	{\sffamily#1}
-\end{quote}
-}
 
 %% hyphenation
 \hyphenation{Henz-gen}
+
 
 %% chapter names
 \newcommand{\introduction}{Introduction}
