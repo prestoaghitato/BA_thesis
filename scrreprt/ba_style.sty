@@ -101,6 +101,29 @@
 \newcommand{\fpmtextrule}[2]{\texttt{#1~\(\rightarrow\)~#2}}			% typeset less mathsy rules
 
 
+%% TikZ Styles
+% based on http://www.texample.net/tikz/examples/double-arrows/
+% used in tikz_levinson.tex
+\tikzstyle{vecArrow}=[
+	very thick,
+	decoration={
+		markings,
+		mark=at position 1 with {
+			\arrow[thin, scale=3]{open triangle 60}
+		}
+	},
+	double distance=1em,
+	shorten >= 1.6em,
+	preaction={decorate},
+	postaction={
+		draw,
+		line width=1em,
+		white,
+		shorten >= 1.3em
+	}
+]
+
+
 %% other
 \newcommand{\imgwidth}{0.618\textwidth}									% set image width to golden ratio
 \makeatletter															% possessive citations, from tex.stackexchange.com/questions/125690

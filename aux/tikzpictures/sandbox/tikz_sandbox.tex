@@ -1,9 +1,9 @@
 %% @author Marcel Ruland (2018)
-%\documentclass{article}
-%\usepackage{tikz}
-%\usetikzlibrary{arrows, positioning}
-%\usepackage{ttcommons}
-%\renewcommand{\familydefault}{\sfdefault}
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{arrows, positioning, decorations.markings}
+\usepackage{ttcommons}
+\renewcommand{\familydefault}{\sfdefault}
 %\begin{document}
 %\begin{tikzpicture}
 %	[%every node/.append style={font=\sffamily\addfontfeature{Numbers=Lining}},
@@ -16,26 +16,39 @@
 %\end{tikzpicture}
 %\end{document}
 
-\documentclass[a5paper]{article}
-\usepackage{tikz}
-\usetikzlibrary{arrows, decorations.markings}
-
 % based on http://www.texample.net/tikz/examples/double-arrows/
 % used in tikz_levinson.tex
-\tikzstyle{vecArrow} = [very thick, decoration={markings,mark=at position
-   1 with {\arrow[thin, scale=3]{open triangle 60}}},
-   double distance=1em, shorten >= 1.5em,
-   preaction = {decorate},
-   postaction = {draw,line width=1em, white,shorten >= 1.3em}]
+\tikzstyle{vecArrow}=[
+	very thick,
+	decoration={
+		markings,
+		mark=at position 1 with {
+			\arrow[thin, scale=3]{open triangle 60}
+		}
+	},
+	double distance=1em,
+	shorten >= 1.4em,
+	preaction={decorate},
+	postaction={
+		draw,
+		line width=1em,
+		white,
+		shorten >= 1.3em
+	}
+]
 
 \begin{document}
 
-\begin{tikzpicture}[thick, node distance= 2cm and 2cm]
-  \node (a) {A};
-  \node[right of=a] (b) {B};
+\begin{tikzpicture}
+	[
+		node distance= 2cm and 2cm
+	]
+	\draw[help lines, dashed] (0,0) grid (6,6);
+	
+	\node (a) {A};
+	\node[right of=a] (b) {C};
 
-  % 1st pass: draw arrows
-  \draw[vecArrow] (a) to (b);
+	\draw[vecArrow] (a) to node {bla} (b);
 \end{tikzpicture}
 
 \end{document}
