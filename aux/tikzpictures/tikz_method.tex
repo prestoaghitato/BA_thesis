@@ -1,0 +1,75 @@
+% !TEX root = ../../scrreprt/ba_scrreprt_master.tex
+% @author Marcel Ruland (2018)
+\begin{tikzpicture}
+	[every node/.append style={font=\sffamily\addfontfeature{Numbers=Lining}},
+	node distance=1cm and 3cm,
+	rounded corners,
+	align=center,
+	>=stealth']
+	
+	% nodes
+	\node [draw] (sig) {\citeauthor{rohlfing18} + \\ significance};
+	\node [draw, right=of sig] (reacsig) {\textsc{rt}-data + \\ significance};
+	\node [draw, below=of sig] (origin) {\citeauthor{rohlfing18}};
+	\node [draw, below=of reacsig] (reac) {\textsc{rt}-data};
+	
+	% arrows
+	\draw [->] (origin) -- node[above] {\footnotesize consider reaction times} (reac);
+	\draw [->] (origin) -- node[left]  {\footnotesize establish significance}  (sig);
+	\draw [->] (reac)   -- node[right] {\footnotesize establish significance}  (reacsig);
+	
+	% discussion
+%	\node [above right=of reacsig.north west] (discuss) {\footnotesize\textit{3.~extensive discussion}};
+	\node at (7.5,1.61) (discuss) {\footnotesize\textit{3.~extensive discussion}};
+	\draw[<->, double] (sig.north) to[bend left] node[above]{\footnotesize\textit{2.~comparison}} (reacsig.north);
+	\draw[<->, double] (origin.south) to[bend right] node[below]{\footnotesize\textit{1.~comparison}} (reac.south);
+	\draw[->, double] (discuss) to (reacsig.north east);
+\end{tikzpicture}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
