@@ -1,0 +1,291 @@
+% !TEX root = ../../scrreprt/ba_scrreprt_master.tex
+% @author Marcel Ruland (2018)
+
+% semantic commands
+\newcommand{\nullnode}{100 Null}
+\newcommand{\samplenode}{sample}
+\newcommand{\commentfont}[1]{{\rmfamily\tiny\textit{#1}}}
+\newcommand{\annotationcounter}[1]{{\rmfamily\addfontfeature{Numbers=Lining}\scriptsize\textbf{#1.~}}}
+
+% coordinates
+\newcommand{\nully}{8}			% y-position of null nodes
+\newcommand{\sampley}{5}		% y-position of sample nodes
+\newcommand{\realx}{6}			% x position of leftmost real node
+\newcommand{\realy}{\sampley}	% y-position of real nodes
+
+% incrementers
+\newcommand{\nullinc}{1.5}			% increment for null nodes
+\newcommand{\sampleinc}{2}		% increment for sample nodes
+\newcommand{\realinc}{1}			% increment for real nodes
+\newcommand{\realtonullinc}{0.3}	% increment for real to null arrows
+
+% other
+\newcommand{\nodeoffset}{0.5}			% offset for \cdots
+\newcommand{\annotationwidth}{1.5cm}	% width of annotations on left side
+% gaussian function for plot
+\pgfmathdeclarefunction{gauss}{2}{\pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}}
+
+\begin{tikzpicture}[
+	every node/.append style={
+		font=\sffamily\scriptsize\addfontfeature{
+%			Numbers=Monospaced,
+			Numbers=Lining,
+			Letters=Uppercase
+		}
+	},
+	node distance = 1 and 0.5,
+	align=center
+]
+	% help lines
+%	\draw[help lines, dashed] (0,0) grid (10,10);
+	
+	
+	%%% NODES
+	% null nodes
+	\node[draw] at ({0 + 0*\nullinc},\nully)   (null1)  {\nullnode \\ 1};
+	\node[draw] at ({0 + 1*\nullinc},\nully)   (null2)  {\nullnode \\ 2};
+	\node[draw] at ({0 + 2*\nullinc},\nully)   (null3)  {\nullnode \\ 3};
+	\node[draw] at ({0 + 3*\nullinc + \nodeoffset},\nully)   (null10) {\nullnode \\ 10};
+	
+	% sample nodes
+	\node[draw] at ({0.5 + 0*\sampleinc},\sampley) (sample1) {\samplenode \\ 1};
+	\node[draw] at ({0.5 + 1*\sampleinc},\sampley) (sample50) {\samplenode \\ 50};
+	\node[draw] at ({0.5 + 2*\sampleinc},\sampley) (sample100) {\samplenode \\ 100};
+	
+	% real nodes
+	\node[draw, circle, minimum size=2.5em] at ({\realx + 0*\realinc},\realy) (real1) {R1};
+	\node[draw, circle, minimum size=2.5em] at ({\realx + 1*\realinc},\realy) (real2) {R2};
+	\node[draw, circle, minimum size=2.5em] at ({\realx + 2*\realinc},\realy) (real3) {R3};
+	\node[draw, circle, minimum size=2.5em] at ({\realx + 3*\realinc + \nodeoffset},\realy) (real10) {R10};
+	
+	% \cdots
+	\path (null3) -- node{\(\cdots\)} (null10);
+	\path (sample1) -- node{\(\cdots\)} (sample50);
+	\path (sample50) -- node{\(\cdots\)} (sample100);
+	\path (real3) -- node{\(\cdots\)} (real10);
+	
+	
+	%%% ARROWS
+	%% null to sample arrows
+	% 1st sample
+	\draw[-stealth, graphgreen] (null1.south west)  to (sample1.north);
+	\draw[-stealth, graphgreen] (null2.south west)  to (sample1.north);
+	\draw[-stealth, graphgreen] (null3.south west)  to (sample1.north);
+	\draw[-stealth, graphgreen] (null10.south west) to (sample1.north);
+	
+	% 50th sample
+	\draw[-stealth, graphgreen] (null1.south)  to (sample50.north);
+	\draw[-stealth, graphgreen] (null2.south)  to (sample50.north);
+	\draw[-stealth, graphgreen] (null3.south)  to (sample50.north);
+	\draw[-stealth, graphgreen] (null10.south) to (sample50.north);
+	
+	% 100th sample
+	\draw[-stealth, graphgreen] (null1.south east)  to (sample100.north);
+	\draw[-stealth, graphgreen] (null2.south east)  to (sample100.north);
+	\draw[-stealth, graphgreen] (null3.south east)  to (sample100.north);
+	\draw[-stealth, graphgreen] (null10.south east) to (sample100.north);
+	
+	%% real to null arrows
+	\draw[-stealth, graphred] (real1.north) to
+					({\realx + 0*\realinc},{8.7 + 0*\realtonullinc}) to
+					({0 + 0*\nullinc},{8.7 + 0*\realtonullinc}) to
+					(null1.north);
+					
+	\draw[-stealth, graphred] (real2.north) to
+					({\realx + 1*\realinc},{8.7 + 1*\realtonullinc}) to
+					({0 + 1*\nullinc},{8.7 + 1*\realtonullinc}) to
+					(null2.north);
+					
+	\draw[-stealth, graphred] (real3.north) to
+					({\realx + 2*\realinc},{8.7 + 2*\realtonullinc}) to
+					({0 + 2*\nullinc},{8.7 + 2*\realtonullinc}) to
+					(null3.north);
+					
+	\draw[-stealth, graphred] (real10.north) to
+					({\realx + 3*\realinc + \nodeoffset},{8.7 + 3*\realtonullinc}) to
+					node[above, black]
+					{\annotationcounter{1}\commentfont{generate 100 null distributions from each real sequence}}
+					({0 + 3*\nullinc + \nodeoffset},{8.7 + 3*\realtonullinc}) to
+					(null10.north);
+	
+	%% sample to plot arrows
+	% nodes above plots
+	\node[below=1.7cm of sample50.south] (greenplot) {};
+	\node at (7.7,2.8) (redplot) {};
+	
+	% left plot
+	\draw[-stealth, graphgreen] (sample1.south)  to (greenplot);
+	\draw[-stealth, graphgreen] (sample50.south)  to (greenplot);
+	\draw[-stealth, graphgreen] (sample100.south)  to (greenplot);
+	
+	% red plot
+	\draw[-stealth, graphred] (real1.south)  to (redplot);
+	\draw[-stealth, graphred] (real2.south)  to (redplot);
+	\draw[-stealth, graphred] (real3.south)  to (redplot);
+	\draw[-stealth, graphred] (real10.south)  to (redplot);
+	
+	
+	
+	%%% PLOTS
+	%% left and green
+	\begin{axis}[
+		at={(110,0)},  % set origin coordinate in tikzpicture
+		scale=0.5,  % half as large
+		ymin=0,  % set ymin to 0
+		xticklabels={,,},  % surpress digits at x-axis
+		hide y axis,  % hide y axes (duh)
+		axis x line*=bottom, % no box around the plot, only x and y axis
+		every axis plot post/.append style={% All plots: from -2:2, 50 samples, smooth, no marks
+			mark=none,
+			domain=-2:2,
+			samples=50,
+			smooth
+		}
+	]
+		% add normal curve
+		\addplot[color=graphgreen] {gauss(0,0.5)};
+		% add vertical line
+		\draw[color=graphgreen, dashed] (axis cs:0,\pgfkeysvalueof{/pgfplots/ymin}) -- (axis cs:0,\pgfkeysvalueof{/pgfplots/ymax});
+	\end{axis}
+	
+	%% right and red
+	\begin{axis}[
+		at={(1255,0)},  % set origin coordinate in tikzpicture
+		scale=0.5,  % half as large
+		ymin=0,  % set ymin to 0
+		ymax=0.8,
+		xticklabels={,,},  % surpress digits at x-axis
+		hide y axis,  % hide y axes (duh)
+		axis x line*=bottom, % no box around the plot, only x and y axis
+		every axis plot post/.append style={% All plots: from -2:2, 50 samples, smooth, no marks
+			mark=none,
+			domain=-3:3,
+			samples=50,
+			smooth
+		}
+	]
+		% add normal curve
+		\addplot[color=graphred] {gauss(0,0.75)};
+		% add vertical line
+		\draw[color=graphred, dashed] (axis cs:0,\pgfkeysvalueof{/pgfplots/ymin}) -- (axis cs:0,\pgfkeysvalueof{/pgfplots/ymax});
+	\end{axis}
+	
+	
+	%%% THE BIG QUESTION
+	\node at (5.1,0.7) (bigquestion) {\large\(\textcolor{graphgreen}{\mu_1} \stackrel{?}{=} \textcolor{graphred}{\mu_2}\)};
+	
+	%%% ANNOTATIONS
+	% null to sample
+	\draw[
+		decorate,
+		decoration={
+			brace,
+			amplitude=5pt
+		}
+	]
+	([shift={(-0.6,0)}]sample1.north west) --
+	([shift={(-0.1,0)}]null1.south west)
+	node[
+		midway,
+		left,
+		xshift=-0.5em,
+		align=right,
+		text width=\annotationwidth
+	]
+	{\annotationcounter{2}\commentfont{\emph{i}-th null distribution goes into \emph{i}-th sample}};
+	
+	% apply fpm
+	\draw[
+		decorate,
+		decoration={
+			brace,
+			amplitude=5pt
+		}
+	]
+	([shift={(-0.6,0)}]sample1.south west) --
+	([shift={(-0.6,0)}]sample1.north west)
+	node[
+		midway,
+		left,
+		xshift=-0.5em,
+		align=right,
+		text width=\annotationwidth
+	]
+	{\annotationcounter{3}\commentfont{apply \textsc{fpm} to all samples and real sequences separately}};
+	
+	% probability
+	\draw[
+		decorate,
+		decoration={
+			brace,
+			amplitude=5pt
+		}
+	]
+	([shift={(-0.1,0)}]-0.5,0) --
+	([shift={(-0.6,0)}]sample1.south west)
+	node[
+		midway,
+		left,
+		xshift=-0.5em,
+		align=right,
+		text width=\annotationwidth
+	]
+	{\annotationcounter{4}\commentfont{probabilities of rule \emph{i} from all samples form probability distribution of rule \emph{i}}};
+	
+	\node[
+		above=0.2cm of bigquestion,
+		align=left,
+		text width=2.5cm
+	]
+	{\annotationcounter{5}\commentfont{test the real probability distribution for significance against the null probability distribution}};
+	
+	%%% HELP LINES (turned out to be ugly af)
+%	\draw[dashed] (-0.6,0) to (10,0);
+%	\draw[dashed] (-0.6,4.6) to (10,4.6);
+%	\draw[dashed] (-0.6,5.4) to (10,5.4);
+%	\draw[dashed] (-0.6,7.6) to (5.6,7.6);
+\end{tikzpicture}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

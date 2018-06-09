@@ -7,37 +7,37 @@
 
 \chapter{\significance}
 \label{ch:significance}
-\chapterintro{Significance tests are one of the most widely used statistical tools in academic work of virtually all disciplines dealing with some sort of numerical data. As is the case with most widely used tools, the temptation to merely learn its application and neglect conceptual understanding is present. I will try and bypass this fallacy by devoting section \ref{sec:signat} to the concept of statistical significance. The following section \ref{sec:sigmet} describes the creation of a null hypothesis to establish a baseline against which to test for significance. Finally, section \ref{sec:sigres} discusses the results.}
-
-\section{The Nature of Significance}
-\label{sec:significancenature}
-
-\begin{quote}\small\singlespacing
-``We are inclined to think that as far as a particular hypothesis is concerned, no test based upon the theory of probability can by itself provide any valuable evidence of the truth or falsehood of that hypothesis. But we may look at the purpose of test from another view-point. Without hoping to know whether each separate hypothesis is true or false, we may search for rules to govern our behavior with regard to them, in following which we insure that, in the long run of experience, we shall not be too often wrong.''
-
-~ \hfill \citep[\pnum{TBA}]{neyman33}
-\end{quote}
-
-\paragraph{Numerical vs applied significance} A certain kind of lens might have a positive effect on sight that is statistically significant. At the same time, this positive effect can be so small that humans are unable to perceive a difference. While this effect is undoubtedly significant numerically, no one would pay money for a lens whose effect they do not perceive. In that sense, significance alone must not be accepted blindly, because significance in turn is blind to effect size or scale \citep[\cnum{8}]{frost17}.
-
-\section{Method}
-\label{sec:significancemethod}
-The crucial missing piece for establishing the significance of a rule is a base case\dash or base distribution, so to speak\dash against which to compare the rule's probability. In other words: while there obviously is a real distribution, we lack a null distribution for comparison. The methodological approach I take, therefore, is to create a null distribution, which then serves as a basis for the real rules' probabilities to be tested for significance. This is in some respects similar to\dash and certainly inspired by\dash \citet[\pnum{10~f.}]{abuzhaya17}.
-
-We take one of the ten sequences in the corpus. For each of the 11 dimensions individually (cf.~table \ref{tab:events}), we shuffle the events with respect to their start points in time, but leave their duration untouched, i.e.~we leave the position of their time end points untouched \emph{with respect to their time start points.} We also do not add or remove any events. This process is done for all 11 dimensions. Figure \ref{fig:null} gives an example hereof. The top half of the figure is an excerpt of real data taken from a sequence in the corpus. We see three events of type \code{mother\_voc}, three shorter events of type \code{mother\_gaze\_infant}, one longer event of type \code{infant\_gaze\_mother}, etc.\footnote{The excerpt taken did not contain events of all 11 types, empty dimensions have simply been omitted in the graphic.} The bottom half of the figure shows a corresponding null distribution. Notice how \code{mother\_voc} still contains the same three events of the same length but in a different temporal order. The same is true for all other dimensions.
-
-We now have a distribution of the sequence which contains the exact same events as the real distribution, but shuffled in their temporal order. In other words, the only thing that has changed is the temporal arrangement of the events \emph{with respect to one another.} We will call this a null distribution and create 100 of its kind. % Why 100? Why not more/less?
-We go through the same process for all of the 10 sequences and end up having 1000 null distributions, with 100 each corresponding to a given sequence.
-
-Finally, to evaluate a rule's significance we take the distribution of its probability in all of the 1000 null distributions, i.e.~we obtain a probability distribution with 1000 data points. We then test for significance at \(\alpha\)~=~0.05 using some test or another. % Is this distribution normal? Central limit theorem?
-
-\begin{figure}
-	\centering
-	\input{../aux/tikzpictures/tikz_null.tex}
-	\caption{An excerpt of a real sequence (top) and a corresponding null distribution (bottom). Note how events are shuffled with respect to their position in time, whereas their duration and number has been left untouched.}
-	\label{fig:null}
-\end{figure}
-
+%\chapterintro{Significance tests are one of the most widely used statistical tools in academic work of virtually all disciplines dealing with some sort of numerical data. As is the case with most widely used tools, the temptation to merely learn its application and neglect conceptual understanding is present. I will try and bypass this fallacy by devoting section \ref{sec:signat} to the concept of statistical significance. The following section \ref{sec:sigmet} describes the creation of a null hypothesis to establish a baseline against which to test for significance. Finally, section \ref{sec:sigres} discusses the results.}
+%
+%\section{The Nature of Significance}
+%\label{sec:significancenature}
+%
+%\begin{quote}\small\singlespacing
+%``We are inclined to think that as far as a particular hypothesis is concerned, no test based upon the theory of probability can by itself provide any valuable evidence of the truth or falsehood of that hypothesis. But we may look at the purpose of test from another view-point. Without hoping to know whether each separate hypothesis is true or false, we may search for rules to govern our behavior with regard to them, in following which we insure that, in the long run of experience, we shall not be too often wrong.''
+%
+%~ \hfill \citep[\pnum{TBA}]{neyman33}
+%\end{quote}
+%
+%\paragraph{Numerical vs applied significance} A certain kind of lens might have a positive effect on sight that is statistically significant. At the same time, this positive effect can be so small that humans are unable to perceive a difference. While this effect is undoubtedly significant numerically, no one would pay money for a lens whose effect they do not perceive. In that sense, significance alone must not be accepted blindly, because significance in turn is blind to effect size or scale \citep[\cnum{8}]{frost17}.
+%
+%\section{Method}
+%\label{sec:significancemethod}
+%The crucial missing piece for establishing the significance of a rule is a base case\dash or base distribution, so to speak\dash against which to compare the rule's probability. In other words: while there obviously is a real distribution, we lack a null distribution for comparison. The methodological approach I take, therefore, is to create a null distribution, which then serves as a basis for the real rules' probabilities to be tested for significance. This is in some respects similar to\dash and certainly inspired by\dash \citet[\pnum{10~f.}]{abuzhaya17}.
+%
+%We take one of the ten sequences in the corpus. For each of the 11 dimensions individually (cf.~table \ref{tab:events}), we shuffle the events with respect to their start points in time, but leave their duration untouched, i.e.~we leave the position of their time end points untouched \emph{with respect to their time start points.} We also do not add or remove any events. This process is done for all 11 dimensions. Figure \ref{fig:null} gives an example hereof. The top half of the figure is an excerpt of real data taken from a sequence in the corpus. We see three events of type \code{mother\_voc}, three shorter events of type \code{mother\_gaze\_infant}, one longer event of type \code{infant\_gaze\_mother}, etc.\footnote{The excerpt taken did not contain events of all 11 types, empty dimensions have simply been omitted in the graphic.} The bottom half of the figure shows a corresponding null distribution. Notice how \code{mother\_voc} still contains the same three events of the same length but in a different temporal order. The same is true for all other dimensions.
+%
+%We now have a distribution of the sequence which contains the exact same events as the real distribution, but shuffled in their temporal order. In other words, the only thing that has changed is the temporal arrangement of the events \emph{with respect to one another.} We will call this a null distribution and create 100 of its kind. % Why 100? Why not more/less?
+%We go through the same process for all of the 10 sequences and end up having 1000 null distributions, with 100 each corresponding to a given sequence.
+%
+%Finally, to evaluate a rule's significance we take the distribution of its probability in all of the 1000 null distributions, i.e.~we obtain a probability distribution with 1000 data points. We then test for significance at \(\alpha\)~=~0.05 using some test or another. % Is this distribution normal? Central limit theorem?
+%
+%\begin{figure}
+%	\centering
+%	\input{../aux/tikzpictures/tikz_null.tex}
+%	\caption{An excerpt of a real sequence (top) and a corresponding null distribution (bottom). Note how events are shuffled with respect to their position in time, whereas their duration and number has been left untouched.}
+%	\label{fig:null}
+%\end{figure}
+%
 %Tests to be used:
 %- some sort of significance test
 %- support(X->Y) = P(XUY) and confidence(X->Y) = P(Y|X), both associated with an \emph{arbitrary} cutoff threshold \citep[\pnum{21~ff.}]{han12}
@@ -46,4 +46,11 @@ Finally, to evaluate a rule's significance we take the distribution of its proba
 
 \section{Results}
 \label{sec:significanceresults}
-show and discuss significant rules
+show and discuss significant rules \hfill bla
+
+\begin{figure}[h]
+	\centering
+	\input{../aux/tikzpictures/tikz_significance.tex}
+	\caption{Establishing significance.}
+	\label{fig:null}
+\end{figure}
