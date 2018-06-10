@@ -25,14 +25,6 @@ The corpus is a collection of 10 mother--infant dyads. Infants were 3 months of 
 11 kinds of events were hand-coded frame per frame for both mother and child using the \textsc{elan} software \citep{wittenburg06}, yielding an accuracy of \textasciitilde40~ms (videos were recorded with 25 frames per second, resulting in a single frame being 40~ms long). These events were of linguistic, vocal, and visual modality. %Categories were chosen how? Elaborate here.
 Table \ref{tab:events} lists all categories. Every annotation contains a start and end time point and therefore also the duration of the respective event. For example, one specific annotation might say that the mother started smiling at 32.645~seconds and then smiled continuously until 36.765~seconds, where she stopped smiling again. This way, sequences as schematised in Figure \ref{fig:idealseq} are obtained. \fpmlabel{A}, \fpmlabel{B}, and \fpmlabel{C} are three different kinds of events; the x-axis represents time. We see two occurrences of type \fpmlabel{A} and \fpmlabel{B} each, as well as a longer occurrence of type \fpmlabel{C}. Those time points that are indicated on the x-axis mark the beginning and/or end time point of a specific occurrence.
 
-\paragraph{A note on terminology}
-%A mother--infant pair is referred to as a \emph{dyad.}
-One individual occurrence of an event is simply referred to as an \emph{event} (the mother's smile described as an example in the previous paragraph is an event).
-A specific kind of event is referred to as a \emph{dimension} (the example event is of dimension \code{mother\_smile}; the whole dimension \code{mother\_smile} is the totality of all events of this type; as there are 11 kinds of events, the data are 11-dimensional).
-All events obtained from annotating the recording of a single mother--infant dyad are referred to as a \emph{sequence.}
-Finally, all 10 sequences together are referred to as the \emph{corpus.}
-
-
 \begin{table}[h]
 	\centering
 	\begin{tabularx}{\textwidth}{>{\ttfamily}lX} 
@@ -56,6 +48,13 @@ Finally, all 10 sequences together are referred to as the \emph{corpus.}
 	\caption{Events coded in the data}
 	\label{tab:events}
 \end{table}
+
+\paragraph{A note on terminology}
+%A mother--infant pair is referred to as a \emph{dyad.}
+One individual occurrence of an event is simply referred to as an \emph{event} (the mother's smile described as an example in the previous paragraph is an event).
+A specific kind of event is referred to as a \emph{dimension} (the example event is of dimension \code{mother\_smile}; the whole dimension \code{mother\_smile} is the totality of all events of this type; as there are 11 kinds of events, the data are 11-dimensional).
+All events obtained from annotating the recording of a single mother--infant dyad are referred to as a \emph{sequence.}
+Finally, all 10 sequences together are referred to as the \emph{corpus.}
 
 \begin{figure}
 	\centering
@@ -85,20 +84,24 @@ Human reaction time (henceforth \rt) correlates with a vast variety of factors, 
 \footnote{Stimulus was a pure (i.e.~sine wave) tone of 1000~Hz with loudness ranging from 40--60~dB. No numerical values given. Converted from line chart using the Engauge Digitizer software \citep{mitchell02}. The loudness corresponds to average loudness perceived in conversation \citep[\pnum{32}]{goerne06}} It would obviously have been desirable to have \rt\ values of 3 month old infants, given that the infants in the  corpus used in the present thesis are 3 months of age. Unfortunately, such literature does not seem to be available, so the age difference of 3--6 months cannot be avoided for now. Neverthelss, the important point made is that there \emph{is} a considerable difference in reaction time between infants and adults that must be taken into account. In my analysis, I therefore capture rules of the sort \fpmtextrule{infant}{mother} (i.e.~mother has to react) if and only if the delay between the start time point of the antecedent is greater than 289~ms before that of the succedent. Similarly, rules of the sort \fpmtextrule{mother}{infant} (i.e.~infant has to react) are captured if and only if the delay between the start time point of the antecedent is greater than 850~ms before that of the succedent. The values are those given by \citet{leibold02} minus two standard deviations. This way\dash assuming \rt s to be normally distributed\dash 97.5~\% of \rt s will be longer than the given delays \citep[\pnum{57}]{moore16}. Consequently, only 2.5~\% of \rt s will falsely be sorted out as coincidence.
 
 \paragraph{Reaction time in interaction}
-I am well aware that the literature cited with regards to the delays chosen is concerned with \rt\ to general stimuli and does not consider communication or interaction specifically. Unfortunately, literature specifically concerned with \rt\ in interaction is virtually inexistent. There are some indications that it may be faster than general \rt\ \citep{levinson16}, but none that it may be slower. The study of \citet{levinson16} deserves further attention. Levinson's argument unpacks as follows:
+I am well aware that the literature cited with regards to the delays chosen is concerned with \rt\ to general stimuli and does not consider communication or interaction specifically. Unfortunately, literature specifically concerned with \rt\ in interaction is virtually inexistent. There are some indications that it may be faster than general \rt\ \citep{levinson16}, but none that it may be slower. \citepos{levinson16} argument deserves further attention. It unpacks as follows:
 
-Turn-taking is not a cultural phenomenon but a universal feature of human language. The fastest \rt\ humans are capable of is around 200~ms. This is the \rt\ to a simple start signal with only one possible reaction. According to Hick's law \citep{hick52}, human \rt\ increases logarithmically with the number of available response choices. Taking vocabulary alone into consideration, languages offer at least 50000 response choices, so that one would expect \rt\ in language to be far above said 200~ms. Furthermore, the production of a single primed word takes around 600~ms, short clauses can take around 1500~ms. Despite all this, the modal gap between turns is also around 200~ms. It follows logically, that production planning must begin before the end of the previous turn. I have schematised this process in figure \ref{fig:levinson} on the left side.
+Turn-taking is not a cultural phenomenon but a universal feature of human language. The fastest \rt\ humans are capable of is around 200~ms. This is the \rt\ to a simple start signal with only one possible reaction. According to Hick's law \citep{hick52}, human \rt\ increases logarithmically with the number of available response choices. Taking vocabulary alone into consideration, languages offer at least 50000 response choices, so that one would expect \rt\ in language to be far above said 200~ms. Furthermore, the production of a single primed word takes around 600~ms, short clauses can take around 1500~ms. Despite all this, the modal gap between turns is also around 200~ms. It follows logically, that production planning must begin before the end of the previous turn. I have schematised this process on the left side of figure \ref{fig:levinson}.
 
-% This turned out to be impractical:
-%For intrapersonal rules only, simultaneous start time points of two events are meaningful. In order to capture them, a further adjustment must be made related to coders' imprecision. The data were annotated frame by frame. Given a rate of 25~fpm, the duration of a single frame is 40~ms. Intrapersonal events with a maximum delay of 40~ms are therefore considered to begin simultaneously. The analysis is formalised in appendix \ref{ch:formalisation}.
+A few important differences between the scenario described by \citeauthor{levinson16} and the scenario in the present thesis must be noted. First off, \citeauthor{levinson16} is mainly concerned with language only, stating that ``[t]his overlap of comprehension and production raises problems with current psycholinguistic theory'' \citeyearpar[\pnum{9}]{levinson16}. Although he does touch on other modalities in his paper, his main line of argumentation is, if at all, only indirectly concerned with multimodality. In the present scenario, on the other hand, input and output may also be of several non-linguistic modalities (compare the right part of figure \ref{fig:levinson}), where neither the linguistic cues for an upcoming turn end nor the production times for words and clauses apply. Secondly, whereas in \citeauthor{levinson16}'s scenario the second speaker is receiving linguistic input that may contain all sorts of clues and cues as to when the ongoing turn will come to an end, this is not (necessarily) the case in the present scenario. Referring once more to figure \ref{fig:levinson}, one can see that immediately preceding the measured gap there is linguistic input in \citeauthor{levinson16}'s scenario but not in the present scenario. This very last point is, admittedly, a simplification of reality. It is not the case that there cannot be any input, but that one cannot know \emph{if} there is any input (and if so, then of what modality this input is).
 
-% wrong position, just for testing
+There are two possible cases: The delays chosen are either too long or too short. If they are too short, then some but not all of the coincidences will be filtered out. If they are too long, then some real patterns will not be captured but all of the coincidences will be filtered out. It is unlikely, that the delays chosen are exactly right (or that \emph{exactly right} is even a meaningful notion in this context), but for the simple fact that reaction time is always greater than 0~ms I do believe that modelling them is a step in the right direction.
+
 \begin{figure}
 	\centering
 	\input{../aux/tikzpictures/tikz_levinson.tex}
 	\caption{Levinson}
 	\label{fig:levinson}
 \end{figure}
+%Lastly, there is no reason to believe that making use of peak reaction performance is the default case in the present scenario.  % Who cares?
+
+% This turned out to be impractical:
+%For intrapersonal rules only, simultaneous start time points of two events are meaningful. In order to capture them, a further adjustment must be made related to coders' imprecision. The data were annotated frame by frame. Given a rate of 25~fpm, the duration of a single frame is 40~ms. Intrapersonal events with a maximum delay of 40~ms are therefore considered to begin simultaneously. The analysis is formalised in appendix \ref{ch:formalisation}.
 
 \section{Results}
 \label{sec:miningresults}
