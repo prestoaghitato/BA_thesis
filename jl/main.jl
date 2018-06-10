@@ -54,6 +54,6 @@ end
 
 function writeseparateddfs(df_infant, df_mother, filename_infant, filename_mother)
     # store new Dataframes as csv
-    writetable("filename_infant", df_infant)
-    writetable("filename_mother", df_mother)
+    writetable(filename_infant, df_infant)
+    writetable(filename_mother, df_mother)
 end
