@@ -8,14 +8,16 @@
 	>=stealth']
 	
 	% nodes
-	\node [draw]						(chsig)	{Chapter \ref{ch:significance}};
-	\node [draw, above left=of chsig]	(origin)	{\citeauthor{rohlfing18}};
-	\node [draw, above right=of chsig]	(chmining)	{Chapter \ref{ch:mining}};
+	\node [draw]						(chsig)				{Chapter \ref{ch:significance}};
+	\node [draw, above left=of chsig]	(origin)			{\citeauthor{rohlfing18}};
+	\node [draw, above right=of chsig]	(chmining)			{Chapter \ref{ch:mining}};
+	\node [draw, below=of chsig]		(chvis)	{Chapter \ref{ch:visualisation}};
 		
 	% arrows
 	\draw [->] (origin)			-- node[above]	{\footnotesize consider reaction times}		(chmining);
 	\draw [->] (origin.south)	-- node[left]	{\footnotesize establish significance~~}	(chsig.west);
 	\draw [->] (chmining.south)	-- node[right]	{\footnotesize ~~establish significance}	(chsig.east);
+	\draw [->] (chsig.south)	-- node[right]	{\footnotesize visualise results}			(chvis.north);
 \end{tikzpicture}
 
 
