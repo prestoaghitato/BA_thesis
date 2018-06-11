@@ -1,0 +1,37 @@
+(m_gaze_at, inf_smile, mo_smile, i_gaze_away, m_gaze_at_object, i_gaze_at_object)   (infant_voc)                                            1.0   1     0.033
+(m_gaze_at, inf_smile, i_gaze_away, m_gaze_at_object, i_gaze_at_object)             (infant_voc)                                            1.0   1     0.033
+(m_gaze_at, inf_smile, i_gaze_away, m_gaze_at_object, i_gaze_at_object)             (mo_smile, infant_voc)                                  1.0   1     0.033
+(inf_smile, mo_smile, i_gaze_away)                                                  (m_gaze_at)                                             0.653 4     32.71
+(m_gaze_away)                                                                       (i_gaze_at)                                             0.633 4     43.928
+(mo_smile, i_gaze_away)                                                             (m_gaze_at)                                             0.632 17    115.976
+(inf_smile, i_gaze_away)                                                            (m_gaze_at)                                             0.621 12    81.252
+(i_gaze_away, i_gaze_at)                                                            (m_gaze_at)                                             0.615 28    154.486
+(mo_smile, i_gaze_away, i_gaze_at)                                                  (m_gaze_at)                                             0.605 8     58.705
+(inf_smile, i_gaze_away, i_gaze_at)                                                 (m_gaze_at)                                             0.603 5     35.426
+(mo_smile, i_gaze_at)                                                               (m_gaze_at)                                             0.602 80    410.894
+(i_gaze_away)                                                                       (m_gaze_at)                                             0.601 52    290.942
+(inf_smile, mo_smile, m_gaze_at_object, infant_voc)                                 (mother-speech)                                         0.589 3     2.733
+(mother-speech, inf_smile)                                                          (m_gaze_at)                                             0.587 13    133.414
+(m_gaze_at)                                                                         (i_gaze_at)                                             0.587 116   1140.815
+(inf_smile)                                                                         (m_gaze_at)                                             0.585 97    558.382
+(m_gaze_at, m_gaze_away)                                                            (i_gaze_at)                                             0.584 4     27.357
+(inf_smile, i_gaze_away)                                                            (m_gaze_at)                                             0.621 12    81.252
+(i_gaze_away, i_gaze_at)                                                            (m_gaze_at)                                             0.615 28    154.486
+(mo_smile, i_gaze_away, i_gaze_at)                                                  (m_gaze_at)                                             0.605 8     58.705
+(i_gaze_at)                                                                         (m_gaze_at)                                             0.583 259   1193.699
+(m_gaze_at, mo_smile)                                                               (i_gaze_at)                                             0.583 40    396.479
+(inf_smile, mo_smile, i_gaze_away, i_gaze_at)                                       (m_gaze_at)                                             0.579 2     13.389
+(inf_smile, i_gaze_at)                                                              (m_gaze_at)                                             0.577 43    278.762
+(m_gaze_at, i_gaze_away, m_gaze_away)                                               (inf_smile)                                             0.575 1     6.728
+(i_gaze_away)                                                                       (m_gaze_at)                                             0.601 52    290.942
+(inf_smile, mo_smile, m_gaze_at_object, infant_voc)                                 (mother-speech)                                         0.589 3     2.733
+(mother-speech, inf_smile)                                                          (m_gaze_at)                                             0.587 13    133.414
+(m_gaze_at)                                                                         (i_gaze_at)                                             0.587 116   1140.815
+(inf_smile)                                                                         (m_gaze_at)                                             0.585 97    558.382
+(m_gaze_at, m_gaze_away)                                                            (i_gaze_at)                                             0.584 4     27.357
+(inf_smile, mo_smile, m_gaze_at_object, infant_voc, i_gaze_at_object)               (mother-speech)                                         0.57  2     1.536
+(mo_smile, m_gaze_away)                                                             (i_gaze_at)                                             0.568 2     12.203
+(mo_smile)                                                                          (m_gaze_at)                                             0.565 153   735.197
+(mother-speech, m_gaze_away)                                                        (i_gaze_at)                                             0.561 3     8.716
+(m_gaze_at, mother-speech)                                                          (i_gaze_at)                                             0.561 21    250.938
+(mother-speech, i_gaze_at, infant_voc)                                              (m_gaze_at)                                             0.56  4     14.421
