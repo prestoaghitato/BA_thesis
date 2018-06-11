@@ -1,21 +1,19 @@
-using CSV, DataFrames
+using DataFrames
 
 function importdata(filename)
     # import csv as DataFrame
-    df = readtable(filename, header=false)
-
-    # create Dict with new names
-    newnames = Dict(
-        :x1 => :antecedent,
-        :x2 => :succedent,
-        :x3 => :fakeprob,
-        :x4 => :numofocc,
-        :x5 => :dursec
-    )
-
-    # rename columns
-    rename!(df, newnames)
-
+    # df = readtable(filename, header=false)
+    df = readtable(filename)
+    # # create Dict with new names
+    # newnames = Dict(
+    #     :x1 => :antecedent,
+    #     :x2 => :succedent,
+    #     :x3 => :fakeprob,
+    #     :x4 => :numofocc,
+    #     :x5 => :dursec
+    # )
+    # # rename columns
+    # rename!(df, newnames)
     # return new DataFrame
     return df
 end
@@ -48,7 +46,13 @@ function separatesuccedents(df)
     df_infant = df[(df[:infant_succ] .== true),:]
     df_mother = df[(df[:mother_succ] .== true),:]
 
-    # return new DataFrames
+    # delete now obsolete boolean columns
+    for key in [:infant_succ, :mother_succ]
+        delete!(df_infant, key)
+        delete!(df_mother, key)
+    end
+
+    # return two DataFrames
     return df_infant, df_mother
 end
 
@@ -56,4 +60,19 @@ function writeseparateddfs(df_infant, df_mother, filename_infant, filename_mothe
     # store new Dataframes as csv
     writetable(filename_infant, df_infant)
     writetable(filename_mother, df_mother)
+end
+
+function iterateoverfiles()
+    for filename in readdir("input")
+        # get file extension
+        extension = filename[end-3:end]
+        # do some stuff if it's a text file
+        if extension == ".csv"
+            name = filename[1:end-4]
+            df = readtable("input/"*filename)
+            df_infant, df_mother = separatesuccedents(df)
+            writetable("output/"*name*"_infant.csv", df_infant)
+            writetable("output/"*name*"_mother.csv", df_mother)
+        end
+    end
 end
