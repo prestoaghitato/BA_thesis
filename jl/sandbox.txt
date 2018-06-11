@@ -1,0 +1,6 @@
+(m_gaze_at, inf_smile, mo_smile, i_gaze_away, m_gaze_at_object, i_gaze_at_object)   (infant_voc)                                            1.0   1     0.033
+(m_gaze_at, inf_smile, i_gaze_away, m_gaze_at_object, i_gaze_at_object)             (infant_voc)                                            1.0   1     0.033
+(m_gaze_at, inf_smile, i_gaze_away, m_gaze_at_object, i_gaze_at_object)             (mo_smile, infant_voc)                                  1.0   1     0.033
+(inf_smile, mo_smile, i_gaze_away)                                                  (m_gaze_at)                                             0.653 4     32.71
+(m_gaze_away)                                                                       (i_gaze_at)                                             0.633 4     43.928
+(mo_smile, i_gaze_away)                                                             (m_gaze_at)                                             0.632 17    115.976
