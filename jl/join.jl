@@ -1,8 +1,7 @@
 using DataFrames
 
 #==
-create a DataFrame for
-NOTE: does absolutely nothing useful, above line was never finished
+create joined Dict from a rule's null and real values
 ==#
 
 function gothroughfiles()
