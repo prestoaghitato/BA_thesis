@@ -4,7 +4,18 @@ using DataFrames
 create joined Dict from a rule's null and real values
 ==#
 
-function gothroughfiles()
+
+function loadjdl(filename)
+    #==
+    load jdl file
+    in: filename without extension
+    out: Dict
+    ==#
+    out = load("output/"*filename*".jdl")["data"]
+    return out
+end
+
+function main()
     # iterate through files in input directory
     for filename in readdir("input")
         # get file extension

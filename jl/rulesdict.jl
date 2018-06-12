@@ -43,17 +43,6 @@ function extract(df)
 end
 
 
-function loadjdl(filename)
-    #==
-    load jdl file
-    in: filename without extension
-    out: Dict
-    ==#
-    out = load("output/"*filename*".jdl")["data"]
-    return out
-end
-
-
 function savejdl(file, name)
     #==
     save Dict to jdl file
