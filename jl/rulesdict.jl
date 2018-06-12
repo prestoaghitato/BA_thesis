@@ -16,32 +16,26 @@ function extract(df)
             :duration_sec => Float64[],
             :observations => 0
         )
-        currentrulename = df[i, :rule]
-        function addstuff()
-            #== appends rule values to Dict arrays ==#
-            # get addressess in rules Dict
-            confidence = rules[currentrulename][:confidence]
-            occurrences = rules[currentrulename][:occurrences]
-            duration_sec = rules[currentrulename][:duration_sec]
-
-            # get values from DataFrame
-            confidence_value = df[i, :confidence]
-            occurrences_value = df[i, :occurrences]
-            duration_sec_value = df[i, :duration_sec]
-
-            # add values to rules Dict
-            append!(confidence, confidence_value)
-            append!(occurrences, occurrences_value)
-            append!(duration_sec, duration_sec_value)
-        end
-        if haskey(rules, currentrulename)
-            # do something if key exists
-            addstuff()
-        else
-            # create the key
+        currentrulename = df[i,:rule]
+        if !haskey(rules, currentrulename)
+            # create if it doesn't exist
             rules[currentrulename] = emptyrule
-            addstuff()
         end
+        #== appends rule values to Dict arrays ==#
+        # get addressess in rules Dict
+        confidence = rules[currentrulename][:confidence]
+        occurrences = rules[currentrulename][:occurrences]
+        duration_sec = rules[currentrulename][:duration_sec]
+
+        # get values from DataFrame
+        confidence_value = df[i,:confidence]
+        occurrences_value = df[i,:occurrences]
+        duration_sec_value = df[i,:duration_sec]
+
+        # add values to rules Dict
+        append!(confidence, confidence_value)
+        append!(occurrences, occurrences_value)
+        append!(duration_sec, duration_sec_value)
         # one more observation recorded
         rules[currentrulename][:observations] += 1
     end
