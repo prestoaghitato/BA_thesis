@@ -1,7 +1,8 @@
 using DataFrames
 
 #==
-create a DataFrame for 
+create a DataFrame for
+NOTE: does absolutely nothing useful, above line was never finished
 ==#
 
 function gothroughfiles()
