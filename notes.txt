@@ -22,7 +22,4 @@ paper von Katharina und Iris (ca 2016) irgendwas mit action
 elmar hilbrink reaction time in conversation
 gretier
 
-
-DatenAssRulesD - Org. Daten, neuer Algo.
-DatenAssHRandom - Random Daten, alter Algo über alle 1000
-DatenAssHRandomD - Random Daten, neuer Algo über alle 1000 und einmal über 100 je org. Datensatz.
+Paper aus Timing-Seminar: Abstraktion durch Darstellung auf verschiedenen Modalitäten
