@@ -33,18 +33,39 @@ function mainy(df)
     ==#
     # create Dict
     rules = Dict()
-    emptyrule = Dict(
-        :confidence => Float64[],
-        :occurrences => Float64[],
-        :duration_sec => Float64[]
-    )
     #iterate over DataFrame rows
-    for i in 1:size(df, 1)  # NOTE: uncomment when done
+    for i in 1:size(df, 1)
+        # create empty rule template
+        emptyrule = Dict(
+            :confidence => Float64[],
+            :occurrences => Int64[],
+            :duration_sec => Float64[]
+        )
         currentrulename = df[i, :rule]
+        function addstuff()
+            #== appends rule values to Dict arrays ==#
+            # get addressess in rules Dict
+            confidence = rules[currentrulename][:confidence]
+            occurrences = rules[currentrulename][:occurrences]
+            duration_sec = rules[currentrulename][:duration_sec]
+
+            # get values from DataFrame
+            confidence_value = df[i, :confidence]
+            occurrences_value = df[i, :occurrences]
+            duration_sec_value = df[i, :duration_sec]
+
+            # add values to rules Dict
+            append!(confidence, confidence_value)
+            append!(occurrences, occurrences_value)
+            append!(duration_sec, duration_sec_value)
+        end
         if haskey(rules, currentrulename)
             # do something if key exists
+            addstuff()
         else
-            rules[convert(Symbol, currentrulename)] = emptyrule
+            # create the key
+            rules[currentrulename] = emptyrule
+            addstuff()
         end
     end
     return rules
