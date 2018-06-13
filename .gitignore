@@ -11,6 +11,10 @@
 *.cb
 *.cb2
 
+# directories
+/jl/input/*
+/jl/output/*
+
 ## Intermediate documents:
 *.dvi
 *-converted-to.*
