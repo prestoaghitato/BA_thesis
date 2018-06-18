@@ -10,7 +10,9 @@ of a rule:
     :duration_sec => Float64[],
     :observations => 0
 ==#
-using DataFrames, HDF5, JLD
+using DataFrames
+using HDF5
+using JLD
 
 function extract(df)
     #==
@@ -65,7 +67,7 @@ function savejdl(file, name)
 end
 
 
-function main()
+function rulesdict()
     # iterate through files in input directory
     for filename in readdir("input")
         # get file extension
@@ -75,6 +77,7 @@ function main()
             name = filename[1:end-4]
             df = readtable("input/"*filename)
             rules = extract(df)
+            return rules
             savejdl(rules, name)
         end
     end

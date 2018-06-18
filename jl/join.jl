@@ -1,4 +1,4 @@
-using DataFrames
+using DataFrames, HDF5, JLD
 
 #==
 create joined Dict from a rule's null and real values
@@ -30,7 +30,7 @@ Parent Dict has String key for every rule
     # arrays containing the p-values for testing the rule's real distribution of
     # a metric against the rule's null distribution of that metric
     :sig_confidence  => Float64
-    :si_goccurrences => Float64
+    :sig_occurrences => Float64
     :sig_durations   => Float64
     # :sig_ns is an array storing N of real and null observations for all three
     # metrics, structured as follows:
@@ -52,7 +52,7 @@ function loadjdl(filename)
     in: filename without extension
     out: Dict
     ==#
-    out = load("output/"*filename*".jdl")["data"]
+    out = load("input/"*filename*".jdl")["data"]
     return out
 end
 
@@ -67,7 +67,7 @@ function savejdl(file, name)
 end
 
 
-function joinjdls()
+function createfinaldatastructure()
     #==
     in: null jld file, real jdl file
     out: Dict
