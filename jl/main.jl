@@ -66,6 +66,49 @@ function separatesuccedents(df)
 end
 
 
+function csvtodict(df)
+    #==
+    in: DataFrame
+    out: Dict
+    ==#
+    # create Dict
+    rules = Dict()
+    #iterate over DataFrame rows
+    for i in 1:size(df, 1)
+        # create empty rule template
+        emptyrule = Dict(
+            :confidence => Float64[],
+            :occurrences => Int64[],
+            :duration_sec => Float64[],
+            :observations => 0
+        )
+        currentrulename = df[i,:rule]
+        if !haskey(rules, currentrulename)
+            # create if it doesn't exist
+            rules[currentrulename] = emptyrule
+        end
+        #== appends rule values to Dict arrays ==#
+        # get addressess in rules Dict
+        confidence = rules[currentrulename][:confidence]
+        occurrences = rules[currentrulename][:occurrences]
+        duration_sec = rules[currentrulename][:duration_sec]
+
+        # get values from DataFrame
+        confidence_value = df[i,:confidence]
+        occurrences_value = df[i,:occurrences]
+        duration_sec_value = df[i,:duration_sec]
+
+        # add values to rules Dict
+        append!(confidence, confidence_value)
+        append!(occurrences, occurrences_value)
+        append!(duration_sec, duration_sec_value)
+        # one more observation recorded
+        rules[currentrulename][:observations] += 1
+    end
+    return rules
+end
+
+
 function iterateoverfiles(directories, filetype)
     #==
     NOTE: Does not work. At all.
@@ -115,6 +158,10 @@ function main()
             end
         end
     end
+
+    # rt-sorted csv file to Dict
+    # NOTE: no need to first create two separate Dicts for null and real
+    # should be fairly doable to directly create the significance Dict
 end
 
 main()
