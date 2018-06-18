@@ -1,4 +1,6 @@
-
+#==
+cleans input txt file and stores as csv file
+==#
 function clean(filename)
     # open raw file
     open("input/"*filename*".txt") do file

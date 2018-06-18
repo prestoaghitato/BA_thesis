@@ -1,3 +1,15 @@
+#==
+input: csv file
+output: jdl file
+
+Creates a Dict of Dicts. Parent Dict has string keys for every rule. Nested
+Dicts have the following keys holding the respective values for all occurences
+of a rule:
+    :confidence => Float64[],
+    :occurrences => Int64[],
+    :duration_sec => Float64[],
+    :observations => 0
+==#
 using DataFrames, HDF5, JLD
 
 function extract(df)
