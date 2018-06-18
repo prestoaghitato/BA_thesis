@@ -66,8 +66,10 @@ function separatesuccedents(df)
 end
 
 
-function csvtodict(df)
+function csvtorulesdict(df)
     #==
+    NOTE: modify to directly create rules Dict
+    NOTE: no need to create separate Dicts for real and null first
     in: DataFrame
     out: Dict
     ==#
