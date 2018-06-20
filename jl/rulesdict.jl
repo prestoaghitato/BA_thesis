@@ -77,8 +77,8 @@ function rulesdict()
             name = filename[1:end-4]
             df = readtable("input/"*filename)
             rules = extract(df)
-            return rules
             savejdl(rules, name)
+            return rules
         end
     end
 end

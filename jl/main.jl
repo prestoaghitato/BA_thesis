@@ -129,7 +129,56 @@ function iterateoverfiles(directories, filetype)
 end
 
 
-function main()
+function createdictionary(df, rulesdict, realornull)
+    #==
+    in: DataFrame
+    out: Dict
+    ==#
+    #iterate over DataFrame rows
+    for i in 1:size(df, 1)
+        # create empty rule template
+        emptyrule = Dict(
+            :real => Dict(
+                :confidence => Float64[],
+                :occurrences => Int64[],
+                :duration_sec => Float64[],
+                :observations => 0
+            ),
+            :null => Dict(
+                :confidence => Float64[],
+                :occurrences => Int64[],
+                :duration_sec => Float64[],
+                :observations => 0
+            ),
+        )
+        currentrulename = df[i,:rule]
+        if !haskey(rulesdict, currentrulename)
+            # create if it doesn't exist
+            rulesdict[currentrulename] = emptyrule
+        end
+        #== appends rule values to Dict arrays ==#
+        # get addressess in rules Dict
+        confidence = rulesdict[currentrulename][realornull][:confidence]
+        occurrences = rulesdict[currentrulename][realornull][:occurrences]
+        duration_sec = rulesdict[currentrulename][realornull][:duration_sec]
+
+        # get values from DataFrame
+        confidence_value = df[i,:confidence]
+        occurrences_value = df[i,:occurrences]
+        duration_sec_value = df[i,:duration_sec]
+
+        # add values to rules Dict
+        append!(confidence, confidence_value)
+        append!(occurrences, occurrences_value)
+        append!(duration_sec, duration_sec_value)
+        # one more observation recorded
+        rulesdict[currentrulename][realornull][:observations] += 1
+    end
+    return rulesdict
+end
+
+
+function dostuff()
     # directories array
     directories = ["input/real/", "input/null/"]
 
@@ -155,15 +204,44 @@ function main()
                 # separate rules by reaction time and appropriate succedent
                 df_infant, df_mother = separatesuccedents(df)
                 df_both = [df_infant; df_mother]  # vcat resulting DataFrames
+                # merge antecedent and succedent to rule column
+                df_both[:rule] = df_both[:antecedent] .* df_both[:succedent]
+                # remove now obsolete antecedent and succedent columns
+                delete!(df_both, [:antecedent, :succedent])
                 writetable(directory*name*"_both.csv", df_both)  # write to file
                 rm(directory*file)      # delete old csv file
             end
         end
     end
 
+
     # rt-sorted csv file to Dict
     # NOTE: no need to first create two separate Dicts for null and real
-    # should be fairly doable to directly create the significance Dict
+    # NOTE: should be fairly doable to directly create the significance Dict
+    rules = Dict()  # initialise rules Dictionary
+    for file in readdir(directories[1])  # check real data first
+        extension = file[end-3:end]
+        if extension == ".csv"
+            name = file[1:end-4]
+            df = readtable(directories[1]*file)  # read csv into DataFrame
+            # add current csv to rules Dict
+            rules = createdictionary(df, rules, :real)
+            # rm(directory*file)  # delete old csv file
+        end
+    end
+    for file in readdir(directories[2])  # check null data second
+        extension = file[end-3:end]
+        if extension == ".csv"
+            name = file[1:end-4]
+            df = readtable(directories[2]*file)  # read csv into DataFrame
+            # add current csv to rules Dict
+            rules = createdictionary(df, rules, :null)
+            # rm(directory*file)  # delete old csv file
+        end
+    end
+    println("I'm here!")
+    # savejdl(rules, name)  # save Dict as jdl
+    return rules
 end
 
-main()
+rules = dostuff()

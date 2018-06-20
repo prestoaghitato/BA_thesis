@@ -1,4 +1,4 @@
-using DataFrames, HDF5, JLD
+using DataFrames, FileIO, HDF5, JLD
 
 #==
 create joined Dict from a rule's null and real values
@@ -52,7 +52,7 @@ function loadjdl(filename)
     in: filename without extension
     out: Dict
     ==#
-    out = load("input/"*filename*".jdl")["data"]
+    out = load("input/"*filename*".jld")["data"]
     return out
 end
 
@@ -99,3 +99,5 @@ function createfinaldatastructure()
         end
     end
 end
+
+null = load("input/null/both_rules_10x100_null.jld")["data"]
