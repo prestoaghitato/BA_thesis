@@ -182,7 +182,7 @@ function createdictionary(df, rulesdict, realornull)
 end
 
 
-function dostuff(n, minsigreal, minsignull)
+function dostuff(n; minsigreal=1, minsignull=5, tail=:both)
     # directories array
     directories = ["input/real/", "input/null/"]
 
@@ -267,7 +267,7 @@ function dostuff(n, minsigreal, minsignull)
                     mean(rules[key][:null][metric])      # μ0::Real = 0
                 )
                 # store p-values in Dict
-                rules[key][:significance][metric] = pvalue(test)
+                rules[key][:significance][metric] = pvalue(test, tail=tail)
             end
         end
     end
@@ -307,24 +307,24 @@ function dostuff(n, minsigreal, minsignull)
             if typeof(test) == HypothesisTests.OneSampleTTest
                 testused = "one-sample Student t-test"
             elseif typeof(test) == SignedRankTest
-                testused = "Wilcoson signed rank test"
+                testused = "Wilcoxon signed rank test"
             end
 
             prettyfinal =  ""
             prettyfinal *= "SUMMARY:\n\n"
             prettyfinal *= "Total number of rules: $totalnumberofrules\n\n"
             prettyfinal *= "Number of rules with  >= n observations:\n"
-            prettyfinal *= " n | real | null | both \n"
-            prettyfinal *= "---|------|------|------\n"
+            prettyfinal *= "  n  | real | null | both \n"
+            prettyfinal *= "-----|------|------|------\n"
             for i in 1:n
-                prettyi = prettyint(i)
+                prettyi = prettyint(i, "spaces")
                 real = prettyint(realarray[i], "spaces")
                 null = prettyint(nullarray[i], "spaces")
                 both = prettyint(minarray[i], "spaces")
-                prettyfinal *= " $prettyi | $real | $null | $both\n"
+                prettyfinal *= "$prettyi | $real | $null | $both\n"
             end
             prettyfinal *= "\nMinimum real observations for significance: $minsigreal\n"
-            prettyfinal *= "\nMinimum null observations for significance: $minsignull\n"
+            prettyfinal *= "Minimum null observations for significance: $minsignull\n"
             prettyfinal *= "Test used: $testused\n"
             prettyfinal *= "α = $α\n"
             prettyfinal *= "number of rules with significant\n"
@@ -470,4 +470,6 @@ function dostuff(n, minsigreal, minsignull)
     return rules
 end
 
-rules = dostuff(20, 2, 5)  # dostuff(n, minsigreal, minsignull)
+
+# dostuff(n, minsigreal, minsignull, tail)
+rules = dostuff(20; minsigreal=2, minsignull=5, :both)
