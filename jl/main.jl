@@ -182,7 +182,7 @@ function createdictionary(df, rulesdict, realornull)
 end
 
 
-function dostuff()
+function dostuff(n, minsigreal, minsignull)
     # directories array
     directories = ["input/real/", "input/null/"]
 
@@ -239,7 +239,6 @@ function dostuff()
         end
     end
 
-    minimumsig = 1  # how many occurrences to calculate significance?
     for key in keys(rules)
         for realornull in [:real, :null]
             # remove unnecessary keys where observations == 0
@@ -250,8 +249,8 @@ function dostuff()
             end
         end
         # enough data for significance?
-        enoughreal = rules[key][:real][:observations] > minimumsig
-        enoughnull = rules[key][:null][:observations] > minimumsig
+        enoughreal = rules[key][:real][:observations] >= minsigreal
+        enoughnull = rules[key][:null][:observations] >= minsignull
         if enoughreal && enoughnull
             # create significance keys
             rules[key][:significance] = Dict(
@@ -318,12 +317,14 @@ function dostuff()
             prettyfinal *= " n | real | null | both \n"
             prettyfinal *= "---|------|------|------\n"
             for i in 1:n
+                prettyi = prettyint(i)
                 real = prettyint(realarray[i], "spaces")
                 null = prettyint(nullarray[i], "spaces")
                 both = prettyint(minarray[i], "spaces")
-                prettyfinal *= " $i | $real | $null | $both\n"
+                prettyfinal *= " $prettyi | $real | $null | $both\n"
             end
-            prettyfinal *= "\nMinimum number of observations for significance: $minimumsig\n"
+            prettyfinal *= "\nMinimum real observations for significance: $minsigreal\n"
+            prettyfinal *= "\nMinimum null observations for significance: $minsignull\n"
             prettyfinal *= "Test used: $testused\n"
             prettyfinal *= "α = $α\n"
             prettyfinal *= "number of rules with significant\n"
@@ -342,7 +343,6 @@ function dostuff()
         totalnumberofrules = length(rules)  # how many rules do we have?
 
         ### How many rules with n observations do we have? -- counters
-        n = 5  # maximum value we want to record observations for
         # create arrays to store observation values in
         realarray = Array{Int64}(n)
         nullarray = Array{Int64}(n)
@@ -470,4 +470,4 @@ function dostuff()
     return rules
 end
 
-rules = dostuff()
+rules = dostuff(20, 2, 5)  # dostuff(n, minsigreal, minsignull)
