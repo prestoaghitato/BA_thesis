@@ -273,6 +273,9 @@ function dostuff()
         end
     end
 
+    function statistics()
+        # blah bye
+    end
     function prettyprinting()
         #== print pretty summary ==#
         function prettyint(n, style)
