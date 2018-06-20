@@ -216,31 +216,44 @@ function dostuff()
 
 
     # rt-sorted csv file to Dict
-    # NOTE: no need to first create two separate Dicts for null and real
-    # NOTE: should be fairly doable to directly create the significance Dict
     rules = Dict()  # initialise rules Dictionary
-    for file in readdir(directories[1])  # check real data first
-        extension = file[end-3:end]
-        if extension == ".csv"
-            name = file[1:end-4]
-            df = readtable(directories[1]*file)  # read csv into DataFrame
-            # add current csv to rules Dict
-            rules = createdictionary(df, rules, :real)
-            # rm(directory*file)  # delete old csv file
+    for directory in directories
+        if directory == "input/real/"
+            realornull = :real
+        else
+            realornull = :null
+        end
+        for file in readdir(directory)
+            extension = file[end-3:end]
+            if extension == ".csv"
+                name = file[1:end-4]
+                df = readtable(directory*file)  # read csv into DataFrame
+                # add current csv to rules Dict
+                rules = createdictionary(df, rules, realornull)
+                # rm(directory*file)  # delete old csv file
+            end
         end
     end
-    for file in readdir(directories[2])  # check null data second
-        extension = file[end-3:end]
-        if extension == ".csv"
-            name = file[1:end-4]
-            df = readtable(directories[2]*file)  # read csv into DataFrame
-            # add current csv to rules Dict
-            rules = createdictionary(df, rules, :null)
-            # rm(directory*file)  # delete old csv file
+
+    # remove unnecessary keys where observations == 0
+    minimumsig = 1  # how many occurrences to calculate significance_
+    for key in keys(rules)
+        for realornull in [:real, :null]
+            if rules[key][realornull][:observations] == 0
+                for metric in [:confidence, :occurrences, :duration_sec]
+                    delete!(rules[key][realornull], metric)
+                end
+            end
+        end
+        # enough data for significance?
+        enoughreal = rules[key][:real][:observations] > minimumsig
+        enoughnull = rules[key][:null][:observations] > minimumsig
+        if enoughreal && enoughnull
+            # calculate significance
         end
     end
-    println("I'm here!")
-    # savejdl(rules, name)  # save Dict as jdl
+    # BUG: save Dict as jdl, doesn't work for some reason
+    # savejdl(rules, name)
     return rules
 end
 
