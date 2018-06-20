@@ -105,9 +105,9 @@ function csvtorulesdict(df)
         duration_sec_value = df[i,:duration_sec]
 
         # add values to rules Dict
-        append!(confidence, confidence_value)
-        append!(occurrences, occurrences_value)
-        append!(duration_sec, duration_sec_value)
+        push!(confidence, confidence_value)
+        push!(occurrences, occurrences_value)
+        push!(duration_sec, duration_sec_value)
         # one more observation recorded
         rules[currentrulename][:observations] += 1
     end
@@ -172,9 +172,9 @@ function createdictionary(df, rulesdict, realornull)
         duration_sec_value = df[i,:duration_sec]
 
         # add values to rules Dict
-        append!(confidence, confidence_value)
-        append!(occurrences, occurrences_value)
-        append!(duration_sec, duration_sec_value)
+        push!(confidence, confidence_value)
+        push!(occurrences, occurrences_value)
+        push!(duration_sec, duration_sec_value)
         # one more observation recorded
         rulesdict[currentrulename][realornull][:observations] += 1
     end
@@ -239,10 +239,10 @@ function dostuff()
         end
     end
 
-    # remove unnecessary keys where observations == 0
-    minimumsig = 1  # how many occurrences to calculate significance_
+    minimumsig = 1  # how many occurrences to calculate significance?
     for key in keys(rules)
         for realornull in [:real, :null]
+            # remove unnecessary keys where observations == 0
             if rules[key][realornull][:observations] == 0
                 for metric in [:confidence, :occurrences, :duration_sec]
                     delete!(rules[key][realornull], metric)
@@ -259,7 +259,7 @@ function dostuff()
                 :occurrences => Float64[],
                 :duration_sec => Float64[]
             )
-            # then let's fucking calculate some p-values
+            # and let's fucking calculate some p-values
             for metric in [:confidence, :occurrences, :duration_sec]
                 test = OneSampleTTest(
                     mean(rules[key][:real][metric]),     # xbar::Real
@@ -274,47 +274,76 @@ function dostuff()
     end
 
     function statistics()
-        # blah bye
-    end
-    function prettyprinting()
-        #== print pretty summary ==#
-        function prettyint(n, style)
-            #==
-            in: Int < 10000
-            out: String
-            ==#
-            if style == "zeros"
-                if n < 10
-                    return string("000", n)
-                elseif n < 100
-                    return string("00", n)
-                elseif n < 1000
-                    return string("0", n)
-                else
-                    return string(n)
-                end
-            elseif style == "spaces"
-                if n < 10
-                    return string("   ", n)
-                elseif n < 100
-                    return string("  ", n)
-                elseif n < 1000
-                    return string(" ", n)
-                else
-                    return string(n)
+        #== collect statistical information ==#
+
+        function prettyprinting()
+            #== print pretty summary ==#
+            function prettyint(n, style)
+                #==
+                in: Int < 10000
+                out: String
+                ==#
+                if style == "zeros"
+                    if n < 10
+                        return string("000", n)
+                    elseif n < 100
+                        return string("00", n)
+                    elseif n < 1000
+                        return string("0", n)
+                    else
+                        return string(n)
+                    end
+                elseif style == "spaces"
+                    if n < 10
+                        return string("   ", n)
+                    elseif n < 100
+                        return string("  ", n)
+                    elseif n < 1000
+                        return string(" ", n)
+                    else
+                        return string(n)
+                    end
                 end
             end
-        end
-        α = 0.05
-        if typeof(test) == HypothesisTests.OneSampleTTest
-            testused = "one-sample Student t-test"
-        elseif typeof(test) == SignedRankTest
-            testused = "Wilcoson signed rank test"
+            if typeof(test) == HypothesisTests.OneSampleTTest
+                testused = "one-sample Student t-test"
+            elseif typeof(test) == SignedRankTest
+                testused = "Wilcoson signed rank test"
+            end
+
+            prettyfinal =  ""
+            prettyfinal *= "SUMMARY:\n\n"
+            prettyfinal *= "Total number of rules: $totalnumberofrules\n\n"
+            prettyfinal *= "Number of rules with  >= n observations:\n"
+            prettyfinal *= " n | real | null | both \n"
+            prettyfinal *= "---|------|------|------\n"
+            for i in 1:n
+                real = prettyint(realarray[i], "spaces")
+                null = prettyint(nullarray[i], "spaces")
+                both = prettyint(minarray[i], "spaces")
+                prettyfinal *= " $i | $real | $null | $both\n"
+            end
+            prettyfinal *= "\nMinimum number of observations for significance: $minimumsig\n"
+            prettyfinal *= "Test used: $testused\n"
+            prettyfinal *= "α = $α\n"
+            prettyfinal *= "number of rules with significant\n"
+            prettyfinal *= "confidence: $(prettyint(sigconfidence, "spaces"))\n"
+            prettyfinal *= "occurrence: $(prettyint(sigoccurrence, "spaces"))\n"
+            prettyfinal *= "duration:   $(prettyint(sigduration, "spaces"))\n"
+            prettyfinal *= "con & occ:  $(prettyint(sigconocc, "spaces"))\n"
+            prettyfinal *= "con & dur:  $(prettyint(sigcondur, "spaces"))\n"
+            prettyfinal *= "occ & dur:  $(prettyint(sigoccdur, "spaces"))\n"
+            prettyfinal *= "all three:  $(prettyint(sigallthree, "spaces"))\n"
+
+            println(prettyfinal)
         end
 
+        α = 0.05  # What's our α-value? (not debatable, sorry not sorry)
         totalnumberofrules = length(rules)  # how many rules do we have?
-        n = 5  # maximum value for table
-        # create arrays to store table values in
+
+        ### How many rules with n observations do we have? -- counters
+        n = 5  # maximum value we want to record observations for
+        # create arrays to store observation values in
         realarray = Array{Int64}(n)
         nullarray = Array{Int64}(n)
         minarray = Array{Int64}(n)
@@ -325,6 +354,7 @@ function dostuff()
             minarray[i] = 0
         end
 
+        ### How many rules with significant metric m do we have? -- counters
         # counters to count all significant metrics
         sigconfidence = 0
         sigoccurrence = 0
@@ -333,24 +363,37 @@ function dostuff()
         sigcondur     = 0
         sigoccdur     = 0
         sigallthree   = 0
+
+        # arrays to store rule keys in
+        allsigcon      = String[]
+        allsigocc      = String[]
+        allsigdur      = String[]
+        allsigconocc   = String[]
+        allsigcondur   = String[]
+        allsigoccdur   = String[]
+        allsigallthree = String[]
+
         # iterate through Dict to calculate table values
         for key in keys(rules)
+
+            ### How many rules with n observations do we have? -- calculation
             # how many real and null observations?
             realobservations = rules[key][:real][:observations]
             nullobservations = rules[key][:null][:observations]
             # what's the lower value of the two?
             minobservations = min(realobservations, nullobservations)
             # increment appropriate array values
-            for i in 1:realobservations
+            for i in 1:min(n, realobservations)  # only count as far as n
                 realarray[i] += 1
             end
-            for i in 1:nullobservations
+            for i in 1:min(n, nullobservations)
                 nullarray[i] += 1
             end
-            for i in 1:minobservations
+            for i in 1:min(n, minobservations)
                 minarray[i] += 1
             end
 
+            ### How many rules with significant metric m do we have? -- counters
             # was significance calculated?
             if haskey(rules[key], :significance)
                 # what was significant?
@@ -358,63 +401,73 @@ function dostuff()
                 sigocc = rules[key][:significance][:occurrences] < α
                 sigdur = rules[key][:significance][:duration_sec] < α
 
-                # increment appropriate counters
+                # increment appropriate counters and store rule keys in arrays
                 if sigcon
                     sigconfidence += 1
+                    push!(allsigcon, key)
                 end
                 if sigocc
                     sigoccurrence += 1
+                    push!(allsigocc, key)
                 end
                 if sigdur
                     sigduration   += 1
+                    push!(allsigdur, key)
                 end
                 if sigcon && sigocc
                     sigconocc   += 1
+                    push!(allsigconocc, key)
                 end
                 if sigcon && sigdur
                     sigcondur   += 1
+                    push!(allsigcondur, key)
                 end
                 if sigocc && sigdur
                     sigoccdur   += 1
+                    push!(allsigoccdur, key)
                 end
                 if sigcon && sigocc && sigdur
                     sigallthree += 1
+                    push!(allsigallthree, key)
                 end
             end
         end
 
-        prettyfinal =  ""
-        prettyfinal *= "SUMMARY:\n\n"
-        prettyfinal *= "Total number of rules: $totalnumberofrules\n\n"
-        prettyfinal *= "Number of rules with  >= n observations:\n"
-        prettyfinal *= " n | real | null | both \n"
-        prettyfinal *= "---|------|------|------\n"
-        for i in 1:n
-            real = prettyint(realarray[i], "spaces")
-            null = prettyint(nullarray[i], "spaces")
-            both = prettyint(minarray[i], "spaces")
-            prettyfinal *= " $i | $real | $null | $both\n"
-        end
-        prettyfinal *= "\nMinimum number of observations for significance: $n\n"
-        prettyfinal *= "Test used: $testused\n"
-        prettyfinal *= "α = $α\n"
-        prettyfinal *= "number of rules with significant\n"
-        prettyfinal *= "confidence: $(prettyint(sigconfidence, "spaces"))\n"
-        prettyfinal *= "occurrence: $(prettyint(sigoccurrence, "spaces"))\n"
-        prettyfinal *= "duration:   $(prettyint(sigduration, "spaces"))\n"
-        prettyfinal *= "con & occ:  $(prettyint(sigconocc, "spaces"))\n"
-        prettyfinal *= "con & dur:  $(prettyint(sigcondur, "spaces"))\n"
-        prettyfinal *= "occ & dur:  $(prettyint(sigoccdur, "spaces"))\n"
-        prettyfinal *= "all three:  $(prettyint(sigallthree, "spaces"))\n"
+        ### Put stuff in stats Dict.
+        stats = Dict()  # initialise stats Dict (duh…)
 
-        println(prettyfinal)
+        stats[:totalnumberofrules]  = totalnumberofrules
 
+        stats[:realarray]           = realarray
+        stats[:nullarray]            = nullarray
+        stats[:minarray]             = minarray
+
+        stats[:sigconfidence]        = sigconfidence
+        stats[:sigoccurrence]        = sigoccurrence
+        stats[:sigduration]          = sigduration
+        stats[:sigconocc]            = sigconocc
+        stats[:sigcondur]             = sigcondur
+        stats[:sigoccdur]             = sigoccdur
+        stats[:sigallthree]           = sigallthree
+
+        stats[:allsigcon]             = allsigcon
+        stats[:allsigocc]             = allsigocc
+        stats[:allsigdur]             = allsigdur
+        stats[:allsigconocc]          = allsigconocc
+        stats[:allsigcondur]          = allsigcondur
+        stats[:allsigoccdur]         = allsigoccdur
+        stats[:allsigallthree]       = allsigallthree
+
+        prettyprinting()
+        return stats
     end
+
+
 
     # BUG: save Dict as jdl, doesn't work for some reason
     # savejdl(rules, name)
-    prettyprinting()
+    stats = statistics()
     return rules
 end
 
-# rules = dostuff()
+rules = dostuff()
