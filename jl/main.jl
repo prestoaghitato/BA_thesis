@@ -1,4 +1,8 @@
-using DataFrames, HDF5, JLD
+#==
+α = 0.05  # not debatable, thank you very much
+==#
+
+using DataFrames, HDF5, HypothesisTests, JLD
 
 function clean(directory, filename)
     # open raw file
@@ -249,12 +253,29 @@ function dostuff()
         enoughreal = rules[key][:real][:observations] > minimumsig
         enoughnull = rules[key][:null][:observations] > minimumsig
         if enoughreal && enoughnull
-            # calculate significance
+            # create significance keys
+            rules[key][:significance] = Dict(
+                :confidence => Float64[],
+                :occurrences => Float64[],
+                :duration_sec => Float64[]
+            )
+            # then let's fucking calculate some p-values
+            for metric in [:confidence, :occurrences, :duration_sec]
+                test = OneSampleTTest(
+                    mean(rules[key][:real][metric]),     # xbar::Real
+                    std(rules[key][:real][metric]),      # stddev::Real
+                    length(rules[key][:real][metric]),   # n::Int
+                    mean(rules[key][:null][metric])      # μ0::Real = 0
+                )
+                # store p-values in Dict
+                rules[key][:significance][metric] = pvalue(test)
+            end
         end
     end
+
     # BUG: save Dict as jdl, doesn't work for some reason
     # savejdl(rules, name)
     return rules
 end
 
-rules = dostuff()
+# rules = dostuff()
