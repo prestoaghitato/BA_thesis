@@ -252,13 +252,16 @@ function dostuff(n; minsigreal=1, minsignull=5, tail=:both)
         enoughreal = rules[key][:real][:observations] >= minsigreal
         enoughnull = rules[key][:null][:observations] >= minsignull
         if enoughreal && enoughnull
-            # create significance keys
-            rules[key][:significance] = Dict(
-                :confidence => Float64[],
-                :occurrences => Float64[],
-                :duration_sec => Float64[]
-            )
             # and let's fucking calculate some p-values
+            # create significance keys
+            sides = [:sigleft, :sigboth, :sigright]
+            for side in sides
+                rules[key][side] = Dict(
+                    :confidence => Float64[],
+                    :occurrences => Float64[],
+                    :duration_sec => Float64[]
+                )
+            end
             for metric in [:confidence, :occurrences, :duration_sec]
                 test = OneSampleTTest(
                     mean(rules[key][:real][metric]),     # xbar::Real
@@ -267,10 +270,70 @@ function dostuff(n; minsigreal=1, minsignull=5, tail=:both)
                     mean(rules[key][:null][metric])      # μ0::Real = 0
                 )
                 # store p-values in Dict
-                rules[key][:significance][metric] = pvalue(test, tail=tail)
+                for side in sides
+                    if side == :sigleft
+                        rules[key][side][metric] = pvalue(test, tail=:left)
+                    elseif side == :sigboth
+                        rules[key][side][metric] = pvalue(test, tail=:both)
+                    else
+                        rules[key][side][metric] = pvalue(test, tail=:right)
+                    end
+                end
             end
         end
     end
+
+    # save summary to DataFrame
+    df = DataFrame(
+        rule = String[],
+        real_obs = Int64[],
+        null_obs = Int64[],
+        p_confidence_left = Float64[],
+        p_occurrences_left = Float64[],
+        p_duration_left = Float64[],
+        p_confidence_both = Float64[],
+        p_occurrences_both = Float64[],
+        p_duration_both = Float64[],
+        p_confidence_right = Float64[],
+        p_occurrences_right = Float64[],
+        p_duration_right = Float64[]
+    )
+    for rule in keys(rules)
+        if haskey(rules[rule], :sigleft)
+            real_obs = rules[rule][:real][:observations]
+            null_obs = rules[rule][:null][:observations]
+
+            p_confidence_left = rules[rule][:sigleft][:confidence]
+            p_occurrences_left = rules[rule][:sigleft][:occurrences]
+            p_duration_left = rules[rule][:sigleft][:duration_sec]
+
+            p_confidence_both = rules[rule][:sigboth][:confidence]
+            p_occurrences_both = rules[rule][:sigboth][:occurrences]
+            p_duration_both = rules[rule][:sigboth][:duration_sec]
+
+            p_confidence_right = rules[rule][:sigright][:confidence]
+            p_occurrences_right = rules[rule][:sigright][:occurrences]
+            p_duration_right = rules[rule][:sigright][:duration_sec]
+            row = [
+                rule,
+                real_obs,
+                null_obs,
+                p_confidence_left,
+                p_occurrences_left,
+                p_duration_left,
+                p_confidence_both,
+                p_occurrences_both,
+                p_duration_both,
+                p_confidence_right,
+                p_occurrences_right,
+                p_duration_right
+            ]
+            push!(df, row)
+        end
+    end
+
+    # and save as csv to output
+    writetable("output/results.csv", df)
 
     function statistics()
         #== collect statistical information ==#
@@ -436,27 +499,27 @@ function dostuff(n; minsigreal=1, minsignull=5, tail=:both)
         ### Put stuff in stats Dict.
         stats = Dict()  # initialise stats Dict (duh…)
 
-        stats[:totalnumberofrules]  = totalnumberofrules
+        stats[:totalnumberofrules] = totalnumberofrules
 
         stats[:realarray]           = realarray
-        stats[:nullarray]            = nullarray
-        stats[:minarray]             = minarray
+        stats[:nullarray]           = nullarray
+        stats[:minarray]            = minarray
 
-        stats[:sigconfidence]        = sigconfidence
-        stats[:sigoccurrence]        = sigoccurrence
-        stats[:sigduration]          = sigduration
-        stats[:sigconocc]            = sigconocc
-        stats[:sigcondur]             = sigcondur
-        stats[:sigoccdur]             = sigoccdur
-        stats[:sigallthree]           = sigallthree
+        stats[:sigconfidence]       = sigconfidence
+        stats[:sigoccurrence]       = sigoccurrence
+        stats[:sigduration]         = sigduration
+        stats[:sigconocc]           = sigconocc
+        stats[:sigcondur]           = sigcondur
+        stats[:sigoccdur]           = sigoccdur
+        stats[:sigallthree]         = sigallthree
 
-        stats[:allsigcon]             = allsigcon
-        stats[:allsigocc]             = allsigocc
-        stats[:allsigdur]             = allsigdur
-        stats[:allsigconocc]          = allsigconocc
-        stats[:allsigcondur]          = allsigcondur
-        stats[:allsigoccdur]         = allsigoccdur
-        stats[:allsigallthree]       = allsigallthree
+        stats[:allsigcon]           = allsigcon
+        stats[:allsigocc]           = allsigocc
+        stats[:allsigdur]           = allsigdur
+        stats[:allsigconocc]        = allsigconocc
+        stats[:allsigcondur]        = allsigcondur
+        stats[:allsigoccdur]        = allsigoccdur
+        stats[:allsigallthree]      = allsigallthree
 
         prettyprinting()
         return stats
@@ -472,4 +535,4 @@ end
 
 
 # dostuff(n, minsigreal, minsignull, tail)
-rules = dostuff(20; minsigreal=2, minsignull=5, :both)
+rules = dostuff(20; minsigreal=2, minsignull=5, tail=:both)
