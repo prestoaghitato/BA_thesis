@@ -273,8 +273,144 @@ function dostuff()
         end
     end
 
+    function prettyprinting()
+        #== print pretty summary ==#
+        function prettyint(n, style)
+            #==
+            in: Int < 10000
+            out: String
+            ==#
+            if style == "zeros"
+                if n < 10
+                    return string("000", n)
+                elseif n < 100
+                    return string("00", n)
+                elseif n < 1000
+                    return string("0", n)
+                else
+                    return string(n)
+                end
+            elseif style == "spaces"
+                if n < 10
+                    return string("   ", n)
+                elseif n < 100
+                    return string("  ", n)
+                elseif n < 1000
+                    return string(" ", n)
+                else
+                    return string(n)
+                end
+            end
+        end
+        α = 0.05
+        if typeof(test) == HypothesisTests.OneSampleTTest
+            testused = "one-sample Student t-test"
+        elseif typeof(test) == SignedRankTest
+            testused = "Wilcoson signed rank test"
+        end
+
+        totalnumberofrules = length(rules)  # how many rules do we have?
+        n = 5  # maximum value for table
+        # create arrays to store table values in
+        realarray = Array{Int64}(n)
+        nullarray = Array{Int64}(n)
+        minarray = Array{Int64}(n)
+        # initialise arrays to 0
+        for i in 1:n
+            realarray[i] = 0
+            nullarray[i] = 0
+            minarray[i] = 0
+        end
+
+        # counters to count all significant metrics
+        sigconfidence = 0
+        sigoccurrence = 0
+        sigduration   = 0
+        sigconocc     = 0
+        sigcondur     = 0
+        sigoccdur     = 0
+        sigallthree   = 0
+        # iterate through Dict to calculate table values
+        for key in keys(rules)
+            # how many real and null observations?
+            realobservations = rules[key][:real][:observations]
+            nullobservations = rules[key][:null][:observations]
+            # what's the lower value of the two?
+            minobservations = min(realobservations, nullobservations)
+            # increment appropriate array values
+            for i in 1:realobservations
+                realarray[i] += 1
+            end
+            for i in 1:nullobservations
+                nullarray[i] += 1
+            end
+            for i in 1:minobservations
+                minarray[i] += 1
+            end
+
+            # was significance calculated?
+            if haskey(rules[key], :significance)
+                # what was significant?
+                sigcon = rules[key][:significance][:confidence] < α
+                sigocc = rules[key][:significance][:occurrences] < α
+                sigdur = rules[key][:significance][:duration_sec] < α
+
+                # increment appropriate counters
+                if sigcon
+                    sigconfidence += 1
+                end
+                if sigocc
+                    sigoccurrence += 1
+                end
+                if sigdur
+                    sigduration   += 1
+                end
+                if sigcon && sigocc
+                    sigconocc   += 1
+                end
+                if sigcon && sigdur
+                    sigcondur   += 1
+                end
+                if sigocc && sigdur
+                    sigoccdur   += 1
+                end
+                if sigcon && sigocc && sigdur
+                    sigallthree += 1
+                end
+            end
+        end
+
+        prettyfinal =  ""
+        prettyfinal *= "SUMMARY:\n\n"
+        prettyfinal *= "Total number of rules: $totalnumberofrules\n\n"
+        prettyfinal *= "Number of rules with  >= n observations:\n"
+        prettyfinal *= " n | real | null | both \n"
+        prettyfinal *= "---|------|------|------\n"
+        for i in 1:n
+            real = prettyint(realarray[i], "spaces")
+            null = prettyint(nullarray[i], "spaces")
+            both = prettyint(minarray[i], "spaces")
+            prettyfinal *= " $i | $real | $null | $both\n"
+        end
+        prettyfinal *= "\nMinimum number of observations for significance: $n\n"
+        prettyfinal *= "Test used: $testused\n"
+        prettyfinal *= "α = $α\n"
+        prettyfinal *= "number of rules with significant\n"
+        prettyfinal *= "confidence: $(prettyint(sigconfidence, "spaces"))\n"
+        prettyfinal *= "occurrence: $(prettyint(sigoccurrence, "spaces"))\n"
+        prettyfinal *= "duration:   $(prettyint(sigduration, "spaces"))\n"
+        prettyfinal *= "con & occ:  $(prettyint(sigconocc, "spaces"))\n"
+        prettyfinal *= "con & dur:  $(prettyint(sigcondur, "spaces"))\n"
+        prettyfinal *= "occ & dur:  $(prettyint(sigoccdur, "spaces"))\n"
+        prettyfinal *= "all three:  $(prettyint(sigallthree, "spaces"))\n"
+
+        println(prettyfinal)
+
+    end
+
     # BUG: save Dict as jdl, doesn't work for some reason
     # savejdl(rules, name)
+    prettyprinting()
     return rules
 end
 

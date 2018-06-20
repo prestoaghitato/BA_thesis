@@ -23,3 +23,68 @@ elmar hilbrink reaction time in conversation
 gretier
 
 Paper aus Timing-Seminar: Abstraktion durch Darstellung auf verschiedenen Modalitäten
+
+
+prettyprinting() output draft:
+
+SUMMARY:
+
+Total rules: 123
+Number of rules with n observations:
+
+n | rules
+--|------
+1 |  001
+2 |  001
+3 |  001
+4 |  001
+5 |  001
+
+
+Minimum number of observations for significance: 1
+Test used: One-sample t-test
+α = 0.05
+number of rules with significant
+confidence:   001
+occurrences:  001
+duration_sec: 001
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
