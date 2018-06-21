@@ -17,16 +17,13 @@
 \newcommand{\sfmath}[1]{\(\mathsf{#1}\)}		% inline sf maths
 
 \newcommand{\shorttitle}{Applying \textsc{fpm} to Multimodal Behaviour in Interaction}
-\newcommand{\longtitle}{Applying Frequent Pattern Mining to Multimodal Behaviour in Interaction}
-\newcommand{\shortauthor}{K.~Rohlfing, {\addfontfeature{Style=Alternate} M.~Ruland}, S.~Henzgen}
-%\newcommand{\longauthor}{%
-%Katharina Rohlfing . {\addfontfeature{Style=Alternate}Marcel Ruland} . Sascha Henzgen \\
-%email bla . mruland@mail.upb.de . email bla}
+\newcommand{\longtitle}{Applying Frequent Pattern Mining to \\ Multimodal Behaviour in Interaction}
+\newcommand{\shortauthor}{K.~Rohlfing, {\addfontfeature{Style=Alternate}M.~Ruland}, S.~Henzgen}
 
 \title[\shorttitle]{\longtitle}
 \subtitle{Visualising Significant Patterns}
-\institute{Universität Paderborn}
-\author[\shortauthor]{Katharina Rohlfing \and Marcel Ruland \and Sascha Henzgen}% \\ \scriptsize{katharina.rohlfing@uni-paderborn.de mruland@mail.upb.de shenzgen@mail.upb.de}}
+\institute{Paderborn University}
+\author[\shortauthor]{Katharina Rohlfing \and {\addfontfeature{Style=Alternate}Marcel Ruland} \and Sascha Henzgen}% \\ \scriptsize{mruland@mail.upb.de}}%
 \date[ECDA 2018]{July 8, 2018}
 
 \begin{document}
@@ -34,8 +31,63 @@
 \frame{\titlepage}
 \frame{\frametitle{Outline}\tableofcontents}
 
+
+\section{Preliminaries}
+\frame{
+	\frametitle{Basic Concepts}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{itemize}
+			\item turn
+			\item turn-taking
+			\item uni- vs multimodality
+		\end{itemize}
+		\column{0.5\textwidth}
+		\includegraphics[width=0.5\textwidth]{../aux/img/dummy_basic_concepts.png}
+	\end{columns}
+}
+
+
+\section{Method}
+\frame{
+	\frametitle{Video Material}
+	\includegraphics[height=0.8\textheight]{../aux/img/video_vp_08_raw.png}
+}
+
+
+\section[Significance]{Establishing Significance}
+\frame{
+	\frametitle{Significance -- Why would we care?}
+	\begin{columns}
+		\column{0.5\textwidth}
+			Before:
+			\begin{itemize}
+				\item ``Why did you choose this rule?''
+				\item ``Because it looked interesting to me.''
+			\end{itemize}
+		\column{0.5\textwidth}
+			After:
+			\begin{itemize}
+				\item ``Why did you choose this rule?''
+				\item ``Because it looked interesting to me. Also, the numbers support this claim''
+			\end{itemize}
+	\end{columns}
+}
+
+
 \frame{
 	\frametitle{Bibliography}
 	\bibliography{../bib/ba_bib}
 }
+
 \end{document}
+
+%\frame{
+%	\frametitle{Dummy}
+%	\begin{columns}
+%		\columns{0.5\textwidth}
+%			left
+%		\columns{0.5\textwidth}
+%			right
+%	\end{columns}
+%}

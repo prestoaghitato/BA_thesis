@@ -49,26 +49,7 @@ confidence:   001
 occurrences:  001
 duration_sec: 001
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+nicht VP 2 und VP 7
 
 
 
