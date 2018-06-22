@@ -2,10 +2,17 @@
 % !TEX encoding = UTF-8 Unicode
 % !TEX TS-program = LuaLaTeX
 \documentclass[aspectratio=169]{beamer}
+%\setbeameroption{show notes}
 
-\usetheme{Berlin}								% use Berlin theme
-\setbeamercovered{transparent}					% set covered items to 85% alpha
 
+%*******************Beamer Theme*******************
+\usetheme{Dresden}				% use Dresden theme
+\useinnertheme{rectangles}		% rectangles for itemize environment etc
+\useoutertheme{infolines}		% lots of info using little space
+\setbeamercovered{transparent}	% set covered items to 85% alpha
+%**************************************************
+
+%******************Packages in Use*****************
 \usepackage[english]{babel}						% English language support
 \usepackage{ttjenevers}							% use TT Jenevers for rm
 \usepackage{ttcommons}							% use TT Commons for sf
@@ -13,23 +20,40 @@
 \usepackage{microtype}							% improved typography
 \usepackage{natbib}								% bibliography
 \bibliographystyle{newharvard}					% custom Harvard bibliography style
+\usepackage{tikz}								% TikZ ist kein Zeichenprogramm
+\usetikzlibrary{positioning}					% relative positioning of nodes
+\usetikzlibrary{arrows}							% more arrows
+\usetikzlibrary{calc}							% calculations
+\usepackage{pgfplots}							% plotting functions
+\pgfplotsset{compat=1.15}
+%**************************************************
 
+%*******************New Commands*******************
+\newcommand{\code}[1]{\texttt{#1}}
 \newcommand{\sfmath}[1]{\(\mathsf{#1}\)}		% inline sf maths
+\newcommand{\fpmlabel}[1]{\(\mathcal{#1}\)}		% typeset label
 
 \newcommand{\shorttitle}{Applying \textsc{fpm} to Multimodal Behaviour in Interaction}
 \newcommand{\longtitle}{Applying Frequent Pattern Mining to \\ Multimodal Behaviour in Interaction}
 \newcommand{\shortauthor}{K.~Rohlfing, {\addfontfeature{Style=Alternate}M.~Ruland}, S.~Henzgen}
+%**************************************************
+
+%****************** New Colours *******************
+\definecolor{graphgreen}{cmyk}{0.76,0.25,0.8,0.18}
+\definecolor{graphred}{cmyk}{0.01,0.92,0.86,0.14}
+%**************************************************
+
 
 \title[\shorttitle]{\longtitle}
 \subtitle{Visualising Significant Patterns}
 \institute{Paderborn University}
-\author[\shortauthor]{Katharina Rohlfing \and {\addfontfeature{Style=Alternate}Marcel Ruland} \and Sascha Henzgen}% \\ \scriptsize{mruland@mail.upb.de}}%
-\date[ECDA 2018]{July 8, 2018}
+\author[\shortauthor]{Katharina Rohlfing \and {\addfontfeature{Style=Alternate}Marcel Ruland} \and Sascha Henzgen}
+\date[8/6/2018]{July 8, 2018}
 
 \begin{document}
 
 \frame{\titlepage}
-\frame{\frametitle{Outline}\tableofcontents}
+%\frame{\frametitle{Outline}\tableofcontents}  % maybe kill this slide
 
 
 \section{Preliminaries}
@@ -51,34 +75,92 @@
 \section{Method}
 \frame{
 	\frametitle{Video Material}
-	\includegraphics[height=0.8\textheight]{../aux/img/video_vp_08_raw.png}
+	\begin{figure}
+		\center
+		\includegraphics[width=\textwidth]{../aux/img/video_vp_08_compact.png}
+		\caption{Raw Video Material}
+	\end{figure}
+}
+\frame{
+	\frametitle{Annotating the Videos}
+	\begin{figure}
+		\center
+		\includegraphics[width=\textwidth]{../aux/img/elan_03_cut.png}
+		\caption{\textsc{elan} Screenshot}
+	\end{figure}
+}
+\frame{
+	\frametitle{What counts as a rule?}
+	\begin{columns}
+		\column{0.4\textwidth}
+		\begin{enumerate}
+			\item[]\fpmlabel{A} \rightarrow \fpmlabel{B} represents one of two cases:\textsuperscript{[1]}
+			\item[]\fpmlabel{B} begins before \fpmlabel{A} ends \emph{and}
+			\item interval of \fpmlabel{A} starts before interval of \fpmlabel{B} \emph{or}
+			\item interval of \fpmlabel{A} and \fpmlabel{B} start at the same time
+		\end{enumerate}
+		\column{0.6\textwidth}
+		\begin{figure}
+			\input{../aux/tikzpictures/tikz_idealseq_beamer.tex}
+		\end{figure}
+	\end{columns}
+	
+	\vfill
+	
+	{\tiny\textsuperscript{[1]}\textsc{Rohlfing}, Katharina; \textsc{Leonardi}, Giuseppe; \textsc{Hüllermeier}, Eyke; \textsc{Raczaszek-Leonardi}, Johanna; and \textsc{Nomikou}, Iris (under review): ``Multimodal turn-taking: Motivations, methodical challenges and first approaches.'' \textit{IEEE Transactions on Cognitive and Developmental Systems.}}  % decrease spacing!
+}
+\frame{
+	\frametitle{Metrics}
+	\begin{columns}
+		\column{0.4\textwidth}
+		\begin{itemize}
+			\item confidence \\ \(conf(\mathcal{A} \rightarrow \mathcal{B}) = \frac{d(\mathcal{A}\mathcal{B})}{d(\mathcal{A})}\)
+			\item absolute number of occurrences
+			\item duration (\textit{sec})
+		\end{itemize}
+		\column{0.6\textwidth}
+		\begin{figure}
+			\input{../aux/tikzpictures/tikz_idealseq_beamer.tex}
+		\end{figure}
+	\end{columns}
 }
 
 
 \section[Significance]{Establishing Significance}
 \frame{
-	\frametitle{Significance -- Why would we care?}
-	\begin{columns}
-		\column{0.5\textwidth}
-			Before:
-			\begin{itemize}
-				\item ``Why did you choose this rule?''
-				\item ``Because it looked interesting to me.''
-			\end{itemize}
-		\column{0.5\textwidth}
-			After:
-			\begin{itemize}
-				\item ``Why did you choose this rule?''
-				\item ``Because it looked interesting to me. Also, the numbers support this claim''
-			\end{itemize}
-	\end{columns}
+	\center
+	\only<1>{
+		{\Huge Why Significance?}
+	}
+	\only<2>{
+		{\Huge Why Significance?}
+		
+		\vspace{0.2\textheight}
+		
+		\tikz\node[draw, rounded corners, inner sep=1em] {\LARGE qualitative \hspace{0.3\textwidth} quantitative};
+	}
 }
-
-
 \frame{
-	\frametitle{Bibliography}
-	\bibliography{../bib/ba_bib}
+	\frametitle{Significance -- How?}
+	\begin{figure}
+		\input{../aux/tikzpictures/tikz_significance_beamer.tex}
+	\end{figure}
 }
+\frame{
+	\frametitle{Significance -- How?}
+	\begin{figure}
+		\input{../aux/tikzpictures/tikz_null_beamer.tex}
+	\end{figure}
+}
+
+\section{Results}
+\frame{
+	\frametitle{Results}
+}
+%\frame{
+%	\frametitle{Bibliography}
+%	\bibliography{../bib/ba_bib}
+%}
 
 \end{document}
 

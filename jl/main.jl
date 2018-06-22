@@ -182,6 +182,85 @@ function createdictionary(df, rulesdict, realornull)
 end
 
 
+function prettyint(n; style="spaces")
+    #==
+    in: Int < 10000
+    out: String
+    ==#
+    if style == "zeros"
+        if n < 10
+            return string("000", n)
+        elseif n < 100
+            return string("00", n)
+        elseif n < 1000
+            return string("0", n)
+        else
+            return string(n)
+        end
+    elseif style == "spaces"
+        if n < 10
+            return string("   ", n)
+        elseif n < 100
+            return string("  ", n)
+        elseif n < 1000
+            return string(" ", n)
+        else
+            return string(n)
+        end
+    end
+end
+
+
+function prettyprinting(test,
+    totalnumberofrules, # absolute number of rules observed
+    n,                  # maximum value for which we want to show the number of rules that have been observed that many times
+    realarray,          # index i shows how many rules have been observed i times in the real distribution
+    nullarray,          # index i shows how many rules have been observed i times in the null distribution
+    minarray,           # minarray[[i] = min(realarray[i], nullarray[i])
+    minsigreal,         # how many real observations do we want to calculate significance?
+    minsignull,         # how many null observations do we want to calculate significance?,
+    α,                  # α-value
+    )
+    #== print pretty summary ==#
+    if typeof(test) == HypothesisTests.OneSampleTTest
+        testused = "one-sample Student t-test"
+    elseif typeof(test) == SignedRankTest
+        testused = "Wilcoxon signed rank test"
+    end
+
+    prettyfinal =  ""
+    prettyfinal *= "SUMMARY:\n\n"
+    prettyfinal *= "Total number of rules: $totalnumberofrules\n\n"
+    prettyfinal *= "Number of rules with  >= n observations:\n"
+    prettyfinal *= "  n  | real | null | both \n"
+    prettyfinal *= "-----|------|------|------\n"
+    for i in 1:n
+        prettyi = prettyint(i)
+        real = prettyint(realarray[i])
+        null = prettyint(nullarray[i])
+        both = prettyint(minarray[i])
+        prettyfinal *= "$prettyi | $real | $null | $both\n"
+    end
+    prettyfinal *= "\nMinimum real observations for significance: $minsigreal\n"
+    prettyfinal *= "Minimum null observations for significance: $minsignull\n"
+    prettyfinal *= "Test used: $testused\n"
+    prettyfinal *= "α = $α\n\n"
+    prettyfinal *= "number of rules with significant\n"
+    prettyfinal *= "             left | both | right \n"
+    prettyfinal *= "            ------|------|-------\n"
+    # NOTE: store all of these in a Dict and pass that to the function
+    # prettyfinal *= "confidence:  $(prettyint(sigconleft)) | $(prettyint(sigconboth)) |  $(prettyint(sigconright))\n"
+    # prettyfinal *= "occurrences: $(prettyint(sigoccleft)) | $(prettyint(sigoccboth)) |  $(prettyint(sigoccright))\n"
+    # prettyfinal *= "duration:    $(prettyint(sigdurleft)) | $(prettyint(sigdurboth)) |  $(prettyint(sigdurright))\n"
+    # prettyfinal *= "con & occ:   $(prettyint(sigconoccleft)) | $(prettyint(sigconoccboth)) |  $(prettyint(sigconoccright))\n"
+    # prettyfinal *= "con & dur:   $(prettyint(sigcondurleft)) | $(prettyint(sigcondurboth)) |  $(prettyint(sigcondurright))\n"
+    # prettyfinal *= "occ & dur:   $(prettyint(sigoccdurleft)) | $(prettyint(sigoccdurboth)) |  $(prettyint(sigoccdurright))\n"
+    # prettyfinal *= "all three:   $(prettyint(sigallthreeleft)) | $(prettyint(sigallthreeboth)) |  $(prettyint(sigallthreeright))\n"
+
+    println(prettyfinal)
+end
+
+
 function dostuff(n; minsigreal=1, minsignull=5, tail=:both)
     # directories array
     directories = ["input/real/", "input/null/"]
@@ -337,72 +416,6 @@ function dostuff(n; minsigreal=1, minsignull=5, tail=:both)
 
     function statistics()
         #== collect statistical information ==#
-
-        function prettyprinting()
-            #== print pretty summary ==#
-            function prettyint(n; style="spaces")
-                #==
-                in: Int < 10000
-                out: String
-                ==#
-                if style == "zeros"
-                    if n < 10
-                        return string("000", n)
-                    elseif n < 100
-                        return string("00", n)
-                    elseif n < 1000
-                        return string("0", n)
-                    else
-                        return string(n)
-                    end
-                elseif style == "spaces"
-                    if n < 10
-                        return string("   ", n)
-                    elseif n < 100
-                        return string("  ", n)
-                    elseif n < 1000
-                        return string(" ", n)
-                    else
-                        return string(n)
-                    end
-                end
-            end
-            if typeof(test) == HypothesisTests.OneSampleTTest
-                testused = "one-sample Student t-test"
-            elseif typeof(test) == SignedRankTest
-                testused = "Wilcoxon signed rank test"
-            end
-
-            prettyfinal =  ""
-            prettyfinal *= "SUMMARY:\n\n"
-            prettyfinal *= "Total number of rules: $totalnumberofrules\n\n"
-            prettyfinal *= "Number of rules with  >= n observations:\n"
-            prettyfinal *= "  n  | real | null | both \n"
-            prettyfinal *= "-----|------|------|------\n"
-            for i in 1:n
-                prettyi = prettyint(i)
-                real = prettyint(realarray[i])
-                null = prettyint(nullarray[i])
-                both = prettyint(minarray[i])
-                prettyfinal *= "$prettyi | $real | $null | $both\n"
-            end
-            prettyfinal *= "\nMinimum real observations for significance: $minsigreal\n"
-            prettyfinal *= "Minimum null observations for significance: $minsignull\n"
-            prettyfinal *= "Test used: $testused\n"
-            prettyfinal *= "α = $α\n\n"
-            prettyfinal *= "number of rules with significant\n"
-            prettyfinal *= "             left | both | right \n"
-            prettyfinal *= "            ------|------|-------\n"
-            prettyfinal *= "confidence:  $(prettyint(sigconleft)) | $(prettyint(sigconboth)) |  $(prettyint(sigconright))\n"
-            prettyfinal *= "occurrences: $(prettyint(sigoccleft)) | $(prettyint(sigoccboth)) |  $(prettyint(sigoccright))\n"
-            prettyfinal *= "duration:    $(prettyint(sigdurleft)) | $(prettyint(sigdurboth)) |  $(prettyint(sigdurright))\n"
-            prettyfinal *= "con & occ:   $(prettyint(sigconoccleft)) | $(prettyint(sigconoccboth)) |  $(prettyint(sigconoccright))\n"
-            prettyfinal *= "con & occ:   $(prettyint(sigcondurleft)) | $(prettyint(sigcondurboth)) |  $(prettyint(sigcondurright))\n"
-            prettyfinal *= "con & occ:   $(prettyint(sigoccdurleft)) | $(prettyint(sigoccdurboth)) |  $(prettyint(sigoccdurright))\n"
-            prettyfinal *= "con & occ:   $(prettyint(sigallthreeleft)) | $(prettyint(sigallthreeboth)) |  $(prettyint(sigallthreeright))\n"
-
-            println(prettyfinal)
-        end
 
         α = 0.05  # What's our α-value? (not debatable, sorry not sorry)
         totalnumberofrules = length(rules)  # how many rules do we have?
@@ -660,7 +673,8 @@ function dostuff(n; minsigreal=1, minsignull=5, tail=:both)
         stats[:allsigoccdurright]        = allsigoccdurright
         stats[:allsigallthreeright]      = allsigallthreeright
 
-        prettyprinting()
+        prettyprinting(test, totalnumberofrules, n, realarray, nullarray, minarray, minsigreal, minsignull, α)
+
         return stats
     end
 

@@ -24,48 +24,15 @@ gretier
 
 Paper aus Timing-Seminar: Abstraktion durch Darstellung auf verschiedenen Modalitäten
 
+go through all metrics and combinations of metrics: What does it mean if a rule has high so and so?
+How is considering individual rules different from considering groups of rules? Methodology: all metrics can be checked in detail for individual rules, much less so for groups of rules
 
-prettyprinting() output draft:
-
-SUMMARY:
-
-Total rules: 123
-Number of rules with n observations:
-
-n | rules
---|------
-1 |  001
-2 |  001
-3 |  001
-4 |  001
-5 |  001
-
-
-Minimum number of observations for significance: 1
-Test used: One-sample t-test
-α = 0.05
-number of rules with significant
-confidence:   001
-occurrences:  001
-duration_sec: 001
 
 nicht VP 2 und VP 7
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+main.jl to do:
+deal with mother+infant in conclusion
+separate dostuff(), statistics(), and prettyprinting()
+metric: occurred in how many VPs?
+statistics: confidence intervals
+implement Wilcoxon
