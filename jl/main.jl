@@ -247,13 +247,14 @@ function prettyprinting(
     prettyfinal *= "number of rules with significant\n"
     prettyfinal *= "             left | both | right \n"
     prettyfinal *= "            ------|------|-------\n"
-    prettyfinal *= "confidence:  $(prettyint(stats[:sigconleft])) | $(prettyint(stats[:sigconboth])) |  $(prettyint(stats[:sigconright]))\n"
-    prettyfinal *= "occurrences: $(prettyint(stats[:sigoccleft])) | $(prettyint(stats[:sigoccboth])) |  $(prettyint(stats[:sigoccright]))\n"
-    prettyfinal *= "duration:    $(prettyint(stats[:sigdurleft])) | $(prettyint(stats[:sigdurboth])) |  $(prettyint(stats[:sigdurright]))\n"
-    prettyfinal *= "con & occ:   $(prettyint(stats[:sigconoccleft])) | $(prettyint(stats[:sigconoccboth])) |  $(prettyint(stats[:sigconoccright]))\n"
-    prettyfinal *= "con & dur:   $(prettyint(stats[:sigcondurleft])) | $(prettyint(stats[:sigcondurboth])) |  $(prettyint(stats[:sigcondurright]))\n"
-    prettyfinal *= "occ & dur:   $(prettyint(stats[:sigoccdurleft])) | $(prettyint(stats[:sigoccdurboth])) |  $(prettyint(stats[:sigoccdurright]))\n"
-    prettyfinal *= "all three:   $(prettyint(stats[:sigallthreeleft])) | $(prettyint(stats[:sigallthreeboth])) |  $(prettyint(stats[:sigallthreeright]))\n"
+    nsfm = stats[:numsigrulesformetric]
+    prettyfinal *= "confidence:  $(prettyint(nsfm[:sigconleft])) | $(prettyint(nsfm[:sigconboth])) |  $(prettyint(nsfm[:sigconright]))\n"
+    prettyfinal *= "occurrences: $(prettyint(nsfm[:sigoccleft])) | $(prettyint(nsfm[:sigoccboth])) |  $(prettyint(nsfm[:sigoccright]))\n"
+    prettyfinal *= "duration:    $(prettyint(nsfm[:sigdurleft])) | $(prettyint(nsfm[:sigdurboth])) |  $(prettyint(nsfm[:sigdurright]))\n"
+    prettyfinal *= "con & occ:   $(prettyint(nsfm[:sigconoccleft])) | $(prettyint(nsfm[:sigconoccboth])) |  $(prettyint(nsfm[:sigconoccright]))\n"
+    prettyfinal *= "con & dur:   $(prettyint(nsfm[:sigcondurleft])) | $(prettyint(nsfm[:sigcondurboth])) |  $(prettyint(nsfm[:sigcondurright]))\n"
+    prettyfinal *= "occ & dur:   $(prettyint(nsfm[:sigoccdurleft])) | $(prettyint(nsfm[:sigoccdurboth])) |  $(prettyint(nsfm[:sigoccdurright]))\n"
+    prettyfinal *= "all three:   $(prettyint(nsfm[:sigallthreeleft])) | $(prettyint(nsfm[:sigallthreeboth])) |  $(prettyint(nsfm[:sigallthreeright]))\n"
 
     println(prettyfinal)
 end
@@ -279,56 +280,24 @@ function statistics(
         minarray[i] = 0
     end
 
-    ### How many rules with significant metric m do we have? -- counters
-    # counters to count all significant metrics
-    sigconleft      = 0
-    sigoccleft      = 0
-    sigdurleft      = 0
-    sigconoccleft   = 0
-    sigcondurleft   = 0
-    sigoccdurleft   = 0
-    sigallthreeleft = 0
+    # initialise stats Dict
+    stats = Dict(
+        :numsigrulesformetric => Dict(),  # how many rules with significant metric m do we have?
+        :sigmetricarrays => Dict(),  # String[] storing all rule keys with significance for metric m
+        :totalnumberofrules => 0
+    )
 
-    sigconboth      = 0
-    sigoccboth      = 0
-    sigdurboth      = 0
-    sigconoccboth   = 0
-    sigcondurboth   = 0
-    sigoccdurboth   = 0
-    sigallthreeboth = 0
-
-    sigconright      = 0
-    sigoccright      = 0
-    sigdurright      = 0
-    sigconoccright   = 0
-    sigcondurright   = 0
-    sigoccdurright   = 0
-    sigallthreeright = 0
-
-    # arrays to store rule keys in
-    allsigconleft       = String[]
-    allsigoccleft       = String[]
-    allsigdurleft       = String[]
-    allsigconoccleft    = String[]
-    allsigcondurleft    = String[]
-    allsigoccdurleft    = String[]
-    allsigallthreeleft  = String[]
-
-    allsigconboth       = String[]
-    allsigoccboth       = String[]
-    allsigdurboth       = String[]
-    allsigconoccboth    = String[]
-    allsigcondurboth    = String[]
-    allsigoccdurboth    = String[]
-    allsigallthreeboth  = String[]
-
-    allsigconright      = String[]
-    allsigoccright      = String[]
-    allsigdurright      = String[]
-    allsigconoccright   = String[]
-    allsigcondurright   = String[]
-    allsigoccdurright   = String[]
-    allsigallthreeright = String[]
+    # add counters to :numsigrulesformetric
+    metricabb = ["con", "occ", "dur", "conocc", "condur", "occdur", "allthree"]
+    tailstr = ["left", "both", "right"]
+    for a in metricabb
+        for b in tailstr
+            newkey = convert(Symbol, "sig"*a*b)
+            newallkey = convert(Symbol, "allsig"*a*b)
+            stats[:numsigrulesformetric][newkey] = 0
+            stats[:sigmetricarrays][newallkey] = String[]
+        end
+    end
 
     # iterate through Dict to calculate table values
     for key in keys(rules)
@@ -369,99 +338,97 @@ function statistics(
             # increment appropriate counters and store rule keys in arrays
             # left significance
             if issigconleft
-                sigconleft += 1
-                push!(allsigconleft, key)
+                stats[:numsigrulesformetric][:sigconleft] += 1
+                push!(stats[:sigmetricarrays][:allsigconleft], key)
             end
             if issigoccleft
-                sigoccleft += 1
-                push!(allsigoccleft, key)
+                stats[:numsigrulesformetric][:sigoccleft] += 1
+                push!(stats[:sigmetricarrays][:allsigoccleft], key)
             end
             if issigdurleft
-                sigdurleft   += 1
-                push!(allsigdurleft, key)
+                stats[:numsigrulesformetric][:sigdurleft] += 1
+                push!(stats[:sigmetricarrays][:allsigdurleft], key)
             end
             if issigconleft && issigoccleft
-                sigconoccleft   += 1
-                push!(allsigconoccleft, key)
+                stats[:numsigrulesformetric][:sigconoccleft] += 1
+                push!(stats[:sigmetricarrays][:allsigconoccleft], key)
             end
             if issigconleft && issigdurleft
-                sigcondurleft   += 1
-                push!(allsigcondurleft, key)
+                stats[:numsigrulesformetric][:sigcondurleft] += 1
+                push!(stats[:sigmetricarrays][:allsigcondurleft], key)
             end
             if issigoccleft && issigdurleft
-                sigoccdurleft   += 1
-                push!(allsigoccdurleft, key)
+                stats[:numsigrulesformetric][:sigoccdurleft] += 1
+                push!(stats[:sigmetricarrays][:allsigoccdurleft], key)
             end
             if issigconleft && issigoccleft && issigdurleft
-                sigallthreeleft += 1
-                push!(allsigallthreeleft, key)
+                stats[:numsigrulesformetric][:sigallthreeleft] += 1
+                push!(stats[:sigmetricarrays][:allsigallthreeleft], key)
             end
 
             # two-tailed significance
             if issigconboth
-                sigconboth += 1
-                push!(allsigconboth, key)
+                stats[:numsigrulesformetric][:sigconboth] += 1  # BUG
+                push!(stats[:sigmetricarrays][:allsigconboth], key)
             end
             if issigoccboth
-                sigoccboth += 1
-                push!(allsigoccboth, key)
+                stats[:numsigrulesformetric][:sigoccboth] += 1
+                push!(stats[:sigmetricarrays][:allsigoccboth], key)
             end
             if issigdurboth
-                sigdurboth   += 1
-                push!(allsigdurboth, key)
+                stats[:numsigrulesformetric][:sigdurboth] += 1
+                push!(stats[:sigmetricarrays][:allsigdurboth], key)
             end
             if issigconboth && issigoccboth
-                sigconoccboth   += 1
-                push!(allsigconoccboth, key)
+                stats[:numsigrulesformetric][:sigconoccboth] += 1
+                push!(stats[:sigmetricarrays][:allsigconoccboth], key)
             end
             if issigconboth && issigdurboth
-                sigcondurboth   += 1
-                push!(allsigcondurboth, key)
+                stats[:numsigrulesformetric][:sigcondurboth] += 1
+                push!(stats[:sigmetricarrays][:allsigcondurboth], key)
             end
             if issigoccboth && issigdurboth
-                sigoccdurboth   += 1
-                push!(allsigoccdurboth, key)
+                stats[:numsigrulesformetric][:sigoccdurboth] += 1
+                push!(stats[:sigmetricarrays][:allsigoccdurboth], key)
             end
             if issigconboth && issigoccboth && issigdurboth
-                sigallthreeboth += 1
-                push!(allsigallthreeboth, key)
+                stats[:numsigrulesformetric][:sigallthreeboth] += 1
+                push!(stats[:sigmetricarrays][:allsigallthreeboth], key)
             end
 
             # right significance
             if issigconright
-                sigconright += 1
-                push!(allsigconright, key)
+                stats[:numsigrulesformetric][:sigconright] += 1
+                push!(stats[:sigmetricarrays][:allsigconright], key)
             end
             if issigoccright
-                sigoccright += 1
-                push!(allsigoccright, key)
+                stats[:numsigrulesformetric][:sigoccright] += 1
+                push!(stats[:sigmetricarrays][:allsigoccright], key)
             end
             if issigdurright
-                sigdurright   += 1
-                push!(allsigdurright, key)
+                stats[:numsigrulesformetric][:sigdurright] += 1
+                push!(stats[:sigmetricarrays][:allsigdurright], key)
             end
             if issigconright && issigoccright
-                sigconoccright   += 1
-                push!(allsigconoccright, key)
+                stats[:numsigrulesformetric][:sigconoccright] += 1
+                push!(stats[:sigmetricarrays][:allsigconoccright], key)
             end
             if issigconright && issigdurright
-                sigcondurright   += 1
-                push!(allsigcondurright, key)
+                stats[:numsigrulesformetric][:sigcondurright] += 1
+                push!(stats[:sigmetricarrays][:allsigcondurright], key)
             end
             if issigoccright && issigdurright
-                sigoccdurright   += 1
-                push!(allsigoccdurright, key)
+                stats[:numsigrulesformetric][:sigoccdurright] += 1
+                push!(stats[:sigmetricarrays][:allsigoccdurright], key)
             end
             if issigconright && issigoccright && issigdurright
-                sigallthreeright += 1
-                push!(allsigallthreeright, key)
+                stats[:numsigrulesformetric][:sigallthreeright] += 1
+                push!(stats[:sigmetricarrays][:allsigallthreeright], key)
             end
         end
     end
 
     ### Put stuff in stats Dict.
-    stats = Dict()  # initialise stats Dict (duh…)
-
     # how many rule observations in total?
     stats[:totalnumberofrules] = totalnumberofrules
 
@@ -469,57 +436,6 @@ function statistics(
     stats[:realarray]           = realarray
     stats[:nullarray]           = nullarray
     stats[:minarray]            = minarray
-
-    # how many rules were significant for metric m?
-    stats[:sigconleft]          = sigconleft
-    stats[:sigoccleft]          = sigoccleft
-    stats[:sigdurleft]          = sigdurleft
-    stats[:sigconoccleft]       = sigconoccleft
-    stats[:sigcondurleft]       = sigcondurleft
-    stats[:sigoccdurleft]       = sigoccdurleft
-    stats[:sigallthreeleft]     = sigallthreeleft
-
-    stats[:sigconboth]          = sigconboth
-    stats[:sigoccboth]          = sigoccboth
-    stats[:sigdurboth]          = sigdurboth
-    stats[:sigconoccboth]       = sigconoccboth
-    stats[:sigcondurboth]       = sigcondurboth
-    stats[:sigoccdurboth]       = sigoccdurboth
-    stats[:sigallthreeboth]     = sigallthreeboth
-
-    stats[:sigconright]         = sigconright
-    stats[:sigoccright]         = sigoccright
-    stats[:sigdurright]         = sigdurright
-    stats[:sigconoccright]      = sigconoccright
-    stats[:sigcondurright]      = sigcondurright
-    stats[:sigoccdurright]      = sigoccdurright
-    stats[:sigallthreeright]    = sigallthreeright
-
-    # String[] with significant rules' keys
-    stats[:allsigconleft]           = allsigconleft
-    stats[:allsigoccleft]           = allsigoccleft
-    stats[:allsigdurleft]           = allsigdurleft
-    stats[:allsigconoccleft]        = allsigconoccleft
-    stats[:allsigcondurleft]        = allsigcondurleft
-    stats[:allsigoccdurleft]        = allsigoccdurleft
-    stats[:allsigallthreeleft]      = allsigallthreeleft
-
-    stats[:allsigconboth]           = allsigconboth
-    stats[:allsigoccboth]           = allsigoccboth
-    stats[:allsigdurboth]           = allsigdurboth
-    stats[:allsigconoccboth]        = allsigconoccboth
-    stats[:allsigcondurboth]        = allsigcondurboth
-    stats[:allsigoccdurboth]        = allsigoccdurboth
-    stats[:allsigallthreeboth]      = allsigallthreeboth
-
-    stats[:allsigconright]           = allsigconright
-    stats[:allsigoccright]           = allsigoccright
-    stats[:allsigdurright]           = allsigdurright
-    stats[:allsigconoccright]        = allsigconoccright
-    stats[:allsigcondurright]        = allsigcondurright
-    stats[:allsigoccdurright]        = allsigoccdurright
-    stats[:allsigallthreeright]      = allsigallthreeright
-
 
     return stats
 end
