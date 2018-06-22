@@ -211,12 +211,11 @@ function prettyint(n; style="spaces")
 end
 
 
-function prettyprinting(test,
+function prettyprinting(
+    stats,              # Dict with lots of statistics
+    test,               # significance test used
     totalnumberofrules, # absolute number of rules observed
     n,                  # maximum value for which we want to show the number of rules that have been observed that many times
-    realarray,          # index i shows how many rules have been observed i times in the real distribution
-    nullarray,          # index i shows how many rules have been observed i times in the null distribution
-    minarray,           # minarray[[i] = min(realarray[i], nullarray[i])
     minsigreal,         # how many real observations do we want to calculate significance?
     minsignull,         # how many null observations do we want to calculate significance?,
     α,                  # α-value
@@ -236,9 +235,9 @@ function prettyprinting(test,
     prettyfinal *= "-----|------|------|------\n"
     for i in 1:n
         prettyi = prettyint(i)
-        real = prettyint(realarray[i])
-        null = prettyint(nullarray[i])
-        both = prettyint(minarray[i])
+        real = prettyint(stats[:realarray][i])
+        null = prettyint(stats[:nullarray][i])
+        both = prettyint(stats[:minarray][i])
         prettyfinal *= "$prettyi | $real | $null | $both\n"
     end
     prettyfinal *= "\nMinimum real observations for significance: $minsigreal\n"
@@ -248,20 +247,285 @@ function prettyprinting(test,
     prettyfinal *= "number of rules with significant\n"
     prettyfinal *= "             left | both | right \n"
     prettyfinal *= "            ------|------|-------\n"
-    # NOTE: store all of these in a Dict and pass that to the function
-    # prettyfinal *= "confidence:  $(prettyint(sigconleft)) | $(prettyint(sigconboth)) |  $(prettyint(sigconright))\n"
-    # prettyfinal *= "occurrences: $(prettyint(sigoccleft)) | $(prettyint(sigoccboth)) |  $(prettyint(sigoccright))\n"
-    # prettyfinal *= "duration:    $(prettyint(sigdurleft)) | $(prettyint(sigdurboth)) |  $(prettyint(sigdurright))\n"
-    # prettyfinal *= "con & occ:   $(prettyint(sigconoccleft)) | $(prettyint(sigconoccboth)) |  $(prettyint(sigconoccright))\n"
-    # prettyfinal *= "con & dur:   $(prettyint(sigcondurleft)) | $(prettyint(sigcondurboth)) |  $(prettyint(sigcondurright))\n"
-    # prettyfinal *= "occ & dur:   $(prettyint(sigoccdurleft)) | $(prettyint(sigoccdurboth)) |  $(prettyint(sigoccdurright))\n"
-    # prettyfinal *= "all three:   $(prettyint(sigallthreeleft)) | $(prettyint(sigallthreeboth)) |  $(prettyint(sigallthreeright))\n"
+    prettyfinal *= "confidence:  $(prettyint(stats[:sigconleft])) | $(prettyint(stats[:sigconboth])) |  $(prettyint(stats[:sigconright]))\n"
+    prettyfinal *= "occurrences: $(prettyint(stats[:sigoccleft])) | $(prettyint(stats[:sigoccboth])) |  $(prettyint(stats[:sigoccright]))\n"
+    prettyfinal *= "duration:    $(prettyint(stats[:sigdurleft])) | $(prettyint(stats[:sigdurboth])) |  $(prettyint(stats[:sigdurright]))\n"
+    prettyfinal *= "con & occ:   $(prettyint(stats[:sigconoccleft])) | $(prettyint(stats[:sigconoccboth])) |  $(prettyint(stats[:sigconoccright]))\n"
+    prettyfinal *= "con & dur:   $(prettyint(stats[:sigcondurleft])) | $(prettyint(stats[:sigcondurboth])) |  $(prettyint(stats[:sigcondurright]))\n"
+    prettyfinal *= "occ & dur:   $(prettyint(stats[:sigoccdurleft])) | $(prettyint(stats[:sigoccdurboth])) |  $(prettyint(stats[:sigoccdurright]))\n"
+    prettyfinal *= "all three:   $(prettyint(stats[:sigallthreeleft])) | $(prettyint(stats[:sigallthreeboth])) |  $(prettyint(stats[:sigallthreeright]))\n"
 
     println(prettyfinal)
 end
 
+function statistics(
+    n,      # maximum value for which we want to show the number of rules that have been observed that many times
+    rules,  # Dict storing all rules and their metrics
+    )
+    #== collect statistical information ==#
 
-function dostuff(n; minsigreal=1, minsignull=5, tail=:both)
+    α = 0.05  # What's our α-value? (not debatable, sorry not sorry)
+    totalnumberofrules = length(rules)  # how many rules do we have?
+
+    ### How many rules with n observations do we have? -- counters
+    # create arrays to store observation values in
+    realarray = Array{Int64}(n)
+    nullarray = Array{Int64}(n)
+    minarray = Array{Int64}(n)
+    # initialise arrays to 0
+    for i in 1:n
+        realarray[i] = 0
+        nullarray[i] = 0
+        minarray[i] = 0
+    end
+
+    ### How many rules with significant metric m do we have? -- counters
+    # counters to count all significant metrics
+    sigconleft      = 0
+    sigoccleft      = 0
+    sigdurleft      = 0
+    sigconoccleft   = 0
+    sigcondurleft   = 0
+    sigoccdurleft   = 0
+    sigallthreeleft = 0
+
+    sigconboth      = 0
+    sigoccboth      = 0
+    sigdurboth      = 0
+    sigconoccboth   = 0
+    sigcondurboth   = 0
+    sigoccdurboth   = 0
+    sigallthreeboth = 0
+
+    sigconright      = 0
+    sigoccright      = 0
+    sigdurright      = 0
+    sigconoccright   = 0
+    sigcondurright   = 0
+    sigoccdurright   = 0
+    sigallthreeright = 0
+
+    # arrays to store rule keys in
+    allsigconleft       = String[]
+    allsigoccleft       = String[]
+    allsigdurleft       = String[]
+    allsigconoccleft    = String[]
+    allsigcondurleft    = String[]
+    allsigoccdurleft    = String[]
+    allsigallthreeleft  = String[]
+
+    allsigconboth       = String[]
+    allsigoccboth       = String[]
+    allsigdurboth       = String[]
+    allsigconoccboth    = String[]
+    allsigcondurboth    = String[]
+    allsigoccdurboth    = String[]
+    allsigallthreeboth  = String[]
+
+    allsigconright      = String[]
+    allsigoccright      = String[]
+    allsigdurright      = String[]
+    allsigconoccright   = String[]
+    allsigcondurright   = String[]
+    allsigoccdurright   = String[]
+    allsigallthreeright = String[]
+
+    # iterate through Dict to calculate table values
+    for key in keys(rules)
+
+        ### How many rules with n observations do we have? -- calculation
+        # how many real and null observations?
+        realobservations = rules[key][:real][:observations]
+        nullobservations = rules[key][:null][:observations]
+        # what's the lower value of the two?
+        minobservations = min(realobservations, nullobservations)
+        # increment appropriate array values
+        for i in 1:min(n, realobservations)  # only count as far as n
+            realarray[i] += 1
+        end
+        for i in 1:min(n, nullobservations)
+            nullarray[i] += 1
+        end
+        for i in 1:min(n, minobservations)
+            minarray[i] += 1
+        end
+
+        ### How many rules with significant metric m do we have? -- counters
+        # was significance calculated?
+        if haskey(rules[key], :sigleft)
+            # what was significant?
+            issigconleft = rules[key][:sigleft][:confidence] < α
+            issigoccleft = rules[key][:sigleft][:occurrences] < α
+            issigdurleft = rules[key][:sigleft][:duration_sec] < α
+
+            issigconright = rules[key][:sigright][:confidence] < α
+            issigoccright = rules[key][:sigright][:occurrences] < α
+            issigdurright = rules[key][:sigright][:duration_sec] < α
+
+            issigconboth = rules[key][:sigboth][:confidence] < α
+            issigoccboth = rules[key][:sigboth][:occurrences] < α
+            issigdurboth = rules[key][:sigboth][:duration_sec] < α
+
+            # increment appropriate counters and store rule keys in arrays
+            # left significance
+            if issigconleft
+                sigconleft += 1
+                push!(allsigconleft, key)
+            end
+            if issigoccleft
+                sigoccleft += 1
+                push!(allsigoccleft, key)
+            end
+            if issigdurleft
+                sigdurleft   += 1
+                push!(allsigdurleft, key)
+            end
+            if issigconleft && issigoccleft
+                sigconoccleft   += 1
+                push!(allsigconoccleft, key)
+            end
+            if issigconleft && issigdurleft
+                sigcondurleft   += 1
+                push!(allsigcondurleft, key)
+            end
+            if issigoccleft && issigdurleft
+                sigoccdurleft   += 1
+                push!(allsigoccdurleft, key)
+            end
+            if issigconleft && issigoccleft && issigdurleft
+                sigallthreeleft += 1
+                push!(allsigallthreeleft, key)
+            end
+
+            # two-tailed significance
+            if issigconboth
+                sigconboth += 1
+                push!(allsigconboth, key)
+            end
+            if issigoccboth
+                sigoccboth += 1
+                push!(allsigoccboth, key)
+            end
+            if issigdurboth
+                sigdurboth   += 1
+                push!(allsigdurboth, key)
+            end
+            if issigconboth && issigoccboth
+                sigconoccboth   += 1
+                push!(allsigconoccboth, key)
+            end
+            if issigconboth && issigdurboth
+                sigcondurboth   += 1
+                push!(allsigcondurboth, key)
+            end
+            if issigoccboth && issigdurboth
+                sigoccdurboth   += 1
+                push!(allsigoccdurboth, key)
+            end
+            if issigconboth && issigoccboth && issigdurboth
+                sigallthreeboth += 1
+                push!(allsigallthreeboth, key)
+            end
+
+            # right significance
+            if issigconright
+                sigconright += 1
+                push!(allsigconright, key)
+            end
+            if issigoccright
+                sigoccright += 1
+                push!(allsigoccright, key)
+            end
+            if issigdurright
+                sigdurright   += 1
+                push!(allsigdurright, key)
+            end
+            if issigconright && issigoccright
+                sigconoccright   += 1
+                push!(allsigconoccright, key)
+            end
+            if issigconright && issigdurright
+                sigcondurright   += 1
+                push!(allsigcondurright, key)
+            end
+            if issigoccright && issigdurright
+                sigoccdurright   += 1
+                push!(allsigoccdurright, key)
+            end
+            if issigconright && issigoccright && issigdurright
+                sigallthreeright += 1
+                push!(allsigallthreeright, key)
+            end
+        end
+    end
+
+    ### Put stuff in stats Dict.
+    stats = Dict()  # initialise stats Dict (duh…)
+
+    # how many rule observations in total?
+    stats[:totalnumberofrules] = totalnumberofrules
+
+    # how many rules had [n] observations of real, null, or both?
+    stats[:realarray]           = realarray
+    stats[:nullarray]           = nullarray
+    stats[:minarray]            = minarray
+
+    # how many rules were significant for metric m?
+    stats[:sigconleft]          = sigconleft
+    stats[:sigoccleft]          = sigoccleft
+    stats[:sigdurleft]          = sigdurleft
+    stats[:sigconoccleft]       = sigconoccleft
+    stats[:sigcondurleft]       = sigcondurleft
+    stats[:sigoccdurleft]       = sigoccdurleft
+    stats[:sigallthreeleft]     = sigallthreeleft
+
+    stats[:sigconboth]          = sigconboth
+    stats[:sigoccboth]          = sigoccboth
+    stats[:sigdurboth]          = sigdurboth
+    stats[:sigconoccboth]       = sigconoccboth
+    stats[:sigcondurboth]       = sigcondurboth
+    stats[:sigoccdurboth]       = sigoccdurboth
+    stats[:sigallthreeboth]     = sigallthreeboth
+
+    stats[:sigconright]         = sigconright
+    stats[:sigoccright]         = sigoccright
+    stats[:sigdurright]         = sigdurright
+    stats[:sigconoccright]      = sigconoccright
+    stats[:sigcondurright]      = sigcondurright
+    stats[:sigoccdurright]      = sigoccdurright
+    stats[:sigallthreeright]    = sigallthreeright
+
+    # String[] with significant rules' keys
+    stats[:allsigconleft]           = allsigconleft
+    stats[:allsigoccleft]           = allsigoccleft
+    stats[:allsigdurleft]           = allsigdurleft
+    stats[:allsigconoccleft]        = allsigconoccleft
+    stats[:allsigcondurleft]        = allsigcondurleft
+    stats[:allsigoccdurleft]        = allsigoccdurleft
+    stats[:allsigallthreeleft]      = allsigallthreeleft
+
+    stats[:allsigconboth]           = allsigconboth
+    stats[:allsigoccboth]           = allsigoccboth
+    stats[:allsigdurboth]           = allsigdurboth
+    stats[:allsigconoccboth]        = allsigconoccboth
+    stats[:allsigcondurboth]        = allsigcondurboth
+    stats[:allsigoccdurboth]        = allsigoccdurboth
+    stats[:allsigallthreeboth]      = allsigallthreeboth
+
+    stats[:allsigconright]           = allsigconright
+    stats[:allsigoccright]           = allsigoccright
+    stats[:allsigdurright]           = allsigdurright
+    stats[:allsigconoccright]        = allsigconoccright
+    stats[:allsigcondurright]        = allsigcondurright
+    stats[:allsigoccdurright]        = allsigoccdurright
+    stats[:allsigallthreeright]      = allsigallthreeright
+
+
+    return stats
+end
+
+
+function dostuff(n; minsigreal=1, minsignull=5)
     # directories array
     directories = ["input/real/", "input/null/"]
 
@@ -414,278 +678,12 @@ function dostuff(n; minsigreal=1, minsignull=5, tail=:both)
     # and save as csv to output
     writetable("output/results.csv", df)
 
-    function statistics()
-        #== collect statistical information ==#
-
-        α = 0.05  # What's our α-value? (not debatable, sorry not sorry)
-        totalnumberofrules = length(rules)  # how many rules do we have?
-
-        ### How many rules with n observations do we have? -- counters
-        # create arrays to store observation values in
-        realarray = Array{Int64}(n)
-        nullarray = Array{Int64}(n)
-        minarray = Array{Int64}(n)
-        # initialise arrays to 0
-        for i in 1:n
-            realarray[i] = 0
-            nullarray[i] = 0
-            minarray[i] = 0
-        end
-
-        ### How many rules with significant metric m do we have? -- counters
-        # counters to count all significant metrics
-        sigconleft      = 0
-        sigoccleft      = 0
-        sigdurleft      = 0
-        sigconoccleft   = 0
-        sigcondurleft   = 0
-        sigoccdurleft   = 0
-        sigallthreeleft = 0
-
-        sigconboth      = 0
-        sigoccboth      = 0
-        sigdurboth      = 0
-        sigconoccboth   = 0
-        sigcondurboth   = 0
-        sigoccdurboth   = 0
-        sigallthreeboth = 0
-
-        sigconright      = 0
-        sigoccright      = 0
-        sigdurright      = 0
-        sigconoccright   = 0
-        sigcondurright   = 0
-        sigoccdurright   = 0
-        sigallthreeright = 0
-
-        # arrays to store rule keys in
-        allsigconleft       = String[]
-        allsigoccleft       = String[]
-        allsigdurleft       = String[]
-        allsigconoccleft    = String[]
-        allsigcondurleft    = String[]
-        allsigoccdurleft    = String[]
-        allsigallthreeleft  = String[]
-
-        allsigconboth       = String[]
-        allsigoccboth       = String[]
-        allsigdurboth       = String[]
-        allsigconoccboth    = String[]
-        allsigcondurboth    = String[]
-        allsigoccdurboth    = String[]
-        allsigallthreeboth  = String[]
-
-        allsigconright      = String[]
-        allsigoccright      = String[]
-        allsigdurright      = String[]
-        allsigconoccright   = String[]
-        allsigcondurright   = String[]
-        allsigoccdurright   = String[]
-        allsigallthreeright = String[]
-
-        # iterate through Dict to calculate table values
-        for key in keys(rules)
-
-            ### How many rules with n observations do we have? -- calculation
-            # how many real and null observations?
-            realobservations = rules[key][:real][:observations]
-            nullobservations = rules[key][:null][:observations]
-            # what's the lower value of the two?
-            minobservations = min(realobservations, nullobservations)
-            # increment appropriate array values
-            for i in 1:min(n, realobservations)  # only count as far as n
-                realarray[i] += 1
-            end
-            for i in 1:min(n, nullobservations)
-                nullarray[i] += 1
-            end
-            for i in 1:min(n, minobservations)
-                minarray[i] += 1
-            end
-
-            ### How many rules with significant metric m do we have? -- counters
-            # was significance calculated?
-            if haskey(rules[key], :sigleft)
-                # what was significant?
-                issigconleft = rules[key][:sigleft][:confidence] < α
-                issigoccleft = rules[key][:sigleft][:occurrences] < α
-                issigdurleft = rules[key][:sigleft][:duration_sec] < α
-
-                issigconright = rules[key][:sigright][:confidence] < α
-                issigoccright = rules[key][:sigright][:occurrences] < α
-                issigdurright = rules[key][:sigright][:duration_sec] < α
-
-                issigconboth = rules[key][:sigboth][:confidence] < α
-                issigoccboth = rules[key][:sigboth][:occurrences] < α
-                issigdurboth = rules[key][:sigboth][:duration_sec] < α
-
-                # increment appropriate counters and store rule keys in arrays
-                # left significance
-                if issigconleft
-                    sigconleft += 1
-                    push!(allsigconleft, key)
-                end
-                if issigoccleft
-                    sigoccleft += 1
-                    push!(allsigoccleft, key)
-                end
-                if issigdurleft
-                    sigdurleft   += 1
-                    push!(allsigdurleft, key)
-                end
-                if issigconleft && issigoccleft
-                    sigconoccleft   += 1
-                    push!(allsigconoccleft, key)
-                end
-                if issigconleft && issigdurleft
-                    sigcondurleft   += 1
-                    push!(allsigcondurleft, key)
-                end
-                if issigoccleft && issigdurleft
-                    sigoccdurleft   += 1
-                    push!(allsigoccdurleft, key)
-                end
-                if issigconleft && issigoccleft && issigdurleft
-                    sigallthreeleft += 1
-                    push!(allsigallthreeleft, key)
-                end
-
-                # two-tailed significance
-                if issigconboth
-                    sigconboth += 1
-                    push!(allsigconboth, key)
-                end
-                if issigoccboth
-                    sigoccboth += 1
-                    push!(allsigoccboth, key)
-                end
-                if issigdurboth
-                    sigdurboth   += 1
-                    push!(allsigdurboth, key)
-                end
-                if issigconboth && issigoccboth
-                    sigconoccboth   += 1
-                    push!(allsigconoccboth, key)
-                end
-                if issigconboth && issigdurboth
-                    sigcondurboth   += 1
-                    push!(allsigcondurboth, key)
-                end
-                if issigoccboth && issigdurboth
-                    sigoccdurboth   += 1
-                    push!(allsigoccdurboth, key)
-                end
-                if issigconboth && issigoccboth && issigdurboth
-                    sigallthreeboth += 1
-                    push!(allsigallthreeboth, key)
-                end
-
-                # right significance
-                if issigconright
-                    sigconright += 1
-                    push!(allsigconright, key)
-                end
-                if issigoccright
-                    sigoccright += 1
-                    push!(allsigoccright, key)
-                end
-                if issigdurright
-                    sigdurright   += 1
-                    push!(allsigdurright, key)
-                end
-                if issigconright && issigoccright
-                    sigconoccright   += 1
-                    push!(allsigconoccright, key)
-                end
-                if issigconright && issigdurright
-                    sigcondurright   += 1
-                    push!(allsigcondurright, key)
-                end
-                if issigoccright && issigdurright
-                    sigoccdurright   += 1
-                    push!(allsigoccdurright, key)
-                end
-                if issigconright && issigoccright && issigdurright
-                    sigallthreeright += 1
-                    push!(allsigallthreeright, key)
-                end
-            end
-        end
-
-        ### Put stuff in stats Dict.
-        stats = Dict()  # initialise stats Dict (duh…)
-
-        # how many rule observations in total?
-        stats[:totalnumberofrules] = totalnumberofrules
-
-        # how many rules had [n] observations of real, null, or both?
-        stats[:realarray]           = realarray
-        stats[:nullarray]           = nullarray
-        stats[:minarray]            = minarray
-
-        # how many rules were significant for metric m?
-        stats[:sigconleft]          = sigconleft
-        stats[:sigoccleft]          = sigoccleft
-        stats[:sigdurleft]          = sigdurleft
-        stats[:sigconoccleft]       = sigconoccleft
-        stats[:sigcondurleft]       = sigcondurleft
-        stats[:sigoccdurleft]       = sigoccdurleft
-        stats[:sigallthreeleft]     = sigallthreeleft
-
-        stats[:sigconboth]          = sigconboth
-        stats[:sigoccboth]          = sigoccboth
-        stats[:sigdurboth]          = sigdurboth
-        stats[:sigconoccboth]       = sigconoccboth
-        stats[:sigcondurboth]       = sigcondurboth
-        stats[:sigoccdurboth]       = sigoccdurboth
-        stats[:sigallthreeboth]     = sigallthreeboth
-
-        stats[:sigconright]         = sigconright
-        stats[:sigoccright]         = sigoccright
-        stats[:sigdurright]         = sigdurright
-        stats[:sigconoccright]      = sigconoccright
-        stats[:sigcondurright]      = sigcondurright
-        stats[:sigoccdurright]      = sigoccdurright
-        stats[:sigallthreeright]    = sigallthreeright
-
-        # String[] with significant rules' keys
-        stats[:allsigconleft]           = allsigconleft
-        stats[:allsigoccleft]           = allsigoccleft
-        stats[:allsigdurleft]           = allsigdurleft
-        stats[:allsigconoccleft]        = allsigconoccleft
-        stats[:allsigcondurleft]        = allsigcondurleft
-        stats[:allsigoccdurleft]        = allsigoccdurleft
-        stats[:allsigallthreeleft]      = allsigallthreeleft
-
-        stats[:allsigconboth]           = allsigconboth
-        stats[:allsigoccboth]           = allsigoccboth
-        stats[:allsigdurboth]           = allsigdurboth
-        stats[:allsigconoccboth]        = allsigconoccboth
-        stats[:allsigcondurboth]        = allsigcondurboth
-        stats[:allsigoccdurboth]        = allsigoccdurboth
-        stats[:allsigallthreeboth]      = allsigallthreeboth
-
-        stats[:allsigconright]           = allsigconright
-        stats[:allsigoccright]           = allsigoccright
-        stats[:allsigdurright]           = allsigdurright
-        stats[:allsigconoccright]        = allsigconoccright
-        stats[:allsigcondurright]        = allsigcondurright
-        stats[:allsigoccdurright]        = allsigoccdurright
-        stats[:allsigallthreeright]      = allsigallthreeright
-
-        prettyprinting(test, totalnumberofrules, n, realarray, nullarray, minarray, minsigreal, minsignull, α)
-
-        return stats
-    end
-
-
-
     # BUG: save Dict as jdl, doesn't work for some reason
     # savejdl(rules, name)
-    stats = statistics()
-    return rules
+    stats = statistics(n, rules)
+    prettyprinting(stats, test, totalnumberofrules, n, minsigreal, minsignull, α)
+    return rules, stats
 end
 
 
-# dostuff(n, minsigreal, minsignull, tail)
-rules = dostuff(20; minsigreal=2, minsignull=5, tail=:both)
+rules, stats = dostuff(20; minsigreal=2, minsignull=5)
