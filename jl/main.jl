@@ -4,7 +4,13 @@
 
 using DataFrames, HDF5, HypothesisTests, JLD
 
-function clean(directory, filename)
+function txttocleancsv(directory, filename)
+    #==
+    clean raw txt file and save as csv
+    in:
+        directory   ::String, directory of txt files
+        filename    ::String, name of file to be cleaned
+    ==#
     # open raw file
     open(directory*filename*".txt") do file
         lines = readlines(file)
@@ -24,7 +30,6 @@ function clean(directory, filename)
                 out = replace(out, " ", ",")
                 # write to output
                 write(output, out)
-                # and you're so done, just end end end end it
             end
         end
     end
@@ -70,77 +75,19 @@ function separatesuccedents(df)
 end
 
 
-function csvtorulesdict(df)
+function addrulestodict(df, rulesdict, realornull)
     #==
-    NOTE: modify to directly create rules Dict
-    NOTE: no need to create separate Dicts for real and null first
-    in: DataFrame
-    out: Dict
-    ==#
-    # create Dict
-    rules = Dict()
-    #iterate over DataFrame rows
-    for i in 1:size(df, 1)
-        # create empty rule template
-        emptyrule = Dict(
-            :confidence => Float64[],
-            :occurrences => Int64[],
-            :duration_sec => Float64[],
-            :observations => 0
-        )
-        currentrulename = df[i,:rule]
-        if !haskey(rules, currentrulename)
-            # create if it doesn't exist
-            rules[currentrulename] = emptyrule
-        end
-        #== appends rule values to Dict arrays ==#
-        # get addressess in rules Dict
-        confidence = rules[currentrulename][:confidence]
-        occurrences = rules[currentrulename][:occurrences]
-        duration_sec = rules[currentrulename][:duration_sec]
-
-        # get values from DataFrame
-        confidence_value = df[i,:confidence]
-        occurrences_value = df[i,:occurrences]
-        duration_sec_value = df[i,:duration_sec]
-
-        # add values to rules Dict
-        push!(confidence, confidence_value)
-        push!(occurrences, occurrences_value)
-        push!(duration_sec, duration_sec_value)
-        # one more observation recorded
-        rules[currentrulename][:observations] += 1
-    end
-    return rules
-end
-
-
-function iterateoverfiles(directories, filetype)
-    #==
-    NOTE: Does not work. At all.
-    in: String[]    directories
-        String      filetype
-    ==#
-    for directory in directories
-        for file in readdir(directory)
-            extension = file[end-3:end]
-            if extension == filetype
-                name = file[1:end-4]
-                # do interesting stuff
-            end
-        end
-    end
-end
-
-
-function createdictionary(df, rulesdict, realornull)
-    #==
-    in: DataFrame
-    out: Dict
+    add new rules to rulesdict
+    in:
+        df          ::DataFrame, contains new rules to be added
+        rulesdict   ::Dict, may contain rules, new ones are added
+        realornull  ::Symbol, indicates whether df contains real or null data
+    out:
+        rulesdict   ::Dict, with new rules added
     ==#
     #iterate over DataFrame rows
     for i in 1:size(df, 1)
-        # create empty rule template
+        # empty rule template
         emptyrule = Dict(
             :real => Dict(
                 :confidence => Float64[],
@@ -161,21 +108,19 @@ function createdictionary(df, rulesdict, realornull)
             rulesdict[currentrulename] = emptyrule
         end
         #== appends rule values to Dict arrays ==#
-        # get addressess in rules Dict
+        # get addressess in rules Dict (views)
         confidence = rulesdict[currentrulename][realornull][:confidence]
         occurrences = rulesdict[currentrulename][realornull][:occurrences]
         duration_sec = rulesdict[currentrulename][realornull][:duration_sec]
-
         # get values from DataFrame
         confidence_value = df[i,:confidence]
         occurrences_value = df[i,:occurrences]
         duration_sec_value = df[i,:duration_sec]
-
         # add values to rules Dict
         push!(confidence, confidence_value)
         push!(occurrences, occurrences_value)
         push!(duration_sec, duration_sec_value)
-        # one more observation recorded
+        # increment observation counter
         rulesdict[currentrulename][realornull][:observations] += 1
     end
     return rulesdict
@@ -211,25 +156,12 @@ function prettyint(n; style="spaces")
 end
 
 
-function prettyprinting(
-    stats,              # Dict with lots of statistics
-    test,               # significance test used
-    totalnumberofrules, # absolute number of rules observed
-    n,                  # maximum value for which we want to show the number of rules that have been observed that many times
-    minsigreal,         # how many real observations do we want to calculate significance?
-    minsignull,         # how many null observations do we want to calculate significance?,
-    α,                  # α-value
-    )
+function prettyprinting(stats, n)
     #== print pretty summary ==#
-    if typeof(test) == HypothesisTests.OneSampleTTest
-        testused = "one-sample Student t-test"
-    elseif typeof(test) == SignedRankTest
-        testused = "Wilcoxon signed rank test"
-    end
 
     prettyfinal =  ""
     prettyfinal *= "SUMMARY:\n\n"
-    prettyfinal *= "Total number of rules: $totalnumberofrules\n\n"
+    prettyfinal *= "Total number of rules: $(stats[:totalnumberofrules])\n\n"
     prettyfinal *= "Number of rules with  >= n observations:\n"
     prettyfinal *= "  n  | real | null | both \n"
     prettyfinal *= "-----|------|------|------\n"
@@ -240,10 +172,10 @@ function prettyprinting(
         both = prettyint(stats[:minarray][i])
         prettyfinal *= "$prettyi | $real | $null | $both\n"
     end
-    prettyfinal *= "\nMinimum real observations for significance: $minsigreal\n"
-    prettyfinal *= "Minimum null observations for significance: $minsignull\n"
-    prettyfinal *= "Test used: $testused\n"
-    prettyfinal *= "α = $α\n\n"
+    prettyfinal *= "\nMinimum real observations for significance: $(stats[:minsigreal])\n"
+    prettyfinal *= "Minimum null observations for significance: $(stats[:minsignull])\n"
+    prettyfinal *= "Test used: $(stats[:testtype])\n"
+    prettyfinal *= "α = $(stats[:α])\n\n"
     prettyfinal *= "number of rules with significant\n"
     prettyfinal *= "             left | both | right \n"
     prettyfinal *= "            ------|------|-------\n"
@@ -259,14 +191,16 @@ function prettyprinting(
     println(prettyfinal)
 end
 
-function statistics(
-    n,      # maximum value for which we want to show the number of rules that have been observed that many times
-    rules,  # Dict storing all rules and their metrics
-    )
-    #== collect statistical information ==#
-
-    α = 0.05  # What's our α-value? (not debatable, sorry not sorry)
-    totalnumberofrules = length(rules)  # how many rules do we have?
+function statistics(n, rules, test, minsigreal, minsignull)
+    #==
+    collect statistical information
+    in:
+        n           ::Int, maximum value for which we want to show the number of rules that have been observed that many times
+        rules       ::Dict, store all rules and their metrics
+        test        ::HypothesisTests, significance test used
+        minsigreal  ::Int, minimum number of real observations for calculating significance
+        minsignull  ::Int, minimum number of null observations for calculating significance
+    ==#
 
     ### How many rules with n observations do we have? -- counters
     # create arrays to store observation values in
@@ -282,9 +216,13 @@ function statistics(
 
     # initialise stats Dict
     stats = Dict(
-        :numsigrulesformetric => Dict(),  # how many rules with significant metric m do we have?
-        :sigmetricarrays => Dict(),  # String[] storing all rule keys with significance for metric m
-        :totalnumberofrules => 0
+        :numsigrulesformetric => Dict(),            # how many rules with significant metric m do we have?
+        :sigmetricarrays => Dict(),                 # String[] storing all rule keys with significance for metric m
+        :totalnumberofrules => length(rules),       # how many observations were there?
+        :testtype => string(typeof(test))[17:end],  # what type of test was used?
+        :minsigreal => minsigreal,                  # how many real observations do we want to calculate significance?
+        :minsignull => minsignull,                  # how many null observations do we want to calculate significance?
+        :α => 0.05                                  # α-level (not debatable, sorry not sorry)
     )
 
     # add counters to :numsigrulesformetric
@@ -323,17 +261,17 @@ function statistics(
         # was significance calculated?
         if haskey(rules[key], :sigleft)
             # what was significant?
-            issigconleft = rules[key][:sigleft][:confidence] < α
-            issigoccleft = rules[key][:sigleft][:occurrences] < α
-            issigdurleft = rules[key][:sigleft][:duration_sec] < α
+            issigconleft = rules[key][:sigleft][:confidence] < stats[:α]
+            issigoccleft = rules[key][:sigleft][:occurrences] < stats[:α]
+            issigdurleft = rules[key][:sigleft][:duration_sec] < stats[:α]
 
-            issigconright = rules[key][:sigright][:confidence] < α
-            issigoccright = rules[key][:sigright][:occurrences] < α
-            issigdurright = rules[key][:sigright][:duration_sec] < α
+            issigconright = rules[key][:sigright][:confidence] < stats[:α]
+            issigoccright = rules[key][:sigright][:occurrences] < stats[:α]
+            issigdurright = rules[key][:sigright][:duration_sec] < stats[:α]
 
-            issigconboth = rules[key][:sigboth][:confidence] < α
-            issigoccboth = rules[key][:sigboth][:occurrences] < α
-            issigdurboth = rules[key][:sigboth][:duration_sec] < α
+            issigconboth = rules[key][:sigboth][:confidence] < stats[:α]
+            issigoccboth = rules[key][:sigboth][:occurrences] < stats[:α]
+            issigdurboth = rules[key][:sigboth][:duration_sec] < stats[:α]
 
             # increment appropriate counters and store rule keys in arrays
             # left significance
@@ -428,10 +366,6 @@ function statistics(
         end
     end
 
-    ### Put stuff in stats Dict.
-    # how many rule observations in total?
-    stats[:totalnumberofrules] = totalnumberofrules
-
     # how many rules had [n] observations of real, null, or both?
     stats[:realarray]           = realarray
     stats[:nullarray]           = nullarray
@@ -444,6 +378,8 @@ end
 function dostuff(n; minsigreal=1, minsignull=5)
     # directories array
     directories = ["input/real/", "input/null/"]
+    # NOTE: there's a better way to do this, check scope docs
+    test = nothing  # needed outside of for loop
 
     # dirty text file to clean csv file
     for directory in directories        # iterate over directories
@@ -451,7 +387,7 @@ function dostuff(n; minsigreal=1, minsignull=5)
             extension = file[end-3:end] # get file extension
             if extension == ".txt"      # do some stuff if it's a txt file
                 name = file[1:end-4]    # get file name without extension
-                clean(directory, name)  # clean and convert to csv
+                txttocleancsv(directory, name)  # clean and convert to csv
                 rm(directory*file)      # delete txt file
             end
         end
@@ -492,12 +428,13 @@ function dostuff(n; minsigreal=1, minsignull=5)
                 name = file[1:end-4]
                 df = readtable(directory*file)  # read csv into DataFrame
                 # add current csv to rules Dict
-                rules = createdictionary(df, rules, realornull)
+                rules = addrulestodict(df, rules, realornull)
                 # rm(directory*file)  # delete old csv file
             end
         end
     end
 
+    # calculate significance
     for key in keys(rules)
         for realornull in [:real, :null]
             # remove unnecessary keys where observations == 0
@@ -596,10 +533,10 @@ function dostuff(n; minsigreal=1, minsignull=5)
 
     # BUG: save Dict as jdl, doesn't work for some reason
     # savejdl(rules, name)
-    stats = statistics(n, rules)
-    prettyprinting(stats, test, totalnumberofrules, n, minsigreal, minsignull, α)
+    stats = statistics(n, rules, test, minsigreal, minsignull)
+    prettyprinting(stats, n)
     return rules, stats
 end
 
 
-rules, stats = dostuff(20; minsigreal=2, minsignull=5)
+rules, stats = dostuff(10; minsigreal=2, minsignull=5)
