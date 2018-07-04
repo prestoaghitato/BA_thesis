@@ -1,0 +1,47 @@
+% @author Marcel Ruland (2018, typesetting)
+% @author Katharina Rohlfing (2018, content)
+
+% !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = LuaLaTeX
+\documentclass[DIV=calc,BCOR=0mm,pagesize]{scrartcl}
+% [headinclude] includes header in Satzspiegelberechnung
+% [headlines] gives vsize of header, default is 1.25
+% [pagesize] ensures compatibility with PDF and DVI
+
+%*****************PACKAGES IN USE******************
+\usepackage{ttjenevers}  % use TT Jenevers for rm
+\usepackage{ttcommons}  % use TT Commons for sf
+\setmonofont[Scale=MatchLowercase]{Envy Code R}  % use Envy Code R for tt
+\usepackage[defaultlines=2,all]{nowidow}  % prevent widow and orphan lines
+\usepackage{microtype}  % improved typography
+\usepackage[singlespacing]{setspace}  % improved linespacing
+\usepackage{localextra}  % provides hyphenation for linguistic terms, names, etc.
+%**************************************************
+
+%**************Customise Font Formats**************
+\addtokomafont{author}{\sffamily\addfontfeature{Style=Alternate}}  % amend author
+% Elements on page 60 of (German) KOMA manual
+%**************************************************
+
+\title{Applying Frequent Pattern Mining to Multimodal Behaviour in Interaction}
+\author{Katharina Rohlfing \and Marcel Ruland \and Sascha Henzgen}
+\date{}  % omit date
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+Human social interaction can be characterised by multimodal behaviour.
+According to theoretical positions emphasising that communication is organised by the interaction partners jointly, we identified the challenge of assessing human sequential behaviour that is spread across different modalities and co-constructed with a partner.
+In previous work, we faced this challenge by applying frequent pattern mining in an analysis of a corpus of mother-child dyads.
+
+The application of frequent pattern mining provided some support and initial results for the proposition that human interactive behaviour is sequentially organised.
+Accordingly, verbal and nonverbal behaviour are co-constructed by the interaction partners and form a range of patterns.
+For example, with respect to the occurrence of maternal vocal behaviour, some nonverbal framing was notable.
+Firstly, one pattern with a high confidence suggests an intrapersonal sequence of gazing at the infant, smiling, and speaking.
+In contrast, another pattern suggests an interpersonal sequence of mother gazing at her infant, infant gazing back, followed by vocal behaviour of the mother.
+The analysis reveals patterns emerging between infants as young as 3-months-old and their mothers.
+
+Taken together, frequent pattern mining is a more exploratory analysis as the premises and conclusions emerge as a result of it.
+While this method yields contingencies and dependencies and provides their frequencies, it is not yet investigated how the significance of these patterns can be calculated for behavioural studies and how it can be visualised.
+Our paper presents first solutions to the problem of how to discern and visualise the significance of some patterns with respect to other existing patterns in the sample.
+\end{document}
