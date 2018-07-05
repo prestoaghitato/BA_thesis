@@ -20,6 +20,9 @@
 \usepackage{microtype}							% improved typography
 \usepackage{natbib}								% bibliography
 \bibliographystyle{newharvard}					% custom Harvard bibliography style
+\usepackage{tabularx}							% more spacing options for tables
+\usepackage{array}								% >{} syntax for table formatting
+\usepackage{url}								% typeset urls
 \usepackage{tikz}								% TikZ ist kein Zeichenprogramm
 \usetikzlibrary{positioning}					% relative positioning of nodes
 \usetikzlibrary{arrows}							% more arrows
@@ -39,8 +42,10 @@
 %**************************************************
 
 %****************** New Colours *******************
-\definecolor{graphgreen}{cmyk}{0.76,0.25,0.8,0.18}
-\definecolor{graphred}{cmyk}{0.01,0.92,0.86,0.14}
+%\definecolor{graphgreen}{cmyk}{0.76,0.25,0.8,0.18}
+%\definecolor{graphred}{cmyk}{0.01,0.92,0.86,0.14}
+\definecolor{alert}{HTML}{FF0400}
+\definecolor{beamerblue}{HTML}{3333B2}
 %**************************************************
 
 
@@ -59,33 +64,37 @@
 \frame{
 	\frametitle{Basic Concepts}
 	\begin{columns}
-		\column{0.5\textwidth}
+		\column{0.35\textwidth}
 		\begin{itemize}
 			\item turn
 			\item turn-taking
 			\item uni- vs multimodality
 		\end{itemize}
-		\column{0.5\textwidth}
-		\includegraphics[width=0.5\textwidth]{../aux/img/dummy_basic_concepts.png}
+		\column{0.65\textwidth}
+		\begin{figure}
+			\includegraphics[width=\textwidth]{../aux/img/dummy_basic_concepts.png}
+			\caption{Responses in conversation are fast\textsuperscript{[1]}}
+		\end{figure}
 	\end{columns}
+	
+	\vfill
+	
+	{\tiny\textsuperscript{[1]}\textsc{Levinson}, Stephen C.\ (2016): ``Turn-taking in human communication: Origins and implications for language processing.'' \textit{Trends in Cognitive Sciences} \textbf{20} (1): 6--14}
 }
 \frame{
 	\frametitle{Turn-Taking -- Why do we care?}
 	\begin{columns}
-		\column{0.5\textwidth}
-		\textbf{Why impose such a restriction?}
+		\column{0.35\textwidth}
 		\begin{itemize}
-			\item output signal distorts input signal?
-			\item cognitive load? \\[1em]
+			\item language universal
+			\item present in related species
+			\item present in early infancy
 		\end{itemize}
-		
-		\textbf{But:}
-		\begin{itemize}
-			\item \textsc{tt} equally present in sign languages
-			\item simultaneous reception and production is not an issue
-		\end{itemize}
-		\column{0.5\textwidth}
-		\includegraphics[width=0.5\textwidth]{../aux/img/dummy_basic_concepts.png}
+		\column{0.65\textwidth}
+		\begin{figure}
+			\input{../aux/tikzpictures/tikz_species_beamer.tex}
+			\caption{Turn-taking across species}
+		\end{figure}
 	\end{columns}
 }
 
@@ -96,16 +105,34 @@
 	\begin{figure}
 		\center
 		\includegraphics[width=\textwidth]{../aux/img/video_vp_08_compact.png}
-		\caption{Raw Video Material}
+		\caption{Example of recorded material}
 	\end{figure}
 }
 \frame{
 	\frametitle{Annotating the Videos}
-	\begin{figure}
-		\center
-		\includegraphics[width=\textwidth]{../aux/img/elan_03_cut.png}
-		\caption{\textsc{elan} Screenshot}
-	\end{figure}
+	\only<+>{
+		\begin{figure}
+			\center
+			\includegraphics[width=\textwidth]{../aux/img/elan.png}
+			\caption{\textsc{elan} screenshot}
+		\end{figure}
+	}
+	\only<+>{
+		\begin{columns}
+			\column{0.5\textwidth}
+			\begin{itemize}
+				\item intervals
+				\item intervals from different modalities
+				\item modalities from different sources
+			\end{itemize}
+			\column{0.5\textwidth}
+			\begin{figure}
+				\center
+				\includegraphics[width=\textwidth]{../aux/img/elan_cropped.png}
+				\caption{\textsc{elan} screenshot}
+			\end{figure}
+		\end{columns}
+	}
 }
 \frame{
 	\frametitle{What counts as a rule?}
@@ -113,9 +140,10 @@
 		\column{0.4\textwidth}
 		\begin{enumerate}
 			\item[]\fpmlabel{A} \rightarrow \fpmlabel{B} represents one of two cases:\textsuperscript{[1]}
-			\item[]\fpmlabel{B} begins before \fpmlabel{A} ends \textbf{and}
 			\item interval of \fpmlabel{A} starts before interval of \fpmlabel{B} \textbf{or}
 			\item interval of \fpmlabel{A} and \fpmlabel{B} start at the same time
+			\item[]~
+			\item[]\textbf{and} \fpmlabel{B} begins before \fpmlabel{A} ends
 		\end{enumerate}
 		\column{0.6\textwidth}
 		\begin{figure}
@@ -126,15 +154,15 @@
 	\vfill
 	
 	{\tiny\textsuperscript{[1]}\textsc{Rohlfing}, Katharina; \textsc{Leonardi}, Giuseppe; \textsc{Hüllermeier}, Eyke; \textsc{Raczaszek-Leonardi}, Johanna; and \textsc{Nomikou}, Iris (under review): \\[-1em]
-	``Multimodal turn-taking: Motivations, methodical challenges and first approaches.'' \textit{IEEE Transactions on Cognitive and Developmental Systems.}}  % decrease spacing!
+	``Multimodal turn-taking: Motivations, methodical challenges and first approaches.'' \textit{IEEE Transactions on Cognitive and Developmental Systems.}}
 }
 \frame{
 	\frametitle{Metrics}
 	\begin{columns}
 		\column{0.4\textwidth}
 		\begin{itemize}
-			\item confidence \\ \(conf(\mathcal{A} \rightarrow \mathcal{B}) = \frac{d(\mathcal{A}\mathcal{B})}{d(\mathcal{A})}\)
-			\item absolute number of occurrences
+			\item confidence \\ \(conf(\mathcal{A} \rightarrow \mathcal{B}) = \frac{d(\mathcal{A}\cup\mathcal{B})}{d(\mathcal{A})}\)
+			\item total number of occurrences
 			\item duration (\textit{sec})
 		\end{itemize}
 		\column{0.6\textwidth}
@@ -148,11 +176,8 @@
 \section{Establishing Significance}%%%
 \frame{
 	\center
-	\only<1>{
-		{\Huge Why Significance?}
-	}
-	\only<2>{
-		{\Huge Why Significance?}
+	{\Huge Why Significance?}
+	\visible<2->{
 		
 		\vspace{0.2\textheight}
 		
@@ -161,27 +186,71 @@
 }
 \frame{
 	\frametitle{Significance -- How?}
-	\begin{figure}
-		\input{../aux/tikzpictures/tikz_null_beamer.tex}
-	\end{figure}
+	\begin{columns}
+		\column{0.3\textwidth}
+		\begin{enumerate}
+			\item create 100 null distributions for every real sequence
+			\item take 100 batches of 10: \\ 1 null distributions from each real distribution
+			\item create distribution for every rule
+			\item check real observation for significance against null observation distribution
+		\end{enumerate}
+		\column{0.7\textwidth}
+		\only<+>{
+			\begin{figure}
+				\input{../aux/tikzpictures/tikz_null_naive_beamer.tex}
+			\end{figure}
+		}
+		\only<+>{
+			\begin{figure}
+				\input{../aux/tikzpictures/tikz_null_naive_highlighted_beamer.tex}
+			\end{figure}
+		}
+		\only<+>{
+			\begin{figure}
+				\input{../aux/tikzpictures/tikz_null_logical_beamer.tex}
+			\end{figure}
+		}
+	\end{columns}
 }
 
-\section{Results}
+\section{Interpretation}
 \frame{
-	\frametitle{Results}
+	\frametitle{Interpretation}
+	\begin{columns}
+		\column{0.5\textwidth}
+		{\color{beamerblue} Things to Keep in Mind}
+		\begin{itemize}
+			\item evaluate in context
+			\item mothers (almost) always talk \\ ~
+			\item[]~
+		\end{itemize}
+		\column{0.5\textwidth}
+		{\color{beamerblue} Things to Look for}
+		\begin{itemize}
+			\item confirming existing research
+			\item new ``interesting'' rules (whatever that means)
+			\item generate new hypotheses
+		\end{itemize}
+	\end{columns}
 }
-%\frame{
-%	\frametitle{Bibliography}
-%	\bibliography{../bib/ba_bib}
-%}
+\frame{
+	\begin{columns}
+		\column{0.5\textwidth}
+		\center
+		{\Huge Thank you.}
+		\column{0.5\textwidth}
+		{\color{beamerblue} Picture Sources}
+		\begin{tabularx}{\textwidth}{>{\bfseries\tiny}r>{\tiny}X}
+			lepilemur edwardsi & \copyright\ Frank Vassen \\
+			callithrix jacchus & \copyright\ Raimond Spekking \\
+			cebuella pygmaea & \copyright\ Don Faulkner \\
+			callicebus cupreus & \copyright\ Udo Schröter \\
+			saimiri & \copyright\ Ernst Vikne \\
+			hylobates syndactylus & \copyright\ Su Neko\\
+			orangutan & \copyright\ Trisha Shears \\
+			chimpanzee & \copyright\ Frans de Waal \\
+			human & \copyright\ Jelly Helm \\
+		\end{tabularx}
+	\end{columns}
+}
 \end{document}
-
-%\frame{
-%	\frametitle{Dummy}
-%	\begin{columns}
-%		\columns{0.5\textwidth}
-%			left
-%		\columns{0.5\textwidth}
-%			right
-%	\end{columns}
-%}

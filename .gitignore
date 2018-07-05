@@ -14,6 +14,7 @@
 # directories
 /jl/input/*
 /jl/output/*
+/tex/aux/img*
 
 ## Intermediate documents:
 *.dvi

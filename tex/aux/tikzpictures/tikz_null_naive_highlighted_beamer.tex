@@ -1,18 +1,16 @@
 % !TEX root = ../../beamer/ba_beamer_master.tex
 % @author Marcel Ruland (2018)
-\definecolor{beamerblue}{HTML}{3333B2}
 
 \begin{tikzpicture}[
-	scale=0.8,  % a little smaller on beamer
-	node distance=0 and 0,  % y, x for fuck knows what reason
+	scale=0.7,  % a little smaller on beamer
 	every node/.append style={font=\footnotesize\sffamily\addfontfeature{Numbers=Lining,Letters=Uppercase}}]
 %	\draw [help lines] (0,0) grid (13,7);
 	
 	%% time line
 	% annotations
-	\node [anchor=east] at (2.75, -0.25) {\textit{time (sec)}};
+	\node [anchor=east] at (2.75, -0.25) {\textit{\scriptsize{time (sec)}}};
 	\foreach \i in {20, 21,..., 29, 30}
-		\node at ({\i-17},-0.25) {\i};
+		\node at ({\i-17},-0.25) {\scriptsize{\i}};
 	% small vertical help lines
 	\draw [help lines, dashed] (3,3) -- (3,4);
 	\draw [help lines, dashed] (13,3) -- (13,4);
@@ -30,8 +28,8 @@
 	\foreach \i in {0, 0.5,..., 2.5, 3, 4, 4.5,..., 6.5, 7}  % top and bottom
 		\draw (3,\i) -- (13,\i);
 	% annotations
-	\node[color=beamerblue, rotate=-90, anchor=south] at (13,5.5) {\textsc{real}};
-	\node[color=beamerblue, rotate=-90, anchor=south] at (13,1.5) {\textsc{null}};
+	\node[color=beamerblue, rotate=-90, anchor=south] at (13,5.5) {\textbf{\textsc{real}}};
+	\node[color=beamerblue, rotate=-90, anchor=south] at (13,1.5) {\textbf{\textsc{null}}};
 		
 	%% labels
 	\foreach \i in {0.25, 4.25}{  % top and bottom
@@ -69,19 +67,23 @@
 	\draw [fill=lightgray] (3.05,2.5) rectangle		({3.05+1.927},3);
 	\draw [fill=lightgray] (11.206,2.5) rectangle	({11.206+1.554},3);
 
-	\draw [fill=lightgray] (6.4,2) rectangle		({6.4+0.36},2.5);
-	\draw [fill=lightgray] (8.84,2) rectangle		({8.84+0.24},2.5);
-	\draw [fill=lightgray] (3.2,2) rectangle		({3.2+0.32},2.5);
+	\draw [fill=lightgray] (3.84,2) rectangle		({3.84+0.36},2.5);
+	\draw [fill=lightgray] (5.14,2) rectangle		({5.14+0.24},2.5);
+	\draw [fill=lightgray] (8.65,2) rectangle		({8.65+0.32},2.5);
 	
-	\draw [fill=lightgray] (9.18,1.5) rectangle		({9.18+3.08},2);
-	\draw [fill=lightgray] (3.52,1.5) rectangle		({3.52+2.88},2);
-	\draw [fill=lightgray] (6.76,1.5) rectangle		({6.76+2.08},2);
+	\draw [fill=lightgray] (4.26,1.5) rectangle		({4.26+3.08},2);
+	\draw [fill=lightgray] (7.66,1.5) rectangle		({7.66+2.88},2);
+	\draw [fill=lightgray] (10.9,1.5) rectangle		({10.9+2.08},2);
 	
 	\draw [fill=lightgray] (7.987,1) rectangle		({7.987+0.737},1.5);
 	\draw [fill=lightgray] (6.99,1) rectangle		({6.99+0.79},1.5);
 	\draw [fill=lightgray] (3.079,1) rectangle		({3.079+1.63},1.5);
 	
-	\draw [fill=lightgray] (5.44,0.5) rectangle		({5.44+7.52},1);
+	\draw [fill=lightgray] (3.13,0.5) rectangle		({3.13+7.52},1);
 
-	\draw [fill=lightgray] (3,0) rectangle			({3+2.44},0.5);
+	\draw [fill=lightgray] (4.56,0) rectangle		({4.56+2.44},0.5);
+	% red
+	\fill [alert, opacity=0.4] (8.65,1.5) rectangle ({8.65+0.32},2.5);
+	\fill [alert, opacity=0.4] (5.14,1.5) rectangle ({5.14+0.24},2.5);
+	\fill [alert, opacity=0.4] (4.56,0) rectangle ({4.56+2.44},1);
 \end{tikzpicture}
