@@ -1,0 +1,66 @@
+% @author Marcel Ruland (2018)
+
+%% tell TeXshop to compile using LuaLaTeX and encode with UTF-8
+%!TEX TS-program = lualatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[
+	fontsize=11,			% font size 11pt (KOMA default)
+	DIV=calc,				% KOMA calculates Satzspiegel
+	BCOR=0mm,				% length that will get swallowed up by binding
+	pagesize,				% ensures compatibility with PDF and DVI
+	toc=bib,				% include bib in toc
+	toc=listof,				% include list of tables and list of figures in toc
+	abstract=true,			% display abstract heading
+	twoside,				% two-sided printing
+	titlepage=firstiscover,	% set title page as cover page
+	footnotes=multiple		% separate footnotes set directly one after another by a comma
+]{scrreprt}
+
+\usepackage{../scrreprt/ba_style}  % loading packages, typesetting, etc.
+
+\begin{document}
+\begin{figure}
+	\centering
+	\input{../aux/tikzpictures/tikz_idealseq.tex}
+	\caption{fig:idealseq}
+	\label{fig:idealseq}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\input{../aux/tikzpictures/tikz_levinson.tex}
+	\caption{fig:levinson}
+	\label{fig:levinson}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\input{../aux/tikzpictures/tikz_method.tex}
+	\caption{fig:method}
+	\label{fig:method}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\input{../aux/tikzpictures/tikz_null_naive.tex}
+	\caption{fig:nullnaive}
+	\label{fig:nullnaive}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\input{../aux/tikzpictures/tikz_organisation.tex}
+	\caption{fig:organisation}
+	\label{fig:organisation}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\input{../aux/tikzpictures/tikz_significance.tex}
+	\caption{fig:significance}
+	\label{fig:significance}
+\end{figure}
+
+
+\end{document}

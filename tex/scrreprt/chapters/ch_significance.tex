@@ -33,18 +33,6 @@ We go through the same process for all of the 10 sequences and end up having 100
 
 Finally, to evaluate a rule's significance we take the distribution of its probability in all of the 1000 null distributions, i.e.~we obtain a probability distribution with 1000 data points. We then test for significance at \(\alpha\)~=~0.05 using some test or another. % Is this distribution normal? Central limit theorem?
 
-\begin{figure}
-	\centering
-	\input{../aux/tikzpictures/tikz_null_naive.tex}
-	\caption{An excerpt of a real sequence (top) and a corresponding null distribution (bottom). Note how events are shuffled with respect to their position in time, whereas their duration and number has been left untouched.}
-	\label{fig:null}
-\end{figure}
-\begin{figure}[h]
-	\centering
-	\input{../aux/tikzpictures/tikz_significance.tex}
-	\caption{Establishing significance.}
-	\label{fig:null}
-\end{figure}
 %
 %Tests to be used:
 %- some sort of significance test

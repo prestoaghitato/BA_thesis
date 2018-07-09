@@ -13,12 +13,6 @@ The following subsections begin by introducing the raw data \emph{as-is} and the
 \label{ssec:miningmethodnature}
 The corpus is a collection of 10 mother--infant dyads. Infants were 3 months of age, mothers between 28 and 40 years. Mother and infant were recorded at their own homes during a diaper routine. This routine was chosen because it a)~is an activity familiar to both mother and infant, b)~is an activity where mother and infant are in direct communication with each other for a relatively long period of time, c)~both mother and infant are free in their expressions. The infant especially is free to make use of body movements and gestures and is not reliant on support from the mother, as might be the case if the infant were sitting. The diaper routine was recorded by two video cameras from two different perspectives, such that all relevant events were clearly visible. Figure \ref{fig:rawvid} gives an impression of this raw data. For a more detailed description of the setup see \citet[\snum{2.1}]{nomikou17} and \citet[\pnum{115~f.}]{nomikou11}.\footnote{But note that while the same setup was used, the inclusion or exclusion of groups or individual subjects in the corpus was different due to the different aims of the studies.} The videos had a mean length of 395~s (\emph{\textsc{sd}}~=~186~s).
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=\imgwidth]{../aux/img/video_vp_08_raw.png}
-	\label{fig:rawvid}
-	\caption{Screen capture of the raw video data}
-\end{figure}
 
 \subsection{Annotation of the Videos}
 \label{ssec:miningmethodannotation}
@@ -56,12 +50,7 @@ A specific kind of event is referred to as a \emph{dimension} (the example event
 All events obtained from annotating the recording of a single mother--infant dyad are referred to as a \emph{sequence.}
 Finally, all 10 sequences together are referred to as the \emph{corpus.}
 
-\begin{figure}
-	\centering
-	\input{../aux/tikzpictures/tikz_idealseq.tex}
-	\caption{Graphical representation of sequence structure}
-	\label{fig:idealseq}
-\end{figure}
+
 
 \subsection{Mining Approach}
 \label{ssec:miningmethodapproach}
@@ -92,12 +81,7 @@ A few important differences between the scenario described by \citeauthor{levins
 
 There are two possible cases: The delays chosen are either too long or too short. If they are too short, then some but not all of the coincidences will be filtered out. If they are too long, then some real patterns will not be captured but all of the coincidences will be filtered out. It is unlikely, that the delays chosen are exactly right (or that \emph{exactly right} is even a meaningful notion in this context), but for the simple fact that reaction time is always greater than 0~ms I do believe that modelling them is a step in the right direction.
 
-\begin{figure}
-	\centering
-	\input{../aux/tikzpictures/tikz_levinson.tex}
-	\caption{Levinson}
-	\label{fig:levinson}
-\end{figure}
+
 %Lastly, there is no reason to believe that making use of peak reaction performance is the default case in the present scenario.  % Who cares?
 
 % This turned out to be impractical:
