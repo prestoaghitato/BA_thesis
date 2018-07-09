@@ -4,7 +4,12 @@
 \chapter{Formalisation of Association Rules}
 \label{ch:formalisation}
 
-The rules mined are of the form \fpmrule{A}{B}, where \fpmset{A} is the antecedent (or condition that must be fulfilled) and \fpmset{B} is the succedent (or result given the antecedent). Both antecedent and succedent are sets of events, where an event is one of those listed in table \ref{tab:events}. Events may be of the type \code{mother} or \code{infant}. Stored with every set of events is the time start and end point of the interval during which the set is observed in the data. The example sequence given in figure \ref{fig:idealseq} contains 6 different such intervals. An occurrence of a rule must fulfil one of the following conditions in order to be taken into account:
+The rules mined are of the form \fpmrule{A}{B}, where \fpmset{A} is the antecedent (or condition that must be fulfilled) and \fpmset{B} is the succedent (or result given the antecedent).
+Both antecedent and succedent are sets of events, where an event is one of those listed in table \ref{tab:events}.
+Events may be of the type \code{mother} or \code{infant}.
+Stored with every set of events is the time start and end point of the interval during which the set is observed in the data.
+The example sequence given in figure \ref{fig:idealseq} contains 6 different such intervals.
+An occurrence of a rule must fulfil one of the following conditions in order to be taken into account:
 \begin{enumerate}
 	\item If the antecedent is of type \code{infant} and the succedent of type \code{mother}, then the succedent's start time point must lie at least 289~ms after the start time point of the antecedent and the end time point of the antecedent must lie after the start time point of the succedent.
 	\item If the antecedent is of type \code{mother} and the succedent of type \code{infant}, then the succedent's start time point must lie at least 850~ms after the start time point of the antecedent and the end time point of the antecedent must lie after the start time point of the succedent.

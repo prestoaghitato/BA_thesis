@@ -7,31 +7,62 @@
 
 \chapter{\significance}
 \label{ch:significance}
-\chapterintro{Significance tests are one of the most widely used statistical tools in academic work of virtually all disciplines dealing with some sort of numerical data. As is the case with most widely used tools, the temptation to merely learn its application and neglect conceptual understanding is present. I will try and bypass this fallacy by devoting section \ref{sec:signat} to the concept of statistical significance. The following section \ref{sec:sigmet} describes the creation of a null hypothesis to establish a baseline against which to test for significance. Finally, section \ref{sec:sigres} discusses the results.}
+\chapterintro{Significance tests are one of the most widely used statistical tools in academic work of virtually all disciplines dealing with some sort of numerical data.
+As is the case with most widely used tools, the temptation to merely learn its application and neglect conceptual understanding is present.
+I will try and bypass this fallacy by devoting section \ref{sec:signat} to the concept of statistical significance.
+The following section \ref{sec:sigmet} describes the creation of a null hypothesis to establish a baseline against which to test for significance.
+Finally, section \ref{sec:sigres} discusses the results.}
 
 \section{The Nature of Significance}
 \label{sec:significancenature}
-In a classic experimental setting, one distinguishes between a control group and an experimental group. In the control group, all variables are held constant, whereas in the experimental group a single variable is modified in some way. Naturally, the object of interest are the potential effects the changes to the variable might have on the experimental group. Speaking more abstractly, experimental and control group are two populations with some population parameter \(p\). Let us assume that its value \(p_e\) in the experimental group is different from its value \(p_c\) in the control group. The aim of significance tests is to objectively state whether the difference
+In a classic experimental setting, one distinguishes between a control group and an experimental group.
+In the control group, all variables are held constant, whereas in the experimental group a single variable is modified in some way.
+Naturally, the object of interest are the potential effects the changes to the variable might have on the experimental group.
+Speaking more abstractly, experimental and control group are two populations with some population parameter \(p\).
+Let us assume that its value \(p_e\) in the experimental group is different from its value \(p_c\) in the control group.
+The aim of significance tests is to objectively state whether the difference
 
 
 \begin{quote}\small\singlespacing
-``We are inclined to think that as far as a particular hypothesis is concerned, no test based upon the theory of probability can by itself provide any valuable evidence of the truth or falsehood of that hypothesis. But we may look at the purpose of test from another view-point. Without hoping to know whether each separate hypothesis is true or false, we may search for rules to govern our behavior with regard to them, in following which we insure that, in the long run of experience, we shall not be too often wrong.''
+``We are inclined to think that as far as a particular hypothesis is concerned, no test based upon the theory of probability can by itself provide any valuable evidence of the truth or falsehood of that hypothesis.
+But we may look at the purpose of test from another view-point.
+Without hoping to know whether each separate hypothesis is true or false, we may search for rules to govern our behavior with regard to them, in following which we insure that, in the long run of experience, we shall not be too often wrong.''
 
 ~ \hfill \citep[\pnum{TBA}]{neyman33}
 \end{quote}
 
-\paragraph{Numerical vs applied significance} A certain kind of lens might have a positive effect on sight that is statistically significant. At the same time, this positive effect can be so small that humans are unable to perceive a difference. While this effect is undoubtedly significant numerically, no one would pay money for a lens whose effect they do not perceive. In that sense, significance alone must not be accepted blindly, because significance in turn is blind to effect size or scale \citep[\cnum{8}]{frost17}.
+\paragraph{Numerical vs applied significance} A certain kind of lens might have a positive effect on sight that is statistically significant.
+At the same time, this positive effect can be so small that humans are unable to perceive a difference.
+While this effect is undoubtedly significant numerically, no one would pay money for a lens whose effect they do not perceive.
+In that sense, significance alone must not be accepted blindly, because significance in turn is blind to effect size or scale \citep[\cnum{8}]{frost17}.
 
 \section{Method}
 \label{sec:significancemethod}
-The crucial missing piece for establishing the significance of a rule is a base case\dash or base distribution, so to speak\dash against which to compare the rule's probability. In other words: while there obviously is a real distribution, we lack a null distribution for comparison. The methodological approach I take, therefore, is to create a null distribution, which then serves as a basis for the real rules' probabilities to be tested for significance. This is in some respects similar to\dash and certainly inspired by\dash \citet[\pnum{10~f.}]{abuzhaya17}.
+The crucial missing piece for establishing the significance of a rule is a base case\dash or base distribution, so to speak\dash against which to compare the rule's probability.
+In other words: while there obviously is a real distribution, we lack a null distribution for comparison.
+The methodological approach I take, therefore, is to create a null distribution, which then serves as a basis for the real rules' probabilities to be tested for significance.
+This is in some respects similar to\dash and certainly inspired by\dash \citet[\pnum{10~f.}]{abuzhaya17}.
 
-We take one of the ten sequences in the corpus. For each of the 11 dimensions individually (cf.~table \ref{tab:events}), we shuffle the events with respect to their start points in time, but leave their duration untouched, i.e.~we leave the position of their time end points untouched \emph{with respect to their time start points.} We also do not add or remove any events. This process is done for all 11 dimensions. Figure \ref{fig:null} gives an example hereof. The top half of the figure is an excerpt of real data taken from a sequence in the corpus. We see three events of type \code{mother\_voc}, three shorter events of type \code{mother\_gaze\_infant}, one longer event of type \code{infant\_gaze\_mother}, etc.\footnote{The excerpt taken did not contain events of all 11 types, empty dimensions have simply been omitted in the graphic.} The bottom half of the figure shows a corresponding null distribution. Notice how \code{mother\_voc} still contains the same three events of the same length but in a different temporal order. The same is true for all other dimensions.
+We take one of the ten sequences in the corpus.
+For each of the 11 dimensions individually (cf.~table \ref{tab:events}), we shuffle the events with respect to their start points in time, but leave their duration untouched, i.e.~we leave the position of their time end points untouched \emph{with respect to their time start points.} We also do not add or remove any events.
+This process is done for all 11 dimensions.
+Figure \ref{fig:null} gives an example hereof.
+The top half of the figure is an excerpt of real data taken from a sequence in the corpus.
+We see three events of type \code{mother\_voc}, three shorter events of type \code{mother\_gaze\_infant}, one longer event of type \code{infant\_gaze\_mother}, etc.\footnote{The excerpt taken did not contain events of all 11 types, empty dimensions have simply been omitted in the graphic.} The bottom half of the figure shows a corresponding null distribution.
+Notice how \code{mother\_voc} still contains the same three events of the same length but in a different temporal order.
+The same is true for all other dimensions.
 
-We now have a distribution of the sequence which contains the exact same events as the real distribution, but shuffled in their temporal order. In other words, the only thing that has changed is the temporal arrangement of the events \emph{with respect to one another.} We will call this a null \textbf{sequence} and create 100 of its kind.\footnote{Having chosen to create exactly 100 null sequences for every real sequence has\dash admittedly\dash little motivation. Were it not for us being used to count in base 10, the chosen number\dash let it be \textit{k}\dash would in all probability have been different. However, this is not a big issue. The higher the number of created null sequences is, the smaller the margin of error for the p-values will be. That is to say, \textit{k} being too small poses issues, but \textit{k} being too large does not. With the chosen value of \textit{k}~=~100, the margin of error is SOME VALUE, which is GREAT BECAUSE WHAT?}
+We now have a distribution of the sequence which contains the exact same events as the real distribution, but shuffled in their temporal order.
+In other words, the only thing that has changed is the temporal arrangement of the events \emph{with respect to one another.} We will call this a null \textbf{sequence} and create 100 of its kind.\footnote{Having chosen to create exactly 100 null sequences for every real sequence has\dash admittedly\dash little motivation.
+Were it not for us being used to count in base 10, the chosen number\dash let it be \textit{k}\dash would in all probability have been different.
+However, this is not a big issue.
+The higher the number of created null sequences is, the smaller the margin of error for the p-values will be.
+That is to say, \textit{k} being too small poses issues, but \textit{k} being too large does not.
+With the chosen value of \textit{k}~=~100, the margin of error is SOME VALUE, which is GREAT BECAUSE WHAT?}
 We go through the same process for all of the 10 sequences and end up having 1000 null distributions, with 100 each corresponding to a given sequence.
 
-Finally, to evaluate a rule's significance we take the distribution of its probability in all of the 1000 null distributions, i.e.~we obtain a probability distribution with 1000 data points. We then test for significance at \(\alpha\)~=~0.05 using some test or another. % Is this distribution normal? Central limit theorem?
+Finally, to evaluate a rule's significance we take the distribution of its probability in all of the 1000 null distributions, i.e.~we obtain a probability distribution with 1000 data points.
+We then test for significance at \(\alpha\)~=~0.05 using some test or another.
 
 %
 %Tests to be used:
