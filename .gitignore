@@ -223,6 +223,3 @@ TSWLatexianTemp*
 
 # expex forward references with \gathertags
 *-tags.tex
-
-# csv files for sandboxing in julia
-*.csv
