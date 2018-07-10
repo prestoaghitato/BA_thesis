@@ -28,20 +28,20 @@ The aim of significance tests is to objectively state whether the difference
 But we may look at the purpose of test from another view-point.
 Without hoping to know whether each separate hypothesis is true or false, we may search for rules to govern our behavior with regard to them, in following which we insure that, in the long run of experience, we shall not be too often wrong.''
 
-~ \hfill \citep[\pnum{TBA}]{neyman33}
+~ \hfill \citep[\pnum{TBA}]{neyman_problem_1933}
 \end{quote}
 
 \paragraph{Numerical vs applied significance} A certain kind of lens might have a positive effect on sight that is statistically significant.
 At the same time, this positive effect can be so small that humans are unable to perceive a difference.
 While this effect is undoubtedly significant numerically, no one would pay money for a lens whose effect they do not perceive.
-In that sense, significance alone must not be accepted blindly, because significance in turn is blind to effect size or scale \citep[\cnum{8}]{frost17}.
+In that sense, significance alone must not be accepted blindly, because significance in turn is blind to effect size or scale \citep[\cnum{8}]{frost_statistische_2017}.
 
 \section{Method}
 \label{sec:significancemethod}
 The crucial missing piece for establishing the significance of a rule is a base case\dash or base distribution, so to speak\dash against which to compare the rule's probability.
 In other words: while there obviously is a real distribution, we lack a null distribution for comparison.
 The methodological approach I take, therefore, is to create a null distribution, which then serves as a basis for the real rules' probabilities to be tested for significance.
-This is in some respects similar to\dash and certainly inspired by\dash \citet[\pnum{10~f.}]{abuzhaya17}.
+This is in some respects similar to\dash and certainly inspired by\dash \citet[\pnum{10~f.}]{abu-zhaya_multimodal_2017}.
 
 We take one of the ten sequences in the corpus.
 For each of the 11 dimensions individually (cf.~table \ref{tab:events}), we shuffle the events with respect to their start points in time, but leave their duration untouched, i.e.~we leave the position of their time end points untouched \emph{with respect to their time start points.} We also do not add or remove any events.
@@ -67,9 +67,9 @@ We then test for significance at \(\alpha\)~=~0.05 using some test or another.
 %
 %Tests to be used:
 %- some sort of significance test
-%- traditional confidence(X->Y) = P(Y|X), both associated with an \emph{arbitrary} cutoff threshold \citep[\pnum{21~ff.}]{han12}
+%- traditional confidence(X->Y) = P(Y|X), both associated with an \emph{arbitrary} cutoff threshold \citep[\pnum{21~ff.}]{han_data_2012}
 %
-%``[M]any patterns that are interesting by objective standards may represent common sense and, therefore, are actually uninteresting.'' \citep[\pnum{22}]{han12}
+%``[M]any patterns that are interesting by objective standards may represent common sense and, therefore, are actually uninteresting.'' \citep[\pnum{22}]{han_data_2012}
 
 \section{Metrics}
 \paragraph{Evaluating single rules}

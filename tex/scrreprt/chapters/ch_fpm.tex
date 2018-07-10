@@ -1,4 +1,4 @@
-% !TEX root = ../ba_scrreprt_master.tex
+% !TEX root = ../light/ba_light_master.tex
 % @author Marcel Ruland (2018)
 
 \chapter{Applying \fpmupper}
@@ -19,12 +19,12 @@ This routine was chosen because it a)~is an activity familiar to both mother and
 The infant especially is free to make use of body movements and gestures and is not reliant on support from the mother, as might be the case if the infant were sitting.
 The diaper routine was recorded by two video cameras from two different perspectives, such that all relevant events were clearly visible.
 Figure \ref{fig:rawvid} gives an impression of this raw data.
-For a more detailed description of the setup see \citet[\snum{2.1}]{nomikou17} and \citet[\pnum{115~f.}]{nomikou11}.\footnote{But note that while the same setup was used, the inclusion or exclusion of groups or individual subjects in the corpus was different due to the different aims of the studies.} The videos had a mean length of 395~s (\emph{\textsc{sd}}~=~186~s).
+For a more detailed description of the setup see \citet[\snum{2.1}]{nomikou_verbs_2017} and \citet[\pnum{115~f.}]{nomikou_language_2011}.\footnote{But note that while the same setup was used, the inclusion or exclusion of groups or individual subjects in the corpus was different due to the different aims of the studies.} The videos had a mean length of 395~s (\emph{\textsc{sd}}~=~186~s).
 
 
 \subsection{Annotation of the Videos}
 \label{ssec:miningmethodannotation}
-11 kinds of events were hand-coded frame per frame for both mother and child using the \textsc{elan} software \citep{wittenburg06}, yielding an accuracy of \textasciitilde40~ms (videos were recorded with 25 frames per second, resulting in a single frame being 40~ms long).
+11 kinds of events were hand-coded frame per frame for both mother and child using the \textsc{elan} software \citep{wittenburg_elan:_2006}, yielding an accuracy of \textasciitilde40~ms (videos were recorded with 25 frames per second, resulting in a single frame being 40~ms long).
 These events were of linguistic, vocal, and visual modality. %Categories were chosen how? Elaborate here.
 Table \ref{tab:events} lists all categories.
 Every annotation contains a start and end time point and therefore also the duration of the respective event.
@@ -71,7 +71,7 @@ Finally, all 10 sequences together are referred to as the \emph{corpus.}
 \label{ssec:miningmethodapproach}
 
 \paragraph{Association Rules}
-The patterns \citet{rohlfing18} mined were association rules of the form \fpmrule{A}{B}, where the probability of the succedent \fpmset{B} was high given the antecedent \fpmset{A}.
+The patterns \citet{rohlfing_multimodal_nodate} mined were association rules of the form \fpmrule{A}{B}, where the probability of the succedent \fpmset{B} was high given the antecedent \fpmset{A}.
 Note that antecedent and succedent are not single events but sets of events.
 One may equally well form a hypothetical rule of the form \fpmrule{B,D}{A,C,D}.
 Occurrences of a rule were taken into account if the antecedent's end time point lay before the succedent's start time point \emph{and} one of the following two conditions was fulfilled:
@@ -94,49 +94,49 @@ Therefore, an interpersonal rule where both events begin at the same time is the
 Not only will it be a meaningless rule, but also an incorrect rule and\dash accordingly\dash should not be captured as a rule at all.
 
 \paragraph{Choosing appropriate delays}  % Clarify this entire paragraph, content is good but confusingly written. Also have a look at the huge ass turn-taking reader for more literature on \rt\ in communication/interaction
-Human reaction time (henceforth \rt) correlates with a vast variety of factors, among which are intensity, modality, and complexity of the stimulus \citep{brebner80}, age and gender \citep{der06}, state of alertness \citep{appelle74}, handedness \citep{dane03}, and even personality traits \citep{stelmack93}.
+Human reaction time (henceforth \rt) correlates with a vast variety of factors, among which are intensity, modality, and complexity of the stimulus \citep{brebner_introduction:_1980}, age and gender \citep{der_age_2006}, state of alertness \citep{appelle_simple_1974}, handedness \citep{dane_sex_2003}, and even personality traits \citep{stelmack_personality_1993}.
 Quite obviously, many of those traits cannot be determined for the subjects in the corpus used in the present thesis.
 However, those factors which are most relevant (namely age of the subject and modality of the stimulus) are both captured in the data and relatively easy to account for.
 Regarding modality, variation is very small.
-\citet[\pnum{9}]{brebner80} ascribe variation to ``differences in the peripheral mechanisms rather than in the central processes'' and give average\footnote{I use the term \emph{average} wherever sources do not state whether the value in question is a mean, median, mode, or other measure of centrality.} \rt s of 8--10~ms for acoustic stimuli and 20--40~ms for visual stimuli to reach the central processes.
+\citet[\pnum{9}]{brebner_introduction:_1980} ascribe variation to ``differences in the peripheral mechanisms rather than in the central processes'' and give average\footnote{I use the term \emph{average} wherever sources do not state whether the value in question is a mean, median, mode, or other measure of centrality.} \rt s of 8--10~ms for acoustic stimuli and 20--40~ms for visual stimuli to reach the central processes.
 The resulting difference of 10--32~ms may of course be incorporated in a model of \rt s in the corpus used here, but modelling different \rt s depending on the kind of stimulus complicates the algorithm considerably.
 For practical reasons, I have therefore decided to not include the modality of the stimulus for now.
-Regarding age, mean \rt\ lies  between 1002--1124~ms for infants of age 6--9 months (N~=~24) and between 311--326~ms for adults of age 19--26 years (N=11) \citep[\pnum{95}]{leibold02}.%
+Regarding age, mean \rt\ lies  between 1002--1124~ms for infants of age 6--9 months (N~=~24) and between 311--326~ms for adults of age 19--26 years (N=11) \citep[\pnum{95}]{leibold_relationship_2002}.%
 \footnote{Stimulus was a pure (i.e.~sine wave) tone of 1000~Hz with loudness ranging from 40--60~dB.
 No numerical values given.
-Converted from line chart using the Engauge Digitizer software \citep{mitchell02}.
-The loudness corresponds to average loudness perceived in conversation \citep[\pnum{32}]{goerne06}} It would obviously have been desirable to have \rt\ values of 3 month old infants, given that the infants in the  corpus used in the present thesis are 3 months of age.
+Converted from line chart using the Engauge Digitizer software \citep{mitchell_engauge_2002}.
+The loudness corresponds to average loudness perceived in conversation \citep[\pnum{32}]{gorne_tontechnik:_2006}} It would obviously have been desirable to have \rt\ values of 3 month old infants, given that the infants in the  corpus used in the present thesis are 3 months of age.
 Unfortunately, such literature does not seem to be available, so the age difference of 3--6 months cannot be avoided for now.
 Neverthelss, the important point made is that there \emph{is} a considerable difference in reaction time between infants and adults that must be taken into account.
 In my analysis, I therefore capture rules of the sort \fpmtextrule{infant}{mother} (i.e.~mother has to react) if and only if the delay between the start time point of the antecedent is greater than 289~ms before that of the succedent.
 Similarly, rules of the sort \fpmtextrule{mother}{infant} (i.e.~infant has to react) are captured if and only if the delay between the start time point of the antecedent is greater than 850~ms before that of the succedent.
-The values are those given by \citet{leibold02} minus two standard deviations.
-This way\dash assuming \rt s to be normally distributed\dash 97.5~\% of \rt s will be longer than the given delays \citep[\pnum{57}]{moore16}.
+The values are those given by \citet{leibold_relationship_2002} minus two standard deviations.
+This way\dash assuming \rt s to be normally distributed\dash 97.5~\% of \rt s will be longer than the given delays \citep[\pnum{57}]{moore_introduction_2017}.
 Consequently, only 2.5~\% of \rt s will falsely be sorted out as coincidence.
 
 \paragraph{Reaction time in interaction}
 I am well aware that the literature cited with regards to the delays chosen is concerned with \rt\ to general stimuli and does not consider communication or interaction specifically.
 Unfortunately, literature specifically concerned with \rt\ in interaction is virtually inexistent.
-There are some indications that it may be faster than general \rt\ \citep{levinson16}, but none that it may be slower.
-\citepos{levinson16} argument deserves further attention.
+There are some indications that it may be faster than general \rt\ \citep{levinson_turn-taking_2016}, but none that it may be slower.
+\citepos{levinson_turn-taking_2016} argument deserves further attention.
 It unpacks as follows:
 
 Turn-taking is not a cultural phenomenon but a universal feature of human language.
 The fastest \rt\ humans are capable of is around 200~ms.
 This is the \rt\ to a simple start signal with only one possible reaction.
-According to Hick's law \citep{hick52}, human \rt\ increases logarithmically with the number of available response choices.
+According to Hick's law \citep{hick_rate_1952}, human \rt\ increases logarithmically with the number of available response choices.
 Taking vocabulary alone into consideration, languages offer at least 50000 response choices, so that one would expect \rt\ in language to be far above said 200~ms.
 Furthermore, the production of a single primed word takes around 600~ms, short clauses can take around 1500~ms.
 Despite all this, the modal gap between turns is also around 200~ms.
 It follows logically, that production planning must begin before the end of the previous turn.
 I have schematised this process on the left side of figure \ref{fig:levinson}.
 
-A few important differences between the scenario described by \citeauthor{levinson16} and the scenario in the present thesis must be noted.
-First off, \citeauthor{levinson16} is mainly concerned with language only, stating that ``[t]his overlap of comprehension and production raises problems with current psycholinguistic theory'' \citeyearpar[\pnum{9}]{levinson16}.
+A few important differences between the scenario described by \citeauthor{levinson_turn-taking_2016} and the scenario in the present thesis must be noted.
+First off, \citeauthor{levinson_turn-taking_2016} is mainly concerned with language only, stating that ``[t]his overlap of comprehension and production raises problems with current psycholinguistic theory'' \citeyearpar[\pnum{9}]{levinson_turn-taking_2016}.
 Although he does touch on other modalities in his paper, his main line of argumentation is, if at all, only indirectly concerned with multimodality.
 In the present scenario, on the other hand, input and output may also be of several non-linguistic modalities (compare the right part of figure \ref{fig:levinson}), where neither the linguistic cues for an upcoming turn end nor the production times for words and clauses apply.
-Secondly, whereas in \citeauthor{levinson16}'s scenario the second speaker is receiving linguistic input that may contain all sorts of clues and cues as to when the ongoing turn will come to an end, this is not (necessarily) the case in the present scenario.
-Referring once more to figure \ref{fig:levinson}, one can see that immediately preceding the measured gap there is linguistic input in \citeauthor{levinson16}'s scenario but not in the present scenario.
+Secondly, whereas in \citeauthor{levinson_turn-taking_2016}'s scenario the second speaker is receiving linguistic input that may contain all sorts of clues and cues as to when the ongoing turn will come to an end, this is not (necessarily) the case in the present scenario.
+Referring once more to figure \ref{fig:levinson}, one can see that immediately preceding the measured gap there is linguistic input in \citeauthor{levinson_turn-taking_2016}'s scenario but not in the present scenario.
 This very last point is, admittedly, a simplification of reality.
 It is not the case that there cannot be any input, but that one cannot know \emph{if} there is any input (and if so, then of what modality this input is).
 
