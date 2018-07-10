@@ -37,6 +37,13 @@ end
 
 
 function separatesuccedents(df)
+    #==
+    in:
+        df          ::DataFrame
+    out:
+        df_infant   ::DataFrame
+        df_mother   ::DataFrame
+    ==#
     # add boolean columns to state whether only
     # mother or only infant are in the succedent
     df[:mother_succ] = false
@@ -89,6 +96,8 @@ function addrulestodict(df, rulesdict, realornull)
     for i in 1:size(df, 1)
         # empty rule template
         emptyrule = Dict(
+            :antecedent => "",
+            :succedent => "",
             :real => Dict(
                 :confidence => Float64[],
                 :occurrences => Int64[],
@@ -106,6 +115,9 @@ function addrulestodict(df, rulesdict, realornull)
         if !haskey(rulesdict, currentrulename)
             # create if it doesn't exist
             rulesdict[currentrulename] = emptyrule
+            # add antecedent and succedent separately for csv later
+            rulesdict[currentrulename][:antecedent] = df[i,:antecedent]
+            rulesdict[currentrulename][:succedent]  = df[i,:succedent]
         end
         #== appends rule values to Dict arrays ==#
         # get addressess in rules Dict (views)
@@ -162,224 +174,182 @@ function prettyprinting(stats, n)
     prettyfinal =  ""
     prettyfinal *= "SUMMARY:\n\n"
     prettyfinal *= "Total number of rules: $(stats[:totalnumberofrules])\n\n"
-    prettyfinal *= "Number of rules with  >= n observations:\n"
-    prettyfinal *= "  n  | real | null | both \n"
-    prettyfinal *= "-----|------|------|------\n"
+    prettyfinal *= "Number of rules with  >= n null observations:\n"
+    prettyfinal *= "  n  | null \n"
+    prettyfinal *= "-----|------\n"
     for i in 1:n
         prettyi = prettyint(i)
-        real = prettyint(stats[:realarray][i])
+        # real = prettyint(stats[:realarray][i])
         null = prettyint(stats[:nullarray][i])
-        both = prettyint(stats[:minarray][i])
-        prettyfinal *= "$prettyi | $real | $null | $both\n"
+        # both = prettyint(stats[:minarray][i])
+        prettyfinal *= "$prettyi | $null\n"
     end
-    prettyfinal *= "\nMinimum real observations for significance: $(stats[:minsigreal])\n"
     prettyfinal *= "Minimum null observations for significance: $(stats[:minsignull])\n"
-    prettyfinal *= "Test used: $(stats[:testtype])\n"
     prettyfinal *= "α = $(stats[:α])\n\n"
     prettyfinal *= "number of rules with significant\n"
-    prettyfinal *= "             left | both | right \n"
-    prettyfinal *= "            ------|------|-------\n"
     nsfm = stats[:numsigrulesformetric]
-    prettyfinal *= "confidence:  $(prettyint(nsfm[:sigconleft])) | $(prettyint(nsfm[:sigconboth])) |  $(prettyint(nsfm[:sigconright]))\n"
-    prettyfinal *= "occurrences: $(prettyint(nsfm[:sigoccleft])) | $(prettyint(nsfm[:sigoccboth])) |  $(prettyint(nsfm[:sigoccright]))\n"
-    prettyfinal *= "duration:    $(prettyint(nsfm[:sigdurleft])) | $(prettyint(nsfm[:sigdurboth])) |  $(prettyint(nsfm[:sigdurright]))\n"
-    prettyfinal *= "con & occ:   $(prettyint(nsfm[:sigconoccleft])) | $(prettyint(nsfm[:sigconoccboth])) |  $(prettyint(nsfm[:sigconoccright]))\n"
-    prettyfinal *= "con & dur:   $(prettyint(nsfm[:sigcondurleft])) | $(prettyint(nsfm[:sigcondurboth])) |  $(prettyint(nsfm[:sigcondurright]))\n"
-    prettyfinal *= "occ & dur:   $(prettyint(nsfm[:sigoccdurleft])) | $(prettyint(nsfm[:sigoccdurboth])) |  $(prettyint(nsfm[:sigoccdurright]))\n"
-    prettyfinal *= "all three:   $(prettyint(nsfm[:sigallthreeleft])) | $(prettyint(nsfm[:sigallthreeboth])) |  $(prettyint(nsfm[:sigallthreeright]))\n"
+    prettyfinal *= "confidence:  $(prettyint(nsfm[:sigcon]))\n"
+    prettyfinal *= "occurrences: $(prettyint(nsfm[:sigocc]))\n"
+    prettyfinal *= "duration:    $(prettyint(nsfm[:sigdur]))\n"
+    prettyfinal *= "con & occ:   $(prettyint(nsfm[:sigconocc]))\n"
+    prettyfinal *= "con & dur:   $(prettyint(nsfm[:sigcondur]))\n"
+    prettyfinal *= "occ & dur:   $(prettyint(nsfm[:sigoccdur]))\n"
+    prettyfinal *= "all three:   $(prettyint(nsfm[:sigallthree]))\n"
 
     println(prettyfinal)
 end
 
-function statistics(n, rules, test, minsigreal, minsignull)
+function statistics(n, rules, test, minsignull)
     #==
     collect statistical information
     in:
-        n           ::Int, maximum value for which we want to show the number of rules that have been observed that many times
-        rules       ::Dict, store all rules and their metrics
-        test        ::HypothesisTests, significance test used
-        minsigreal  ::Int, minimum number of real observations for calculating significance
-        minsignull  ::Int, minimum number of null observations for calculating significance
+        n           ::Int   maximum value for which we want to show the number of
+                            rules that have been observed that many times
+        rules       ::Dict  store all rules and their metrics
+        minsignull  ::Int   minimum number of null observations for calculating significance
     ==#
 
     ### How many rules with n observations do we have? -- counters
     # create arrays to store observation values in
-    realarray = Array{Int64}(n)
     nullarray = Array{Int64}(n)
-    minarray = Array{Int64}(n)
     # initialise arrays to 0
     for i in 1:n
-        realarray[i] = 0
         nullarray[i] = 0
-        minarray[i] = 0
     end
 
     # initialise stats Dict
     stats = Dict(
-        :numsigrulesformetric => Dict(),            # how many rules with significant metric m do we have?
-        :sigmetricarrays => Dict(),                 # String[] storing all rule keys with significance for metric m
-        :totalnumberofrules => length(rules),       # how many observations were there?
-        :testtype => string(typeof(test))[17:end],  # what type of test was used?
-        :minsigreal => minsigreal,                  # how many real observations do we want to calculate significance?
-        :minsignull => minsignull,                  # how many null observations do we want to calculate significance?
-        :α => 0.05                                  # α-level (not debatable, sorry not sorry)
+        :numsigrulesformetric => Dict(),        # how many rules with significant metric m do we have?
+        :sigstrings => Dict(),                  # String[] storing all rule keys with significance for metric m
+        :totalnumberofrules => length(rules),   # how many observations were there?
+        :minsignull => minsignull,              # how many null observations do we want to calculate significance?
+        :α => 0.05                              # α-level (not debatable, sorry not sorry)
     )
 
     # add counters to :numsigrulesformetric
     metricabb = ["con", "occ", "dur", "conocc", "condur", "occdur", "allthree"]
-    tailstr = ["left", "both", "right"]
     for a in metricabb
-        for b in tailstr
-            newkey = convert(Symbol, "sig"*a*b)
-            newallkey = convert(Symbol, "allsig"*a*b)
-            stats[:numsigrulesformetric][newkey] = 0
-            stats[:sigmetricarrays][newallkey] = String[]
-        end
+        newkey = convert(Symbol, "sig"*a)
+        stats[:numsigrulesformetric][newkey] = 0
+        stats[:sigstrings][newkey] = String[]
     end
 
     # iterate through Dict to calculate table values
     for key in keys(rules)
 
-        ### How many rules with n observations do we have? -- calculation
-        # how many real and null observations?
-        realobservations = rules[key][:real][:observations]
+        # how many rules with n null observations do we have?
         nullobservations = rules[key][:null][:observations]
-        # what's the lower value of the two?
-        minobservations = min(realobservations, nullobservations)
         # increment appropriate array values
-        for i in 1:min(n, realobservations)  # only count as far as n
-            realarray[i] += 1
-        end
-        for i in 1:min(n, nullobservations)
+        for i in 1:min(n, nullobservations)  # only count as far as n
             nullarray[i] += 1
-        end
-        for i in 1:min(n, minobservations)
-            minarray[i] += 1
         end
 
         ### How many rules with significant metric m do we have? -- counters
         # was significance calculated?
-        if haskey(rules[key], :sigleft)
+        if haskey(rules[key], :significance)
             # what was significant?
-            issigconleft = rules[key][:sigleft][:confidence] < stats[:α]
-            issigoccleft = rules[key][:sigleft][:occurrences] < stats[:α]
-            issigdurleft = rules[key][:sigleft][:duration_sec] < stats[:α]
-
-            issigconright = rules[key][:sigright][:confidence] < stats[:α]
-            issigoccright = rules[key][:sigright][:occurrences] < stats[:α]
-            issigdurright = rules[key][:sigright][:duration_sec] < stats[:α]
-
-            issigconboth = rules[key][:sigboth][:confidence] < stats[:α]
-            issigoccboth = rules[key][:sigboth][:occurrences] < stats[:α]
-            issigdurboth = rules[key][:sigboth][:duration_sec] < stats[:α]
+            issigcon = rules[key][:significance][:confidence] < stats[:α]
+            issigocc = rules[key][:significance][:occurrences] < stats[:α]
+            issigdur = rules[key][:significance][:duration_sec] < stats[:α]
 
             # increment appropriate counters and store rule keys in arrays
-            # left significance
-            if issigconleft
-                stats[:numsigrulesformetric][:sigconleft] += 1
-                push!(stats[:sigmetricarrays][:allsigconleft], key)
+            if issigcon
+                stats[:numsigrulesformetric][:sigcon] += 1
+                push!(stats[:sigstrings][:sigcon], key)
             end
-            if issigoccleft
-                stats[:numsigrulesformetric][:sigoccleft] += 1
-                push!(stats[:sigmetricarrays][:allsigoccleft], key)
+            if issigocc
+                stats[:numsigrulesformetric][:sigocc] += 1
+                push!(stats[:sigstrings][:sigocc], key)
             end
-            if issigdurleft
-                stats[:numsigrulesformetric][:sigdurleft] += 1
-                push!(stats[:sigmetricarrays][:allsigdurleft], key)
+            if issigdur
+                stats[:numsigrulesformetric][:sigdur] += 1
+                push!(stats[:sigstrings][:sigdur], key)
             end
-            if issigconleft && issigoccleft
-                stats[:numsigrulesformetric][:sigconoccleft] += 1
-                push!(stats[:sigmetricarrays][:allsigconoccleft], key)
+            if issigcon && issigocc
+                stats[:numsigrulesformetric][:sigconocc] += 1
+                push!(stats[:sigstrings][:sigconocc], key)
             end
-            if issigconleft && issigdurleft
-                stats[:numsigrulesformetric][:sigcondurleft] += 1
-                push!(stats[:sigmetricarrays][:allsigcondurleft], key)
+            if issigcon && issigdur
+                stats[:numsigrulesformetric][:sigcondur] += 1
+                push!(stats[:sigstrings][:sigcondur], key)
             end
-            if issigoccleft && issigdurleft
-                stats[:numsigrulesformetric][:sigoccdurleft] += 1
-                push!(stats[:sigmetricarrays][:allsigoccdurleft], key)
+            if issigocc && issigdur
+                stats[:numsigrulesformetric][:sigoccdur] += 1
+                push!(stats[:sigstrings][:sigoccdur], key)
             end
-            if issigconleft && issigoccleft && issigdurleft
-                stats[:numsigrulesformetric][:sigallthreeleft] += 1
-                push!(stats[:sigmetricarrays][:allsigallthreeleft], key)
-            end
-
-            # two-tailed significance
-            if issigconboth
-                stats[:numsigrulesformetric][:sigconboth] += 1  # BUG
-                push!(stats[:sigmetricarrays][:allsigconboth], key)
-            end
-            if issigoccboth
-                stats[:numsigrulesformetric][:sigoccboth] += 1
-                push!(stats[:sigmetricarrays][:allsigoccboth], key)
-            end
-            if issigdurboth
-                stats[:numsigrulesformetric][:sigdurboth] += 1
-                push!(stats[:sigmetricarrays][:allsigdurboth], key)
-            end
-            if issigconboth && issigoccboth
-                stats[:numsigrulesformetric][:sigconoccboth] += 1
-                push!(stats[:sigmetricarrays][:allsigconoccboth], key)
-            end
-            if issigconboth && issigdurboth
-                stats[:numsigrulesformetric][:sigcondurboth] += 1
-                push!(stats[:sigmetricarrays][:allsigcondurboth], key)
-            end
-            if issigoccboth && issigdurboth
-                stats[:numsigrulesformetric][:sigoccdurboth] += 1
-                push!(stats[:sigmetricarrays][:allsigoccdurboth], key)
-            end
-            if issigconboth && issigoccboth && issigdurboth
-                stats[:numsigrulesformetric][:sigallthreeboth] += 1
-                push!(stats[:sigmetricarrays][:allsigallthreeboth], key)
-            end
-
-            # right significance
-            if issigconright
-                stats[:numsigrulesformetric][:sigconright] += 1
-                push!(stats[:sigmetricarrays][:allsigconright], key)
-            end
-            if issigoccright
-                stats[:numsigrulesformetric][:sigoccright] += 1
-                push!(stats[:sigmetricarrays][:allsigoccright], key)
-            end
-            if issigdurright
-                stats[:numsigrulesformetric][:sigdurright] += 1
-                push!(stats[:sigmetricarrays][:allsigdurright], key)
-            end
-            if issigconright && issigoccright
-                stats[:numsigrulesformetric][:sigconoccright] += 1
-                push!(stats[:sigmetricarrays][:allsigconoccright], key)
-            end
-            if issigconright && issigdurright
-                stats[:numsigrulesformetric][:sigcondurright] += 1
-                push!(stats[:sigmetricarrays][:allsigcondurright], key)
-            end
-            if issigoccright && issigdurright
-                stats[:numsigrulesformetric][:sigoccdurright] += 1
-                push!(stats[:sigmetricarrays][:allsigoccdurright], key)
-            end
-            if issigconright && issigoccright && issigdurright
-                stats[:numsigrulesformetric][:sigallthreeright] += 1
-                push!(stats[:sigmetricarrays][:allsigallthreeright], key)
+            if issigcon && issigocc && issigdur
+                stats[:numsigrulesformetric][:sigallthree] += 1
+                push!(stats[:sigstrings][:sigallthree], key)
             end
         end
     end
 
     # how many rules had [n] observations of real, null, or both?
-    stats[:realarray]           = realarray
-    stats[:nullarray]           = nullarray
-    stats[:minarray]            = minarray
+    stats[:nullarray] = nullarray
 
     return stats
 end
 
+function rankedtest(real, null)
+    real = mean(real)
+    len = length(null)
+    geq = 0
+    for i in null
+        if i >= real
+            geq += 1
+        end
+    end
+    pvalue = geq/len
+    return pvalue
+end
 
-function dostuff(n; minsigreal=1, minsignull=5)
+function dicttodf(rules; all=true)
+    #==
+    in:
+        rules   ::Dict
+    out:
+        df      ::DataFrame
+    ==#
+    df = DataFrame(
+        antecedent = String[],
+        succedent = String[],
+        p_con = Float64[],
+        p_occ = Float64[],
+        p_dur = Float64[],
+        null_obs = Int64[],
+    )
+
+    for rule in keys(rules)
+        antecedent = rules[rule][:antecedent]
+        succedent = rules[rule][:antecedent]
+        null_obs = rules[rule][:null][:observations]
+
+        if haskey(rules[rule], :significance)
+            p_con = rules[rule][:significance][:confidence]
+            p_occ = rules[rule][:significance][:occurrences]
+            p_dur = rules[rule][:significance][:duration_sec]
+        else
+            p_con = 999
+            p_occ = 999
+            p_dur = 999
+        end
+        if !all
+            if p_con < 0.05 || p_occ < 0.05 || p_dur < 0.05
+                push!(df, [antecedent, succedent, p_con, p_occ, p_dur, null_obs])
+            end
+        else
+            push!(df, [antecedent, succedent, p_con, p_occ, p_dur, null_obs])
+        end
+    end
+    return df
+end
+
+
+function dostuff(n; minsignull=5)
     # directories array
     directories = ["input/real/", "input/null/"]
     # NOTE: there's a better way to do this, check scope docs
-    test = nothing  # needed outside of for loop
+    test = nothing  # needed outside for loop
 
     # dirty text file to clean csv file
     for directory in directories        # iterate over directories
@@ -400,13 +370,17 @@ function dostuff(n; minsigreal=1, minsignull=5)
             if extension == ".csv"
                 name = file[1:end-4]
                 df = readtable(directory*file)  # read csv into DataFrame
+
+                # NOTE: not separating succedents anymore
                 # separate rules by reaction time and appropriate succedent
-                df_infant, df_mother = separatesuccedents(df)
-                df_both = [df_infant; df_mother]  # vcat resulting DataFrames
+                # df_infant, df_mother = separatesuccedents(df)
+                # df_both = [df_infant; df_mother]  # vcat resulting DataFrames
+                df_both = df
+
                 # merge antecedent and succedent to rule column
                 df_both[:rule] = df_both[:antecedent] .* df_both[:succedent]
                 # remove now obsolete antecedent and succedent columns
-                delete!(df_both, [:antecedent, :succedent])
+                # delete!(df_both, [:antecedent, :succedent])
                 writetable(directory*name*"_both.csv", df_both)  # write to file
                 rm(directory*file)      # delete old csv file
             end
@@ -414,7 +388,7 @@ function dostuff(n; minsigreal=1, minsignull=5)
     end
 
 
-    # rt-sorted csv file to Dict
+    # RT-sorted csv file to Dict
     rules = Dict()  # initialise rules Dictionary
     for directory in directories
         if directory == "input/real/"
@@ -429,7 +403,7 @@ function dostuff(n; minsigreal=1, minsignull=5)
                 df = readtable(directory*file)  # read csv into DataFrame
                 # add current csv to rules Dict
                 rules = addrulestodict(df, rules, realornull)
-                # rm(directory*file)  # delete old csv file
+                # rm(directory*file)  # delete old csv file  # NOTE: maybe uncomment this?
             end
         end
     end
@@ -445,98 +419,36 @@ function dostuff(n; minsigreal=1, minsignull=5)
             end
         end
         # enough data for significance?
-        enoughreal = rules[key][:real][:observations] >= minsigreal
+        enoughreal = rules[key][:real][:observations] >= 1
         enoughnull = rules[key][:null][:observations] >= minsignull
         if enoughreal && enoughnull
             # and let's fucking calculate some p-values
-            # create significance keys
-            sides = [:sigleft, :sigboth, :sigright]
-            for side in sides
-                rules[key][side] = Dict(
-                    :confidence => Float64[],
-                    :occurrences => Float64[],
-                    :duration_sec => Float64[]
-                )
-            end
+            # create significance key
+            rules[key][:significance] = Dict(
+                :confidence => 1.1,
+                :occurrences => 1.1,
+                :duration_sec => 1.1,
+            )
             for metric in [:confidence, :occurrences, :duration_sec]
-                test = OneSampleTTest(
-                    mean(rules[key][:real][metric]),     # xbar::Real
-                    std(rules[key][:real][metric]),      # stddev::Real
-                    length(rules[key][:real][metric]),   # n::Int
-                    mean(rules[key][:null][metric])      # μ0::Real = 0
+                test = rankedtest(
+                    rules[key][:real][metric],  # real data
+                    rules[key][:null][metric],  # null data
                 )
                 # store p-values in Dict
-                for side in sides
-                    if side == :sigleft
-                        rules[key][side][metric] = pvalue(test, tail=:left)
-                    elseif side == :sigboth
-                        rules[key][side][metric] = pvalue(test, tail=:both)
-                    else
-                        rules[key][side][metric] = pvalue(test, tail=:right)
-                    end
-                end
+                rules[key][:significance][metric] = test
             end
         end
     end
 
     # save summary to DataFrame
-    df = DataFrame(
-        rule = String[],
-        real_obs = Int64[],
-        null_obs = Int64[],
-        p_confidence_left = Float64[],
-        p_occurrences_left = Float64[],
-        p_duration_left = Float64[],
-        p_confidence_both = Float64[],
-        p_occurrences_both = Float64[],
-        p_duration_both = Float64[],
-        p_confidence_right = Float64[],
-        p_occurrences_right = Float64[],
-        p_duration_right = Float64[]
-    )
-    for rule in keys(rules)
-        if haskey(rules[rule], :sigleft)
-            real_obs = rules[rule][:real][:observations]
-            null_obs = rules[rule][:null][:observations]
-
-            p_confidence_left = rules[rule][:sigleft][:confidence]
-            p_occurrences_left = rules[rule][:sigleft][:occurrences]
-            p_duration_left = rules[rule][:sigleft][:duration_sec]
-
-            p_confidence_both = rules[rule][:sigboth][:confidence]
-            p_occurrences_both = rules[rule][:sigboth][:occurrences]
-            p_duration_both = rules[rule][:sigboth][:duration_sec]
-
-            p_confidence_right = rules[rule][:sigright][:confidence]
-            p_occurrences_right = rules[rule][:sigright][:occurrences]
-            p_duration_right = rules[rule][:sigright][:duration_sec]
-            row = [
-                rule,
-                real_obs,
-                null_obs,
-                p_confidence_left,
-                p_occurrences_left,
-                p_duration_left,
-                p_confidence_both,
-                p_occurrences_both,
-                p_duration_both,
-                p_confidence_right,
-                p_occurrences_right,
-                p_duration_right
-            ]
-            push!(df, row)
-        end
-    end
-
-    # and save as csv to output
+    df = dicttodf(rules; all=false)  # only save significant rules
+    # and write as csv to output directory
     writetable("output/results.csv", df)
 
-    # BUG: save Dict as jdl, doesn't work for some reason
-    # savejdl(rules, name)
-    stats = statistics(n, rules, test, minsigreal, minsignull)
+    stats = statistics(n, rules, test, minsignull)
     prettyprinting(stats, n)
     return rules, stats
 end
 
 
-rules, stats = dostuff(10; minsigreal=2, minsignull=5)
+rules, stats = dostuff(10; minsignull=5)
