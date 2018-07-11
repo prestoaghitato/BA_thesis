@@ -14,18 +14,32 @@
 	abstract=true,			% display abstract heading
 	twoside,				% two-sided printing
 	titlepage=firstiscover,	% set title page as cover page
-	footnotes=multiple		% separate footnotes set directly one after another by a comma
+	footnotes=multiple,		% separate footnotes set directly one after another by a comma
+	draft					% mercilessly reveal overfull hboxes
 ]{scrreprt}
 
 \usepackage{../scrreprt/ba_style}  % loading packages, typesetting, etc.
 
 \begin{document}
+\lipsum[1]
+
+\begin{figure}
+	\centering
+	\input{../aux/tikzpictures/tikz_species.tex}
+	\caption{fig:species}
+	\label{fig:species}
+\end{figure}
+
+\lipsum[1]
+
 \begin{figure}
 	\centering
 	\input{../aux/tikzpictures/tikz_idealseq.tex}
 	\caption{fig:idealseq}
 	\label{fig:idealseq}
 \end{figure}
+
+\lipsum[1]
 
 \begin{figure}
 	\centering
@@ -34,12 +48,16 @@
 	\label{fig:levinson}
 \end{figure}
 
+\lipsum[1]
+
 \begin{figure}
 	\centering
 	\input{../aux/tikzpictures/tikz_method.tex}
 	\caption{fig:method}
 	\label{fig:method}
 \end{figure}
+
+\lipsum[1]
 
 \begin{figure}
 	\centering
@@ -48,12 +66,16 @@
 	\label{fig:nullnaive}
 \end{figure}
 
+\lipsum[1]
+
 \begin{figure}
 	\centering
 	\input{../aux/tikzpictures/tikz_organisation.tex}
 	\caption{fig:organisation}
 	\label{fig:organisation}
 \end{figure}
+
+\lipsum[1]
 
 \begin{figure}
 	\centering
@@ -62,5 +84,8 @@
 	\label{fig:significance}
 \end{figure}
 
+\lipsum[1]
+
+\bibliography{../aux/bib/BA_Marcel}
 
 \end{document}

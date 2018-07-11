@@ -1,0 +1,62 @@
+% !TEX root = ../../scrreprt_figures/ba_scrreprt_figures.tex
+% @author Marcel Ruland (2018)
+\newcommand{\apewidth}{2cm}
+
+\begin{tikzpicture}[
+	every node/.append style={inner sep=0cm,align=center,text width=\apewidth,font=\footnotesize},
+	node distance=0.1cm and 0.1cm,
+]
+
+%% top pics
+\node							(lepilemur)		{\includegraphics[width=\apewidth]{../aux/img/species/lepilemur.jpg}};
+\node[right=of lepilemur]		(callithrix)	{\includegraphics[width=\apewidth]{../aux/img/species/callithrix.jpg}};
+\node[right=of callithrix]		(cebuella)		{\includegraphics[width=\apewidth]{../aux/img/species/cebuella.jpg}};
+\node[right=of cebuella]		(callicebus)	{\includegraphics[width=\apewidth]{../aux/img/species/callicebus.jpg}};
+\node[right=of callicebus]		(saimiri)		{\includegraphics[width=\apewidth]{../aux/img/species/saimiri.jpg}};
+\node[right=of saimiri]			(cercopithecus)	{\includegraphics[width=\apewidth]{../aux/img/species/cercopithecus.png}};
+
+%% bottom apes
+\node[below=2cm of lepilemur]	(hylobates)		{\includegraphics[width=\apewidth]{../aux/img/species/hylobates.jpg}};
+\node[right=of hylobates]		(orangutans)	{\includegraphics[width=\apewidth]{../aux/img/species/orangutans.jpg}};
+\node[right=of orangutans]		(gorillas)		{\includegraphics[width=\apewidth]{../aux/img/species/gorillas.jpg}};
+\node[right=of gorillas]		(chimpanzees)	{\includegraphics[width=\apewidth]{../aux/img/species/chimpanzees.png}};
+\node[right=of chimpanzees]		(humans)		{\includegraphics[width=\apewidth]{../aux/img/species/humans.jpg}};
+\node[right=of humans]			(diaemus)		{\includegraphics[width=\apewidth]{../aux/img/species/diaemus.jpg}};
+
+%% braces
+% prosimians
+\draw[decorate,decoration={brace,amplitude=5pt}]
+(lepilemur.north west) -- (lepilemur.north east)
+node[midway,yshift=0.4cm]{\normalsize{prosimians}};
+
+% monkeys
+\draw[decorate,decoration={brace,amplitude=5pt}]
+(callithrix.north west) -- (cercopithecus.north east)
+node[midway,yshift=0.4cm]{\normalsize{monkeys}};
+
+% apes
+\draw[decorate,decoration={brace,amplitude=5pt}]
+(humans.south east) -- (hylobates.south west)
+node[midway,yshift=-0.4cm]{\normalsize{apes}};
+
+% bats
+\draw[decorate,decoration={brace,amplitude=5pt}]
+(diaemus.south east) -- (diaemus.south west)
+node[midway,yshift=-0.4cm]{\normalsize{bats}};
+
+%% top labels
+\node[below=of lepilemur]		{lepilemur edwardsi};
+\node[below=of callithrix]		{callithrix jacchus};
+\node[below=of cebuella]		{cebuella pygmaea};
+\node[below=of callicebus]		{callicebus cupreus};
+\node[below=of saimiri]			{saimiri};
+\node[below=of cercopithecus]	{cercopithecus campbelli};
+
+%% bottom labels
+\node[above=of hylobates]		{hylobates syndactylus};
+\node[above=of orangutans]		{orangutans};
+\node[above=of gorillas]		{gorillas};
+\node[above=of chimpanzees]		{chimpanzees};
+\node[above=of humans]			{humans};
+\node[above=of diaemus]			{diaemus youngi};
+\end{tikzpicture}
