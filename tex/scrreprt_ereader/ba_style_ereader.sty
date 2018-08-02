@@ -11,6 +11,7 @@
 \usepackage{fontenc}							% Open Type fonts
 \usepackage{ttcommons}							% use TT commons for sf
 \usepackage{ttjenevers}							% use TT Jenevers for rm
+\usepackage[left=0.3cm, right=0.3cm, top=1.2cm, bottom=0.3cm]{geometry}  % tiny margins for ereader, page numbers are meaningless here
 \setmonofont[Scale=MatchLowercase]{Envy Code R}	% use Envy Code R for tt
 \usepackage[english]{babel}						% English hyphenation patterns
 \usepackage{natbib}								% bibliography
@@ -64,26 +65,6 @@
 
 
 
-%*****Typographic and General Issues/Solutions*****
-% colon after paragraph heading?
-% lowercase for figure, table, section, etc.
-% Full stop at the end of every caption?
-% merge table and figure counter!
-% keep counting tables and figures at chapter level (2.1, 2.2, 3.1, etc.)?
-% set headings in medium instead of bold?
-% replace frequent pattern mining by \textsc{fpm}?
-% en dash or em dash? See \dash command below.
-% \singlespacing in quote environment?
-% Describe figures in caption even though main text contains a description?
-% Bibliography: Capitalise only very first word, words after colons, and proper nouns.
-% Begriffe für Events vereinheitlichen
-% Sentence case in headlines? Chapters to paragraphs?
-% do not capitalise figure, table, chapter, section etc
-% small caps in references (SWITCHBOARD)
-%**************************************************
-
-
-
 %*******************New Commands*******************
 %% shortcuts
 \newcommand{\fpmlower}{frequent pattern mining}  % shortcut
@@ -99,6 +80,7 @@
 %% semantic commands
 \newcommand{\code}[1]{\texttt{#1}}										% code
 \newcommand{\dash}{---}													% typeset dashes
+\newcommand{\citeellipses}{[\ldots]}								% citation ellipses with correct spacing
 \newcommand{\citenums}[1]{#1}											% numbers in citations
 \newcommand{\pnum}[1]{p.~#1}											% page numbers in citations
 \newcommand{\snum}[1]{sec.~#1}											% section numbers in citations

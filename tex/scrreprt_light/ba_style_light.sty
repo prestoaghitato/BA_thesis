@@ -12,7 +12,8 @@
 \usepackage{natbib}								% bibliography
 	\bibliographystyle{newharvard}				% custom Harvard bibliography style
 \usepackage[defaultlines=2,all]{nowidow}		% prevent widow and orphan lines
-\usepackage{amsmath,amssymb}					% Better maths support & more symbols
+\usepackage{amsmath,amssymb}					% better maths support & more symbols
+\usepackage{showlabels}							% show labels in outer margin
 \usepackage{url}								% typeset urls
 \usepackage{microtype}							% improved typography
 \usepackage[onehalfspacing]{setspace}			% improved linespacing
@@ -38,18 +39,19 @@
 \newcommand{\sd}{\textsc{sd}}						% standard deviation
 
 %% semantic commands
-\newcommand{\code}[1]{\texttt{#1}}										% code
-\newcommand{\dash}{---}													% typeset dashes
-\newcommand{\citenums}[1]{#1}											% numbers in citations
-\newcommand{\pnum}[1]{p.~#1}											% page numbers in citations
-\newcommand{\snum}[1]{sec.~#1}											% section numbers in citations
-\newcommand{\cnum}[1]{ch.~#1}											% chapter numbers in citations
-\newcommand{\fnum}[1]{fig.~#1}											% figure numbers in citations
-\newcommand{\chapterintro}[1]{\begin{quote}{\sffamily#1}\end{quote}}	% typeset chapter intros
-\newcommand{\fpmlabel}[1]{\(\mathcal{#1}\)}								% typeset label
-\newcommand{\fpmset}[1]{\(\{\)\fpmlabel{#1}\(\}\)}						% typeset label sets
-\newcommand{\fpmrule}[2]{\fpmset{#1}~\(\rightarrow\)~\fpmset{#2}}		% typeset rules
-\newcommand{\fpmtextrule}[2]{\texttt{#1~\(\rightarrow\)~#2}}			% typeset less mathsy rules
+\newcommand{\code}[1]{\texttt{#1}}									% code
+\newcommand{\dash}{---}												% typeset dashes
+\newcommand{\citeellipses}{[\ldots]}								% citation ellipses with correct spacing
+\newcommand{\citenums}[1]{#1}										% numbers in citations
+\newcommand{\pnum}[1]{p.~#1}										% page numbers in citations
+\newcommand{\snum}[1]{sec.~#1}										% section numbers in citations
+\newcommand{\cnum}[1]{ch.~#1}										% chapter numbers in citations
+\newcommand{\fnum}[1]{fig.~#1}										% figure numbers in citations
+\newcommand{\chapterintro}[1]{\begin{quote}{\sffamily#1}\end{quote}}% typeset chapter intros
+\newcommand{\fpmlabel}[1]{\(\mathcal{#1}\)}							% typeset label
+\newcommand{\fpmset}[1]{\(\{\)\fpmlabel{#1}\(\}\)}					% typeset label sets
+\newcommand{\fpmrule}[2]{\fpmset{#1}~\(\rightarrow\)~\fpmset{#2}}	% typeset rules
+\newcommand{\fpmtextrule}[2]{\texttt{#1~\(\rightarrow\)~#2}}		% typeset less mathsy rules
 
 %% other
 \newcommand{\imgwidth}{0.618\textwidth}									% set image width to golden ratio

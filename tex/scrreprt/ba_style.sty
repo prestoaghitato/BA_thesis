@@ -18,7 +18,8 @@
 \usepackage[defaultlines=2,all]{nowidow}		% prevent widow and orphan lines
 \usepackage{graphicx}							% required to insert images
 \usepackage[usenames,dvipsnames]{xcolor}		% Required for custom colors
-\usepackage{amsmath,amssymb}					% Better maths support & more symbols
+\usepackage{amsmath,amssymb}					% better maths support & more symbols
+\usepackage{showlabels}							% show labels in outer margin
 \usepackage{url}								% typeset urls
 \usepackage{microtype}							% improved typography
 \usepackage[onehalfspacing]{setspace}			% improved linespacing
@@ -80,6 +81,7 @@
 % Sentence case in headlines? Chapters to paragraphs?
 % do not capitalise figure, table, chapter, section etc
 % small caps in references (SWITCHBOARD)
+% fix size of Bibliography headline
 %**************************************************
 
 
@@ -99,6 +101,7 @@
 %% semantic commands
 \newcommand{\code}[1]{\texttt{#1}}										% code
 \newcommand{\dash}{---}													% typeset dashes
+\newcommand{\citeellipses}{[\ldots]}									% citation ellipses with correct spacing
 \newcommand{\citenums}[1]{#1}											% numbers in citations
 \newcommand{\pnum}[1]{p.~#1}											% page numbers in citations
 \newcommand{\snum}[1]{sec.~#1}											% section numbers in citations
