@@ -22,16 +22,20 @@
 \usepackage{array}								% >{} syntax to format table columns
 \usepackage{enumitem}							% enumerate environment, custom list labels
 \usepackage{localextra}							% colour definitions, hyphenation for linguistic terms, names, etc.
+\pagestyle{headings}  % running headlines etc
 %**************************************************
 
 
 %*******************New Commands*******************
 %% shortcuts
-\newcommand{\fpmlower}{frequent pattern mining}  % shortcut
-\newcommand{\fpmupper}{Frequent Pattern Mining}  % shortcut
-\newcommand{\fpmsentence}{Frequent pattern mining}  % shortcut
-\newcommand{\rt}{\textsc{rt}}  % reaction time
-\newcommand{\sd}{\textsc{sd}}  % standard deviation
+\newcommand{\fpmlower}{frequent pattern mining}		% shortcut
+\newcommand{\fpmupper}{Frequent Pattern Mining}		% shortcut
+\newcommand{\fpmsentence}{Frequent pattern mining}	% shortcut
+\newcommand{\dna}{\textsc{dna}}						% DNA (duh...)
+\newcommand{\ms}{milliseconds}						% milliseconds (duh...)
+\newcommand{\rt}{\textsc{rt}}						% reaction time
+\newcommand{\s}{seconds}							% seconds (duh...)
+\newcommand{\sd}{\textsc{sd}}						% standard deviation
 
 %% semantic commands
 \newcommand{\code}[1]{\texttt{#1}}										% code
@@ -40,6 +44,7 @@
 \newcommand{\pnum}[1]{p.~#1}											% page numbers in citations
 \newcommand{\snum}[1]{sec.~#1}											% section numbers in citations
 \newcommand{\cnum}[1]{ch.~#1}											% chapter numbers in citations
+\newcommand{\fnum}[1]{fig.~#1}											% figure numbers in citations
 \newcommand{\chapterintro}[1]{\begin{quote}{\sffamily#1}\end{quote}}	% typeset chapter intros
 \newcommand{\fpmlabel}[1]{\(\mathcal{#1}\)}								% typeset label
 \newcommand{\fpmset}[1]{\(\{\)\fpmlabel{#1}\(\}\)}						% typeset label sets

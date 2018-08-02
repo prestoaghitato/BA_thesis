@@ -1,27 +1,28 @@
-% !TEX root = ../light/ba_light_master.tex
+% !TEX root = ../scrreprt_light/ba_light_master.tex
 % @author Marcel Ruland (2018)
 
 \chapter{\introduction}
 \label{ch:introduction}
 A \emph{turn} is a basic unit of speech in conversation.
 When a speaker begins their turn, they gain the right to speak and\dash upon finishing their utterance\dash pass that right on to another participant of the conversation.
-A turn is on average 2~sec.\ in length with very high variation.
-It usually consists of syntactically complete clauses and gives pragmatically sufficient information, though this is by no means a necessity \citep[\pnum{8}]{levinson_turn-taking_2016}.
+A turn is on average 2~\s\ in length with very high variation.
+It usually consists of syntactically complete clauses and gives pragmatically sufficient information, though this is not a necessity \citep[\pnum{8}]{levinson_turn-taking_2016}.
 \emph{Turn-taking} is the act of one speaker finishing their turn and another speaker beginning their turn, i.e.\ passing on the right to speak from one speaker to another. % Anke's diagram here?
-Turns and turn-taking must not necessarily be strictly linguistic (in the sense of \emph{making use of language only, without other modalities playing relevant roles}), but may make use of, for example, gestures \citep[\pnum{28--43}]{schmitt_zur_2005}.
+Turns and turn-taking must not necessarily be strictly linguistic (in the sense of making use of language only, without other modalities playing relevant roles), but may make use of, for example, gestures \citep[\pnum{28--43}]{schmitt_zur_2005}.
 In fact, children regularly engage in turn-taking before having acquired their first words \citep[\pnum{1311}]{casillas_turn-taking_2016}, i.e.\ turn-taking is not intrinsically linguistic in and of itself.
 
-If turn-taking is not dependant on linguistic modalities but may make use of such, then it logically follows that turn-taking must be a multimodal phenomenon.
-Despite this fact, turn-taking has so far mostly been considered as unimodal in the literature \citep[\pnum{1}]{rohlfing_multimodal_nodate}.
-The downside of investigating only one modality of a multimodal phenomenon is\dash quite obviously\dash that it ``omits other behaviors relevant to the exchange'' \citep[\pnum{3}]{rohlfing_multimodal_nodate}.
+If turn-taking is not dependant on the linguistic modality but may make use of it, then it logically follows that turn-taking must be a multimodal phenomenon.\footnote{%
+Assuming there is no such thing as non-modal turn-taking.}
+Despite this fact, turn-taking has so far mostly been considered as unimodal in the literature \citep[\pnum{1}]{rohlfing_multimodal_underreview}.
+The downside of investigating only one modality of a multimodal phenomenon is\dash quite obviously\dash that it ``omits other behaviors relevant to the exchange'' \citep[\pnum{3}]{rohlfing_multimodal_underreview}.
 
-\citet{rohlfing_multimodal_nodate} have identified and approached turn-taking as a multimodal phenomenon; taking into consideration linguistic utterances, non-linguistic vocalisations, gaze, and smile.
-They did so by applying \fpmlower\ to a corpus of 10 mother-infant dyads.
+\citet{rohlfing_multimodal_underreview} have identified and approached turn-taking as a multimodal phenomenon; taking into consideration linguistic utterances, non-linguistic vocalisations, gaze, and smile.
+They did so by applying \fpmlower, a technique at the intersection of statistics and computer science, to a corpus of 10 mother-infant dyads.
 The fundamental aim of \fpmlower\ is to find patterns in a data set that occur \emph{frequently}.
-The specific kind of pattern and the definition of \emph{frequent} cannot be generalised and depend heavily on the individual application.
+The specific kind of pattern and the definition of \emph{frequent} cannot be meaningfully generalised and depend heavily on the individual application.
 In contrast to descriptive and inferential statistics\dash which disprove or affirm hypotheses generated beforehand\dash \fpmlower\ is of an exploratory, hypothesis-generating nature.
-Depending on the patterns found, one may then formulate hypotheses afterwards, which may then in turn be tested empirically using descriptive and inferential statistics \cite[\pnum{6~ff.,~tba}]{rohlfing_multimodal_nodate,han_data_2012}. %% ISSUE: How do you give page references for each individual source when citing multiple sources?
-The basic concepts are very well explained by \citet[\pnum{57}, emphasis in original]{han_frequent_2007}:
+Depending on the patterns found, one may then formulate hypotheses based on these found patterns, which may then in turn be tested empirically using descriptive and inferential statistics \cite[\pnum{6~ff.,~tba}]{rohlfing_multimodal_underreview,han_data_2012}. %% ISSUE: How do you give page references for each individual source when citing multiple sources?
+The basic concepts of \fpmlower\ are explained by \citet[\pnum{57}, emphasis in original]{han_frequent_2007}:
 \begin{quote}
 ``Frequent patterns are itemsets, subsequences, or substructures that appear in a data set with frequency no less than a user-specified threshold.
 For example, a set of items, such as milk and bread, that appear frequently together in a transaction data set, is a \emph{frequent itemset}.
@@ -35,19 +36,104 @@ The second chapter explains the entire process of preparing the data, applying \
 Chapter \ref{ch:significance} introduces a method for establishing statistical significance in the data.
 Both chapter \ref{ch:mining} and \ref{ch:significance} present results in their last sections.
 Chapter \ref{ch:visualisation} is of a different nature.
-In contrast to the two previous chapters, it is not concerned with methods of evaluating the data but with methods of making the found results easily comprehensible for humans by means of visualising them in an adequate way.
+In contrast to the two previous chapters, it is not concerned with methods of evaluating the data but with methods of making the results easily comprehensible for humans by visualising them in an adequate way.
 Finally, chapter \ref{ch:conclusion} concludes the thesis.
 
 
 
 
-\section{Turn-Taking is an Important Issue in Current Psycholinguistic Theory}
-According to present knowledge, turn-taking is a universal feature of human language \citep[\pnum{6}]{levinson_turn-taking_2016}. Its implications are fundamental as it dictates the temporal organisation of the flow of information between humans. Turn-taking may be characterised as a temporal phenomenon.Furthermore, turn-taking being a temporal phenomenon, it shows surprisingly little variation in length of 
-- language universal
-- common in other species
-- arbitrary restriction
-	- competition for resources -> no, Levinson
-	- acoustic signal bla -> no, sign languages
+\section{Why is Turn-Taking important?}
+According to present knowledge, turn-taking is a universal feature of human language, a \emph{language universal.}
+A language that does not make use of turn-taking has not been found to date and it is unlikely that such a language will ever be found (although\dash as is always the case in empirical science\dash this is not impossible).
+Its implications to language processing and production are fundamental as it dictates the temporal organisation of the flow of information between humans.
+Turn-taking may be characterised as a temporal phenomenon.
+Its temporal structure shows high variation in length of individual turns, which average at 2~seconds \citep[\pnum{7}]{levinson_turn-taking_2016}, but little variation in the gaps between turns, whose modal length in American English telephone conversations is 200~\ms\ \citep[\pnum{16}]{levinson_timing_2015}.
+
+Zooming out, turn-taking is not only present in humans.
+Figure \ref{fig:species}, based on \citet[\fnum{2}]{levinson_turn-taking_2016}, shows a number of related species who are known to employ either vocal or gestural turn-taking.
+The original purpose of \citeauthor{levinson_turn-taking_2016}'s figure was to show the presence of turn-taking in non-human primates, it can therefore not be considered exhaustive.
+I have added \emph{diaemus youngi}, one of several bat species known to engage in vocal turn-taking \citep[\pnum{114}]{vernes_what_2017}, to show that the phenomenon is in fact further spread in the animal kingdom than the various apes and monkeys might lead one to believe.
+Some indications for turn-taking have also been found in European starlings, which have been shown to at least prefer song alternation to song overlap \citep{henry_social_2015}, and there are many more examples.
+\citet[\pnum{6}]{levinson_turn-taking_2016} suggests that language followed turn-taking in evolution. He does not consider this a coincidence but furthermore suggests that turn-taking formed the basis for language evolution.
+This claim rests on three main indications: a) turn-taking is present in various species related to humans, b) humans commonly employ language together with other modalities present in various non-human primates (e.g.~gesture), and c) language development in infants begins at an early age.
+
+Taking another step back, this raises the question of how turn-taking itself was selected for in evolution.
+From this point of view, turn-taking is more interesting than other language universals, whose evolutionary advantages are quite obvious.
+The notion of a subject or the notion of a verb \citep[both considered language universals,][]{source} allow humans to express a variety of semantic concepts that they may not be able to express without these notions.
+The evolutionary advantage of turn-taking, on the other hand, still remains unclear.
+Fundamentally, evolution works by means of random mutations in the passing on of an organism's \dna.
+The \dna\ of the first child generation entirely depends on the \dna\ of the parent generation\dash with occasional random mutations introduced \citep[\cnum{8}]{dediu_introduction_2015}.
+On a non-genetic level, one might rephrase this by stating that, with every new generation, organisms do not make exact copies of themselves, but copies with ever so slight modifications \citep[\cnum{8}]{dediu_introduction_2015}.
+This mechanism is what Charles Darwin referred to as ``descent with modification'' \citep[\pnum{116}]{darwin_origin_1958}.
+These modifications may result in all sorts of differences between a parent and their child.
+Be it less muscle mass, a lighter feather colour, or a more sophisticated sense of hearing.
+Naturally, as these modifications are random, they will cancel each other out in the larger picture.
+For every bat born with thinner wings, there will be another one with thicker wings; for every human with more red blood cells, there will be another one with fewer red blood cells; and so on.
+The only circumstance under which a change can permanently push through in the long run and become the norm in an entire population is if that new trait causes its bearers to produce significantly more offspring than those individuals who do not bear the trait.
+As a result of the significantly higher offspring, the new trait will be present in significantly more individuals in the first child generation, who in turn will pass it on to even more individuals of the second child generation.
+Over time, those individuals bearing the trait will outnumber the individuals not bearing the trait until eventually the new trait will be present in all individuals of the species.%
+\footnote{This is a rough sketch of a complex process, omitting many details which are less relevant for the issue at hand.
+For example, the new trait must have high heredity. This refers to the property of a trait being passed on to a large proportion of the child generation \citep{king_heredity_2013}.
+%A more intuitive\dash although \emph{not} commonly used\dash term for this concept would be ``inheritabiliy''.
+Humans wearing earrings can be fairly certain that their offspring will inherit the property of having two hands.
+They can be much less certain that their offspring will also be wearing earrings.
+Having two hands is a trait with relatively high heredity; wearing earrings is a trait with relatively low heredity \citep[\pnum{243~ff.}]{sapolsky_behave_2017}.
+Furthermore, there are theoretical positions stating that evolution in the sense described here only applies after the percentage of individuals in a population bearing the trait has surpassed a certain threshold.
+Below this threshold, the only mechanism at work is chance.
+It is also debated whether this threshold is dependant on or independent of the total population size \citep[\pnum{21~f.},\pnum{90--94}]{berwick_why_2016,gillespie_population_2010}.}
+This evolutionary advantage is not always straight-forward and easy to spot.
+It may be intuitive that a male gorilla with stronger muscles is more successful in a mating battle; much less intuitive that a larger skin surface can take in more warmth from the sun, which is then followed by an easier maintaining of body temperature \emph{(thermoregulation),} leading to better survival in colder climates and consequently more chances of successful mating.
+The latter, less intuitive example is a rough sketch of how the first stages of the evolution of wings are hypothesised to have taken place \citep{douglas_thermoregulatory_1981,kingsolver_aerodynamics_1985}.
+An implicit necessity of the evolutionary mechanism is that every single evolutionary step along the way must in itself be of use to its bearers.
+Sticking with the wing-example, organisms will not develop tiny winglets that become bigger and bigger because somewhere down the line they will become useful for flight.
+The initial tiny winglets would never gain a foothold in the population if their bearers were not in advantage.
+Every tiny adaptive step in itself must have been useful, be it thermoregulation, aerodynamics, or any other kind of advantage.
+
+How does turn-taking fit in this picture?
+Being a characteristic of a communication system, it seems an arbitrary, even counterproductive restriction to impose.
+If we think of a communication system between two organisms, the a priori assumption would be that information simultaneously flows from \emph{a} to \emph{b} and from \emph{b} to \emph{a}.
+Limiting information flow to only one direction at a time is a considerable disadvantage that must be justified by some other advantage it may be a byproduct of.
+Two possible reasons for this restriction come to mind, the first of which unpacks as follows:
+
+If, in a conversation, participant \emph{a} listens to participant \emph{b} and speaks at the same time, then what will in effect reach \emph{a}'s ear is a mixture of both participants' speech.
+Naturally, \emph{a} is now challenged with the task of disentangling the two sources and isolating \emph{b}'s signal from the received input.
+Avoiding this difficult task may well be worth limiting information flow to one direction only.
+But for several reasons, this does not seem to be the case.
+First off, the capacity to isolate a human voice in an environment of several voices is a capacity that to a certain extent is already present in humans.
+In psychoacoustics, it is known as the cocktail party effect \citep[first mentioned in][a more recent review is given by \citeauthor{arons_review_1992}, \citeyear{arons_review_1992}]{pollack_cocktail_1957}.
+But even if humans were not capable at all of discerning a single voice in a noisy environment, the described scenario of having to separate two acoustic signals from each other is in fact a peculiarity of the acoustic modality.
+It is no challenge at all to \emph{see} another conversation partner's gestures while producing gestures at the same time\dash the visual modality allows such simultaneity.
+Consequently, this line of argumentation fails for gestural turn-taking.
+Motivating gestural and vocal turn-taking differently would tremendously complicate any theory of turn-taking and should therefore be avoided unless the empirical data contain strong clues hinting in such a direction.
+As of now, this is not the case and therefore the sensible assumption is that this line of argumentation will also fail as a cause for vocal turn-taking.%
+\footnote{
+Explained differently:
+It is of course true that for the acoustic modality this line of argumentation is not wrong per se.
+But it is in all probability not the cause for vocal turn-taking.
+Claiming that ``vocal turn-taking is caused by the difficulties of separating two acoustic signals from each other'' is similar to claiming that ``infants decide to stop being breast fed because they cannot survive from nothing but breast milk their entire life''.
+It is of course true that breast milk does not contain nutrients suited for an adult human and does not come in quantities sufficient to feed a human their entire life.
+But anyone who has ever seen the looks on infants' faces when their parents decide to stop breast feeding knows that this is not a choice the infant approves of.
+They stop being breast fed because their parents decide to stop breast feeding them.}
+Further support for the claim that this acoustic peculiarity is not responsible for turn-taking is the fact that turn-taking is equally present in sign languages, which make use of the visual modality \citep[see e.g.][among many others]{devos_turn-timing_2015,girard-groeber_management_2015, groeber_turns_2014,manrique_suspending_2015,mcclearly_turn-taking_2013}.
+
+The second possible justification for turn-taking that comes to mind is a competition for resources.
+Maybe the human brain is simply not capable of mastering both the production and reception task at the same time.
+But again, this cannot be the whole story.
+\citet{levinson_timing_2015} analysed the Switchboard Corpus, a corpus consisting of American English telephone conversations recorded across the \textsc{usa} \citep{calhoun_nxt-format_2010,godfrey_switchboard_1992}.
+They defined a gap, following \citet{heldner_pauses_2010}, as ``portions of the stereo signal that contained silence in each speaker's channel, and that involved a floor transfer between the two speakers'' \citep[\pnum{16}]{levinson_timing_2015}.
+This definition is in part unclear because \citet{heldner_pauses_2010} do themselves not define what a \emph{floor transfer} is but merely give the term as one of many in a list of synonyms having been used in the literature, all essentially meaning \emph{gap} or \emph{pause}.
+However, \citet[\pnum{556}]{heldner_pauses_2010} define a \emph{gap} as ``silences bounded by speech from different speakers'' and it becomes clear from context that this is also the definition \citet{levinson_timing_2015} have in mind.
+\citet{levinson_timing_2015} found that the modal gap between turns had a length of only 200~\ms.
+\citet{indefrey_spatial_2004}, a large meta-analysis of 82 studies on word production, and \citet{indefrey_spatial_2011} (a later update in light of recent research advances) state that the production time of a single primed word is 600~\ms.
+Referring to this meta-analysis, \citet{levinson_turn-taking_2016} points out that this production time is already longer than the modal gap of 200~\ms\ found in \citet{levinson_timing_2015}.
+Consequently, speech production must begin before the end of the previous turn.
+Or, in other words, this is evidence for the fact that at least for a finite amount of time human cognitive resources are sufficient for receiving and planning speech at the same time.
+Planning is of course in its cognitive demands not necessarily identical to producing\dash the former lacks any articulatory efforts\dash but \citet{levinson_timing_2015} also found negative gaps, i.e.~overlaps, between turns.
+
+Other language universals, such as subjects and verbs, have quite obvious advantages.
+They facilitate or even enable us to express a variety of semantic concepts.
+For turn-taking, this advantage is far from clear.
+We are therefore left with the question of how the turn-taking system was selected for in evolution, which at present lacks sufficient answers.
 
 
 
@@ -55,20 +141,20 @@ According to present knowledge, turn-taking is a universal feature of human lang
 \section{Previous Research}
 \label{sec:introductionresearch}
 The overview of previous research given here is twofold, coming both from a turn-taking and from a \fpmlower\ perspective.
-\citet{rohlfing_multimodal_nodate} is as of now the only study combining the two.
+\citet{rohlfing_multimodal_underreview} is as of now the only study combining the two.
 I have therefore not included a section of previous research on this specific application.
 
 
 \subsection{Multimodal Turn-Taking}
 \label{sec:introductionresearchturntaking}
-The literature considering turn-taking to be a unimodal phenomenon is large (\citep{casillas_turn-taking_2016,freud_turn-taking_2016,heldner_pauses_2010} to name but a few recent examples).
+The literature considering turn-taking to be a unimodal phenomenon is large (\citet{casillas_turn-taking_2016,freud_turn-taking_2016,heldner_pauses_2010} to name but a few recent examples).
 Nevertheless, one can find examples of multimodal turn-taking, although those studies are much fewer in number.
 \citet{levinson_turn-taking_2016} establishes turn-taking as a universal feature of language that ``[a]ppear[s] earlier in ontogeny than linguistic competence'' \citep[\pnum{6}]{levinson_turn-taking_2016}.
 Turns are of an average length of 2 seconds, but with high variation in length.
 He further states that ``turn-taking thus involves multi-tasking comprehension and production, but \emph{multi-tasking in the same modality is notoriously difficult}'' \citep[\pnum{9}, emphasis mine]{levinson_turn-taking_2016}, which may be interpreted as an argument in favour of multimodal turn-taking, although it is admittedly not clear that this is what \citeauthor{levinson_turn-taking_2016} is hinting at.%and criticises the separate study of language processing and production in psycholinguistics and the cognitive sciences.
 
 \citepos{gratier_early_2015} study suggests that infants as young as 2 months actively engage in turn-taking.
-This is long before first words are acquired, which usually happens around age AGEOFFIRSTWORD \citep{nosource}.
+This is long before first words are acquired, which usually happens around one year of age \citep[\pnum{129}, \pnum{131}]{lenneberg_biological_1967,szagun_sprachentwicklung_2013}.
  They compared interactions between mothers and infants of 8--13~weeks and 17--21 weeks of age respectively.
 Infants' turns were considered to be latched when the time between the end of the mother's turn and the onset of the infant's turn was less than 50~ms.
 The percentage of latched turns between mother and infant was 44.5~\%, with insignificant variation between the two age groups.

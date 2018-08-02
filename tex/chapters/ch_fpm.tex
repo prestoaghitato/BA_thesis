@@ -1,4 +1,4 @@
-% !TEX root = ../light/ba_light_master.tex
+% !TEX root = ../scrreprt_light/ba_light_master.tex
 % @author Marcel Ruland (2018)
 
 \chapter{Applying \fpmupper}
@@ -24,7 +24,7 @@ For a more detailed description of the setup see \citet[\snum{2.1}]{nomikou_verb
 
 \subsection{Annotation of the Videos}
 \label{ssec:miningmethodannotation}
-11 kinds of events were hand-coded frame per frame for both mother and child using the \textsc{elan} software \citep{wittenburg_elan:_2006}, yielding an accuracy of \textasciitilde40~ms (videos were recorded with 25 frames per second, resulting in a single frame being 40~ms long).
+11 kinds of events were hand-coded frame per frame for both mother and child using the \textsc{elan} software \citep{wittenburg_elan_2006}, yielding an accuracy of \textasciitilde40~ms (videos were recorded with 25 frames per second, resulting in a single frame being 40~ms long).
 These events were of linguistic, vocal, and visual modality. %Categories were chosen how? Elaborate here.
 Table \ref{tab:events} lists all categories.
 Every annotation contains a start and end time point and therefore also the duration of the respective event.
@@ -71,7 +71,7 @@ Finally, all 10 sequences together are referred to as the \emph{corpus.}
 \label{ssec:miningmethodapproach}
 
 \paragraph{Association Rules}
-The patterns \citet{rohlfing_multimodal_nodate} mined were association rules of the form \fpmrule{A}{B}, where the probability of the succedent \fpmset{B} was high given the antecedent \fpmset{A}.
+The patterns \citet{rohlfing_multimodal_underreview} mined were association rules of the form \fpmrule{A}{B}, where the probability of the succedent \fpmset{B} was high given the antecedent \fpmset{A}.
 Note that antecedent and succedent are not single events but sets of events.
 One may equally well form a hypothetical rule of the form \fpmrule{B,D}{A,C,D}.
 Occurrences of a rule were taken into account if the antecedent's end time point lay before the succedent's start time point \emph{and} one of the following two conditions was fulfilled:
@@ -105,7 +105,7 @@ Regarding age, mean \rt\ lies  between 1002--1124~ms for infants of age 6--9 mon
 \footnote{Stimulus was a pure (i.e.~sine wave) tone of 1000~Hz with loudness ranging from 40--60~dB.
 No numerical values given.
 Converted from line chart using the Engauge Digitizer software \citep{mitchell_engauge_2002}.
-The loudness corresponds to average loudness perceived in conversation \citep[\pnum{32}]{gorne_tontechnik:_2006}} It would obviously have been desirable to have \rt\ values of 3 month old infants, given that the infants in the  corpus used in the present thesis are 3 months of age.
+The loudness corresponds to average loudness perceived in conversation \citep[\pnum{32}]{gorne_tontechnik_2006}} It would obviously have been desirable to have \rt\ values of 3 month old infants, given that the infants in the  corpus used in the present thesis are 3 months of age.
 Unfortunately, such literature does not seem to be available, so the age difference of 3--6 months cannot be avoided for now.
 Neverthelss, the important point made is that there \emph{is} a considerable difference in reaction time between infants and adults that must be taken into account.
 In my analysis, I therefore capture rules of the sort \fpmtextrule{infant}{mother} (i.e.~mother has to react) if and only if the delay between the start time point of the antecedent is greater than 289~ms before that of the succedent.

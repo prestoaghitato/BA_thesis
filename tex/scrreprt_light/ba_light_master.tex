@@ -14,7 +14,9 @@
 	toc=bib,				% include bib in toc
 	toc=listof,				% include list of tables and list of figures in toc
 	abstract=true,			% display abstract heading
-	footnotes=multiple,		% separate footnotes set directly one after another by a comma
+%	twoside,				% two-sided printing
+	titlepage=firstiscover,	% set title page as cover page
+	footnotes=multiple		% separate footnotes set directly one after another by a comma
 ]{scrreprt}
 
 \usepackage{ba_style_light}  % loading packages, typesetting, etc.
@@ -44,7 +46,6 @@
 \listoffigures
 \singlespacing
 \KOMAoptions{fontsize=10pt,twocolumn}
-\singlespacing
 \bibliography{../aux/bib/BA_Marcel.bib}
 
 \end{document}
