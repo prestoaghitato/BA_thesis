@@ -2,16 +2,16 @@
 % @author Marcel Ruland (2018)
 
 \chapter{Applying \fpmupper}
-\label{ch:mining}
+\label{ch:fpm}
 \chapterintro{chapter description goes here}
 
 \section{Method}
-\label{sec:miningmethod}
+\label{sec:fpmmet}
 The following subsections begin by introducing the raw data \emph{as-is} and then proceed by describing the process of annotating and evaluating the data, thus going steadily from the most concrete to more and more abstract representations.
 I begin by describing the contents of the video corpus and eventually end with abstract rules\footnote{For the definition of \emph{rule} here, see subsection \ref{ssec:miningmethodapproach}.}.
 
 \subsection{The Nature of the Data}
-\label{ssec:miningmethodnature}
+\label{ssec:fpmmetnat}
 The corpus is a collection of 10 mother--infant dyads.
 Infants were 3 months of age, mothers between 28 and 40 years.
 Mother and infant were recorded at their own homes during a diaper routine.
@@ -23,7 +23,7 @@ For a more detailed description of the setup see \citet[\snum{2.1}]{nomikou_verb
 
 
 \subsection{Annotation of the Videos}
-\label{ssec:miningmethodannotation}
+\label{ssec:fpmmetann}
 11 kinds of events were hand-coded frame per frame for both mother and child using the \textsc{elan} software \citep{wittenburg_elan_2006}, yielding an accuracy of \textasciitilde40~ms (videos were recorded with 25 frames per second, resulting in a single frame being 40~ms long).
 These events were of linguistic, vocal, and visual modality. %Categories were chosen how? Elaborate here.
 Table \ref{tab:events} lists all categories.
@@ -68,7 +68,7 @@ Finally, all 10 sequences together are referred to as the \emph{corpus.}
 
 
 \subsection{Mining Approach}
-\label{ssec:miningmethodapproach}
+\label{ssec:fpmmetapp}
 
 \paragraph{Association Rules}
 The patterns \citet{rohlfing_multimodal_underreview} mined were association rules of the form \fpmrule{A}{B}, where the probability of the succedent \fpmset{B} was high given the antecedent \fpmset{A}.
@@ -156,10 +156,10 @@ It is unlikely, that the delays chosen are exactly right (or that \emph{exactly 
 %The analysis is formalised in appendix \ref{ch:formalisation}.
 
 \section{Metrics}
-\label{sec:miningmetrics}
+\label{sec:fpmmetr}
 \paragraph{Confidence}
 \paragraph{Total number of occurrences}
 \paragraph{Duration (\emph{sec})}
 
 \section{Results}
-\label{sec:miningresults}
+\label{sec:fpmres}

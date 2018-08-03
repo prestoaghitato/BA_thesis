@@ -321,7 +321,7 @@ function dicttodf(rules; all=true)
 
     for rule in keys(rules)
         antecedent = rules[rule][:antecedent]
-        succedent = rules[rule][:antecedent]
+        succedent = rules[rule][:succedent]
         null_obs = rules[rule][:null][:observations]
 
         if haskey(rules[rule], :significance)

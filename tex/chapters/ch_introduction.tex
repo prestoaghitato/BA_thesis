@@ -2,7 +2,7 @@
 % @author Marcel Ruland (2018)
 
 \chapter{\introduction}
-\label{ch:introduction}
+\label{ch:intro}
 A \emph{turn} is a basic unit of speech in conversation.
 When a speaker begins their turn, they gain the right to speak and\dash upon finishing their utterance\dash pass that right on to another participant of the conversation.
 A turn is on average 2~\s\ in length, with very high variation.
@@ -32,7 +32,7 @@ A subsequence, such as buying first a PC, then a digital camera, and then a memo
 
 The present thesis aims to strengthen the statistical objectiveness of applying \fpmlower\ to human interaction by introducing a notion of significance.
 It is organised into five main chapters.
-Chapter \ref{ch:introduction} (i.e.\ the current chapter) will proceed by GOD KNOWS WHAT.
+Chapter \ref{ch:intro} (i.e.\ the current chapter) will proceed by GOD KNOWS WHAT.
 The second chapter explains the entire process of preparing the data, applying \fpmlower, and then evaluating the data\dash beginning with a description of the raw video material and ending with abstract rules\footnote{The notion of a \emph{rule} will be explained in subsection \ref{ssec:miningmethodapproach}.}.
 Chapter \ref{ch:significance} introduces a method for establishing statistical significance in the data.
 Both chapter \ref{ch:mining} and \ref{ch:significance} present results in their last sections.
@@ -44,7 +44,7 @@ Finally, chapter \ref{ch:conclusion} concludes the thesis.
 
 
 \section{Why is Turn-Taking important?}
-\label{sec:introductionttimportant}
+\label{sec:intrott}
 According to present knowledge, turn-taking is a universal feature of human language, a \emph{language universal.}
 A language that does not make use of turn-taking has not been found to date and it is unlikely that such a language will ever be found (although\dash as is always the case in empirical science\dash this is not impossible).
 Its implications to language processing and production are fundamental as it dictates the temporal organisation of the flow of information between humans.
@@ -148,7 +148,7 @@ A question which at present lacks sufficient answers.
 
 
 \section{Previous Research}
-\label{sec:introductionresearch}
+\label{sec:introres}
 The overview of previous research given here is twofold. Subsection \ref{sec:introductionresearchturntaking} reviews literature approaching turn-taking as a multimodal phenomenon.
 Subsection \ref{sec:introductionresearchfpm} gives a brief overview of the development of \fpmlower.
 I will not go into too much detail about this development however, because the computer science literature is mainly interested in the theoretical algorithmic methods for \fpmlower, which is not the subject of the present thesis.
@@ -156,7 +156,7 @@ Instead, I will review existing applications of \fpmlower\ in linguistics.
 
 
 \subsection{Multimodal Turn-Taking}
-\label{sec:introductionresearchturntaking}
+\label{ssec:introrestt}
 The literature considering turn-taking to be a unimodal, linguistic phenomenon is large (\citet{casillas_turn-taking_2016,freud_turn-taking_2016,heldner_pauses_2010} to name but a few recent examples).
 Nevertheless, one can find examples of multimodal turn-taking, although those studies are much fewer in number.
 \citet{levinson_turn-taking_2016} establishes turn-taking as a universal feature of language that ``[a]ppear[s] earlier in ontogeny than linguistic competence'' \citep[\pnum{6}]{levinson_turn-taking_2016}.
@@ -168,8 +168,10 @@ Nevertheless, human turn-taking is not explicitly described as multimodal in his
 The literature on multimodal turn-taking can roughly be divided into two groups.
 The first group are studies examining turn-taking in infants before the acquisition of the first word.
 Though many of these studies are not concerned with multimodal turn-taking (and some \textbf{WHICH ONES??} do not even mention the fact that pre-language vocalisation is not at all equal to using language), they do provide evidence for the fact that infants engage in turn-taking before being able to make use of the linguistic modality.
-%%%%%%%%%%%%%%%%%%%%%
+The second group are studies whose participants already have acquired language to an extent that they can actively use it for entire interactions.
+These studies do take non-linguistic modalities into account, the most common ones being gesture, gaze, and smile. %justify this order, mention used modalities for every cited study
 
+\paragraph{Turn-taking before the acquisition of the first word}
 \citepos{gratier_early_2015} study suggests that infants as young as 2 months actively engage in turn-taking.
 This is long before first words are acquired, which usually happens around one year of age \citep[\pnum{129}, \pnum{131}]{lenneberg_biological_1967,szagun_sprachentwicklung_2013}.
  They compared interactions between mothers and infants of 8--13~weeks and 17--21 weeks of age respectively.
@@ -197,7 +199,7 @@ But this is still an open question \citep{source}.
 
 
 \subsection{(Frequent) Pattern Mining}
-\label{sec:introductionresearchfpm}
+\label{ssec:introresfpm}
 There have been some applications of pattern mining within linguistics.
 But before reviewing this literature, a few words on terminology are in order.
 Pattern mining was first proposed by \citet{agrawal_mining_1993}, originally intended for marketing purposes answering questions of the sort
@@ -213,21 +215,20 @@ This very brief introduction already shows that the different kinds of pattern m
 One could for example mine for sequences of a given kind that appear at least as often as a given threshold and would thereby be applying both \fpmlower\ and sequential pattern mining at the same time.
 For both this reason as well as the fact that the literature itself is quite limited, the literature reviewed in this subsection is not restricted to applications of \emph{frequent} pattern mining, but pattern mining in general.
 
-Within linguistics, the existing applications of pattern mining could hardly be further away from the present application.
-\citet{bechet_discovering_2012} use a sequence mining approach on two text corpora, one consisting of articles in the portrait section of the French newspaper \emph{Le Monde}, the other consisting of articles in the arts section of the same newspaper.
+Within linguistics, the only existing application of pattern mining is the so-called text mining, which could hardly be further away from the present application.
+Text mining refers to ``the process of extracting interesting information and knowledge from unstructured text'' \citep[\pnum{19}]{hotho_brief_2005}. Within text mining, some of the studies making use of more inherently linguistic theories (e.g.~using a syntax model a linguist would consider adequate) are \citet{bechet_discovering_2012} and \citet{quiniou_what_2012}.
+The former use a sequence mining approach on two text corpora, one consisting of articles in the portrait section of the French newspaper \emph{Le Monde}, the other consisting of articles in the arts section of the same newspaper.
 Their aim is to mine \emph{appositive qualifying phrases}, which they define as ``phrases denoting judgment or sentiment \citeellipses\ and more generally qualification'' \citep[\pnum{155}]{bechet_discovering_2012} and later as ``phrases expressing judgement or qualification'' \citep[\pnum{159}]{bechet_discovering_2012}.
 Their application therefore lies within text linguistics and pragmatics, two subdisciplines with little connection to the present thesis.
 \citet{quiniou_what_2012} pursue a similar albeit more general goal.
-The authors explore the use of mining techniques for stylistic analysis of texts by applying such tools to three corpora of poetry, letters, and fiction respectively \citep[\pnum{170}]{quiniou_what_2012}.
-The similarity of their approach compared to \citet{bechet_discovering_2012} is not surprising, given that both studies come from the \textsc{greyc} research lab at the Université de Caen Basse-Normandie and the \textsc{irisa-insa} research lab at the Campus de Beaulieu\footnote{%
-Quiniou, first author of \citet{quiniou_what_2012}, is affiliated with the \textsc{crisco} research lab, also at the Université de Caen Basse-Normandie.}
-and that Cellier and Charnois are co-authors of both.
+The authors explore the use of mining techniques for stylistic analysis of texts by applying such tools to three corpora of poetry, letters, and fiction respectively \citep[\pnum{170}]{quiniou_what_2012}.\footnote{%
+The similarity of their approach compared to \citet{bechet_discovering_2012} is not surprising, given that all authors except one come from the \textsc{greyc} research lab at the Université de Caen Basse-Normandie and the \textsc{irisa-insa} research lab at the Campus de Beaulieu and that Cellier and Charnois are co-authors of both.}
 Interestingly, in both studies the last part of the methodology applied involves having a linguist qualitatively evaluate the quantitative data.
 This is similar to the approach applied in the present thesis.
 
 
 \section{The Aim of this Thesis}
-\label{sec:introductionaim}
+\label{sec:introaim}
 The literature review in the previous section has already given many arguments for the fact that turn-taking is a multimodal phenomenon (turn-taking is acquired at an earlier age than language, difficulties of unimodal multi-tasking, etc). % Find more studies, give more arguments!
 More indirectly, turn-taking studies with infants not yet capable of using language on the one hand, together with turn-taking studies considering only language on the other hand, are also an implicit argument in favour of the multimodality of turn-taking.
 
