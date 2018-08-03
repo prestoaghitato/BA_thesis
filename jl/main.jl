@@ -441,7 +441,7 @@ function dostuff(n; minsignull=5)
     end
 
     # save summary to DataFrame
-    df = dicttodf(rules; all=false)  # only save significant rules
+    df = dicttodf(rules; all=false)  # NOTE: only save significant rules
     # and write as csv to output directory
     writetable("output/results.csv", df)
 
