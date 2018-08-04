@@ -291,6 +291,14 @@ function statistics(n, rules, test, minsignull)
 end
 
 function rankedtest(real, null)
+    #==
+    in:
+        real    ::Int
+                ::Int[]
+        null    ::Int[]
+    out:
+        pvalue  ::Float
+    ==#
     real = mean(real)
     len = length(null)
     geq = 0
@@ -313,6 +321,9 @@ function dicttodf(rules; all=true)
     df = DataFrame(
         antecedent = String[],
         succedent = String[],
+        realcon = Float64[],
+        realocc = Int64[],
+        realdur = Float64[],
         p_con = Float64[],
         p_occ = Float64[],
         p_dur = Float64[],
@@ -322,6 +333,15 @@ function dicttodf(rules; all=true)
     for rule in keys(rules)
         antecedent = rules[rule][:antecedent]
         succedent = rules[rule][:succedent]
+        if rules[rule][:real][:observations] > 0
+            realcon = rules[rule][:real][:confidence][1]
+            realocc = rules[rule][:real][:occurrences][1]
+            realdur = rules[rule][:real][:duration_sec][1]
+        else
+            realcon = 999
+            realocc = 999
+            realdur = 999
+        end
         null_obs = rules[rule][:null][:observations]
 
         if haskey(rules[rule], :significance)
@@ -335,10 +355,10 @@ function dicttodf(rules; all=true)
         end
         if !all
             if p_con < 0.05 || p_occ < 0.05 || p_dur < 0.05
-                push!(df, [antecedent, succedent, p_con, p_occ, p_dur, null_obs])
+                push!(df, [antecedent, succedent, realcon, realocc, realdur, p_con, p_occ, p_dur, null_obs])
             end
         else
-            push!(df, [antecedent, succedent, p_con, p_occ, p_dur, null_obs])
+            push!(df, [antecedent, succedent, realcon, realocc, realdur, p_con, p_occ, p_dur, null_obs])
         end
     end
     return df
