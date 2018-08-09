@@ -10,7 +10,7 @@
 \documentclass[
 	fontsize=11,			% font size 11pt (KOMA default)
 	DIV=calc,				% KOMA calculates Satzspiegel
-	BCOR=0mm,				% length that will get swallowed up by binding
+	BCOR=7mm,				% length that will get swallowed up by binding
 	pagesize,				% ensures compatibility with PDF and DVI
 	toc=bib,				% include bib in toc
 	toc=listof,				% include list of tables and list of figures in toc
@@ -57,8 +57,8 @@ I struggle to see the point of putting many other people who supported me in man
 \end{center}
 }
 %\extratitle{Schmutztitel.}
-\uppertitleback{Upper Title Back}
-\lowertitleback{Lower Title Back}
+%\uppertitleback{Upper Title Back}
+%\lowertitleback{Lower Title Back}
 
 \begin{document}
 {\singlespacing
@@ -69,15 +69,14 @@ I struggle to see the point of putting many other people who supported me in man
 \input{../chapters/ch_introduction}
 \input{../chapters/ch_fpm}
 \input{../chapters/ch_significance}
-\input{../chapters/ch_visualisation}
 \input{../chapters/ch_conclusion}
 \appendix
-\input{../chapters/ch_appendix}
+\input{../chapters/ch_app_rules}
 
 \listoftables
 \listoffigures
 \singlespacing
-\KOMAoptions{fontsize=10pt,twocolumn}
+\KOMAoptions{fontsize=10,twocolumn}
 \bibliography{../aux/bib/BA_Marcel}
 
 \end{document}

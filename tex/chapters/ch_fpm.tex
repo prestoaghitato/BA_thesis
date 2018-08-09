@@ -8,17 +8,22 @@
 \section{Method}
 \label{sec:fpmmet}
 The following subsections begin by introducing the raw data \emph{as-is} and then proceed by describing the process of annotating and evaluating the data, thus going steadily from the most concrete to more and more abstract representations.
-I begin by describing the contents of the video corpus and eventually end with abstract rules\footnote{For the definition of \emph{rule} here, see subsection \ref{ssec:miningmethodapproach}.}.
+I begin by describing the contents of the video corpus and eventually end with abstract rules\footnote{For the definition of \emph{rule} here, see subsection \ref{ssec:fpmmetapp}.}.
 
 \subsection{The Nature of the Data}
 \label{ssec:fpmmetnat}
 The corpus is a collection of 10 mother--infant dyads.
 Infants were 3 months of age, mothers between 28 and 40 years.
 Mother and infant were recorded at their own homes during a diaper routine.
-This routine was chosen because it a)~is an activity familiar to both mother and infant, b)~is an activity where mother and infant are in direct communication with each other for a relatively long period of time, c)~both mother and infant are free in their expressions.
+This routine was chosen for several reasons:
+\begin{enumerate}[label={\alph*)}]
+	\item it is an activity familiar to both mother and infant
+	\item it is an activity where mother and infant are in direct interaction with each other for a relatively long period of time
+	\item both mother and infant are free in their expressions
+\end{enumerate}
 The infant especially is free to make use of body movements and gestures and is not reliant on support from the mother, as might be the case if the infant were sitting.
 The diaper routine was recorded by two video cameras from two different perspectives, such that all relevant events were clearly visible.
-Figure \ref{fig:rawvid} gives an impression of this raw data.
+Figure \ref{fig:rawvid} gives an impression of this raw video data.
 For a more detailed description of the setup see \citet[\snum{2.1}]{nomikou_verbs_2017} and \citet[\pnum{115~f.}]{nomikou_language_2011}.\footnote{But note that while the same setup was used, the inclusion or exclusion of groups or individual subjects in the corpus was different due to the different aims of the studies.} The videos had a mean length of 395~sec (\sd~=~186~sec).
 
 
@@ -34,22 +39,23 @@ This way, sequences as schematised in Figure \ref{fig:idealseq} are obtained.
 We see two occurrences of type \fpmlabel{A} and \fpmlabel{B} each, as well as a longer occurrence of type \fpmlabel{C}.
 Those time points that are indicated on the x-axis mark the beginning and/or end time point of a specific occurrence.
 
-\begin{table}[h]
+\begin{table}
 	\centering
 	\begin{tabularx}{\textwidth}{>{\ttfamily}lX} 
 		\toprule
-		{\rmfamily Event}		& Explanation \\
+		{\rmfamily Event}	& Explanation \\
 		\cmidrule(lr){1-1} \cmidrule(lr){2-2}
-		mother\_speech			& mother speaks \\
-		mother\_vocal			& mother vocalises, but does not use language \\
-		mother\_gaze\_infant	& mother gazes at infant \\
-		mother\_gaze\_object	& mother gazing at object, usually diaper but may be any object \\
-		mother\_gaze\_away		& mother gazes neither at infant nor at object \\
-		mother\_smile			& mother smiles \\
-		\cmidrule(lr){1-1} \cmidrule(lr){2-2}
-		infant\_vocal \\
-		infant\_gaze\_mother \\
-		i\_gaze\_object			& ~ \hfill \textit{analogous to mother's events} \hfill ~ \\
+		mother\_speech		& mother speaks \\
+		mother\_vocal		& mother vocalises, but does not use language \\
+		mother\_gaze\_infant& mother gazes at infant \\
+		mother\_gaze\_object& mother gazing at object, usually diaper but may be any object \\
+		mother\_gaze\_away	& mother gazes neither at infant nor at object \\
+		mother\_smile		& mother smiles \\
+		\midrule
+		infant\_vocal		& infant vocalises \\
+		\cmidrule(lr){2-2}
+		infant\_gaze\_mother& \multirow{4}{*}{\textit{analogous to mother's events}} \\
+		i\_gaze\_object	\\
 		i\_gaze\_away \\
 		infant\_smile \\
 		\bottomrule
@@ -158,8 +164,40 @@ It is unlikely, that the delays chosen are exactly right (or that \emph{exactly 
 \section{Metrics}
 \label{sec:fpmmetr}
 \paragraph{Confidence}
-\paragraph{Total number of occurrences}
-\paragraph{Duration (\emph{sec})}
+In the literature, the confidence of a rule \fpmrule{A}{B} is commonly defined as \(conf(\mathcal{A\rightarrow B}) = P(\mathcal{B|A})\), the probability of the succedent~\fpmlabel{B}, given the antecedent~\fpmlabel{A} \citep[\pnum{21}]{han_data_2012}.
+The definition in the present thesis is somewhat different.\footnote{%
+Admittedly, this use of terminology may be confusing. For lack of a better term however, I decided to stick with confidence for the scope of this thesis.}
+Here, confidence is defined as
+\[conf(\mathcal{A \rightarrow B}) = \frac{d(\mathcal{A \cup B})}{d(\mathcal{A})}\]
+where \(d(x)\) is the duration of~\(x\).
+The confidence therefore is the duration of the occurrence of the rule divided by the duration of the occurrence of the antecedent.
+If, in a given occurrence of a rule, we observe the antecedent for 6~\s\ and the succedent for 8~\s, then that occurrence will have a confidence of \(\frac{6s}{8s} = 0.75\).
+The overall confidence of a rule in a sequence is the mean of all occurrences' individual confidence values.
+In other words, the confidence answers to the question:
+Over what percentage of the antecedent interval do we observe the succedent?
+The infant smiling for a relatively long period of time with the mother eventually joining in with a brief smile herself will result in an occurrence of \fpmtextrule{infant\_smile}{mother\_smile} with a low confidence close to 0.
+The infant smiling with the mother joining in almost immediately and continuing to smile with the infant for a relatively long period of time will result in an occurrence of \fpmtextrule{infant\_smile}{mother\_smile} with a high confidence close to 1.
 
-\section{Results}
-\label{sec:fpmres}
+It is crucial that the confidence not be misinterpreted as some sort of conditional probability.
+A short example will illustrate how different the two metrics behave.
+We have a single occurrence of a rule \fpmrule{A}{B}, where we observe the succedent~\fpmlabel{B} over the entire duration of the antecedent~\fpmlabel{A} and 0 other occurrences of the antecedent~\fpmlabel{A}.
+Both the confidence and the conditional probability will evaluate to 1 in this case.
+But if we have not 0 but 10 other occurrences of the antecedent~\fpmlabel{A}, the two metrics differ.
+The conditional probability will evaluate to \(\frac{1}{10} = 0.1\) because in only 1 of the 10 occurrences of the antecedent we could also observe the succedent.
+The confidence however will still evaluate to 1, because the mere observation of the antecedent without observation of the succedent does not count as an occurrence of the rule \fpmrule{A}{B} and therefore is not taken into account by the confidence.
+Phrased differently, one could say that the confidence is invariant to such sole occurrences of the antecedent.
+
+\paragraph{Total number of occurrences (\noc)}
+The total number of occurrences (henceforth \noc) simply counts all occurrences of a given rule in a sequence.
+It is a simple yet useful metric that plays an important role in evaluating rules.
+If a given rule only occurs only 2--3 times, then this is an indication that coincidence is playing a relevant role in those 2--3 occurrences.
+Still, \noc\ is a metric which is not meaningful alone and must be evaluated together with other metrics, see section \ref{sec:fpmeval}.
+
+\paragraph{Duration}
+The duration is another simple yet useful metric.
+For a given rule, it is the sum of the durations of all occurrences of that rule.
+I.e.~if we have 3 occurrences of a given rule, which are 2, 7, and 4~\s\ long respectively, then that rule's duration evaluates to \(2+7+4=13\)~\s.
+The duration of a rule is measured in seconds; for simplicity I will sometimes omit the unit, but never at the expense of clarity.
+
+\section{Evaluating metrics together}
+\label{sec:fpmeval}

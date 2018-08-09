@@ -1,0 +1,43 @@
+% !TEX root = ../scrreprt/ba_scrreprt_master.tex
+% @author Marcel Ruland (2018)
+
+\chapter{Rules Found}
+\label{ch:app_rules}
+\chapterintro{This appendix lists all rules found including the absolute values for all metrics and the p-values for all metrics.
+A brief legend of the tables: Every row represents a rule.
+The first and second column give a rule's antecedent and succedent respectively.
+Columns 3--5 give a rule's absolute values for confidence, \noc, and duration (in that order).
+Columns 6--8 give a rule's p-values, again for confidence, \noc, and duration (in that order).
+The 9\textsuperscript{th} and last column gives the number of null sequences the rule was found in.
+Rules are sorted alphabetically according to their antecedent, then sorted alphabetically according to their succedent.
+Although this way it is difficult to look for e.g.\ rules with a high confidence, the alphabetical sorting allows an individual rule to be found easily.
+Section \ref{sec:289} gives values that were obtained with a delay of \(\geq\)~289~\ms; Section \ref{sec:890} gives values obtained with a delay of \(\geq\)~890~\ms.}
+\section{Delay 289 \ms}
+\label{sec:289}
+
+\newcommand{\tf}{@{~}>{\addfontfeatures{Numbers={Monospaced,Lining}}}}
+
+{\sffamily\KOMAoptions{fontsize=8}
+\begin{tabularx}{\textwidth}{>{\ttfamily\addfontfeatures{Numbers={Monospaced,Lining}}}X@{~}>{\ttfamily\addfontfeatures{Numbers={Monospaced,Lining}}}Xlllllll}
+	\toprule
+	{\sffamily\addfontfeatures{Numbers={Monospaced,Lining}} 1} & {\sffamily\addfontfeatures{Numbers={Monospaced,Lining}} 2} & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+	\midrule
+	&& \multicolumn{3}{c}{\textit{metrics}} & \multicolumn{3}{c}{\textit{p-values}} \\
+	\cmidrule(lr){3-5} \cmidrule(lr){6-8}
+	\textit{\sffamily antecedent}&\textit{\sffamily succedent}&\textit{conf}&\textit{noc}&\textit{dur}&\textit{conf}&\textit{noc}&\textit{dur}&\textit{\# null} \\
+	\midrule
+	(infant\_gaze\_away;mother\_gaze\_object) & (infant\_vocalise) & 0.105 & 31 & 16.23 & 0.8750 & 0.0000 & 0.1250 & 8 \\
+	(infant\_gaze\_away) & (mother\_gaze\_object) & 0.446 & 65 & 198.96 & 0.0100 & 0.2200 & 0.0300 & 100 \\
+	(infant\_gaze\_mother;infant\_smile) & (infant\_vocalise) & 0.135 & 72 & 59.53 & 0.0000 & 0.2857 & 0.0952 & 21 \\
+	(infant\_gaze\_mother;infant\_smile) & (mother\_gaze\_infant;mother\_speech) & 0.375 & 154 & 164.77 & 0.0000 & 0.8387 & 0.0000 & 31 \\
+	(infant\_gaze\_mother;infant\_smile) & (mother\_gaze\_infant) & 0.69 & 50 & 303.08 & 0.0204 & 0.9388 & 0.1633 & 49 \\
+	(infant\_gaze\_mother;infant\_smile) & (mother\_smile;mother\_gaze\_infant) & 0.413 & 68 & 181.76 & 0.0000 & 0.5833 & 0.0000 & 12 \\
+	(infant\_gaze\_mother;infant\_smile) & (mother\_smile;mother\_speech) & 0.304 & 141 & 133.87 & 0.0000 & 0.0000 & 0.0000 & 15 \\
+	(infant\_gaze\_mother;infant\_smile) & (mother\_smile) & 0.578 & 49 & 254.05 & 0.0000 & 0.8980 & 0.0000 & 49 \\
+	(infant\_gaze\_mother;infant\_smile) & (mother\_speech) & 0.499 & 184 & 219.27 & 0.0204 & 0.9592 & 0.1224 & 49 \\
+	(infant\_gaze\_mother;infant\_vocalise;infant\_smile) & (mother\_gaze\_infant;mother\_speech) & 0.386 & 14 & 12.67 & 0.0000 & 0.3750 & 0.0000 & 8 \\
+	\bottomrule
+\end{tabularx}
+}
+\section{Delay 890 \ms}
+\label{sec:890}
