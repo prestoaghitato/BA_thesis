@@ -1,4 +1,4 @@
-% !TEX root = ../scrreprt_light/ba_light_master.tex
+% !TEX root = ../scrreprt/ba_scrreprt_master.tex
 % @author Marcel Ruland (2018)
 
 \chapter{\introduction}
@@ -24,11 +24,12 @@ The specific kind of pattern and the definition of \emph{frequent} cannot be mea
 In contrast to descriptive and inferential statistics\dash which disprove or affirm hypotheses generated beforehand\dash \fpmlower\ is of an exploratory, hypothesis-generating nature.
 Depending on the patterns found, one may then formulate hypotheses based on these found patterns, which may then in turn be tested empirically using descriptive and inferential statistics \cite[\pnum{6~ff.,~tba}]{rohlfing_multimodal_underreview,han_data_2012}. %% ISSUE: How do you give page references for each individual source when citing multiple sources?
 The basic concepts of \fpmlower\ are explained by \citet[\pnum{57}, emphasis in original]{han_frequent_2007}:
-\begin{quote}
+
+\begin{customquote}
 ``Frequent patterns are itemsets, subsequences, or substructures that appear in a data set with frequency no less than a user-specified threshold.
 For example, a set of items, such as milk and bread, that appear frequently together in a transaction data set, is a \emph{frequent itemset}.
 A subsequence, such as buying first a PC, then a digital camera, and then a memory card, if it occurs frequently in a shopping history database, is a \emph{(frequent) sequential pattern.}''
-\end{quote}
+\end{customquote}
 
 The present thesis aims to strengthen the statistical objectiveness of applying \fpmlower\ to human interaction by introducing a notion of significance.
 It is organised into five main chapters.
@@ -58,6 +59,13 @@ I have added \emph{diaemus youngi}, one of several bat species known to engage i
 Some indications for turn-taking have also been found in European starlings, which have been shown to at least prefer song alternation to song overlap \citep{henry_social_2015}, and there are many more examples.
 \citet[\pnum{6}]{levinson_turn-taking_2016} suggests that language followed turn-taking in evolution. He does not consider this a coincidence but furthermore suggests that turn-taking formed the basis for language evolution.
 This claim rests on three main indications: a) turn-taking is present in various species related to humans, b) humans commonly employ language together with other modalities present in various non-human primates (e.g.~gesture), and c) language development in infants begins at an early age.
+
+\begin{figure}
+	\centering
+	\input{../aux/tikzpictures/tikz_species.tex}
+	\label{fig:species}
+	\caption[Species known to engage in vocal or gestural turn-taking.]{A selection of species known to engage in vocal or gestural turn-taking. Based on \citet[\pnum{11}]{levinson_turn-taking_2016}.}
+\end{figure}
 
 Taking another step back, this raises the question of how turn-taking itself was selected for in evolution.
 From this point of view, turn-taking is more interesting than other language universals, whose evolutionary advantages are quite obvious.
@@ -144,6 +152,8 @@ In a chapter entitled ``Gossip and the social origins of language'', \citet[\pnu
 Other works concerned with language evolution that do \emph{not} touch on the issue of turn-taking include \citet{berwick_why_2016}, \citet{bolhuis_birdsong_2013}, \citet{friederici_language_2017}, and \citet{jenkins_biolinguistics_2000}.
 We are therefore left with the question of how the turn-taking system was selected for in evolution.
 A question which at present lacks sufficient answers.
+%%%%%%%%%%%%%%%%
+``“Multimodal motherese” is likely a natural, adaptive behavior that has evolved to transmit conventional word–referent relations to infants.'' \citep[\pnum{891}]{gogate_study_2000}
 
 
 
@@ -158,45 +168,94 @@ Instead, I will review existing applications of \fpmlower\ in linguistics.
 
 \subsection{Multimodal Turn-Taking}
 \label{ssec:introrestt}
-The literature considering turn-taking to be a unimodal, linguistic phenomenon is large (\citet{casillas_turn-taking_2016,freud_turn-taking_2016,heldner_pauses_2010} to name but a few recent examples).
+The literature considering turn-taking to be a unimodal, linguistic phenomenon is large (\citet{casillas_turn-taking_2016,freud_turn-taking_2016,heldner_pauses_2010,kurtic_resources_2013} to name but a few recent examples).
 Nevertheless, one can find examples of multimodal turn-taking, although those studies are much fewer in number.
 \citet{levinson_turn-taking_2016} establishes turn-taking as a universal feature of language that ``[a]ppear[s] earlier in ontogeny than linguistic competence'' \citep[\pnum{6}]{levinson_turn-taking_2016}.
 He further states that ``turn-taking thus involves multi-tasking comprehension and production, but \emph{multi-tasking in the same modality is notoriously difficult}'' \citep[\pnum{9}, emphasis mine]{levinson_turn-taking_2016}.
 Being concerned with cognitive load, this may be interpreted as an argument in favour of multimodal turn-taking, although it is admittedly not clear that this is what \citeauthor{levinson_turn-taking_2016} is hinting at.
-He does, however, list several non-human primates (see figure \ref{fig:species}) that employ vocal and/or gestural turn-taking.
-Nevertheless, human turn-taking is not explicitly described as multimodal in his paper.
+Turn-taking is not explicitly described as multimodal in his paper.
 
 The literature on multimodal turn-taking can roughly be divided into two groups.
 The first group are studies examining turn-taking in infants before the acquisition of the first word.
-Though many of these studies are not concerned with multimodal turn-taking (and some \textbf{WHICH ONES??} do not even mention the fact that pre-language vocalisation is not at all equal to using language), they do provide evidence for the fact that infants engage in turn-taking before being able to make use of the linguistic modality.
+Though many of these studies are not concerned with multimodal turn-taking (and some do not even mention the fact that pre-language vocalisation is not at all equal to using language), they do provide evidence for the fact that infants engage in turn-taking before being able to make use of the linguistic modality.
 The second group are studies whose participants already have acquired language to an extent that they can actively use it for entire interactions.
 These studies do take non-linguistic modalities into account, the most common ones being gesture, gaze, and smile. %justify this order, mention used modalities for every cited study
 
 \paragraph{Turn-taking before the acquisition of the first word}
+% gratier 2015
 \citepos{gratier_early_2015} study suggests that infants as young as 2 months actively engage in turn-taking.
 This is long before first words are acquired, which usually happens around one year of age \citep[\pnum{129}, \pnum{131}]{lenneberg_biological_1967,szagun_sprachentwicklung_2013}.
- They compared interactions between mothers and infants of 8--13~weeks and 17--21 weeks of age respectively.
+They compared interactions between mothers and infants of 8--13~weeks and 17--21 weeks of age respectively.
 Only the acoustic modality was taken into account.
 Infants' turns were considered to be \emph{latched} when the time between the end of the mother's turn and the onset of the infant's turn was less than 50~\ms.
 The percentage of latched turns between mother and infant was 44.5~\%, with insignificant variation between the two age groups.
 This suggests not only active participation in turn-taking by the infant (44.5~\% being far above chance), but also a \emph{constant} (i.e.\ not improving with age) turn-taking ability, at least between the second and fifth month of life.
 Yet, they also state that ``there remains some controversy over the extent to which young infants actively contribute to turn-taking exchanges and the extent to which adults construct conversational frameworks for infant vocalization'' \citep[\pnum{2}]{gratier_early_2015}, but without going further into what these controversies are.
 Even though this study does not consider any non-acoustic part of the interaction, it still provides evidence for turn-taking at an age of only 2 months.
-It also indirectly provides evidence for the multimodality of turn-taking.
-Infants this young make sounds by vibration of their vocal chords, but they do not use language (their acoustic signals do not contain words).
-Therefore, this is a case of non-linguistic turn-taking.
 
-Finally, \citepos{stivers_universals_2009} study is not specifically concerned with multimodality, but does consider both speech and gesture to be valid beginnings of a turn.
+% hilbrink 2015
+\citepos{hilbrink_early_2015} longitudinal study investigates turn-taking in infants of 3 to 18 months of age.
+In contrast to \citet{gratier_early_2015}, they defined a turn-transition\footnote{Essentially a synonym for what is here called turn-taking.} as ``any switch from a maternal utterance to an infant vocalization or vice versa'' \citep[\pnum{5}]{hilbrink_early_2015} and found median gap duration ranging from 500 to 1200\ms, depending on infant age.
+Interestingly, the highest median gap duration was shown by infants at 9~months of age.
+\citet{hilbrink_early_2015} give two possible reasons for this peculiarity:
+The first possibility ascribes the increasing duration to the mothers' behaviour.
+With increasing age of their infant, mothers expect their infant more and more to actively engage in turn-taking.
+Therefore, when mothers finish a turn, the time they wait before starting to speak again increases.
+This increasing pause is meant as an opportunity for the infant to take over and ``take the turn''.
+This behaviour will result in longer median gap durations even if the infant does start vocalising at entirely random times.
+If a mother waits 300\ms\ after finishing her turn before starting to speak again, then the maximum possible gap the infant can reach by producing turns at random times is exactly 300\ms.
+If, on the other hand, the mother waits for 1200\ms\ before starting to speak again, then the infants' (alleged) random turns can produce gaps as long as 1200\ms.
+If this line of argumentation holds true, then the infant is not at all involved in the increasing median gap durations.
+The second possible explanation is that with increasing linguistic ability, the amount of parsing infants have to do before beginning their turn increases and\dash consequently\dash the mean gap duration increases.
+\citet[\pnum{10}]{hilbrink_early_2015} make no definitive statement as to which of the two possibilities they hypothesise to be true, but they heavily lean towards the second possibility.
+
+Both \citet{gratier_early_2015} and \citet{hilbrink_early_2015} only take infants' vocalisations and mothers' speech into account\dash other modalities do not play a role in their analysis.
+They also employ very different temporal definitions for turn-taking.
+While \citet{gratier_early_2015} take the high percentage of turns with a gap of less than 50\ms\ as evidence for turn-taking, \citet{hilbrink_early_2015} measure gaps of more than one second and consider it an instance of turn-taking.
+I do not suggest that such long gaps are not cases of turn-taking, but the difference in operationalisation indicates a lack of consensus in the literature about the temporal characteristics turn-taking must fulfil in order to be considered turn-taking.
+
+
+\paragraph{Turn-taking including non-linguistic modalities}
+% important multimodal studies
+% Gogate et al (2000)
+\citet{gogate_study_2000} make an important contribution to multimodal research.
+In 24 dyads during semi-structured play, mothers taught there infants four novel words.
+Speech, gesture, and touch in the mothers' utterances were taken into account.
+With this coding scheme, 99.99\% of the mothers' utterances were multimodal.
+\citet{gogate_study_2000} found that mothers used novel words significantly more often in synchrony with gesture/touch than known words.
+More specifically, mothers tended to move the referent object while naming it.
+This seemingly redundant information is hypothesised to help infants make the arbitrary connection between a word's acoustic form and its semantic function \citep[\pnum{891}]{gogate_study_2000}.
+This makes multimodality a fundamental aspect of mother-infant interaction.
+
+% Van Egeren et al (2001)
+\citet{vanegeren_mother-infant_2001} inspected response timing in early mother-infant interaction using sample of 150 mother-infant (with infants being 4~months of age) dyads engaging in naturalistic mother-infant play.
+They took into account speech, vocalisation, but also smile, touch, social play, and object play.
+The object of interest was the delay between a signal and a response, where a signal is any of the coded behaviours of mother or infant and a response is a behaviour of the other party beginning with 1--5\s\ after the signal had begun.
+Within one \sone\ after one party had exhibited a signal, the likelihood of the other party exhibiting a response was not above chance.
+But, interestingly, within 2--5\s\ after one party had exhibited a signal, likelihood of the other party's response ``increased considerably and significantly for virtually all signal-response pairs'' \citep[\pnum{687}]{vanegeren_mother-infant_2001}.
+
+% less important multimodal studies
+A considerable number of studies has taken gesture into account when investigating turn-taking \citep[among others]{benus_pragmatic_2011,mccowan_automatic_2005,schmitt_zur_2005,stivers_universals_2009}, but not all of these are specifically concerned with multimodality and not all of them consider gesture and speech separately in their analyses (e.g.~in \citet{stivers_universals_2009} both gesture and speech are considered as valid beginnings of a turn, but the two modalities are not analysed separately).
+\citet{mondada_participants_2006,mondada_multimodal_2007} investigates multimodal models for assessing how speakers choose the next speaker in an interaction of more than two speakers.
+
+% turn-taking in cs
+Within computer science, \citet{chan_designing_2008} criticise the unimodality of then-existing computational models of turn-taking, stating that ``existing turn-taking protocols are rudimentary, lacking many communication cues available in face-to-face collaboration'' \citep[\pnum{333}]{chan_designing_2008}.
+In the following years, there has been research in multimodal turn-taking within (broadly) robotics and artificial intelligence.
+\citet{chao_simon_2011}, \citet{chao_timing_2012}, and \citet{chao_timingmultimodal_2012} create computational turn-taking models (employing speech, gaze, and motion) for humanoid robots to improve communication with humans.
+\citet{huang_multimodal_missing} create a model for giving virtual humans the ability to predict turn ends.
+\citet{bohus_multiparty_2011}\dash building on \citet{bohus_computational_2010,bohus_facilitating_2010}\dash improve a multiparty model for turn-taking, where several people can interact with a digital avatar as participants in a quizz game hosted by the digital avatar.
+In its current state, the model is capable of ``visually tracking multiple people in the scene, sound source localization, speech recognition, conversational scene analysis, behavioral control and dialog management'' \citep[\pnum{100}]{bohus_multiparty_2011}.
+
 
 One might be inclined to consider the presence of turn-taking in sign languages (see page \textbf{PAGE}) as a further argument for multimodal turn-taking.
 I argue against such a claim.
 While sign languages are obviously not acoustic and could be described as motor-visual interaction, it still is a \emph{linguistic} interaction.
 Sign languages have a syntax almost identical to that of acoustic human languages.
-The only potential difference is the notion of a frame, which may be unique to sign languages.
-But this is still an open question \citep{source}.
+The only potential difference is the notion of a frame, which may be unique to sign languages,
+But this is still an open question \citep{source}.\showcomment{this paragraph should probs be somewhere else}
 
-\subsubsection{Smile in Interaction}
 \subsubsection{Gaze in Interaction}
+\subsubsection{Smile in Interaction}
 
 
 \subsection{(Frequent) Pattern Mining}

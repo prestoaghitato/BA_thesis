@@ -22,9 +22,9 @@ decrease line spacing by setting DEFAULT font size to tiny, then changing it man
 
 nicht VP 2 und VP 7
 
-main.jl to do:
-deal with mother+infant in conclusion
-separate dostuff(), statistics(), and prettyprinting()
-metric: occurred in how many VPs?
-statistics: confidence intervals
-implement Wilcoxon
+
+LITERATURE:
+
+TT before first word:
+\cite{gratier_early_2015} infants 8-21 weeks, 44.5% of turns < 50ms gap, only acoustic
+\cite{hilbrink_early_2015} infants 3-18 months free-play recordings 12 mother-infant dyads, only infant vocalisation and mother speech annotated

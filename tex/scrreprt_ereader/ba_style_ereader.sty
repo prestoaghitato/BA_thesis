@@ -25,6 +25,7 @@
 \usepackage[singlespacing]{setspace}			% improved linespacing
 \usepackage{lipsum}								% blind text
 \usepackage{tabularx}							% more spacing options for tables
+\usepackage{multirow}							% cells spanning multiple rows
 \usepackage{booktabs}							% improved tables
 \usepackage{array}								% >{} syntax to format table columns
 \usepackage{enumitem}							% enumerate environment, custom list labels
@@ -72,7 +73,9 @@
 \newcommand{\fpmsentence}{Frequent pattern mining}  % shortcut
 \newcommand{\dna}{\textsc{dna}}  % DNA (duh...)
 \newcommand{\ms}{milliseconds}  % milliseconds (duh...)
+\newcommand{\noc}{\textsc{noc}}  
 \newcommand{\rt}{\textsc{rt}}  % reaction time
+\newcommand{\sone}{second}  % second (duh...)
 \newcommand{\s}{seconds}  % seconds (duh...)
 \newcommand{\sd}{\textsc{sd}}  % standard deviation
 
@@ -80,7 +83,7 @@
 %% semantic commands
 \newcommand{\code}[1]{\texttt{#1}}										% code
 \newcommand{\dash}{---}													% typeset dashes
-\newcommand{\citeellipses}{[\ldots]}								% citation ellipses with correct spacing
+\newcommand{\citeellipses}{[\ldots]}									% citation ellipses with correct spacing
 \newcommand{\citenums}[1]{#1}											% numbers in citations
 \newcommand{\pnum}[1]{p.~#1}											% page numbers in citations
 \newcommand{\snum}[1]{sec.~#1}											% section numbers in citations
@@ -92,6 +95,10 @@
 \newcommand{\fpmrule}[2]{\fpmset{#1}~\(\rightarrow\)~\fpmset{#2}}		% typeset rules
 \newcommand{\fpmtextrule}[2]{\texttt{#1~\(\rightarrow\)~#2}}			% typeset less mathsy rules
 
+
+\newcommand{\showcomment}[1]{{\textcolor[HTML]{CC0000}{*}\marginpar{\raggedright\scriptsize{\textcolor[HTML]{CC0000}{\textit{*#1}}}}}}							% comments visible on output
+
+%% other
 
 %% TikZ Styles
 % based on http://www.texample.net/tikz/examples/double-arrows/
@@ -115,8 +122,6 @@
 	}
 ]
 
-
-%% other
 \newcommand{\imgwidth}{0.618\textwidth}									% set image width to golden ratio
 \makeatletter															% possessive citations, from tex.stackexchange.com/questions/125690
 \DeclareRobustCommand\citepos  % define \citepos just like \citet
@@ -129,21 +134,10 @@
 \makeatother
 
 
-%% hyphenation
-\hyphenation{Henz-gen}
-
-
 %% chapter names
 \newcommand{\introduction}{Introduction}
 \newcommand{\frequentpatternmining}{Applying Frequent Pattern Mining}
 \newcommand{\significance}{Establishing a Notion of Significance}
 \newcommand{\visualisation}{Visualising Significant Patterns}
 \newcommand{\conclusion}{Conclusion}
-%**************************************************
-
-
-
-%****************** New Colours *******************
-\definecolor{graphgreen}{cmyk}{0.76,0.25,0.8,0.18}
-\definecolor{graphred}{cmyk}{0.01,0.92,0.86,0.14}
 %**************************************************

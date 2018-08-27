@@ -6,21 +6,18 @@
 
 \documentclass[
 	fontsize=11,			% font size 11pt (KOMA default)
-	DIV=calc,				% KOMA calculates Satzspiegel
-	BCOR=0mm,				% length that will get swallowed up by binding
+	DIV=8,					% DIV from main file
+	BCOR=7mm,				% BCOR from main file
 	pagesize,				% ensures compatibility with PDF and DVI
-	toc=bib,				% include bib in toc
-	toc=listof,				% include list of tables and list of figures in toc
-	abstract=true,			% display abstract heading
 	twoside,				% two-sided printing
-	titlepage=firstiscover,	% set title page as cover page
 	footnotes=multiple,		% separate footnotes set directly one after another by a comma
 %	draft					% mercilessly reveal overfull hboxes
 ]{scrreprt}
 
-\newcommand{\filler}{}  % easily switch blind text on or off
 
 \usepackage{../scrreprt/ba_style}  % loading packages, typesetting, etc.
+
+\newcommand{\filler}{}%\lipsum[1]}  % easily switch blind text on or off, shit's not working in captions though
 
 \begin{document}
 \filler
@@ -28,7 +25,6 @@
 \begin{figure}
 	\centering
 	\input{../aux/tikzpictures/tikz_species.tex}
-	\caption{fig:species}
 	\label{fig:species}
 \end{figure}
 
@@ -37,7 +33,6 @@
 \begin{figure}
 	\centering
 	\input{../aux/tikzpictures/tikz_idealseq.tex}
-	\caption{fig:idealseq}
 	\label{fig:idealseq}
 \end{figure}
 
@@ -45,9 +40,9 @@
 
 \begin{figure}
 	\centering
-	\input{../aux/tikzpictures/tikz_levinson.tex}
-	\caption{fig:levinson}
-	\label{fig:levinson}
+	\input{../aux/tikzpictures/tikz_gaps.tex}
+	\label{fig:gaps}
+	\caption{Katharina doesn't like the arrows. Do we care?}
 \end{figure}
 
 \filler
@@ -55,7 +50,6 @@
 \begin{figure}
 	\centering
 	\input{../aux/tikzpictures/tikz_method.tex}
-	\caption{fig:method}
 	\label{fig:method}
 \end{figure}
 
@@ -63,9 +57,8 @@
 
 \begin{figure}
 	\centering
-	\input{../aux/tikzpictures/tikz_null_naive.tex}
-	\caption{fig:nullnaive}
-	\label{fig:nullnaive}
+	\input{../aux/tikzpictures/tikz_null.tex}
+	\label{fig:null}
 \end{figure}
 
 \filler
@@ -73,7 +66,6 @@
 \begin{figure}
 	\centering
 	\input{../aux/tikzpictures/tikz_organisation.tex}
-	\caption{fig:organisation}
 	\label{fig:organisation}
 \end{figure}
 
@@ -82,8 +74,7 @@
 \begin{figure}
 	\centering
 	\input{../aux/tikzpictures/tikz_significance.tex}
-	\caption{fig:significance}
-	\label{fig:significance}
+	\label{fig:sig}
 \end{figure}
 
 \filler

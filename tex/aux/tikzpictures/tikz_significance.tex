@@ -4,7 +4,7 @@
 % semantic commands
 \newcommand{\nodefont}[1]{{\scriptsize #1}}
 \newcommand{\commentfont}[1]{{\rmfamily\textit{#1}}}
-\newcommand{\nullnode}{\nodefont{100 Null}}
+\newcommand{\nullnode}{\nodefont{100 \textsc{ns}}}
 \newcommand{\samplenode}{\nodefont{sample}}
 \newcommand{\sampledummy}{{\color{white}\samplenode} \\[0.2em] {\color{white}\nodefont{10}}}
 \newcommand{\nodecdots}{\nodefont{\(\cdots\)}}
@@ -156,7 +156,7 @@
 	\draw[decorate,	decoration={brace,amplitude=5pt}]
 	([shift={(0,-4.2)}]sample1.south west) --
 	node[left, xshift=-0.5em, align=right, text width=\annotationwidth]
-	{\annotationcounter{4}\commentfont{for metric~\emph{m} of rule~\emph{r}, a null distribution of 100 values is formed}}
+	{\annotationcounter{4}\commentfont{for metric~\emph{m} of rule~\emph{r}, a null distribution of \(\leq\)~100 values is formed}}
 	(sample1.south west);
 
 	% the big question

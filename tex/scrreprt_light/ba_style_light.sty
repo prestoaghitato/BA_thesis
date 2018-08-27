@@ -13,6 +13,7 @@
 	\bibliographystyle{newharvard}				% custom Harvard bibliography style
 \usepackage[defaultlines=2,all]{nowidow}		% prevent widow and orphan lines
 \usepackage{amsmath,amssymb}					% better maths support & more symbols
+\usepackage{xcolor}								% custom colours
 \usepackage{showlabels}							% show labels in outer margin
 \usepackage{url}								% typeset urls
 \usepackage{microtype}							% improved typography
@@ -37,8 +38,21 @@
 \newcommand{\ms}{milliseconds}						% milliseconds (duh...)
 \newcommand{\noc}{\textsc{noc}}						% number of occurrences
 \newcommand{\rt}{\textsc{rt}}						% reaction time
+\newcommand{\sone}{second}							% second (duh...)
 \newcommand{\s}{seconds}							% seconds (duh...)
 \newcommand{\sd}{\textsc{sd}}						% standard deviation
+
+%% short cuts for event types
+\newcommand{\mosp}{\mbox{\code{mother\_speech}}}
+\newcommand{\mogain}{\mbox{\code{mother\_gaze\_infant}}}
+\newcommand{\mogaob}{\mbox{\code{mother\_gaze\_object}}}
+\newcommand{\mogaaw}{\mbox{\code{mother\_gaze\_away}}}
+\newcommand{\mosm}{\mbox{\code{mother\_smile}}}
+\newcommand{\invo}{\mbox{\code{infant\_vocalise}}}
+\newcommand{\ingamo}{\mbox{\code{infant\_gaze\_mother}}}
+\newcommand{\ingaob}{\mbox{\code{infant\_gaze\_object}}}
+\newcommand{\ingaaw}{\mbox{\code{infant\_gaze\_away}}}
+\newcommand{\insm}{\mbox{\code{infant\_smile}}}
 
 %% semantic commands
 \newcommand{\code}[1]{\texttt{#1}}									% code
@@ -56,6 +70,7 @@
 \newcommand{\fpmtextrule}[2]{\texttt{#1~\(\rightarrow\)~#2}}		% typeset less mathsy rules
 
 %% other
+\newcommand{\showcomment}[1]{{\textcolor[HTML]{CC0000}{*}\marginpar{\raggedright\scriptsize{\textcolor[HTML]{CC0000}{\textit{*#1}}}}}}							% comments visible in output
 \newcommand{\imgwidth}{0.618\textwidth}									% set image width to golden ratio
 \makeatletter															% possessive citations, from tex.stackexchange.com/questions/125690
 \DeclareRobustCommand\citepos  % define \citepos just like \citet

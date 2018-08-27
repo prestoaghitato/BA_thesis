@@ -1,87 +1,203 @@
-% !TEX root = ../scrreprt_light/ba_light_master.tex
+% !TEX root = ../scrreprt/ba_scrreprt_master.tex
 % @author Marcel Ruland (2018)
 
-\newcommand{\hnaught}{\textit{H}\textsubscript{\addfontfeature{Numbers=Lining}0}}
-\newcommand{\hone}{\textit{H}\textsubscript{\addfontfeature{Numbers=Lining}1}}
+%\newcommand{\hnaught}{\textit{H}\textsubscript{\addfontfeature{Numbers=Lining}0}}
+%\newcommand{\hone}{\textit{H}\textsubscript{\addfontfeature{Numbers=Lining}1}}
+\newcommand{\pv}{\textit{p}-value}
 
 
 \chapter{\significance}
 \label{ch:sig}
-\chapterintro{Significance tests are one of the most widely used statistical tools in academic work of virtually all disciplines dealing with some sort of numerical data.
-As is the case with most widely used tools, the temptation to merely learn its application and neglect conceptual understanding is present.
-I will try and bypass this fallacy by devoting section \ref{sec:signat} to the concept of statistical significance.
-The following section \ref{sec:sigmet} describes the creation of a null hypothesis to establish a baseline against which to test for significance.
-Finally, section \ref{sec:sigres} discusses the results.}
+\chapterintro{chapter desciption goes here}
 
 \section{The Nature of Significance}
 \label{sec:signat}
 In a classic experimental setting, one distinguishes between a control group and an experimental group.
-In the control group, all variables are held constant, whereas in the experimental group a single variable is modified in some way.
-Naturally, the object of interest are the potential effects the changes to the variable might have on the experimental group.
-Speaking more abstractly, experimental and control group are two populations with some population parameter \(p\).
-Let us assume that its value \(p_e\) in the experimental group is different from its value \(p_c\) in the control group.
-The aim of significance tests is to objectively state whether the difference
+In both groups, all variables are held constant except for a single one\dash the independent variable\dash which is modified in some way \emph{only} in the experimental group.
+The object of interest are the potential effects the change of the independent variable in the experimental group may have on another variable, the so-called dependent variable.
+This can be done by examining the differences in the dependent variable between the experimental and the control group.
+However, simply stating that there is a difference in the dependent variable between the experimental and the control group is meaningless.
+Virtually all variables in psychology, linguistics, and their neighbouring fields are to some degree subject to variance.
+Therefore, the difference found between the two groups may be pure chance, and hence meaningless.
 
+This is where significance tests come in.
+The aim when using significance tests is to find out whether the observed values are a result of chance or if the change made in the experimental group actually does have an influence on the dependent variable.
+A few conceptual characteristics must be kept in mind when applying these tests.
 
-\begin{quote}\small\singlespacing
+Significance tests are based on probability.
+They cannot tell us whether an observation is in fact the result of change, but they can tell us how \emph{likely} the observation is to be a result of chance.
+The test applied here, explained below\showcomment{Where?}, outputs a classical \pv.
+Semantically, the \pv\ expresses the likelihood of observing a value as extreme or more extreme than the actual observed value.
+\pv\ between 0 and 1 correspond to likelihoods between 0 and 100~\%.
+It is clear that the lower a \pv\ is, the more likely the observation is to represent an real effect.
+But it is much less clear how low exactly a \pv\ has to be in order for the effect to be considered real.
+Where exactly this arbitrary cutoff is made is pure convention.
+In linguistics and psychology, by far the most common cutoff point is 0.05; i.e.~an effect is considered to be \emph{significant} if its \pv\ > 0.05.
+In other words:
+If the likelihood if an observation being the result of chance is less than 5~\%, then by convention the result is considered to be \emph{not} a result of chance.
+This concept of having no way of telling whether an observation is the result of chance but knowing the likelihood of it being the result of chance is summarise by \citet[\pnum{291}]{neyman_problem_1933}:
+
+\begin{customquote}
 ``We are inclined to think that as far as a particular hypothesis is concerned, no test based upon the theory of probability can by itself provide any valuable evidence of the truth or falsehood of that hypothesis.
 But we may look at the purpose of test from another view-point.
 Without hoping to know whether each separate hypothesis is true or false, we may search for rules to govern our behavior with regard to them, in following which we insure that, in the long run of experience, we shall not be too often wrong.''
+\end{customquote}
 
-~ \hfill \citep[\pnum{TBA}]{neyman_problem_1933}
-\end{quote}
+Knowing what a \pv\ means, it is equally important to know what a \pv\ does not mean.
+The likelihood of chance is one important piece of information about an observation, but not the only one.
+With any other information about an observation, the \pv\ is of no help whatsoever.
+For instance, the \pv\ does not say anything about the size of an effect.
+If one was to test the improvement of a new kind of lens to improve the sight of, for example, short-sighted people, one could easily find a \pv\ > 0.05 even though the new lens is of no use in practice.
+Because even with the effect being real and not a result of chance, it can still be so small that the tiny improvement in sight cannot be perceived by any human being.
+A \pv\ does not help in distinguishing between small and large effects \citep[\cnum{8}]{frost_statistische_2017}.
 
-\paragraph{Numerical vs applied significance} A certain kind of lens might have a positive effect on sight that is statistically significant.
-At the same time, this positive effect can be so small that humans are unable to perceive a difference.
-While this effect is undoubtedly significant numerically, no one would pay money for a lens whose effect they do not perceive.
-In that sense, significance alone must not be accepted blindly, because significance in turn is blind to effect size or scale \citep[\cnum{8}]{frost_statistische_2017}.
+A \pv\ also does not say anything about the importance or novelty of an effect.
+This is especially relevant in the present case where 201 rules have shown significant values for at least one metric.
+\citet[\pnum{22}]{han_data_2012} states that ``many patterns that are interesting by objective standards may represent common sense and, therefore, are actually uninteresting.''
+Even though the authors are referring to patterns in data mining, a similar line of argumentation holds for statistical significance.
+Many significant effects may be significant numerically but ``\citeellipses\ represent common sense and, therefore, are actually uninteresting.''
+%Having outlined some conceptual key points of statistical significance, the following section explains how statistical significance for a rule was established.
+
+
+
 
 \section{Method}
 \label{sec:sigmet}
-The crucial missing piece for establishing the significance of a rule is a base case\dash or base distribution, so to speak\dash against which to compare the rule's probability.
-In other words: while there obviously is a real distribution, we lack a null distribution for comparison.
-The methodological approach I take, therefore, is to create a null distribution, which then serves as a basis for the real rules' probabilities to be tested for significance.
-This is in some respects similar to\dash and certainly inspired by\dash \citet[\pnum{10~f.}]{abu-zhaya_multimodal_2017}.
+% why we need significance, general aim
+The aim of applying \fpmlower\ to the corpus of mother--infant dyads is to find regularities in early mother--infant interaction.
+As explained earlier, the corpus contains 10 sequences all containing whichever regularities are present in the interactions.
+The goal of introducing significance is to know whether a rule actually represents a regularity\dash in the sense that mother and infant are intentionally coordinating their behaviour\dash or if a rule is simply a result of chance.
+To give an example, if event type \emph{a} is observed at all times and event type \emph{b} only occurs at seldom and random times, then the rule \fpmmediumrule{a}{b} will still have a confidence of 1 even though it does not represent an actual regularity.
+If, on the other hand, both \emph{a} and \emph{b} occur rarely in the sequence, but the rule still shows a confidence of >~0.9, then this is a strong indication that \fpmmediumrule{a}{b} represents an actual regularity.
+To calculate significance, sequences \emph{not} containing those regularities are needed for comparison.
+Alluding to the terminology introduced in the previous\showcomment{Still previous?} section, an experimental group is present (the real sequences) but a control group (regularity-free sequences, henceforth null sequences) is missing.
+The goal is to have a \pv\ for every metric for every rule, i.e.~3~\pv\ for every rule (one for its confidence, \noc, and duration respectively).%
+\showcomment{Compare methodology of \citet[\pnum{10~f.}]{abu-zhaya_multimodal_2017}, \citet[\pnum{517}]{goldstein_social_2008}, and \citet[\pnum{7}]{hilbrink_early_2015}.}
 
-We take one of the ten sequences in the corpus.
-For each of the 11 dimensions individually (cf.~table \ref{tab:events}), we shuffle the events with respect to their start points in time, but leave their duration untouched, i.e.~we leave the position of their time end points untouched \emph{with respect to their time start points.} We also do not add or remove any events.
-This process is done for all 11 dimensions.
+% how to create a null sequence
+The methodological approach taken therefore, is to create randomised null sequences, which then serve as a basis against which the rules of the real sequences can be tested for significance.
+A null sequence is created as follows:
+Take one of the ten real sequences in the corpus.
+For each of the 10 event types (cf.~table \ref{tab:events}) individually, shuffle the events with respect to their start time points, but leave their duration untouched, i.e.~leave the position of their end points untouched \emph{with respect to their start points.}
+No events are added or removed.
+This process is done for all 10 event types, resulting in a null sequence corresponding to the real sequence its events were taken from.
 Figure \ref{fig:null} gives an example hereof.
 The top half of the figure is an excerpt of real data taken from a sequence in the corpus.
-We see three events of type \code{mother\_voc}, three shorter events of type \code{mother\_gaze\_infant}, one longer event of type \code{infant\_gaze\_mother}, etc.\footnote{The excerpt taken did not contain events of all 11 types, empty dimensions have simply been omitted in the graphic.} The bottom half of the figure shows a corresponding null distribution.
-Notice how \code{mother\_voc} still contains the same three events of the same length but in a different temporal order.
-The same is true for all other dimensions.
+We see three events of type \mosp, three shorter events of type \mogain, one longer event of type \ingamo, etc.%
+\footnote{The excerpt taken did not contain events of all 10 types, empty event types have simply been omitted in the figure.}
+The bottom half of the figure shows a corresponding null sequence.
+Notice how \mosp\ still contains the same three events of the same length but in a different temporal order.
+The same is true for all other event types.
+Some event types exclude others, such that they cannot both occur at the same time.
+Those events are the three types of gaze for mother and infant respectively.
+This was achieved by merging \{\mogain, \mogaob, \mogaaw\} and \{\ingamo, \ingaob, \ingaaw\} respectively into one dimension, then randomising, then separating the event types again.
 
-We now have a distribution of the sequence which contains the exact same events as the real distribution, but shuffled in their temporal order.
-In other words, the only thing that has changed is the temporal arrangement of the events \emph{with respect to one another.} We will call this a null \textbf{sequence} and create 100 of its kind.\footnote{Having chosen to create exactly 100 null sequences for every real sequence has\dash admittedly\dash little motivation.
-Were it not for us being used to count in base 10, the chosen number\dash let it be \textit{k}\dash would in all probability have been different.
-However, this is not a big issue.
-The higher the number of created null sequences is, the smaller the margin of error for the p-values will be.
-That is to say, \textit{k} being too small poses issues, but \textit{k} being too large does not.
-With the chosen value of \textit{k}~=~100, the margin of error is SOME VALUE, which is GREAT BECAUSE WHAT?}
-We go through the same process for all of the 10 sequences and end up having 1000 null distributions, with 100 each corresponding to a given sequence.
+\begin{figure}
+	\centering
+	\input{../aux/tikzpictures/tikz_null.tex}
+	\label{fig:null}
+	\caption[Real and null sequence comparison.]{Comparison of an excerpt of a real sequence (top) and a corresponding null sequence (bottom). Notice how events of each type respectively are shuffled temporally but their number and duration does not change.}
+\end{figure}
 
-Finally, to evaluate a rule's significance we take the distribution of its probability in all of the 1000 null distributions, i.e.~we obtain a probability distribution with 1000 data points.
-We then test for significance at \(\alpha\)~=~0.05 using some test or another.
+We now have a null sequence which contains the exact same events as the corresponding real distribution, but shuffled in their temporal order.
+The only thing that has changed is the temporal arrangement of the events \emph{with respect to one another.}
+If there was some sort of temporal alignment or relationship between two event types, it is now gone.
+The following steps are schematised in figure \ref{fig:sig}.
+Circles R1 to R10 in the top right of the figure represent real sequences 1 to 10.
+In the first step, 100 null sequences are generated for every real sequence (as indicated by the red arrows at the very top of the figure).
+The resulting 1000 null sequences are represented by the squares in the top left of the figure.
+In the second step, 100 samples of 10 null sequences each are created, represented by the green crossing arrows.
+These 100 samples are created by redistributing the null sequences created in the first step.
+From each real sequence the 1st null sequence goes into the 1st pack, the 2nd null sequence goes into the 2nd pack, and the \emph{i}-th null sequence goes into the \emph{i}-th pack.
+These packs are represented by the lower boxes.
+Next, in step three, \fpmlower\ is applied to the 100 samples separately as well as to all ten real sequences together.
+Having applied \fpmlower\ to the 100 samples separately, for every rule there are now \(\leq\)~100 observations.
+With these observations, in step four a distribution is now formed for every metric of every rule.
+Finally, the \pv\ of a given metric of a given rule is the percentage of observations in the null sequences that are greater than or equal to the real observation.
+It should be noted, that \emph{significant} implicitly reads as \emph{significantly high} in this thesis.
+The test applied is right-tailed, i.e.~only takes significantly high values into account but ignores significantly low ones.
+This is not to say that significantly low values are of no interest.
+On the contrary, those values most likely contain a lot of valuable information.
+It is simply in order to not further increase this thesis' scope and size, that significantly low values are not considered for the time being.
 
-%
-%Tests to be used:
-%- some sort of significance test
-%- traditional confidence(X->Y) = P(Y|X), both associated with an \emph{arbitrary} cutoff threshold \citep[\pnum{21~ff.}]{han_data_2012}
-%
-%``[M]any patterns that are interesting by objective standards may represent common sense and, therefore, are actually uninteresting.'' \citep[\pnum{22}]{han_data_2012}
+\begin{figure}
+	\centering
+	\input{../aux/tikzpictures/tikz_significance.tex}
+	\label{fig:sig}
+	\caption[Introducing significance.]{Schematisation of how the null sequences are created and significance is introduced.}
+\end{figure}
 
 \section{Metrics}
 \label{sec:sigmetr}
+The following paragraphs will reconsider the three metrics already introduced in section \ref{sec:fpmmetr}.
+Instead of their actual values, the focus here will be on semantic interpretation of their \pv\, i.e.~on what it means if a given metric's value is significant.
 
-\subsection{Significantly high confidence}
-\subsection{Significantly high \textsc{noc}}
-\subsection{Significantly high duration}
-\paragraph{Evaluating single rules}
-\paragraph{Evaluating groups of rules}
+The most basic interpretation is that of a significantly high \noc.
+If the number of times a rule occurs in the real sequence is significantly higher than in the null sequence packs, as explained in the previous section.\showcomment{Still previous?} then this indicates that there is indeed a temporal relationship between antecedent and succedent, i.e.~that the succedent is a reaction to the antecedent.
+It does, however, not say anything about the temporal characteristics of the relationship itself.
+This is where the other two metrics come in.
+
+A significantly high duration indicates that once a rule has occurred, it is intentionally maintained by the interaction partners rather than dropped at random.
+If, for instance, the rule \fpmtextrule{\mogain}{\ingamo} has a significantly high duration (which it does), then this does not say anything about the intentionality of the infant reciprocating the mother's gaze, but it \emph{does} indicate that once the mother's gaze has been reciprocated by the infant, then the interaction partners intentionally keep looking at each other.
+
+Lastly, significantly high confidence indicates that a rule's overlap between antecedent and succedent is intentionally kept high by the interaction partners.
+To stick with the example, if the rule \fpmtextrule{\mogain}{\ingamo} has a significantly high confidence (which, again, it does), then this indicates that \emph{if} the infant reciprocates the mother's gaze, then it does so earlier than chance.
+
+Again, as stated at the end of section \ref{sec:fpmmetr}, none of these three metrics make much sense alone.
+To evaluate a rule, all three metrics actual values and \pv\ as well as the number of times it has been observed in the null sequence packs must be taken into account.
+
+%\paragraph{Evaluating single rules}
+%\paragraph{Evaluating groups of rules}
 \section{Results}
 \label{sec:sigres}
 show and discuss significant rules
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -33,12 +33,12 @@
 		
 	%% labels
 	\foreach \i in {0.25, 4.25}{  % top and bottom
-		\node[anchor=east] at (2.75,{\i+2.5}) {\code{mother\_vocalise}};
-		\node[anchor=east] at (2.75,{\i+2}) {\code{mother\_gaze\_infant}};
-		\node[anchor=east] at (2.75,{\i+1.5}) {\code{mother\_gaze\_object}};
-		\node[anchor=east] at (2.75,{\i+1}) {\code{infant\_vocalise}};
-		\node[anchor=east] at (2.75,{\i+0.5}) {\code{infant\_gaze\_mother}};
-		\node[anchor=east] at (2.75,\i) {\code{infant\_gaze\_object}};
+		\node[anchor=east] at (2.75,{\i+2.5}) {\mosp};
+		\node[anchor=east] at (2.75,{\i+2}) {\mogain};
+		\node[anchor=east] at (2.75,{\i+1.5}) {\mogaob};
+		\node[anchor=east] at (2.75,{\i+1}) {\invo};
+		\node[anchor=east] at (2.75,{\i+0.5}) {\ingamo};
+		\node[anchor=east] at (2.75,\i) {\ingaob};
 	}
 	
 	%% annotations
@@ -63,23 +63,23 @@
 
 	\draw [fill=lightgray] (10.56,4) rectangle (13,4.5);
 	% bottom
-	\draw [fill=lightgray] (7.592,2.5) rectangle (12.871,3);
-	\draw [fill=lightgray] (5.264,2.5) rectangle (7.191,3);
-	\draw [fill=lightgray] (3.221,2.5) rectangle (4.775,3);
+	\draw [fill=lightgray] (5.2,2.5) rectangle		({5.2+5.279},3);
+	\draw [fill=lightgray] (3.05,2.5) rectangle		({3.05+1.927},3);
+	\draw [fill=lightgray] (11.206,2.5) rectangle	({11.206+1.554},3);
 
-	\draw [fill=lightgray] (12.069,2) rectangle (12.429,2.5);
-	\draw [fill=lightgray] (4.039,2) rectangle (4.279,2.5);
-	\draw [fill=lightgray] (9.115,2) rectangle (9.435,2.5);
+	\draw [fill=lightgray] (6.4,2) rectangle		({6.4+0.36},2.5);
+	\draw [fill=lightgray] (8.84,2) rectangle		({8.84+0.24},2.5);
+	\draw [fill=lightgray] (3.2,2) rectangle		({3.2+0.32},2.5);
 	
-	\draw [fill=lightgray] (4.04,1.5) rectangle (7.12,2);
-	\draw [fill=lightgray] (9.76,1.5) rectangle (12.64,2);
-	\draw [fill=lightgray] (7.59,1.5) rectangle (9.64,2);
+	\draw [fill=lightgray] (9.18,1.5) rectangle		({9.18+3.08},2);
+	\draw [fill=lightgray] (3.52,1.5) rectangle		({3.52+2.88},2);
+	\draw [fill=lightgray] (6.76,1.5) rectangle		({6.76+2.08},2);
 	
-	\draw [fill=lightgray] (7.287,1) rectangle (8.024,1.5);
-	\draw [fill=lightgray] (10.84,1) rectangle (11.63,1.5);
-	\draw [fill=lightgray] (3.55,1) rectangle (5.18,1.5);
+	\draw [fill=lightgray] (7.987,1) rectangle		({7.987+0.737},1.5);
+	\draw [fill=lightgray] (6.99,1) rectangle		({6.99+0.79},1.5);
+	\draw [fill=lightgray] (3.079,1) rectangle		({3.079+1.63},1.5);
 	
-	\draw [fill=lightgray] (3.27,0.5) rectangle (10.79,1);
+	\draw [fill=lightgray] (5.44,0.5) rectangle		({5.44+7.52},1);
 
-	\draw [fill=lightgray] (7.42,0) rectangle (9.86,0.5);
+	\draw [fill=lightgray] (3,0) rectangle			({3+2.44},0.5);
 \end{tikzpicture}

@@ -60,6 +60,7 @@
 \addtokomafont{dedication}{\raggedright}
 \addtokomafont{chapter}{\addfontfeature{Numbers=Lining}}
 \addtokomafont{pageheadfoot}{\sffamily\addfontfeature{Numbers=Lining}}
+\addtokomafont{footnote}{\addfontfeature{Numbers=Lining}}
 \addtokomafont{pagenumber}{\sffamily}
 \pagestyle{headings}  % running headlines etc
 %**************************************************
@@ -87,6 +88,11 @@
 % small caps in references (SWITCHBOARD)
 % fix size of Bibliography headline
 % substitute \textsc{tt} for turn-taking?
+% lining figures in footnotes are still old style in text
+% Tabellen-Layout vereinheitlichen (sf, rm, etc)
+% deal with different zeros, mathsy ones (Lining!) and non-mathsy ones
+% short titles for tables\figures for list of tables\figures
+% create new in-line citations still (yeah I know it'll be hell) that changes (author, year, page) to (author, year: page)
 %**************************************************
 
 
@@ -100,24 +106,38 @@
 \newcommand{\ms}{milliseconds}						% milliseconds (duh...)
 \newcommand{\noc}{\textsc{noc}}						% number of occurrences
 \newcommand{\rt}{\textsc{rt}}						% reaction time
+\newcommand{\sone}{second}							% second (duh...)
 \newcommand{\s}{seconds}							% seconds (duh...)
 \newcommand{\sd}{\textsc{sd}}						% standard deviation
 
+%% short cuts for event types
+\newcommand{\mosp}{\mbox{\code{mother\_speech}}}
+\newcommand{\mogain}{\mbox{\code{mother\_gaze\_infant}}}
+\newcommand{\mogaob}{\mbox{\code{mother\_gaze\_object}}}
+\newcommand{\mogaaw}{\mbox{\code{mother\_gaze\_away}}}
+\newcommand{\mosm}{\mbox{\code{mother\_smile}}}
+\newcommand{\invo}{\mbox{\code{infant\_vocalise}}}
+\newcommand{\ingamo}{\mbox{\code{infant\_gaze\_mother}}}
+\newcommand{\ingaob}{\mbox{\code{infant\_gaze\_object}}}
+\newcommand{\ingaaw}{\mbox{\code{infant\_gaze\_away}}}
+\newcommand{\insm}{\mbox{\code{infant\_smile}}}
+
 
 %% semantic commands
-\newcommand{\code}[1]{\texttt{#1}}										% code
-\newcommand{\dash}{---}													% typeset dashes
-\newcommand{\citeellipses}{[\ldots]}									% citation ellipses with correct spacing
-\newcommand{\citenums}[1]{#1}											% numbers in citations
-\newcommand{\pnum}[1]{p.~#1}											% page numbers in citations
-\newcommand{\snum}[1]{sec.~#1}											% section numbers in citations
-\newcommand{\cnum}[1]{ch.~#1}											% chapter numbers in citations
-\newcommand{\fnum}[1]{fig.~#1}											% figure numbers in citations
-\newcommand{\chapterintro}[1]{\begin{quote}{\sffamily#1}\end{quote}}	% typeset chapter intros
-\newcommand{\fpmlabel}[1]{\(\mathcal{#1}\)}								% typeset label
-\newcommand{\fpmset}[1]{\(\{\)\fpmlabel{#1}\(\}\)}						% typeset label sets
-\newcommand{\fpmrule}[2]{\fpmset{#1}~\(\rightarrow\)~\fpmset{#2}}		% typeset rules
-\newcommand{\fpmtextrule}[2]{\texttt{#1~\(\rightarrow\)~#2}}			% typeset less mathsy rules
+\newcommand{\code}[1]{\texttt{#1}}												% code
+\newcommand{\dash}{---}															% typeset dashes
+\newcommand{\citeellipses}{[\ldots]}											% citation ellipses with correct spacing
+\newcommand{\citenums}[1]{#1}													% numbers in citations
+\newcommand{\pnum}[1]{p.~#1}													% page numbers in citations
+\newcommand{\snum}[1]{sec.~#1}													% section numbers in citations
+\newcommand{\cnum}[1]{ch.~#1}													% chapter numbers in citations
+\newcommand{\fnum}[1]{fig.~#1}													% figure numbers in citations
+\newcommand{\chapterintro}[1]{\begin{quote}{\sffamily#1}\end{quote}}			% typeset chapter intros
+\newcommand{\fpmlabel}[1]{\(\mathcal{#1}\)}										% typeset label
+\newcommand{\fpmset}[1]{\(\{\)\fpmlabel{#1}\(\}\)}								% typeset label sets
+\newcommand{\fpmrule}[2]{\fpmset{#1}~\(\rightarrow\)~\fpmset{#2}}				% typeset rules
+\newcommand{\fpmmediumrule}[2]{\{\textit{#1}\} \(\rightarrow\) \{\textit{#2}\}}	% typeset slightly mathsy rules
+\newcommand{\fpmtextrule}[2]{\texttt{\{#1\} \(\rightarrow\) \{#2\}}}			% typeset less mathsy rules
 
 
 %% TikZ Styles
@@ -144,6 +164,8 @@
 
 
 %% other
+																		% comments visible on output
+\newcommand{\showcomment}[1]{{\textcolor[HTML]{CC0000}{*}\marginpar{\raggedright\scriptsize{\textcolor[HTML]{CC0000}{\textit{*#1}}}}}}
 \newcommand{\imgwidth}{0.618\textwidth}									% set image width to golden ratio
 \makeatletter															% possessive citations, from tex.stackexchange.com/questions/125690
 \DeclareRobustCommand\citepos  % define \citepos just like \citet
@@ -155,10 +177,20 @@
 	\def\NAT@posfmt#1{\NAT@orig@nmfmt{#1's}}
 \makeatother
 
+%**************************************************
 
+
+
+%*****************New Environments*****************
+% semantic quote environment
+\newenvironment{customquote}{\begin{quote}\small\singlespacing}{\end{quote}}
+%**************************************************
+
+
+
+%**********************Other***********************
 %% hyphenation
 \hyphenation{Henz-gen}
-
 
 %% chapter names
 \newcommand{\introduction}{Introduction}
