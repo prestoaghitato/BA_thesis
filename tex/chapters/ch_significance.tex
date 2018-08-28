@@ -10,7 +10,7 @@
 \label{ch:sig}
 \chapterintro{chapter desciption goes here}
 
-\section{The Nature of Significance}
+\section{The Nature of Significance}\showcomment{Sources for this entire section!}
 \label{sec:signat}
 In a classic experimental setting, one distinguishes between a control group and an experimental group.
 In both groups, all variables are held constant except for a single one\dash the independent variable\dash which is modified in some way \emph{only} in the experimental group.
@@ -29,12 +29,12 @@ They cannot tell us whether an observation is in fact the result of change, but 
 The test applied here, explained below\showcomment{Where?}, outputs a classical \pv.
 Semantically, the \pv\ expresses the likelihood of observing a value as extreme or more extreme than the actual observed value.
 \pv\ between 0 and 1 correspond to likelihoods between 0 and 100~\%.
-It is clear that the lower a \pv\ is, the more likely the observation is to represent an real effect.
+It is clear that the lower a \pv\ is, the more likely the observation is to represent a real effect.
 But it is much less clear how low exactly a \pv\ has to be in order for the effect to be considered real.
-Where exactly this arbitrary cutoff is made is pure convention.
-In linguistics and psychology, by far the most common cutoff point is 0.05; i.e.~an effect is considered to be \emph{significant} if its \pv\ > 0.05.
+Where exactly this arbitrary cutoff, usually denoted by \(\alpha\), is made is pure convention.
+In linguistics and psychology, by far the most common cutoff point is \(\alpha\)~=~0.05; i.e.~an effect is considered to be \emph{significant} if its \pv~<~\(\alpha\)~=~0.05.
 In other words:
-If the likelihood if an observation being the result of chance is less than 5~\%, then by convention the result is considered to be \emph{not} a result of chance.
+If the likelihood of an observation being the result of chance is less than 5~\%, then by convention the result is considered to be \emph{not} a result of chance.
 This concept of having no way of telling whether an observation is the result of chance but knowing the likelihood of it being the result of chance is summarise by \citet[\pnum{291}]{neyman_problem_1933}:
 
 \begin{customquote}
@@ -47,7 +47,7 @@ Knowing what a \pv\ means, it is equally important to know what a \pv\ does not 
 The likelihood of chance is one important piece of information about an observation, but not the only one.
 With any other information about an observation, the \pv\ is of no help whatsoever.
 For instance, the \pv\ does not say anything about the size of an effect.
-If one was to test the improvement of a new kind of lens to improve the sight of, for example, short-sighted people, one could easily find a \pv\ > 0.05 even though the new lens is of no use in practice.
+If one was to test the improvement of a new kind of lens to improve the sight of, for example, short-sighted people, one could easily find a \pv\ < 0.05 even though the new lens is of no use in practice.
 Because even with the effect being real and not a result of chance, it can still be so small that the tiny improvement in sight cannot be perceived by any human being.
 A \pv\ does not help in distinguishing between small and large effects \citep[\cnum{8}]{frost_statistische_2017}.
 
@@ -56,7 +56,7 @@ This is especially relevant in the present case where 201 rules have shown signi
 \citet[\pnum{22}]{han_data_2012} states that ``many patterns that are interesting by objective standards may represent common sense and, therefore, are actually uninteresting.''
 Even though the authors are referring to patterns in data mining, a similar line of argumentation holds for statistical significance.
 Many significant effects may be significant numerically but ``\citeellipses\ represent common sense and, therefore, are actually uninteresting.''
-%Having outlined some conceptual key points of statistical significance, the following section explains how statistical significance for a rule was established.
+Having outlined some conceptual key points of statistical significance, the following section explains how statistical significance for a rule's metrics was calculated.
 
 
 
@@ -127,6 +127,11 @@ It is simply in order to not further increase this thesis' scope and size, that 
 	\caption[Introducing significance.]{Schematisation of how the null sequences are created and significance is introduced.}
 \end{figure}
 
+This entire process has been repeated twice.
+Once with a minimum delay of 289~\ms\ (see subsection \ref{ssec:fpmmetapp}), and a second time with a minimum delay of 850~\ms.
+It would have been desirable to repeat the process a third time with no delay at all, which is meaningful for intrapersonal rules.
+Unfortunately for practical reasons, this could not be done for the present thesis.
+
 \section{Metrics}
 \label{sec:sigmetr}
 The following paragraphs will reconsider the three metrics already introduced in section \ref{sec:fpmmetr}.
@@ -145,12 +150,129 @@ To stick with the example, if the rule \fpmtextrule{\mogain}{\ingamo} has a sign
 
 Again, as stated at the end of section \ref{sec:fpmmetr}, none of these three metrics make much sense alone.
 To evaluate a rule, all three metrics actual values and \pv\ as well as the number of times it has been observed in the null sequence packs must be taken into account.
-
 %\paragraph{Evaluating single rules}
 %\paragraph{Evaluating groups of rules}
+
+
 \section{Results}
 \label{sec:sigres}
-show and discuss significant rules
+% overview
+When imposing the shorter delay of 289~\ms, a total of 436~rules have been observed in the real sequences.
+Of these 436 observed rules, 201 (46.1~\%) have shown significant values in at least one metric; 155 (35.5~\%) in at least two metrics, and 66 (28.7~\%) in all three metrics.
+Imposing the longer delay of 850~\ms, a total of 313~rules have been observed, 157 (50.2~\%) of which have shown significant values in at least one metric; 125 (39.9~\%) in at least two metrics, and 56 (44.8~\%) in all three metrics.
+With both delays, the metric showing the highest number of significant effects is duration, followed by confidence and \noc.
+Even though the process of calculating significance could not be repeated a third time without a delay (see end of section \ref{sec:sigmet}), intrapersonal rules will still be considered.
+It must be kept in mind, however, that \emph{all intrapersonal rules may be understating the effects}, falsely sorting out some occurrences as coincidence.
+Some example rules will be given in tables with indices in brackets.
+If a rule is shown in more than one table (because it fulfils more than one interesting criterion), it will still retain its original index to avoid ambiguity.
+%- easier to interpret if fewer event types are in rule
+
+\paragraph{Reciprocating behaviour}
+There are ten potential rules indicating direct reciprocating behaviour, such as \fpmtextrule{\mogain}{\ingamo}.
+Out of these ten potential rules, six have shown significant values and are shown in table~\ref{tab:reciprocal}.
+\fpmtextrule{\mogaaw}{\ingaaw} has also been observed in the real sequence, but only a single time, likely a result of chance.
+All of these rules except for \rn{5} have shown both significant confidence and duration values, but no significant \noc.
+This indicates that the reciprocal behaviour may not have been established on purpose but once it has been established it is being maintained intentionally.
+% joint attention
+The only rule showing different significance is \rn{5}, which shows only significant \noc.
+This is interesting because gazing at an object is the only behaviour in the list where the interaction partners do not focus their attention on each other but at an object.
+The data do not distinguish between different object and therefore it is unclear whether the interaction partners are in fact looking at the same object or at two different ones.
+Given the nature of the data\dash a diaper changing routine\dash one can safely assume though, that it was in fact the same object (diaper or toy or item of clothing held by the mother).
+In some, but not all of these cases, this may be a case of joint attention, where the interaction partners both jointly focus their attention on an object.
+This is more likely to have been the case with a salient object, such as a toy, and less likely with a non-salient object, such as a white diaper or a neutrally coloured item of clothing.\showcomment{Source!}
+
+\begin{table}
+\centering
+	\begin{tabular}{cl}
+		\toprule
+		\rn{1} & \fpmtextrule{\ingamo}{\mogain} \\
+		\rn{2} & \fpmtextrule{\insm}{\mosm} \\
+		\rn{3} & \fpmtextrule{\mogain}{\ingamo} \\
+		\rn{4} & \fpmtextrule{\mosm}{\insm} \\
+		\cmidrule(lr){1-2}
+		\rn{5} & \fpmtextrule{\mogaob}{\ingaob} \\
+		\bottomrule
+	\end{tabular}
+	\caption[Rules showing reciprocal behaviour.]{Rules showing reciprocal behaviour between the interaction partners. \rn{1--4} show significant confidence and duration, \rn{5} shows significant \noc.}
+	\label{tab:reciprocal}
+\end{table}
+
+\paragraph{High confidence rules}
+The two rules with the highest significant confidence are rules \rn{1} and \rn{3} from table \ref{tab:reciprocal}, with confidence values of 0.63 and 0.62 respectively.
+Other rules with a significant confidence higher than 0.50 are shown in table \ref{tab:highcon}.
+Some have been excluded because they have only been observed a single time.
+These mostly interpersonal rules all include gazing at the interaction partner, some also include smiling.
+\citet{nomikou_educating_2013} found that mothers use several techniques, such as head movement or facial expressions, to maintain their infant's attention once eye contact has been established.
+This is in line with the high-confidence rules found here, where the mutual eye contact is maintained in all rules except \rn{7} and \rn{10}, and smiling is used by the mother in some of them\dash perhaps as a way of keeping up their infant's attention.
+Interestingly, none of the rules in table \ref{tab:highcon} show significant \noc.
+This may either indicate that establishing mutual gaze is more difficult than maintaining it, or that mutual gaze is not often intentionally established.
+
+\begin{table}
+\centering
+	\begin{tabularx}{\textwidth}{cX}
+		\toprule
+		\rn{1} & \fpmtextrule{\ingamo}{\mogain} \\
+		\rn{6} & \fpmtextrule{\ingamo, \mosm}{\mogain} \\
+		\rn{7} & \fpmtextrule{\mosm}{\mogain} \\
+		\rn{8} & \fpmtextrule{\ingamo, \insm, \mosm}{\mogain} \\
+		\rn{3} & \fpmtextrule{\mogain}{\ingamo} \\
+		\rn{9} & \fpmtextrule{\mogain, \mosm}{\ingamo} \\
+		\rn{10} & \fpmtextrule{\mosm}{\ingamo} \\
+		\bottomrule
+	\end{tabularx}
+	\caption{Some rules with significant confidence above 0.50.}
+	\label{tab:highcon}
+\end{table}
+
+\paragraph{High \noc\ rules}
+As explained in the previous section\showcomment{Still previous?}, a rule with a significantly high \noc\ indicates a co-constructed behaviour that is established often, but not necessarily for a long time.
+Table \ref{tab:highnoc} shows some rules with high and significant \noc.
+\rn{11} and \rn{12} show that significantly often, when the infant gazes at their mother, the mother will respond either verbally or verbally and by gazing back at her infant.
+\rn{14} indicates that significantly often in the interaction, the mother initiates her communication by smiling, which is then followed by speaking.
+The reverse rule \fpmtextrule{\mosp}{\mosm} is not significant.
+
+\rn{15} occurs 81.6~\% as often as \fpmtextrule{\mogain}{\mosm}, indicating that in 81.6~\% of all cases the mother is successful in capturing her infant's attention by gazing at them and speaking.%
+\footnote{Assuming that capturing her infant's attention is in fact the mother's attention in all such cases.}
+
+\rn{12} and \rn{13} are identical except for \mogain, which is in the antecedent in \rn{12} and in the succedent in \rn{13}.
+Both rules show significant values in all three metrics.
+The confidence is lower in \rn{12} than it is in \rn{13} (0.31 vs 0.41).
+This may seem interesting at first but unfortunately carries little semantic value.
+Confidence is defined as \(conf(\mathcal{A \rightarrow B}) = \frac{d(\mathcal{A \cup B})}{d(\mathcal{A})}\) (see section \ref{sec:fpmmetr}).
+The numerator of the fraction, \(d(\mathcal{A \cup B})\) is identical for both rules:
+It is the interval where \{\ingamo, \mogain, \mosm\} is observed.
+The denominator is the interval where the antecedent is observed and is therefore different for the two rules.
+For rule \rn{12} it contains a single event, whereas for rule \rn{13} it contains two events.
+From the fact that the antecedent of \rn{12} is a subset of the antecedent of \rn{13}, it follows that whenever the antecedent of \rn{13} is observed, the antecedent of \rn{12} is also observed.
+The opposite does not hold true.
+The antecedent of \rn{12} may be observed without observing the antecedent of \rn{13}.
+Therefore, the antecedent of \rn{12} may start earlier in time than the antecedent of \rn{13}, which in turn causes the denominator of the fraction to be larger for \rn{12} than for \rn{13}, which then results in a lower confidence value for \rn{12}.
+The only information to be drawn from this difference in confidence is that in some instances, when the infant gazes at their mother, the mother started gazing back \emph{before} speaking.
+
+\begin{table}
+\centering
+	\begin{tabularx}{\textwidth}{>{\addfontfeature{Numbers=Lining,Letters=Uppercase}}cX}
+		\toprule
+		\rn{11} & \fpmtextrule{\ingamo}{\mosp} \\
+		\rn{12} & \fpmtextrule{\ingamo}{\mogain, \mosp} \\
+		\rn{13} & \fpmtextrule{\ingamo, \mogain}{\mosp} \\
+		\rn{14} & \fpmtextrule{\mosm}{\mosp} \\
+		\rn{15} & \fpmtextrule{\mogain}{\ingamo, \mosp} \\
+		\bottomrule
+	\end{tabularx}
+	\caption{Some rules with significant \noc.}
+	\label{tab:highnoc}
+\end{table}
+
+\paragraph{High duration rules}
+When looking for rules with significantly high duration, \rn{1} and \rn{3} are once again at the top of the list.
+Together with the high confidence (high in absolute terms and significantly high compared to the null sequences), they indicate that gaze indeed does play a central role in early mother-infant interaction.
+The fact that these rules both are not significant for \noc\ may be simply caused by the overall high duration, but this is a tentative thought that needs further investigation before becoming a claim.
+Average duration of a rule's occurrences has not been calculated but nevertheless the low number of occurrences together with the highest two overall durations of all rules indicates a high average duration.
+
+
+
+
 
 
 

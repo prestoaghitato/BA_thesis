@@ -24,10 +24,12 @@ This appendix lists all rules found with their absolute values and p-values for 
 A brief legend of the tables: Every row represents a rule.
 The first and second column (columns are numbered only in the very first table) give a rule's antecedent and succedent respectively.
 Columns 3--5 give a rule's absolute values for confidence, \noc, and duration (in that order); columns 6--8 give the respective p-values.
-The 9\textsuperscript{th} and last column gives the number of null \textbf{sequences} the rule was found in.
+The 9\textsuperscript{th} and last column gives the number of null sequence samples the rule was found in.
+This last value must not be misinterpreted as some sort of \noc.
+It does answer to the question ``In how many null sequence samples was the rule observed?''; it does \emph{not} answer to the question ``How often was the rule itself observed?''
 Rules are sorted alphabetically according to their antecedent, then sorted alphabetically according to their succedent.
-Although this way it is difficult to look for e.g.\ rules with a high confidence, the alphabetical sorting allows an individual rule to be found easily.
-Section \ref{sec:289} gives values that were obtained with a delay of \(\geq\)~289~\ms; section \ref{sec:850} gives values obtained with a delay of \(\geq\)~850~\ms.
+Although this way it is difficult to look for e.g.~rules with a high confidence, the alphabetical sorting allows an individual rule to be found easily.
+Section \ref{sec:289} gives values that were obtained with a delay of 289~\ms; section \ref{sec:850} gives values obtained with a delay of 850~\ms.
 
 To save space, the aliases shown in table \ref{tab:aliases} have been used for the different types of events.
 
