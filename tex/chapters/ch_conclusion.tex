@@ -4,38 +4,80 @@
 \chapter{Conclusion}
 \label{ch:con}
 % theoretical aim
-Aside from the methodological aim of this thesis, another more theoretical aim has been to provide evidence in favour of the fact that turn-taking is a multimodal phenomenon that cannot be meaningfully observed by only considering the linguistic modality.
-Even though a variety of literature approaching turn-taking as a multimodal phenomenon exists (cf.~subsection~\ref{ssec:introrestt}), the vast majority still assumes unimodality.
-Section~\ref{sig:res} has indeed provided such empirical evidence, showing a variety of multimodal rules with high and significant confidence, \noc, or duration.
+A theoretical aim of this thesis has been to provide evidence in favour of the fact that turn-taking is a multimodal phenomenon that cannot be meaningfully observed by only considering the linguistic modality.
+Even though a variety of literature approaching turn-taking as a multimodal phenomenon already exists (cf.~subsection~\ref{ssec:introrestt}), the vast majority still assumes unimodality.
+Section~\ref{sec:sigres} has indeed provided such empirical evidence, showing a variety of multimodal rules with high and significant confidence, \noc, or duration.
 Most of the rules with the highest significant values involve gazing and/or smiling at the interaction partner, further underlining the central role of gaze in early mother-infant interaction and perhaps indicating that smile also plays an important role as it accompanied mothers' speech and gazing at their infant, presumably to capture or maintain their infant's attention \citep{nomikou_educating_2013,nomikou_constructing_2016}.
 
-% methodological aim
-Methodologically, the first step taken was to consider reaction times when mining rules.
-This was done by demanding a minimum delay of 289~\ms\ or 850~\ms\ when the mother and the infant respectively were reacting to a behaviour.
-As was stated in the paragraphs on reaction time in interaction in subsection~\ref{ssec:fpmmetapp}, the length of these delays needs further empirical verification.
-As of now, the mining approach did not produce any counterintuitive rules, but the main issue shown when modelling the \rt s is that there is a gap in the literature concerning \rt\ in interaction.
-The main methodological aim of this thesis (as outlined in section~\ref{sec:introaim}) was to improve the objectiveness and quantitativeness of choosing relevant or \emph{interesting} rules when using \fpmlower\ to mine temporal relationships in human behaviour in interaction.
-This was achieved by introducing quantitative support in the form of statistical significance to all rules.
+% secondary methodological aim (\rt s)
+Methodologically, the first contribution was to consider reaction times when mining rules.
+This was done by demanding a minimum delay of 289~\ms\ and 850~\ms\ for mother and infant respectively when they were reacting to a behaviour.
+It was shown that most of the rules observed by \citet{rohlfing_multimodal_underreview} were no longer present when modelling \rt s.
+This may, on the one hand, indicate that the rules were indeed a result of chance.
+On the other hand, as was stated in the paragraphs on reaction time in interaction in subsection~\ref{ssec:fpmmetapp}, the length of these delays needs further empirical verification.
+Therefore, another possible indication of the fact that most of the rules discussed in \citet{rohlfing_multimodal_underreview} were no longer present may be that the delays chosen are too long.
+As of now, the mining approach did not produce any counterintuitive rules or lack any expected rules.
+But the main issue shown when modelling \rt s is that there is a gap in the literature concerning \rt\ in interaction.
+Figure \ref{fig:gaps} schematised two important gaps, with only one of them being currently discussed in the literature and the other one being virtually ignored.
 
-The results given here are a first exploratory summary.
-But given the fact that a total of 358~rules have shown significant values in at least one metric (counting identical rules with different delays twice), the data is in all probability far from exhausted.
-It can be further probed in several different ways.
-First off, the data may assist in a more traditional way by disproving or affirming concrete hypotheses.
-This has already been done here in the form of confirming existing research by \citet{nomikou_educating_2013}.
-Another way to make further use of the data is to generate new hypotheses from the rules which can then be tested empirically.
-This has already been alluded to in the first paragraph of this chapter.\showcomment{Still first paragraph?}
+% main methodological aim (significance)
+The main methodological aim of this thesis, however, as outlined in section~\ref{sec:introaim} was to improve the objectiveness and quantitativeness of choosing relevant or \emph{interesting} rules when using \fpmlower\ to mine temporal relationships in human behaviour in interaction.
+This was achieved by introducing quantitative support in the form of statistical significance to all rules.
+This process has indeed improved the interpretability of the data.
+A major challenge when interpreting the rules in \citet{rohlfing_multimodal_underreview} is the sheer amount of rules\dash733 to be precise.
+Compared to those 733 rules, 358 have shown significant values in at least one metric.
+This latter number may even be overstating the truth, because it counts all significant rules for both the shorter and the longer delay.
+It is a save assumption that every rule that occurred with the longer delay will also occur with the shorter delay, i.e.~the rules found with the longer delay are a subset of the rules found with the shorter delay.
+Counting only the rules found with the shorter delay further decreases the number of significant rules to~201.
+This is still a vast amount of rules for qualitative analysis.
+Therefore, even though there is now less material to work with, the material is of a higher quality because one can now tell that the temporal relationships represented by the rules \emph{are} in fact intended and coordinated temporal relationships and not a product of chance.
+
+% what to do with the data now
+The results given in the last section of the previous chapter are a first exploratory summary; the data is in all probability far from exhausted.
+It can be further probed in two main ways.
+First off, the data may assist in a more traditional kind of research by disproving or affirming concrete hypotheses.
+This has already been done here to some extent in the form of confirming existing research by \citet{nomikou_educating_2013}.
+The second way to make further use of the data is to generate new hypotheses from the rules which can then be tested empirically.
+This has already been alluded to in the first paragraph of this chapter.\showcomment{Still first paragraph? Also, this paragraph sucks.}
 
 %formulate some hypotheses from the results
-\paragraph{Future Research}
-%\label{sec:confut}
-%Fourrier transforms
-%road to turn-taking
-%no child, 2 equal partners
-%way more sophisticated models, taking into account every ant --> suc pair, potentially also combinations
-%
-%we need to look at \rt in conversation/interaction
-%
-%longitudinal studies, \textsc{tt} development, turns slow down around 12months \citep{hilbrink_early_2015}
-%significantly \emph{lower} stuff
-%incorporate gesture
-%conditional probability needed for evaluation
+\paragraph{Methodological improvements}
+The one central methodological improvement needed for evaluating rules is a conditional probability that answers to the question:
+Out of all the occurrences of the rule's antecedent, in what percentage of occurrences was the succedent also observed?
+Such a metric would be a tremendous help in evaluating temporal relationships between event types, especially because the confidence is invariant to sole occurrences of a rule's antecedent (cf.~the paragraphs on confidence in section~\ref{sec:fpmmetr}).
+Implementing conditional probability seems a reasonably manageable task, such that this issue should be addressed soon.
+
+Another methodological improvement is the incorporation of gesture in the coding scheme.
+Many studies mentioned in the literature review in the introduction (subsection~\ref{ssec:introrestt}) show that gesture plays relevant roles in turn-taking.
+It is unfortunate that gesture could not be considered in the results, simply because no information on it is contained in the data.
+Coding gestures in the corpus is not a tremendously difficult task per se, but it needs many working hours and may therefore be considered a mid-term rather than a short-term goal.
+
+A third and perhaps less pressing methodological improvement concerns the modelling of \rt.
+The approach taken here simply assigned one generic \rt\ to mother and infant respectively, when in theory it is a save assumption that \rt\ slightly varies depending on the modality of the stimulus.
+Taken to the extreme, this line of thought could result in modelling different \rt s for every modality pair (i.e.~for every possible pair of antecedent modality and succedent modality) for both mother and infant.
+It is unlikely that the advantages of such a fine-tuned model would be worth the time it takes to create the model.
+Furthermore, it is also unlikely that \rt\ even \emph{can} be modelled so detailed because variation between subjects is large and \rt\ depends on a vast variety of factors, many of which can never or rarely be determined for the participants of a study.
+Therefore, two questions need to be answered with regard to modelling \rt:
+How can \rt\ be sensibly modelled?
+And at what point is the sensible choice to stop ``improving'' the model?
+The first question again alludes to the gap in the literature mentioned at the beginning of this chapter and in the second chapter.
+It may be rephrased as:
+Which studies should be done in order to gain more insight into \rt\ in interaction?
+
+\paragraph{Future research perspectives}
+The methodology developed in this thesis can be applied to a variety of scenarios.
+Starting close to the present mother-infant dyads, a logical next step could be longitudinal comparisons.
+The infants in the corpus were 3~months of age.
+Repeating the same process with infants 4, 5, 6, \ldots\ months of age will likely shed new insights into the development of early infant interaction.
+The corpus used does indeed also contain video data with infants being 4, 6, 7, and 8 months of age, which seems suitable for longitudinal comparisons.
+
+Another prospect is to divert from the asynchronous mother-infant dyad to synchronous dyads.
+Having two interaction partners of the same age, gender, educational background, etc.\ interact with each other, a reasonable null hypothesis would be perfect symmetry between the two partners.
+That means for every rule \fpmtextrule{parter\_a\_behaviour\_a}{parter\_b\_behaviour\_b} one would assume to the rule \fpmtextrule{parter\_b\_behaviour\_a}{parter\_a\_behaviour\_b} to have identical values in all metrics.
+Next, all sorts of asynchronous aspects could be introduced to the dyad, such as non-identical age, gender, educational background, social status, etc.
+
+Diverting from the methodology used here, it would be interesting to see how patterns change over time in longer interactions as interaction partners get more acquainted to each other.
+This could raise interesting new information for alignment models such as \citet{fusaroli_dialog_2014} or \citet{reitter_alignment_2014}.
+
+Taken together, this chapter has shown that the methodology developed in this thesis opens up a variety of new research perspectives and potential insights.
+\showcomment{Witty last sentence?}

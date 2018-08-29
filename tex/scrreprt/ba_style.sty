@@ -36,6 +36,8 @@
 \usetikzlibrary{decorations.markings}			% for vecArrows
 \usetikzlibrary{calc}							% calculations
 \usepackage{pgfplots}							% plotting functions
+\usepackage{chngcntr}							% access to footnote counter
+	\counterwithout{footnote}{chapter}			% do not reset footnotes with new chapter
 %**************************************************
 
 
@@ -60,7 +62,6 @@
 \addtokomafont{dedication}{\raggedright}
 \addtokomafont{chapter}{\addfontfeature{Numbers=Lining}}
 \addtokomafont{pageheadfoot}{\sffamily\addfontfeature{Numbers=Lining}}
-%\addtokomafont{footnote}{\addfontfeature{Numbers=Lining}}
 \addtokomafont{pagenumber}{\sffamily}
 \pagestyle{headings}  % running headlines etc
 %**************************************************
@@ -68,7 +69,6 @@
 
 
 %*****Typographic and General Issues/Solutions*****
-% add DOI's!!
 % Rączaszek mit fancy a!
 % einheitliche small caps in Literaturverzeichnis
 % colon after paragraph heading?
@@ -99,17 +99,19 @@
 
 %*******************New Commands*******************
 %% shortcuts
-\newcommand{\fpmlower}{frequent pattern mining}		% shortcut
-\newcommand{\fpmupper}{Frequent Pattern Mining}		% shortcut
-\newcommand{\fpmsentence}{Frequent pattern mining}	% shortcut
-\newcommand{\dna}{\textsc{dna}}						% DNA (duh...)
-\newcommand{\ms}{milliseconds}						% milliseconds (duh...)
-\newcommand{\noc}{\textsc{noc}}						% number of occurrences
-\newcommand{\rt}{\textsc{rt}}						% reaction time
-\newcommand{\sone}{second}							% second (duh...)
-\newcommand{\s}{seconds}							% seconds (duh...)
-\newcommand{\sd}{\textsc{sd}}						% standard deviation
-\newcommand{\pv}{\textit{p}-value}					% p-value
+\newcommand{\fpmlower}{frequent pattern mining}			% shortcut
+\newcommand{\fpmupper}{Frequent Pattern Mining}			% shortcut
+\newcommand{\fpmsentence}{Frequent pattern mining}		% shortcut
+\newcommand{\dna}{\textsc{dna}}							% DNA (duh...)
+\newcommand{\ms}{milliseconds}							% milliseconds (duh...)
+\newcommand{\noc}{\textsc{noc}}							% number of occurrences
+\newcommand{\rt}{\textsc{rt}}							% reaction time
+\newcommand{\sone}{second}								% second (duh...)
+\newcommand{\s}{seconds}								% seconds (duh...)
+\newcommand{\sd}{\textsc{sd}}							% standard deviation
+\newcommand{\pv}{\textit{p}-value}						% p-value
+\newcommand{\pvupper}{\textit{P}-value}					% P-value
+\newcommand{\zero}{{\addfontfeature{Numbers=Lining}0}}	% lining zero to avoid 0-o ambiguity
 
 %% short cuts for event types
 \newcommand{\mosp}{\mbox{\code{mother\_speech}}}

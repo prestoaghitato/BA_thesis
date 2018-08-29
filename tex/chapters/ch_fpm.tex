@@ -16,7 +16,7 @@
 The corpus is a collection of 10 mother--infant dyads.
 Mother and infant were recorded in their own homes during a diaper changing routine.
 At the time of recording, infants were 3 months of age, mothers were between 28 and 40 years of age.
-This diaper changing routine has several advantages compared to most other activities.
+This diaper changing routine has several advantages compared to most other activities:
 \begin{enumerate}[label={\alph*)}]
 	\item it is an activity well-known and familiar to both mother and infant as they both engage in it regularly
 	\item mother and infant are in direct interaction with each other for a relatively long period of time
@@ -30,13 +30,13 @@ The videos had a mean length of 395~sec (\sd~=~186~sec).
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{../aux/img/video_vp_08_compact.png}
-	\label{fig:rawvid}
 	\caption[Screenshot of the raw video data.]{A screenshot of the raw video data showing a mother and her infant during the diaper routine. The left camera captures the mother's behaviour, the right camera captures the infant's behaviour.}
+	\label{fig:rawvid}
 \end{figure}
 
 \subsection{Annotation of the Videos}
 \label{ssec:fpmmetann}
-10 kinds of events were hand-coded frame per frame for both mother and infant using the \textsc{elan} software \citep{wittenburg_elan_2006}, yielding an accuracy of \textasciitilde40~ms (videos were recorded with 25 frames per second, therefore a single frame is 40~ms long).
+10 kinds of events were hand-coded frame per frame for both mother and infant using the \textsc{elan} software \citep{wittenburg_elan_2006}, yielding an accuracy of \textasciitilde40~\ms\ (videos were recorded with 25 frames per second, therefore a single frame is 40~\ms\ long).
 These events were of linguistic, vocal, and visual modality.  % Categories were chosen how? Elaborate here.
 They were chosen because, as shown in subsection~\ref{ssec:introrestt}, research has indicated they play a relevant role in early mother-infant interaction.
 Table \ref{tab:events} lists all event types.
@@ -79,8 +79,8 @@ For example, the set (A,~C) is observed from 4 to 7 and from 8 to 13~\s, because
 \begin{figure}
 	\centering
 	\input{../aux/tikzpictures/tikz_idealseq.tex}
-	\label{fig:idealseq}
 	\caption[Sequence schema.]{Schema of an (idealised) sequence.}
+	\label{fig:idealseq}
 \end{figure}
 
 \paragraph{A note on terminology}
@@ -111,32 +111,32 @@ In contrast, there is no occurrence of \fpmrule{B}{A}, because no two observed s
 This scheme can be further adapted to the specific nature of the data.
 Given that the data are hand-coded frame per frame, the second condition (antecedent and succedent beginning simultaneously) will in all probability never be true.
 The notion of \emph{at the same time} itself is problematic as well.
-Humans exhibit a certain reaction time to stimuli, which is always greater than 0\showcomment{This zero looks weird, is there a different one? Perhaps a fancy strike-through zero? Update: the slashed old style zero doesn't look too great, perhaps a lining zero.}~\ms.
+Humans exhibit a certain reaction time to stimuli, which is always greater than \zero~\ms.
 It logically follows that if both mother and infant begin exhibiting a certain event \emph{at the same time,} then one event cannot be a reaction to the other because such a reaction would demand an appropriate reaction time.
 Therefore, an interpersonal rule where both events begin at the same time is the result of pure chance.
 Capturing chance is not the purpose of rules and, accordingly, such rule occurrences should not be captured at all.
 One way of avoiding such rule occurrences is to demand a minimum delay between the beginning of the antecedent and the beginning of the succedent.
-In the following paragraph I describe how and why I have chosen to demand a delay of at least 289~\ms\ for rules where the mother's behaviour is the succedent and a delay of at least 850~\ms\  for rules where the infant's behaviour is the succedent.
+In the following paragraph I describe how and why I have chosen to demand a delay of at least 289~\ms\ for rules where the mother's behaviour is the succedent and a delay of at least 850~\ms\ for rules where the infant's behaviour is the succedent.
 
 \paragraph{Choosing appropriate delays}
 Human reaction time (henceforth \rt) correlates with a vast variety of factors, among which are intensity, modality, and complexity of the stimulus \citep{brebner_introduction:_1980}, age and gender \citep{der_age_2006}, state of alertness \citep{appelle_simple_1974}, handedness \citep{dane_sex_2003}, and even personality traits \citep{stelmack_personality_1993}.
 Quite obviously, many of those traits cannot be determined for the subjects in the corpus used in the present thesis.
 However, those factors which are most relevant (namely age of the subject and modality of the stimulus) are both captured in the data and relatively easy to account for.
 Regarding modality, variation is very small.
-\citet[\pnum{9}]{brebner_introduction:_1980} ascribe variation caused by the modality of the stimulus to ``differences in the peripheral mechanisms rather than in the central processes\showcomment{of the brain? of stimulus parsing?}'' and give average\footnote{I use the term \emph{average} wherever sources do not state whether the value in question is a mean, median, mode, or other measure of centrality.} \rt s of 8--10~ms for acoustic stimuli and 20--40~ms for visual stimuli to reach those central processes.
+\citet[\pnum{9}]{brebner_introduction:_1980} ascribe variation caused by the modality of the stimulus to ``differences in the peripheral mechanisms rather than in the central processes [of cognition]'' and give average\footnote{The term \emph{average} is used wherever sources do not state whether the value in question is a mean, median, mode, or other measure of centrality.} \rt s of 8--10~\ms\ for acoustic stimuli and 20--40~\ms\ for visual stimuli to reach those central processes.
 The resulting difference of 10--32~\ms\ may of course be incorporated in a model of \rt s in the corpus used here, but modelling different \rt s depending on the kind of stimulus complicates the algorithm considerably.
 Furthermore, given the small difference caused by stimulus modality, the advantages would be slim.
 Therefore the modality of the stimulus has not been incorporated.
-Regarding age, mean \rt\ lies  between 1002--1124~ms for infants of age 6--9 months (N~=~24) and between 311--326~ms for adults of age 19--26 years (N~=~11) \citep[\pnum{95}]{leibold_relationship_2002}.%
-\footnote{Stimulus was a pure (i.e.~sine wave) tone of 1000~Hz with loudness ranging from 40--60~dB.
+Regarding age, mean \rt\ lies  between 1002--1124~\ms\ for infants of age 6--9 months (N~=~24) and between 311--326~\ms\ for adults of age 19--26 years (N~=~11) \citep[\pnum{95}]{leibold_relationship_2002}.%
+\footnote{Stimulus was a pure (i.e.~sine wave) tone of 1000~Hertz with loudness ranging from 40--60~dB.
 No numerical values given.
 Converted from line chart using the Engauge Digitizer software \citep{mitchell_engauge_2002}.
-The loudness corresponds to average loudness perceived in conversation \citep[\pnum{32}]{gorne_tontechnik_2006}}
+The loudness corresponds to average loudness perceived in conversation \citep[\pnum{32}]{gorne_tontechnik_2006}.}
 It would obviously have been desirable to have \rt\ values of 3 month old infants, given that the infants in the  corpus used in the present thesis are 3 months of age.
 Unfortunately, such literature does not seem to be available, so the age difference of 3--6 months cannot be avoided for now.
 Nevertheless, the important point made is that there \emph{is} a considerable difference in reaction time between infants and adults that must be taken into account.
 In my analysis, I therefore capture rules of the sort \fpmtextrule{infant}{mother} (i.e.~mother has to react) if and only if the delay between the start time point of the antecedent and the start time point of the succedent is greater than 289~\ms.
-Similarly, rules of the sort \fpmtextrule{mother}{infant} (i.e.~infant has to react) are captured f and only if the delay between the start time point of the antecedent and the start time point of the succedent is greater than 850~\ms.
+Similarly, rules of the sort \fpmtextrule{mother}{infant} (i.e.~infant has to react) are captured if and only if the delay between the start time point of the antecedent and the start time point of the succedent is greater than 850~\ms.
 The values chosen are those given by \citet{leibold_relationship_2002} minus two standard deviations.
 This way\dash assuming \rt s to be normally distributed\dash 97.5~\% of \rt s will be longer than the given delays \citep[\pnum{57}]{moore_introduction_2017} and, consequently, only 2.5~\% of \rt s will falsely be sorted out as coincidence.
 
@@ -145,12 +145,11 @@ I am well aware that the literature cited with regards to the delays chosen is c
 Unfortunately, literature specifically concerned with \rt\ in interaction is virtually inexistent.
 There are some indications that it may be faster than general \rt\ \citep{levinson_turn-taking_2016}, but none that it may be slower.
 \citepos{levinson_turn-taking_2016} argument deserves further attention.
-It unpacks as follows:
-
+It unpacks as follows:\showcomment{Has already been explained (how well?) in the section on evolution.}
 The fastest \rt\ humans are capable of is around 200~\ms.
 This is the \rt\ to a simple start signal with only one possible reaction.
 According to Hick's law \citep{hick_rate_1952}, human \rt\ increases logarithmically with the number of available response choices.
-Taking vocabulary alone into consideration, languages offer at least 50,000 response choices, so that one would expect \rt\ in language to be far above said 200~\ms.
+Taking vocabulary alone into consideration, languages offer at least 50000 response choices, so that one would expect \rt\ in language to be far above said 200~\ms.
 Furthermore, the production of a single primed word takes around 600~\ms, short clauses can take around 1500~\ms.
 Despite this, the modal gap between turns is also around 200~\ms.
 It follows logically, that production planning must begin before the end of the previous turn.
@@ -160,8 +159,8 @@ Both gaps are schematised in figure \ref{fig:gaps}, with the gap being discussed
 \begin{figure}
 	\centering
 	\input{../aux/tikzpictures/tikz_gaps.tex}
-	\label{fig:gaps}
 	\caption[Gap in the literature vs gap in the present thesis.]{Comparison of the gap being discussed in the turn-taking literature (left) and the gap being modelled in the present thesis (right).}
+	\label{fig:gaps}
 \end{figure}
 
 A few important differences between the two gaps must be noted.
@@ -177,7 +176,7 @@ The input preceding the measured gap will be of any modality or combinations of 
 The influences of this potential multimodal input on the gap are of course there, but it is unclear how big these influences are.
 Furthermore, it is likely that they will cancel themselves out in the larger picture.
 In short:
-\citeauthor{levinson_turn-taking_2016} measures the gap from the \emph{end} of a linguistic turn of speaker A to the \emph{beginning} of the following linguistic turn of speaker B.
+\citeauthor{levinson_turn-taking_2016} measures the gap from the \emph{end} of a linguistic turn of speaker \emph{a} to the \emph{beginning} of the following linguistic turn of speaker \emph{b}.
 The present thesis measures the gap between the \emph{beginning} of one multimodal event to the \emph{beginning} of another multimodal event.
 Therefore, whatever processes might make turn-taking as quick as it is do not apply here.
 Some empirical support for this line of argumentation comes from \citet{vanegeren_mother-infant_2001}, who measured a gap similar to the one measured in the present thesis and who found significant results (i.e.~the number of responses to a behaviour being significantly above chance, see also the paragraphs on turn-taking including non-linguistic modalities\showcomment{Has this paragraph maybe been renamed?} in subsection~\ref{ssec:introrestt}) only after a delay of at least 1~\sone, but not before.
@@ -187,7 +186,7 @@ Consequently, there are two likely possible cases:
 The delays chosen are either too long or too short.
 If they are too short, then some but not all of the coincidences will be filtered out.
 If they are too long, then some real patterns will not be captured but (nearly) all of the coincidences will be filtered out.
-It is unlikely, that the delays chosen are exactly right (or that \emph{exactly right} is even a meaningful notion in this context), but for the simple fact that reaction time is always greater than 0~\ms\ modelling them is a step in the right direction.
+It is unlikely, that the delays chosen are exactly right (or that \emph{exactly right} is even a meaningful notion in this context), but for the simple fact that reaction time is always greater than \zero~\ms\ modelling them is a step in the right direction.
 
 For intrapersonal rules only, simultaneous beginnings of antecedent and succedent are meaningful.
 Therefore, the delays should not be enforced for intrapersonal rules.
@@ -208,18 +207,18 @@ where \(d(x)\) is the duration of~\(x\).
 The confidence therefore is the duration of the interval where both antecedent and succedent are observed (i.e.~where they overlap) divided by the duration of the interval where the antecedent is observed.
 If, in a given occurrence of a rule, we observe the antecedent for 8~\s\ and the overlap of antecedent and succedent is 6~\s, then that occurrence will have a confidence of \(\frac{6~sec}{8~sec} = 0.75\).
 Because the interval where both antecedent and succedent are observed cannot be longer than the interval where the antecedent is observed, the confidence has an interval of \((0, 1] = \{x \in \mathbb{R} \mid 0 < x \leq 1 \}\).
-A value of \(0\) is not possible because by definition the interval of a rule where both antecedent and succedent are observed is greater than zero.
+A value of \zero\ is not possible because by definition the interval of a rule where both antecedent and succedent are observed is greater than zero.
 In other words, the confidence answers to the question:
 Over what percentage of the antecedent interval do we observe the succedent?
-The infant smiling for a relatively long period of time with the mother eventually joining in with a brief smile herself will result in an occurrence of \fpmtextrule{infant\_smile}{\mosm} with a low confidence close to 0.
+The infant smiling for a relatively long period of time with the mother eventually joining in with a brief smile herself will result in an occurrence of \fpmtextrule{infant\_smile}{\mosm} with a low confidence close to \zero.
 The infant smiling with the mother joining in almost immediately and continuing to smile with the infant for a relatively long period of time will result in an occurrence of \fpmtextrule{infant\_smile}{\mosm} with a high confidence close to 1.
 The overall confidence of a rule in a sequence is the mean of all its occurrences' individual confidence values.
 
 It is crucial that the confidence not be misinterpreted as some sort of conditional probability.
 A short example will illustrate how different the two metrics behave.
-We have a single occurrence of a rule \fpmrule{A}{B}, where we observe the succedent~\fpmlabel{B} over the entire duration of the antecedent~\fpmlabel{A} and 0 other occurrences of the antecedent~\fpmlabel{A}.
+We have a single occurrence of a rule \fpmrule{A}{B}, where we observe the succedent~\fpmlabel{B} over the entire duration of the antecedent~\fpmlabel{A} and \zero\ other occurrences of the antecedent~\fpmlabel{A}.
 Both the confidence and the conditional probability will evaluate to 1 in this case.
-But if we have not 0 but 10 other occurrences of the antecedent~\fpmlabel{A}, the two metrics differ.
+But if we have not \zero\ but 10 other occurrences of the antecedent~\fpmlabel{A}, the two metrics differ.
 The conditional probability will evaluate to \(\frac{1}{10} = 0.1\) because in only 1 of the 10 occurrences of the antecedent we could also observe the succedent.
 The confidence however will still evaluate to 1, because the mere observation of the antecedent without observation of the succedent does not count as an occurrence of the rule \fpmrule{A}{B} and therefore is not taken into account by the confidence.
 Phrased differently, the confidence is invariant to such sole occurrences of the antecedent.
@@ -235,7 +234,6 @@ The duration is another simple yet useful metric.
 For a given rule, it is the sum of the durations of all occurrences of that rule.
 I.e.~if we have 3 occurrences of a given rule, which are 2, 7, and 4~\s\ long respectively, then that rule's duration evaluates to \(2+7+4=13\)~\s.
 The duration of a rule is measured in seconds.
-For simplicity I will sometimes omit the unit, but never at the expense of clarity.\showcomment{Did you though?}
 
 Neither of these three metrics make much sense alone.
 A rule may have a high confidence but only show up once, indicating coincidence.
@@ -248,7 +246,7 @@ It logically follows that in order to make use of the metrics' power, they must 
 The results presented in this section are a brief comparison of the rules presented in \citet{rohlfing_multimodal_underreview} with their counterpart when taking \rt s into account.
 It is not an extensive discussion, which is reserved for the results in chapter~\ref{ch:sig} after a statistical significance\dash the main aim of this thesis\dash has been established.
 I will also intentionally exclude all metrics other than confidence, because confidence is the only metric taken into account in \citet{rohlfing_multimodal_underreview}.
-Table \ref{tab:rtcomp} lists all interpersonal rules explicitly mentioned in \citet{rohlfing_multimodal_underreview} and their confidence values before and after demanding the minimum delays discussed earlier.
+Table~\ref{tab:rtcomp} lists all interpersonal rules explicitly mentioned in \citet{rohlfing_multimodal_underreview} and their confidence values before and after demanding the minimum delays discussed earlier.
 For rules with both mother and infant in the succedent, the value given here is the one with the longer delay of 850~\ms.
 In the extensive discussion in chapter~\ref{ch:sig}, I will consider values calculated with both the shorter and longer delay for such rules.
 Intrapersonal rules are not discussed because reaction time does not play a role here, see end of subsection \ref{ssec:fpmmetapp}.
@@ -280,9 +278,9 @@ Intrapersonal rules are not discussed because reaction time does not play a role
 	\label{tab:rtcomp}
 \end{table}
 
-The first thing that strikes the eye, is that out of the 13 interpersonal rules discussed in \citet{rohlfing_multimodal_underreview}, 9 have not been observed when taking \rt\ into account, indicating that for every occurrence of these rules the beginning of the succedent was less than the respective \rt\ after the antecedent.
-We also see changes in confidence, shown in the right-most column of the table.
-While most of these changes change little about the rule's interpretation, there is one substantial changes visible.
+Going back to table~\ref{tab:rtcomp}, the first thing that strikes the eye, is that out of the 13 interpersonal rules discussed in \citet{rohlfing_multimodal_underreview}, 9 have not been observed when taking \rt\ into account, indicating that for every occurrence of these rules the beginning of the succedent was less than the respective \rt\ after the antecedent.
+We also see differences in confidence, shown in the right-most column of the table.
+While most of these differences change little about the rule's interpretation, there is one substantial difference visible.
 The confidence of rule (7) drops by half, indicating that some of the rule's occurrences may have been coincidence.
 This is in line with a peculiarity of the data set:
 Mothers' speech is observed for a majority of the time, making other events incidentally coinciding with it likely.
@@ -293,39 +291,3 @@ Such an interval suggests that the mother look at her baby and at an object \emp
 A closer look at the data reveals that both rules only occur a single time and only for 0.45~\s.
 In fact, both rules are derived from the same 0.45~\s\ interval in the data (the succedent of rule (15) is a subset of the succedent of rule (16)).
 The most likely reason for this isolated occurrence of an impossible antecedent is a simple coding error.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

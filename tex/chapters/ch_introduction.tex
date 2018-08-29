@@ -10,9 +10,9 @@ When a speaker begins their turn, they gain the right to speak and\dash upon fin
 A turn is on average 2~\s\ in length, with high variation.
 It usually consists of syntactically complete clauses and gives pragmatically sufficient information, though this is not a necessity \citep[\pnum{8}]{levinson_turn-taking_2016}.
 \emph{Turn-taking} is the act of one speaker finishing their turn and another speaker beginning their turn, i.e.\ passing on the right to speak from one speaker to another.
-Turns and turn-taking must not necessarily be strictly linguistic (in the sense of making use of language only, without other modalities playing relevant roles), but may make use of, for example, gestures \citep[\pnum{28--43}]{schmitt_zur_2005}.
-In fact, children regularly engage in turn-taking before having acquired their first words \citep[\pnum{1311}]{casillas_turn-taking_2016}.
-Turn-taking is therefore not intrinsically linguistic in and of itself.
+Turns and turn-taking must not necessarily be strictly linguistic (in the sense of making use of language only), but may make use of other modalities, for example gestures \citep[\pnum{28--43}]{schmitt_zur_2005}.
+In fact, children regularly engage in turn-taking before having acquired their first word \citep[\pnum{1311}]{casillas_turn-taking_2016}.
+This means that turn-taking is not dependent on language and is therefore not intrinsically linguistic in and of itself.
 
 If turn-taking is not dependant on the linguistic modality but may make use of it, then it logically follows that turn-taking is a multimodal phenomenon.\footnote{%
 Assuming there is no such thing as non-modal turn-taking.}
@@ -37,19 +37,21 @@ The present thesis aims to strengthen the statistical objectiveness of applying 
 It is organised into four main chapters.
 Chapter~\ref{ch:intro} (i.e.\ the current chapter) will proceed by motivating the need to investigate turn-taking\dash especially from an evolutionary point of view\dash in section~\ref{sec:intrott} and then give an overview of relevant previous research in section \ref{sec:introres}.
 The last section of the first chapter (\ref{sec:introaim}) further illustrates the aim of the present thesis, which has already been alluded to at the beginning of this paragraph.\showcomment{Still this paragraph?}
+
 The second chapter is almost entirely of an methodological nature.
 Section~\ref{sec:fpmmet} explains the methodology of \citet{rohlfing_multimodal_underreview} in detail, which is then further adapted to the specific interactional nature of the data by modelling reaction times in subsection~\ref{ssec:fpmmetapp}.
 Section~\ref{sec:fpmmetr} introduces the three metrics\dash confidence, duration, and number of occurrences\dash which are used for evaluating rules\footnote{The notion of a \emph{rule} will be explained in subsection \ref{ssec:fpmmetapp}.}.
 Chapter~\ref{ch:fpm}'s last section briefly contrasts the results of \citet{rohlfing_multimodal_underreview} with the new results taking reaction time into account.
 This section is not an extensive discussion, which is reserved for the end of chapter~\ref{ch:sig}.
-Chapter~\ref{ch:sig} then forms the main part of the thesis, not in length but in contribution.
+
+Chapter~\ref{ch:sig} then forms the main part of the thesis\dash not in length but in contribution.
 In this chapter, a notion of statistical significance is introduced to the rules mined in the second chapter.
 It is divided into four sections.
 Section~\ref{sec:signat} conceptually explains the meaning of statistical significance and what it can and cannot do.
-Section~\ref{sec:sigmet} explains how exactly significance was calculated by creating null sequences for comparison, followed by section~\ref{sec:sigmetr}, which briefly goes over the three metrics again, this time in the context of significance and its semantic interpretation.
+Section~\ref{sec:sigmet} explains how exactly significance was calculated by creating null sequences for comparison against the real data; followed by section~\ref{sec:sigmetr}, which briefly goes over the three metrics again, this time in the context of significance and its semantic interpretation.
 The chapter closes with an extensive results section.
 The thesis itself closes with chapter~\ref{ch:con}, the conclusion.
-Finally, an appendix lists all rules mined and the corresponding values of all metrics.
+Finally, an appendix lists all rules mined and their corresponding values of all metrics.
 
 
 \section{Why is Turn-Taking important?}
@@ -61,18 +63,19 @@ Turn-taking may be characterised as a temporal phenomenon.
 Its temporal structure shows high variation in length of individual turns, which average at 2~seconds \citep[\pnum{7}]{levinson_turn-taking_2016}, but little variation in the gaps between turns, whose modal length in American English telephone conversations is 200~\ms\ \citep[\pnum{16}]{levinson_timing_2015}.
 
 Zooming out, turn-taking is not only present in humans.
-Figure \ref{fig:species}, based on \citet[\fnum{2}]{levinson_turn-taking_2016}, shows a number of related species who are known to employ either vocal or gestural turn-taking.
+Figure \ref{fig:species}, based on \citet[\pnum{11}, \fnum{2}]{levinson_turn-taking_2016}, shows a number of related species who are known to employ either vocal or gestural turn-taking.
 The original purpose of \citeauthor{levinson_turn-taking_2016}'s figure was to show the presence of turn-taking in non-human primates, it can therefore not be considered exhaustive.
-I have added \emph{diaemus youngi}, one of several bat species known to engage in vocal turn-taking \citep[\pnum{114}]{vernes_what_2017}, to show that the phenomenon is in fact further spread in the animal kingdom than the various apes and monkeys might lead one to believe.
+\emph{diaemus youngi}, one of several bat species known to engage in vocal turn-taking \citep[\pnum{114}]{vernes_what_2017}, has been added to show that the phenomenon is in fact further spread in the animal kingdom than the various apes and monkeys might lead one to believe.\footnote{This is not to suggest that \citeauthor{levinson_turn-taking_2016} intentionally or ignorantly omitted non-primate species who engage in turn-taking. The figure in his paper simply serves a different purpose than the one in this thesis.}
 Some indications for turn-taking have also been found in European starlings, which have been shown to at least prefer song alternation to song overlap \citep{henry_social_2015}, and there are many more examples.
+
 \citet[\pnum{6}]{levinson_turn-taking_2016} suggests that language followed turn-taking in evolution. He does not consider this a coincidence but furthermore suggests that turn-taking formed the basis for language evolution.
 This claim rests on three main indications: a) turn-taking is present in various species related to humans, b) humans commonly employ language together with other modalities present in various non-human primates (e.g.~gesture), and c) language development in infants begins at an early age.
 
 \begin{figure}
 	\centering
 	\input{../aux/tikzpictures/tikz_species.tex}
+	\caption[Species known to engage in vocal or gestural turn-taking.]{A selection of species known to engage in vocal or gestural turn-taking. Based on \citet[\pnum{11}, \fnum{2}]{levinson_turn-taking_2016}.}
 	\label{fig:species}
-	\caption[Species known to engage in vocal or gestural turn-taking.]{A selection of species known to engage in vocal or gestural turn-taking. Based on \citet[\pnum{11}]{levinson_turn-taking_2016}.}
 \end{figure}
 
 Taking another step back, this raises the question of how turn-taking itself was selected for in evolution.
@@ -110,7 +113,7 @@ Every tiny adaptive step in itself must have been useful, be it thermoregulation
 How does turn-taking fit in this picture?
 Being a characteristic of communication systems\footnote{%
 This is not to be misunderstood as taking the stance that language itself is a communication system.
-On the contrary, there is substantial evidence that language has not been selected for \emph{as} a communication system \citep{reboul_why_2015}, even though it is obviously suited to be used as such. Turn-taking, however, governs far more than language (e.g.~gestural and vocal turn-taking, compare figure~\ref{fig:species}) and all aspects it governs seem to be closely linked to communication and interaction.}%
+On the contrary, there is substantial evidence that language has not been selected for \emph{as} a communication system \citep{reboul_why_2015}, even though it is obviously suited to be used as such. Turn-taking, however, governs far more than language (e.g.~gestural and vocal turn-taking, cf.~figure~\ref{fig:species}) and all aspects it governs seem to be closely linked to communication and interaction.}%
 , it seems an arbitrary, even counterproductive restriction to impose.
 If we think of a communication system between two organisms, the a priori assumption would be that information simultaneously flows from \emph{a} to \emph{b} and from \emph{b} to \emph{a}.
 This line of thought becomes more intuitive if one imagines humans would make use of turn-taking when laughing.
@@ -156,7 +159,7 @@ word is 600~\ms.
 Referring to this meta-analysis, \citet{levinson_turn-taking_2016} points out that this minimal production time is already longer than the modal gap of 200~\ms\ found in \citet{levinson_timing_2015}.
 Consequently, speech production must begin before the end of the previous turn.
 Or, in other words, this is evidence for the fact that, at least for a finite amount of time, human cognitive resources are sufficient for receiving and planning speech at the same time.
-Planning is of course in its cognitive demands not necessarily identical to production\dash the former lacks any articulatory efforts\dash but \citet{levinson_timing_2015} also found negative gaps (i.e.~overlaps) between turns, i.e.~humans are also capable of simultaneously comprehending and producing speech.
+Planning is of course in its cognitive demands not necessarily identical to production\dash the former lacks any articulatory efforts\dash but \citet{levinson_timing_2015} also found negative gaps (overlaps) between turns. This means that humans are also capable of simultaneously comprehending and producing speech (for a finite amount of time).
 Despite this temporary ability of simultaneous comprehension and production, competition for resources seems a more viable candidate to justify turn-taking.
 Being able to simultaneously produce and receive speech for a timespan that can be reasonably expressed in milliseconds is not at all the same as being able to simultaneously receive and produce speech for the duration of an entire conversation.
 
@@ -169,17 +172,14 @@ In a chapter entitled ``Gossip and the social origins of language'', \citet[\pnu
 Other recent works concerned with language evolution that do \emph{not} touch on the issue of turn-taking include \citet{berwick_why_2016}, \citet{bolhuis_birdsong_2013}, \citet{friederici_language_2017}, and \citet{jenkins_biolinguistics_2000}.
 We are therefore left with the question of how the turn-taking system was selected for in evolution.
 A question which at present lacks sufficient answers.
-%``{}`Multimodal motherese'' is likely a natural, adaptive behavior that has evolved to transmit conventional word–referent relations to infants.'' \citep[\pnum{891}]{gogate_study_2000}
-
-
 
 
 \section{Previous Research}
 \label{sec:introres}
 The overview of previous research given here is twofold. Subsection \ref{ssec:introrestt} reviews literature approaching turn-taking as a multimodal phenomenon.
 Subsection \ref{ssec:introresfpm} gives a brief overview of the development of \fpmlower.
-I will not go into too much detail about this development however, because the computer science literature is mainly interested in the theoretical algorithmic methods for \fpmlower, which is not the subject of the present thesis.
-Instead, I will review existing applications of \fpmlower\ in linguistics.
+The computer science literature is mainly concerned with theoretical, algorithmic aspects of \fpmlower, which is not the subject of the present thesis.
+Instead, literature on applications of \fpmlower\ in linguistics will be reviewed.
 
 
 \subsection{Multimodal Turn-Taking}

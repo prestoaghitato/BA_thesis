@@ -24,7 +24,7 @@ Significance tests are based on probability.
 They cannot tell us whether an observation is in fact the result of change, but they can tell us how \emph{likely} the observation is to be a result of chance.
 The test applied here, explained below\showcomment{Where?}, outputs a classical \pv.
 Semantically, the \pv\ expresses the likelihood of observing a value as extreme or more extreme than the actual observed value.
-\pv\ between 0 and 1 correspond to likelihoods between 0 and 100~\%.
+\pvupper s between \null\ and 1 correspond to likelihoods between \zero\ and 100~\%.
 It is clear that the lower a \pv\ is, the more likely the observation is to represent a real effect.
 But it is much less clear how low exactly a \pv\ has to be in order for the effect to be considered real.
 Where exactly this arbitrary cutoff, usually denoted by \(\alpha\), is made is pure convention.
@@ -51,7 +51,7 @@ A \pv\ also does not say anything about the importance or novelty of an effect.
 This is especially relevant in the present case where 201 rules have shown significant values for at least one metric.
 \citet[\pnum{22}]{han_data_2012} states that ``many patterns that are interesting by objective standards may represent common sense and, therefore, are actually uninteresting.''
 Even though the authors are referring to patterns in data mining, a similar line of argumentation holds for statistical significance.
-Many significant effects may be significant numerically but ``\citeellipses\ represent common sense and, therefore, are actually uninteresting.''
+Many significant effects may be significant numerically but ``\citeellipses\ represent common sense and, therefore, are actually uninteresting.''\showcomment{Find a quote from Frost.}
 Having outlined some conceptual key points of statistical significance, the following section explains how statistical significance for a rule's metrics was calculated.
 
 
@@ -63,8 +63,8 @@ Having outlined some conceptual key points of statistical significance, the foll
 The aim of applying \fpmlower\ to the corpus of mother--infant dyads is to find regularities in early mother--infant interaction.
 As explained earlier, the corpus contains 10 sequences all containing whichever regularities are present in the interactions.
 The goal of introducing significance is to know whether a rule actually represents a regularity\dash in the sense that mother and infant are intentionally coordinating their behaviour\dash or if a rule is simply a result of chance.
-To give an example, if event type \emph{a} is observed at all times and event type \emph{b} only occurs at seldom and random times, then the rule \fpmmediumrule{a}{b} will still have a confidence of 1 even though it does not represent an actual regularity.
-If, on the other hand, both \emph{a} and \emph{b} occur rarely in the sequence, but the rule still shows a confidence of >~0.9, then this is a strong indication that \fpmmediumrule{a}{b} represents an actual regularity.
+To give an example, if event type \fpmlabel{A} is observed at all times and event type \fpmlabel{B} only occurs at seldom and random times, then the rule \fpmrule{A}{B} will have a confidence of 1 even though it does not represent an actual regularity.
+If, on the other hand, both \fpmlabel{A} and \fpmlabel{B} occur rarely in the sequence, but the rule still shows a confidence of >~0.9, then this is a strong indication that \fpmrule{A}{B} represents an actual regularity.
 To calculate significance, sequences \emph{not} containing those regularities are needed for comparison.
 Alluding to the terminology introduced in the previous\showcomment{Still previous?} section, an experimental group is present (the real sequences) but a control group (regularity-free sequences, henceforth null sequences) is missing.
 The goal is to have a \pv\ for every metric for every rule, i.e.~3~\pv\ for every rule (one for its confidence, \noc, and duration respectively).%
@@ -73,7 +73,7 @@ The goal is to have a \pv\ for every metric for every rule, i.e.~3~\pv\ for ever
 % how to create a null sequence
 The methodological approach taken therefore, is to create randomised null sequences, which then serve as a basis against which the rules of the real sequences can be tested for significance.
 A null sequence is created as follows:
-Take one of the ten real sequences in the corpus.
+Take one of the 10 real sequences in the corpus.
 For each of the 10 event types (cf.~table \ref{tab:events}) individually, shuffle the events with respect to their start time points, but leave their duration untouched, i.e.~leave the position of their end points untouched \emph{with respect to their start points.}
 No events are added or removed.
 This process is done for all 10 event types, resulting in a null sequence corresponding to the real sequence its events were taken from.
@@ -91,8 +91,8 @@ This was achieved by merging \{\mogain, \mogaob, \mogaaw\} and \{\ingamo, \ingao
 \begin{figure}
 	\centering
 	\input{../aux/tikzpictures/tikz_null.tex}
-	\label{fig:null}
 	\caption[Real and null sequence comparison.]{Comparison of an excerpt of a real sequence (top) and a corresponding null sequence (bottom). Notice how events of each type respectively are shuffled temporally but their number and duration does not change.}
+	\label{fig:null}
 \end{figure}
 
 We now have a null sequence which contains the exact same events as the corresponding real distribution, but shuffled in their temporal order.
@@ -110,7 +110,7 @@ Next, in step three, \fpmlower\ is applied to the 100 samples separately as well
 Having applied \fpmlower\ to the 100 samples separately, for every rule there are now \(\leq\)~100 observations.
 With these observations, in step four a distribution is now formed for every metric of every rule.
 Finally, the \pv\ of a given metric of a given rule is the percentage of observations in the null sequences that are greater than or equal to the real observation.
-It should be noted, that \emph{significant} implicitly reads as \emph{significantly high} in this thesis.
+It should be noted, that if not mentioned otherwise \emph{significant} implicitly reads as \emph{significantly high} in this thesis.
 The test applied is right-tailed, i.e.~only takes significantly high values into account but ignores significantly low ones.
 This is not to say that significantly low values are of no interest.
 On the contrary, those values most likely contain a lot of valuable information.
@@ -119,8 +119,8 @@ It is simply in order to not further increase this thesis' scope and size, that 
 \begin{figure}
 	\centering
 	\input{../aux/tikzpictures/tikz_significance.tex}
-	\label{fig:sig}
 	\caption[Introducing significance.]{Schematisation of how the null sequences are created and significance is introduced.}
+	\label{fig:sig}
 \end{figure}
 
 This entire process has been repeated twice.
@@ -134,7 +134,7 @@ The following paragraphs will reconsider the three metrics already introduced in
 Instead of their actual values, the focus here will be on semantic interpretation of their \pv\, i.e.~on what it means if a given metric's value is significant.
 
 The most basic interpretation is that of a significantly high \noc.
-If the number of times a rule occurs in the real sequence is significantly higher than in the null sequence packs, as explained in the previous section.\showcomment{Still previous?} then this indicates that there is indeed a temporal relationship between antecedent and succedent, i.e.~that the succedent is a reaction to the antecedent.
+If the number of times a rule occurs in the real sequence is significantly higher than in the null sequence packs, as explained in the previous section,\showcomment{Still previous?} then this indicates that there is indeed a temporal relationship between antecedent and succedent, i.e.~that the succedent is a reaction to the antecedent.
 It does, however, not say anything about the temporal characteristics of the relationship itself.
 This is where the other two metrics come in.
 
@@ -165,8 +165,8 @@ If a rule is shown in more than one table (because it fulfils more than one inte
 
 \paragraph{Reciprocating behaviour}
 There are ten potential rules indicating direct reciprocating behaviour, such as \fpmtextrule{\mogain}{\ingamo}.
-Out of these ten potential rules, six have shown significant values and are shown in table~\ref{tab:reciprocal}.
-\fpmtextrule{\mogaaw}{\ingaaw} has also been observed in the real sequence, but only a single time, likely a result of chance.
+Out of these ten potential rules, five have shown significant values and are shown in table~\ref{tab:reciprocal}.
+The rule \fpmtextrule{\mogaaw}{\ingaaw} has also been observed in the real sequence, but only a single time, likely a result of chance.
 All of these rules except for \rn{5} have shown both significant confidence and duration values, but no significant \noc.
 This indicates that the reciprocal behaviour may not have been established on purpose but once it has been established it is being maintained intentionally.
 % joint attention
@@ -266,57 +266,27 @@ Together with the high confidence (high in absolute terms and significantly high
 The fact that these rules both are not significant for \noc\ may be simply caused by the overall high duration, but this is a tentative thought that needs further investigation before becoming a claim.
 Average duration of a rule's occurrences has not been calculated but nevertheless the low number of occurrences together with the highest two overall durations of all rules indicates a high average duration.
 
+\paragraph{Significantly \emph{low} results}
+Even though the main focus of this section (and the entire thesis) are significantly high results, a few interesting observations about significantly \emph{low} results should be notes.
+There are a number of rules with significantly \emph{high} \noc, but significantly \emph{low} confidence and duration listed in table~\ref{tab:lowsig}.
+This combination of significances indicates that the rule is established often, but once it has been established it is quickly dropped again.
+\rn{16} may indicate that if the infant is gazing at their mother but notices their mother not focusing her attention on them, the infant will quickly drop the gaze and ``give up'', so to speak.
+\rn{17} and \rn{18} indicate a similar behaviour for the mother.
+Interestingly, \fpmtextrule{\mogaaw}{\ingamo} has not been observed in the corpus.
+This may, tentatively, be an indication that the infant in fact realises that their mother is focusing her attention on an object, cf.~\rn{16}, as opposed to simply gazing away with no particular referent capturing her attention.
+But this, again, is only a tentative thought.
+Not observing \fpmtextrule{\mogaaw}{\ingamo} may say something about the rule, but it may just as well simply be a peculiarity of the data set.
+Observing the rule with values supporting said tentative thought would be far more reliable.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\begin{table}
+\centering
+	\begin{tabularx}{\textwidth}{>{\addfontfeature{Numbers=Lining,Letters=Uppercase}}cX}
+		\toprule
+		\rn{16} & \fpmtextrule{\mogaob}{\ingamo} \\
+		\rn{17} & \fpmtextrule{\ingaaw}{\mogain} \\
+		\rn{18} & \fpmtextrule{\ingaob}{\mogain} \\
+		\bottomrule
+	\end{tabularx}
+	\caption[Significantly low results.]{Some rules with significantly \emph{high} \noc, but significantly \emph{low} confidence and duration.}
+	\label{tab:lowsig}
+\end{table}
